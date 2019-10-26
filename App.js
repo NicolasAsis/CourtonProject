@@ -7,11 +7,11 @@
  */
 
 import React from 'react';
-import Main from './comps/Main';
+import Login from './pages/Page-login';
 
 function App(){
   return(
-    <Main />
+    <Login />
   );
 }
 
