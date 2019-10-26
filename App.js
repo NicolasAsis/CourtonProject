@@ -7,11 +7,11 @@
  */
 
 import React from 'react';
-import Login from './pages/Page-login';
+import Home from './pages/Page-home';
 
 function App(){
   return(
-    <Login />
+   <Home/>
   );
 }
 
