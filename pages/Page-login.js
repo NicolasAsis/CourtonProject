@@ -70,8 +70,31 @@ function Login() {
             marginTop:48,
             borderRadius:28,
             width:230,
-            height:56,
-            backgroundColor:'#FE647B'
+            height:39,
+            backgroundColor:'#FE647B',
+            display:'flex',
+            justifyContent:'center',
+            alignItems:'center'
+        },
+        loginButText:{
+            fontWeight:'bold',
+            fontSize:18,
+            lineHeight:25,
+            textAlign:'center',
+            color:'white'
+        },
+        loginText:{
+            fontSize:12,
+            lineHeight:16,
+            color:'#094E76',
+            marginTop:26
+        },
+        signupText:{
+            fontSize:12,
+            lineHeight:16,
+            color:'#5DB9F0',
+            marginTop:26,
+            textDecorationLine: 'underline'
         }
     })
 
@@ -103,8 +126,10 @@ function Login() {
             /> */}
 
             <TouchableOpacity style={styles.loginBut}>
-
+                <Text style={styles.loginButText}>LOGIN</Text>
             </TouchableOpacity>
+
+            <Text style={styles.loginText}>Don't have an account?<Text style={styles.signupText}> Sign Up</Text></Text>
         </View>
     );
 }
