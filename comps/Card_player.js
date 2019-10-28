@@ -5,15 +5,18 @@ import ProgressBar from 'react-native-progress/Bar';
 function Card_player(){
     return(
         <View style={{alignItems: 'center', justifyContent:'center',marginTop: 333}}>
+            
             <View style={styles.card}>
                 <View >
                     <Image
                     style={styles.img}
                     source={require('../assets/stage18.jpg')}
                     />
+                    
                     <Text style={styles.txtorganizer}>
                         Jackson Williams
                     </Text>
+                    
                     <Text style={styles.txtGroupNum}>Group#C2344</Text>
                     <Text style={styles.txtGroupDate}>Fri, Dec 23 1pm-2pm</Text>
                     {/* <Text style={styles.txtGroupJoinDate}>Join Before: Dec 20 11:30pm</Text> */}
@@ -47,7 +50,9 @@ const styles=StyleSheet.create({
         shadowOffset:{width: 0, height: 3,},
         shadowColor: '#D8D8D8',
         shadowOpacity:1,
-        borderRadius: 8
+        borderRadius: 8,
+        
+        
 
     },
     img:{
@@ -60,15 +65,14 @@ const styles=StyleSheet.create({
         borderBottomRightRadius:0
     },
     txtorganizer:{
-        // fontFamily:'Open Sans',
         fontWeight:'bold',
         fontSize: 16,
         lineHeight:27,
         color:'#3C3C3C',
         position:'absolute',
-        height:22,
         left:'46%',
-        top:10
+        top:10,
+        fontFamily: 'Open sans'
     },
     txtGroupNum:{
         fontSize:11,
@@ -78,7 +82,8 @@ const styles=StyleSheet.create({
         width:75,
         height:15,
         left:'46%',
-        top:44
+        top:44,
+        fontFamily: 'Open sans'
     },
     txtGroupDate:{
         position: 'absolute',
@@ -87,21 +92,24 @@ const styles=StyleSheet.create({
         lineHeight:15,
         left:'46%',
         top:62,
-        color:'#FE647B'
+        color:'#FE647B',
+        fontFamily: 'Open sans'
     },
     txtGroupJoinDate:{
         fontSize:11,
         color:'#FE647B',
         position: 'absolute',
         left:'46%',
-        top:95
+        top:95,
+        fontFamily: 'Open sans'
     },
     txtGroupPlayerCount:{
         position: 'absolute',
         color:'#9FA5B4',
         fontSize:9,
         bottom:25,
-        left:'46%'
+        left:'46%',
+        fontFamily: 'Open sans'
     },
     txtGroupPrice:{
         position: 'absolute',
@@ -109,7 +117,8 @@ const styles=StyleSheet.create({
         color:'#094E76',
         fontWeight:'bold',
         bottom:25,
-        right:14
+        right:14,
+        fontFamily: 'Open sans'
     },
     ProgressBar:{
         width:170,
@@ -117,7 +126,6 @@ const styles=StyleSheet.create({
         height:8,
         right:14,
         bottom:10 
-
         }
 
 
