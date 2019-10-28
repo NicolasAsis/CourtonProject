@@ -8,6 +8,7 @@
 
 import React from 'react';
 import Home from './pages/Page-home';
+import Login from './pages/Page-login';
 
 function App(){
   return(
