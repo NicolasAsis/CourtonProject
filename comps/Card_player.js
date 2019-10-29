@@ -20,7 +20,7 @@ function Card_player() {
             unfilledColor="#CDC5C5"
             borderColor="#FFFFFF"
             color="#81EC8D"
-            progress={0.3}
+            progress= {0.4}
             style={styles.ProgressBar}
           />
         </View>

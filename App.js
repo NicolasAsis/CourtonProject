@@ -5,14 +5,19 @@
  * @format
  * @flow
  */
-
+import {View, Text} from 'react-native'
 import React from 'react';
 import Home from './pages/Page-home';
 import Login from './pages/Page-login';
+import SelectLocation from './pages/Page-select-location'
 
 function App(){
   return(
-   <Home/>
+    <View>
+     {/* <Home/> */}
+     <SelectLocation/>
+    </View>
+  
   );
 }
 
