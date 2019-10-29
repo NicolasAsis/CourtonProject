@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     left: 140,
     top: 10
   },
-  icons_profile:{
+  icons_profile: {
     width: 40,
     height: 45,
     left: 215,
