@@ -8,10 +8,13 @@ import {
   ScrollView,
 } from "react-native";
 import Card_player from "../comps/Card_player";
+import Footer_home from '../comps/Sticky_footer_home'
 
 function Home() {
   return (
     <View>
+    <ScrollView>
+    <View >
       <Image
         style={{ width: "100%", height: 240 }}
         source={require("../assets/img_homepage_banner.png")}
@@ -25,16 +28,24 @@ function Home() {
         style={styles.rearchBar}
         placeholder="  Search Group Number, Organizer"
       />
+     
+      
+          <Card_player />
+          <Card_player />
+          <Card_player />
+          <Card_player />
+          <Card_player />
+          <Card_player />
+      
+    </View >
         
-      <ScrollView>
-          <Card_player />
-          <Card_player />
-          <Card_player />
-          <Card_player />
-          <Card_player />
-          <Card_player />
       </ScrollView>
-      </View>
+     
+        <Footer_home/>
+      
+    </View>
+
+      
   );
 }
 
@@ -67,7 +78,8 @@ const styles = StyleSheet.create({
     left: 340,
     top: 192,
     zIndex: 10
-  }
+  },
+  
 });
 
 export default Home;
