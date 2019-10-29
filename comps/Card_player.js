@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import ProgressBar from "react-native-progress/Bar";
 
 function Card_player() {
   return (
     <View style={{ alignItems: "center", marginTop: 18 }}>
+      <TouchableOpacity>
       <View style={styles.card}>
         <View>
           <Image style={styles.img} source={require("../assets/stage18.jpg")} />
@@ -25,6 +26,7 @@ function Card_player() {
           />
         </View>
       </View>
+      </TouchableOpacity>
     </View>
   );
 }
