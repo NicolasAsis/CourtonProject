@@ -9,7 +9,7 @@ import {
   Animated,
   TouchableOpacity
 } from "react-native";
-import { panGestureHandler, State } from "react-native-gesture-handler";
+
 import Card_player from "../comps/Card_player";
 import Footer_home from "../comps/Sticky_footer_home";
 
@@ -26,8 +26,10 @@ function Home() {
 
   return (
     <View>
+      
       <ScrollView stickyHeaderIndices={[0]}>
         <View>
+        
           <View style={{ felx: 1 }}>
             <Animated.View
               style={{
@@ -58,7 +60,6 @@ function Home() {
           </View>
         </View>
         <ScrollView
-          scrollEventThrottle={16}
           onScroll={Animated.event([
             { nativeEvent: { contentOffset: { y: setScroll.scrollY } } }
           ])}
@@ -69,14 +70,17 @@ function Home() {
           <Card_player />
           <Card_player />
           <Card_player />
+          <Card_player />
         </ScrollView>
       </ScrollView>
+      
       <TouchableOpacity>
         <Image
           style={styles.createBtn}
           source={require("../assets/but_create.png")}
         />
       </TouchableOpacity>
+      
       <Footer_home />
     </View>
   );
@@ -117,7 +121,7 @@ const styles = StyleSheet.create({
     height: 54,
     position: "absolute",
     zIndex: 10,
-    left: "43%",
+    left: "42%",
     bottom: 120
   }
 });
