@@ -7,15 +7,12 @@
  */
 import {View, Text} from 'react-native'
 import React from 'react';
-import Home from './pages/Page-home';
-import Login from './pages/Page-login';
-import SelectLocation from './pages/Page-select-location'
+import Main from './comps/Main'
 
 function App(){
   return(
     <View>
-     {/* <Home/> */}
-     <SelectLocation/>
+     <Main/>
     </View>
   
   );

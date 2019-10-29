@@ -25,7 +25,7 @@ function Footer_home() {
 const styles = StyleSheet.create({
   footer: {
     width: "100%",
-    height: 132,
+    height: 83,
     left: 0,
     bottom: 0,
     position: "absolute",
@@ -37,21 +37,21 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   icons_home: {
-    width: 30,
-    height: 50,
+    width: 23,
+    height: 37,
     left: 64,
-    top: 7
+    top: 10
   },
   icons_group: {
-    width: 61,
-    height: 46,
-    left: 140,
+    width: 50,
+    height: 38,
+    left: 155,
     top: 10
   },
   icons_profile: {
-    width: 40,
-    height: 45,
-    left: 215,
+    width: 32,
+    height: 37,
+    left: 245,
     top: 10
   }
 });
