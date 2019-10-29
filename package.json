@@ -13,6 +13,7 @@
     "react": "16.8.1",
     "react-google-font-loader": "^1.1.0",
     "react-native": "0.61.2",
+    "react-native-gesture-handler": "^1.4.1",
     "react-native-progress": "^4.0.1"
   },
   "devDependencies": {
@@ -27,8 +28,8 @@
   "jest": {
     "preset": "react-native"
   },
-  "rnpm":{
-    "assets":[
+  "rnpm": {
+    "assets": [
       "./assets/fonts/"
     ]
   }
