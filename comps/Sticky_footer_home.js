@@ -25,7 +25,7 @@ function Footer_home() {
 const styles = StyleSheet.create({
   footer: {
     width: "100%",
-    height: 90,
+    height: 132,
     left: 0,
     bottom: 0,
     position: "absolute",
