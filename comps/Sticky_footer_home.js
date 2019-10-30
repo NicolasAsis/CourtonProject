@@ -45,13 +45,13 @@ const styles = StyleSheet.create({
   icons_group: {
     width: 50,
     height: 38,
-    left: 155,
+    left: 139,
     top: 10
   },
   icons_profile: {
     width: 32,
     height: 37,
-    left: 245,
+    left: 210,
     top: 10
   }
 });

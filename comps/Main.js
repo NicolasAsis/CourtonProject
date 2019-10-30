@@ -8,7 +8,7 @@ import SelectLocation from '../pages/Page-select-location';
 function Main(){
     return(
         <View>
-            <SelectLocation/>
+            <Home/>
         </View>
     );
 }

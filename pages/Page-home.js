@@ -27,8 +27,8 @@ function Home() {
 
   return (
     <View>
-      <ScrollView stickyHeaderIndices={[0]}>
-        <View>
+      <ScrollView stickyHeaderIndices={[0]} >
+        <View >
           <View style={{ felx: 1 }}>
             <Animated.View
               style={{
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#FFFFFF",
     position: "absolute",
-    left: 30,
+    left: 16,
     top: 58
   },
   rearchBar: {
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     borderRadius: 10,
     top: 186,
-    left: 33,
+    left: 16,
     fontSize: 16,
     fontFamily: "Open sans",
     color: "#8BC0DF"
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
     position: "absolute",
-    left: 340,
+    left: 330,
     top: 192,
     zIndex: 10
   },
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     height: 54,
     position: "absolute",
     zIndex: 10,
-    left: "42%",
+    left: "43%",
     bottom: 120
   }
 });
