@@ -30,13 +30,18 @@ function SelectLocation() {
           />
         </TouchableOpacity>
       </View>
-      <View style={{ flex: 1 }}>
-        <ScrollView style={{paddingTop:100, backgroundColor: "#FAB"}}>
+      <View style={{ flex: 1}}>
+        <ScrollView style={{ paddingBottom:800}}>
+           
           <Card_badminton_centre />
           <Card_badminton_centre />
           <Card_badminton_centre />
           <Card_badminton_centre />
           <Card_badminton_centre />
+          <Card_badminton_centre />
+          <Card_badminton_centre />
+          <Card_badminton_centre />
+        
         </ScrollView>
       </View>
     </View>

@@ -44,14 +44,14 @@ const styles = StyleSheet.create({
   },
   img: {
     borderRadius: 6,
-    width: 350,
+    width: 330,
     height: 160
   },
   txtLocationName: {
     fontFamily: "Open sans",
     fontSize: 34,
     fontWeight: "bold",
-    left: 23,
+    left: 35,
     top: 10,
     color: "#FFFFFF",
     position: "absolute"
@@ -60,12 +60,12 @@ const styles = StyleSheet.create({
     width: 10,
     height: 14,
     top: 55,
-    left:29,
+    left:40,
     position: "absolute"
   },
   txtLocation: {
     color: "#FFFFFF",
-    left: 45,
+    left: 55,
     top: 55,
     fontSize: 10,
     fontFamily: "Open sans",
