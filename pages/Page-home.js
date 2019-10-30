@@ -27,10 +27,8 @@ function Home() {
 
   return (
     <View>
-      
       <ScrollView stickyHeaderIndices={[0]}>
         <View>
-        
           <View style={{ felx: 1 }}>
             <Animated.View
               style={{
@@ -74,14 +72,14 @@ function Home() {
           <Card_player />
         </ScrollView>
       </ScrollView>
-      
+
       <TouchableOpacity>
         <Image
           style={styles.createBtn}
           source={require("../assets/but_create.png")}
         />
       </TouchableOpacity>
-      
+
       <Footer_home />
     </View>
   );
