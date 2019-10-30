@@ -4,11 +4,11 @@
 
 import 'react-native';
 import React from 'react';
-import App from '../App';
+import SelectLocation from '../pages/Page-select-location';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
 it.skip('renders correctly', () => {
-  renderer.create(<App />);
+  renderer.create(<SelectLocation />);
 });

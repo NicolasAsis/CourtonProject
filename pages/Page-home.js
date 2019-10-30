@@ -7,9 +7,10 @@ import {
   TextInput,
   ScrollView,
   Animated,
-  TouchableOpacity
+  TouchableOpacity,
+  StatusBar
 } from "react-native";
-import { panGestureHandler, State } from "react-native-gesture-handler";
+
 import Card_player from "../comps/Card_player";
 import Footer_home from "../comps/Sticky_footer_home";
 
@@ -26,8 +27,8 @@ function Home() {
 
   return (
     <View>
-      <ScrollView stickyHeaderIndices={[0]}>
-        <View>
+      <ScrollView stickyHeaderIndices={[0]} >
+        <View >
           <View style={{ felx: 1 }}>
             <Animated.View
               style={{
@@ -58,7 +59,6 @@ function Home() {
           </View>
         </View>
         <ScrollView
-          scrollEventThrottle={16}
           onScroll={Animated.event([
             { nativeEvent: { contentOffset: { y: setScroll.scrollY } } }
           ])}
@@ -69,14 +69,17 @@ function Home() {
           <Card_player />
           <Card_player />
           <Card_player />
+          <Card_player />
         </ScrollView>
       </ScrollView>
+
       <TouchableOpacity>
         <Image
           style={styles.createBtn}
           source={require("../assets/but_create.png")}
         />
       </TouchableOpacity>
+
       <Footer_home />
     </View>
   );
@@ -89,7 +92,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#FFFFFF",
     position: "absolute",
-    left: 30,
+    left: 16,
     top: 58
   },
   rearchBar: {
@@ -99,7 +102,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     borderRadius: 10,
     top: 186,
-    left: 33,
+    left: 16,
     fontSize: 16,
     fontFamily: "Open sans",
     color: "#8BC0DF"
@@ -108,7 +111,7 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
     position: "absolute",
-    left: 340,
+    left: 330,
     top: 192,
     zIndex: 10
   },
