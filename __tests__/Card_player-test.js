@@ -4,11 +4,11 @@
 
 import 'react-native';
 import React from 'react';
-import Home from '../pages/Page-home';
+import Card_player from '../comps/Card_player';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
 it('renders correctly', () => {
-  renderer.create(<Home />);
+  renderer.create(<Card_player />);
 });

@@ -5,16 +5,13 @@
  * @format
  * @flow
  */
-import {View, Text} from 'react-native'
+
 import React from 'react';
-import Main from './comps/Main'
+import Home from './pages/Page-home';
 
 function App(){
   return(
-    <View>
-     <Main/>
-    </View>
-  
+   <Home/>
   );
 }
 
