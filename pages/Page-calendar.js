@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { Calendar} from "react-native-calender";
+import { Calendar } from "react-native-calender";
 
 function Page_Calendar() {
   return (
@@ -25,14 +25,14 @@ function Page_Calendar() {
       <View style={styles.courtIndicatedBar}>
         <Text style={styles.txtBmtCentre}>Clear One</Text>
       </View>
-      <View>
-          
-      </View>
       <TouchableOpacity>
         <View style={styles.butNext}>
           <Text style={styles.txtNext}>Next</Text>
         </View>
       </TouchableOpacity>
+      <View>
+        <Calendar></Calendar>
+      </View>
     </View>
   );
 }
