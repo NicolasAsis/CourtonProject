@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     fontFamily: "Open sans",
     fontWeight: "bold",
     fontSize: 20,
-    left: 94,
+    left: 119,
     top: 27
   },
   butHam: {

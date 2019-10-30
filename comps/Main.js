@@ -3,12 +3,14 @@ import {Text,View} from 'react-native';
 import Home from '../pages/Page-home';
 import Login from '../pages/Page-login';
 import SelectLocation from '../pages/Page-select-location';
+import Page_Calendar from '../pages/Page-calendar';
+
 
 
 function Main(){
     return(
         <View>
-            <Home/>
+            <Page_Calendar/>
         </View>
     );
 }
