@@ -109,14 +109,14 @@ function Login() {
             <View style={styles.emailContainer}>
                 <TextInput
                     style={styles.emailInput}
-                    defaultValue="email@gmail.com"
+                    placeholder="Email"
                 />
             </View>
 
             <View style={styles.passwordContainer}>
                 <TextInput
                     style={styles.passwordInput}
-                    defaultValue="Password"
+                    placeholder="Password"
                 />
             </View>
 
