@@ -6,7 +6,8 @@ import {
   StyleSheet,
   ScrollView,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  StatusBar
 } from "react-native";
 import Card_badminton_centre from "../comps/Card_badminton_centre";
 
@@ -31,7 +32,7 @@ function SelectLocation() {
         </TouchableOpacity>
       </View>
       <View style={{ flex: 1}}>
-        <ScrollView style={{ paddingBottom:800}}>
+        <ScrollView style={{ paddingBottom:950, paddingTop:100}}>
            
           <Card_badminton_centre />
           <Card_badminton_centre />
@@ -43,7 +44,7 @@ function SelectLocation() {
           <Card_badminton_centre />
         
         </ScrollView>
-      </View>
+        </View>
     </View>
   );
 }
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
   header: {
     width: "100%",
     height: 100,
-    backgroundColor: "#094E76"
+    backgroundColor: "#094E76",
   },
   butBack: {
     width: 20,
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
     fontFamily: "Open sans",
     fontWeight: "bold",
     fontSize: 20,
-    left: 119,
+    left: 94,
     top: 27
   },
   butHam: {

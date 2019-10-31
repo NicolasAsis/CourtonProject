@@ -10,7 +10,7 @@ import Page_Calendar from '../pages/Page-calendar';
 function Main(){
     return(
         <View>
-            <Home/>
+            <Page_Calendar/>
         </View>
     );
 }
