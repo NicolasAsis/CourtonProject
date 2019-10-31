@@ -7,8 +7,7 @@ import {
   TextInput,
   ScrollView,
   Animated,
-  TouchableOpacity,
-  StatusBar
+  TouchableOpacity
 } from "react-native";
 
 import Card_player from "../comps/Card_player";
@@ -17,52 +16,49 @@ import Footer_home from "../comps/Sticky_footer_home";
 function Home() {
   BANNER_MAX_HEIGHT = 240;
   BANNER_MIN_HEIGHT = 78;
-  const [scrollY, setScroll] = useState(new Animated.Value(0));
+  const [scrollY] = useState(new Animated.Value(0));
 
-  setScroll.animatedBannerHeight = scrollY.interpolate({
-    inputRange: [0, 78],
+  var animatedBannerHeight = scrollY.interpolate({
+    inputRange: [0, (BANNER_MAX_HEIGHT-BANNER_MIN_HEIGHT)],
     outputRange: [BANNER_MAX_HEIGHT, BANNER_MIN_HEIGHT],
-    extrapolate: "clamp"
+    extrapolate: 'clamp'
   });
 
   return (
     <View>
-      <ScrollView stickyHeaderIndices={[0]} >
-        <View >
-          <View style={{ felx: 1 }}>
-            <Animated.View
-              style={{
-                position: "relative",
-                width: "100%",
-                top: 0,
-                left: 0,
-                right: 0,
-                height: setScroll.animatedBannerHeight
-              }}
-            >
-              <View style={{ minHeight: 78 }}>
-                <Image
-                  style={{ width: "100%", height: BANNER_MAX_HEIGHT }}
-                  source={require("../assets/img_homepage_banner.png")}
-                />
-                <Text style={styles.title}>Upcoming Available Groups</Text>
-                <Image
-                  style={styles.searchIcon}
-                  source={require("../assets/icon_search.png")}
-                />
-                <TextInput
-                  style={styles.rearchBar}
-                  placeholder="  Search Group Number, Organizer"
-                />
-              </View>
-            </Animated.View>
-          </View>
-        </View>
-        <ScrollView
-          onScroll={Animated.event([
-            { nativeEvent: { contentOffset: { y: setScroll.scrollY } } }
-          ])}
-        >
+      <ScrollView>
+          <Animated.View
+            style={{
+              position: "relative",
+              width: "100%",
+              top: 0,
+              left: 0,
+              right: 0,
+              height: animatedBannerHeight
+            }}
+          >
+            <View style={{ height: 240 }}>
+              <Image
+                style={{ width: "100%", height: BANNER_MAX_HEIGHT }}
+                source={require("../assets/img_homepage_banner.png")}
+              />
+              <Text style={styles.title}>Upcoming Available Groups</Text>
+              <Image
+                style={styles.searchIcon}
+                source={require("../assets/icon_search.png")}
+              />
+
+              <TextInput
+                style={styles.rearchBar}
+                placeholder="  Search Group Number, Organizer"
+              />
+            </View>
+          </Animated.View>
+        
+     
+          <View style={{flex:1}}>
+        <ScrollView>
+         
           <Card_player />
           <Card_player />
           <Card_player />
@@ -70,8 +66,10 @@ function Home() {
           <Card_player />
           <Card_player />
           <Card_player />
+          
         </ScrollView>
-      </ScrollView>
+        </View>
+        </ScrollView>
 
       <TouchableOpacity>
         <Image
@@ -102,7 +100,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     borderRadius: 10,
     top: 186,
-    left: 16,
+    left: 15,
     fontSize: 16,
     fontFamily: "Open sans",
     color: "#8BC0DF"
