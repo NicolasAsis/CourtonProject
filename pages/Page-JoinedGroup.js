@@ -62,7 +62,7 @@ function JoinedGroup() {
             width: 375,
             height: 187,
             left: 0,
-            bottom:0,
+            bottom:-30,
             zIndex:-2
           }}
           source={require("../assets/img_tybg.png")}
