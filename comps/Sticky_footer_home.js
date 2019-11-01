@@ -1,22 +1,31 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 function Footer_home() {
   return (
     <View>
       <View style={styles.footer}>
-        <Image
-          style={styles.icons_home}
-          source={require("../assets/icon_home.png")}
-        />
-        <Image
-          style={styles.icons_group}
-          source={require("../assets/icon_uns_myGroups.png")}
-        />
-        <Image
-          style={styles.icons_profile}
-          source={require("../assets/icon_uns_profile.png")}
-        />
+        <TouchableOpacity style={styles.icons}>
+          <Image
+            style={styles.icons_home}
+            source={require("../assets/icon_home_blue.png")}
+          />
+          <Text style={styles.txtIcon}>HOME</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.icons}>
+          <Image
+            style={styles.icons_group}
+            source={require("../assets/icon_mygroup_grey.png")}
+          />
+          <Text style={styles.txtIcon}>MY GROUPS</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.icons}>
+          <Image
+            style={styles.icons_profile}
+            source={require("../assets/icon_profile_grey.png")}
+          />
+          <Text style={styles.txtIcon}>PROFILE</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -36,23 +45,28 @@ const styles = StyleSheet.create({
     shadowRadius: 30,
     flexDirection: "row"
   },
+  icons: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
+    marginTop: -15
+  },
+  txtIcon: {
+    fontFamily: "Open sans",
+    fontSize: 11
+  },
   icons_home: {
-    width: 23,
-    height: 37,
-    left: 64,
-    top: 10
+    width: 28,
+    height: 28
   },
   icons_group: {
-    width: 50,
-    height: 38,
-    left: 139,
-    top: 10
+    width: 30,
+    height: 30
   },
   icons_profile: {
-    width: 32,
-    height: 37,
-    left: 210,
-    top: 10
+    width: 30,
+    height: 30
   }
 });
 export default Footer_home;
