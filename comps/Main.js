@@ -6,13 +6,14 @@ import Login from '../pages/Page-login';
 import SelectLocation from '../pages/Page-select-location';
 import Page_Calendar from '../pages/Page-calendar';
 import GroupInfo from '../pages/Page-groupInfo';
+import SelectCourts from '../pages/Page-select-courts';
 
 
 
 function Main(){
     return(
         <View>
-            <SelectLocation/>
+            <Page_Calendar/>
         </View>
     );
 }
