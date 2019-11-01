@@ -20,13 +20,19 @@ function Footer_court_indicator(props) {
             <Text style={styles.txtIndicator}>Selected</Text>
           </View>
         </View>
-        <View style={{alignItems:'center', justifyContent:'center', marginTop:23}}>
-        <View style={styles.butBg}>
-          <Text style={styles.price}>${props.txtPrice}/Hour</Text>
-          <TouchableOpacity style={styles.butOk}>
+        <View
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: 23
+          }}
+        >
+          <View style={styles.butBg}>
+            <Text style={styles.price}>${props.txtPrice}/Hour</Text>
+            <TouchableOpacity style={styles.butOk}>
               <Text style={styles.txtOk}>Ok</Text>
-          </TouchableOpacity>
-        </View>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>
@@ -40,7 +46,8 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0,
-    position:'relative'
+    top: 525,
+    position: "absolute"
   },
   indicators: {
     flexDirection: "row",
@@ -71,44 +78,42 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#4A4A4A",
     marginTop: 2,
-    left:3
+    left: 3
   },
   butBg: {
     width: 311,
     height: 56,
     backgroundColor: "#FFFFFF",
-    borderRadius:50,
-    shadowColor:'#000000',
-    shadowOffset:{x:2, y:3},
-    shadowRadius:7,
+    borderRadius: 50,
+    shadowColor: "#000000",
+    shadowOffset: { x: 2, y: 3 },
+    shadowRadius: 7,
     shadowOpacity: 0.07,
-    justifyContent:'center',
-    alignItems:'center',
-    flexDirection:'row'
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row"
   },
-  price:{
-      color:'#FE647B',
-      fontFamily:'Open sans',
-      fontWeight:'bold',
-      fontSize:16,
-      left:32,
-      flex:1,
-
+  price: {
+    color: "#FE647B",
+    fontFamily: "Open sans",
+    fontWeight: "bold",
+    fontSize: 16,
+    left: 32,
+    flex: 1
   },
-  butOk:{
-      width:165,
-      height:56,
-      backgroundColor:'#4FF081',
-      borderRadius:50,
-      justifyContent:'center',
-      alignItems:'center',
-     
+  butOk: {
+    width: 165,
+    height: 56,
+    backgroundColor: "#4FF081",
+    borderRadius: 50,
+    justifyContent: "center",
+    alignItems: "center"
   },
-  txtOk:{
-    color:"#FFFFFF",
-    fontWeight:'bold',
-    fontFamily:'Open sans',
-    fontSize:20,
+  txtOk: {
+    color: "#FFFFFF",
+    fontWeight: "bold",
+    fontFamily: "Open sans",
+    fontSize: 20
   }
 });
 

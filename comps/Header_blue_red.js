@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     height: 23,
     left: 315,
     top: 2,
-    position:'absolute'
+    position: "absolute"
   },
   courtIndicatedBar: {
     backgroundColor: "#FE647B",

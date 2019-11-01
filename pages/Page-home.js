@@ -19,57 +19,54 @@ function Home() {
   const [scrollY] = useState(new Animated.Value(0));
 
   var animatedBannerHeight = scrollY.interpolate({
-    inputRange: [0, (BANNER_MAX_HEIGHT-BANNER_MIN_HEIGHT)],
+    inputRange: [0, BANNER_MAX_HEIGHT - BANNER_MIN_HEIGHT],
     outputRange: [BANNER_MAX_HEIGHT, BANNER_MIN_HEIGHT],
-    extrapolate: 'clamp'
+    extrapolate: "clamp"
   });
 
   return (
     <View>
       <ScrollView>
-          <Animated.View
-            style={{
-              position: "relative",
-              width: "100%",
-              top: 0,
-              left: 0,
-              right: 0,
-              height: animatedBannerHeight
-            }}
-          >
-            <View style={{ height: 240 }}>
-              <Image
-                style={{ width: "100%", height: BANNER_MAX_HEIGHT }}
-                source={require("../assets/img_homepage_banner.png")}
-              />
-              <Text style={styles.title}>Upcoming Available Groups</Text>
-              <Image
-                style={styles.searchIcon}
-                source={require("../assets/icon_search.png")}
-              />
+        <Animated.View
+          style={{
+            position: "relative",
+            width: "100%",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: animatedBannerHeight
+          }}
+        >
+          <View style={{ height: 240 }}>
+            <Image
+              style={{ width: "100%", height: BANNER_MAX_HEIGHT }}
+              source={require("../assets/img_homepage_banner.png")}
+            />
+            <Text style={styles.title}>Upcoming Available Groups</Text>
+            <Image
+              style={styles.searchIcon}
+              source={require("../assets/icon_search.png")}
+            />
 
-              <TextInput
-                style={styles.rearchBar}
-                placeholder="  Search Group Number, Organizer"
-              />
-            </View>
-          </Animated.View>
-        
-     
-          <View style={{flex:1}}>
-        <ScrollView>
-         
-          <Card_player />
-          <Card_player />
-          <Card_player />
-          <Card_player />
-          <Card_player />
-          <Card_player />
-          <Card_player />
-          
-        </ScrollView>
+            <TextInput
+              style={styles.rearchBar}
+              placeholder="  Search Group Number, Organizer"
+            />
+          </View>
+        </Animated.View>
+
+        <View style={{ flex: 1 }}>
+          <ScrollView>
+            <Card_player />
+            <Card_player />
+            <Card_player />
+            <Card_player />
+            <Card_player />
+            <Card_player />
+            <Card_player />
+          </ScrollView>
         </View>
-        </ScrollView>
+      </ScrollView>
 
       <TouchableOpacity>
         <Image
