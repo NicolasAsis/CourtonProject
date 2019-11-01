@@ -12,7 +12,7 @@ import GroupInfo from '../pages/Page-groupInfo';
 function Main(){
     return(
         <View>
-            <GroupInfo/>
+            <SelectLocation/>
         </View>
     );
 }
