@@ -8,6 +8,7 @@ import {
   ScrollView
 } from "react-native";
 import Button_Join from '../comps/Button_Join';
+import Card_organizer from '../comps/Card_organizer';
 
 function GroupInfo() {
   const styles = StyleSheet.create({
@@ -187,42 +188,7 @@ function GroupInfo() {
             created groups cards. So you can only view no editing.
           </Text>
 
-          {/* Group Information */}
-          {/* <View style={{ flexDirection: "row" }}>
-            <Text style={styles.giTitleText}>Group</Text>
-            <Text style={styles.giText}>#C1314</Text>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.giTitleText}>Date</Text>
-            <Text style={styles.giText}>30 December 2019</Text>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.giTitleText}>Centre</Text>
-            <Text style={styles.giText}>ClearOne</Text>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.giTitleText}>Location</Text>
-            <Text style={styles.giText}>
-              4351 No 3 Rd #100,{"\n"}Richmond, BC V6X 3A7
-            </Text>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.giTitleText}>Time</Text>
-            <Text style={styles.giText}>1pm - 4pm</Text>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.giTitleText}>Group Limit</Text>
-            <Text style={styles.giText}>5</Text>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.giTitleText}>Players</Text>
-            <Text style={styles.giText}>4</Text>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.giTitleText}>Bird Type</Text>
-            <Text style={styles.giText}>Feather</Text>
-          </View> */}
-          {/* All group info text */}
+          {/* All group information text */}
           <View style={{display:'flex',flexDirection:'row'}}>
             <View style={{flex:1}}>
                 <Text style={styles.giTitleText}>Group</Text>
@@ -247,8 +213,12 @@ function GroupInfo() {
                 <Text style={styles.giText}>Feather</Text>
             </View>
           </View>
+          {/* Organizer Cards */}
+          <Card_organizer />
+          <Card_organizer />
         </ScrollView>
       </View>
+      {/* Join Button */}
       <Button_Join />
     </View>
   );
