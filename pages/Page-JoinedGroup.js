@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { Calendar } from "react-native-calender";
 
 function JoinedGroup() {
   return (
