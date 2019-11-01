@@ -13,20 +13,47 @@ import {
 import Card_player from "../comps/Card_player";
 import Footer_home from "../comps/Sticky_footer_home";
 
-function Home() {
-  BANNER_MAX_HEIGHT = 240;
-  BANNER_MIN_HEIGHT = 78;
-  const [scrollY] = useState(new Animated.Value(0));
 
-  var animatedBannerHeight = scrollY.interpolate({
-    inputRange: [0, BANNER_MAX_HEIGHT - BANNER_MIN_HEIGHT],
-    outputRange: [BANNER_MAX_HEIGHT, BANNER_MIN_HEIGHT],
-    extrapolate: "clamp"
-  });
+ BANNER_MAX_HEIGHT = 240;
+  BANNER_MIN_HEIGHT = 78;
+
+function Home() {
+ 
+  const [scrollY] = useState(new Animated.Value(0));
+  const [opChange] = useState(new Animated.Value(0));
+
+  var animatedOpacity = opChange.interpolate({
+    inputRange:[0,1],
+    outputRange:[0,1],
+    extrapolate:'clamp'
+  })
+  
+
 
   return (
+    
     <View>
-      <ScrollView>
+      <ScrollView
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollY } } }]
+        )}
+      >
+        <Animated.View
+        style={{
+          opacity:animatedOpacity
+        }}
+        >
+        <Image
+              style={styles.searchIcon}
+              source={require("../assets/icon_search.png")}
+            />
+
+            <TextInput
+              style={styles.rearchBar}
+              placeholder="  Search Group Number, Organizer"
+            />
+        </Animated.View>
+
         <Animated.View
           style={{
             position: "relative",
@@ -34,7 +61,7 @@ function Home() {
             top: 0,
             left: 0,
             right: 0,
-            height: animatedBannerHeight
+            height: 240
           }}
         >
           <View style={{ height: 240 }}>
@@ -55,7 +82,7 @@ function Home() {
           </View>
         </Animated.View>
 
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, paddingBottom:130}}>
           <ScrollView>
             <Card_player />
             <Card_player />
