@@ -10,12 +10,7 @@ function JoinedGroup() {
       </View>
       <View style={styles.summary}>
         <Image
-          style={{
-            position:'absolute',
-            width: 73,
-            height: 68,
-            top:40
-          }}
+          style={styles.grouoIcon}
           source={require("../assets/icon_group_created.png")}
         />
         <View>
@@ -119,7 +114,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 97,
     height: 27,
-    top:120,
+    top:100,
     left:-50,
     fontFamily: "Open Sans",
     fontStyle: "normal",
@@ -134,7 +129,7 @@ const styles = StyleSheet.create({
     position:"absolute",
     width: 35,
     height: 41,
-    top:115,
+    top:93,
     left:98,
     fontFamily: "Open Sans",
     fontStyle:"normal",
@@ -144,7 +139,6 @@ const styles = StyleSheet.create({
     color: "#FE647B"
   },
   info1: {
-    position: 'absolute',
     width:261,
     height:28,
     top:180,
@@ -217,7 +211,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 165,
     height: 56,
-    top: 450,
+    top: 420,
     backgroundColor:"#4FF081",
     borderRadius: 100,
   },
@@ -231,6 +225,13 @@ const styles = StyleSheet.create({
     letterSpacing: 0.213333,
     color:"#FFFFFF"
     
+  },
+  grouoIcon: {
+    position:'absolute',
+    width: 73,
+    height: 68,
+    top:20,
+    left:130
   }
 
 
