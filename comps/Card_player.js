@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
-import ProgressBar from "react-native-progress/Bar";
+import * as Progress from 'react-native-progress';
 
 function Card_player() {
   return (
@@ -17,11 +17,12 @@ function Card_player() {
           {/* <Text style={styles.txtGroupJoinDate}>Join Before: Dec 20 11:30pm</Text> */}
           <Text style={styles.txtGroupPlayerCount}>Players 20/22</Text>
           <Text style={styles.txtGroupPrice}>$7</Text>
-          <ProgressBar
+          <Progress.Bar
             unfilledColor="#CDC5C5"
             borderColor="#FFFFFF"
             color="#81EC8D"
-            progress= {0.4}
+            progress= {0.3}
+            width={180}
             style={styles.ProgressBar}
           />
         </View>
@@ -110,7 +111,6 @@ const styles = StyleSheet.create({
     fontFamily: "Open sans"
   },
   ProgressBar: {
-    width: 180,
     position: "absolute",
     height: 8,
     right: 10,

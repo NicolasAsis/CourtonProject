@@ -7,6 +7,7 @@ import {
   Image,
   ScrollView
 } from "react-native";
+
 import Button_Join from '../comps/Button_Join';
 import Card_organizer from '../comps/Card_organizer';
 
@@ -19,6 +20,7 @@ function GroupInfo() {
       alignItems: "center",
       height: "100%"
     },
+
     //Page Header
     giHeader: {
       width: "100%",
@@ -62,7 +64,9 @@ function GroupInfo() {
       left: 95,
       top: 190
     },
+
     //Page subheader
+
     giSubHeader: {
       width: "100%",
       height: 55,
@@ -76,6 +80,7 @@ function GroupInfo() {
       fontFamily: "Open sans",
       fontSize: 15,
       color: "#FFFFFF",
+
       left: 85
     },
     gispectimeText: {
@@ -92,6 +97,7 @@ function GroupInfo() {
       fontSize: 30,
       fontWeight: "bold",
       color: "#FFFFFF",
+
       left: 144
     },
     //Group Information Section
@@ -115,6 +121,7 @@ function GroupInfo() {
       lineHeight: 20,
       marginBottom: 43
     },
+
     //Group Information Text
     giTitleText: {
       fontFamily: "Open sans",
@@ -128,6 +135,7 @@ function GroupInfo() {
       fontSize: 15,
       color: "#7C7B7B",
       lineHeight: 20,
+
       marginBottom: 32
     },
     //Style location text, since mostly two lines
@@ -166,6 +174,7 @@ function GroupInfo() {
         <Text style={styles.giOrganizedByText}>Organized by</Text>
         <Text style={styles.giOrganizerText}>Toby Wong</Text>
       </View>
+
 
       {/* Pink Subheader */}
       <View style={styles.giSubHeader}>
@@ -220,6 +229,7 @@ function GroupInfo() {
       </View>
       {/* Join Button */}
       <Button_Join />
+
     </View>
   );
 }
