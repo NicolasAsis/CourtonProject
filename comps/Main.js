@@ -17,7 +17,7 @@ import LoadingAnimation from './LoadingAnimation'
 function Main(){
     return(
         <View>
-            <JoinedGroup/>
+            <GroupInfo />
         </View>
     );
 }

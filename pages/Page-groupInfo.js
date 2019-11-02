@@ -8,14 +8,20 @@ import {
   ScrollView
 } from "react-native";
 
+import Button_Join from '../comps/Button_Join';
+import Card_organizer from '../comps/Card_organizer';
+
 function GroupInfo() {
   const styles = StyleSheet.create({
+    // Page Structure
     gipageStructure: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
       height: "100%"
     },
+
+    //Page Header
     giHeader: {
       width: "100%",
       height: 240,
@@ -58,6 +64,9 @@ function GroupInfo() {
       left: 95,
       top: 190
     },
+
+    //Page subheader
+
     giSubHeader: {
       width: "100%",
       height: 55,
@@ -71,7 +80,8 @@ function GroupInfo() {
       fontFamily: "Open sans",
       fontSize: 15,
       color: "#FFFFFF",
-      left: 70
+
+      left: 85
     },
     gispectimeText: {
       color: "#81EC8D",
@@ -87,16 +97,17 @@ function GroupInfo() {
       fontSize: 30,
       fontWeight: "bold",
       color: "#FFFFFF",
-      left: 95
+
+      left: 144
     },
+    //Group Information Section
     giTextSec: {
       width: 337,
-      height: 320,
+      height: 250,
       // backgroundColor:'#DAD',
-      paddingTop: 20,
-      height:1000,
-      flex:1
+      marginTop: 20
     },
+    //Group Description Text
     groupDescHeaderText: {
       fontFamily: "Open sans",
       fontWeight: "bold",
@@ -110,6 +121,8 @@ function GroupInfo() {
       lineHeight: 20,
       marginBottom: 43
     },
+
+    //Group Information Text
     giTitleText: {
       fontFamily: "Open sans",
       fontWeight: "bold",
@@ -122,8 +135,24 @@ function GroupInfo() {
       fontSize: 15,
       color: "#7C7B7B",
       lineHeight: 20,
-      marginBottom: 32,
-      marginLeft: 81
+
+      marginBottom: 32
+    },
+    //Style location text, since mostly two lines
+    giLocationText: {
+        fontFamily: "Open sans",
+        fontSize: 15,
+        color: "#7C7B7B",
+        lineHeight: 20,
+        marginBottom: 16
+    },
+    //Style for player amount text
+    giPlayersText: {
+        fontFamily: "Open sans",
+        fontSize: 29,
+        color:'#094E76',
+        marginBottom: 32,
+        marginTop:-16
     }
   });
 
@@ -146,6 +175,7 @@ function GroupInfo() {
         <Text style={styles.giOrganizerText}>Toby Wong</Text>
       </View>
 
+
       {/* Pink Subheader */}
       <View style={styles.giSubHeader}>
         <Image
@@ -167,43 +197,39 @@ function GroupInfo() {
             created groups cards. So you can only view no editing.
           </Text>
 
-          {/* Group Information */}
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.giTitleText}>Group</Text>
-            <Text style={styles.giText}>#C1314</Text>
+          {/* All group information text */}
+          <View style={{display:'flex',flexDirection:'row'}}>
+            <View style={{flex:1}}>
+                <Text style={styles.giTitleText}>Group</Text>
+                <Text style={styles.giTitleText}>Date</Text>
+                <Text style={styles.giTitleText}>Centre</Text>
+                <Text style={styles.giTitleText}>Location</Text>
+                <Text style={styles.giTitleText}>Time</Text>
+                <Text style={styles.giTitleText}>Group Limit</Text>
+                <Text style={styles.giTitleText}>Players</Text>
+                <Text style={styles.giTitleText}>Bird Type</Text>
+            </View>
+            <View style={{flex:1}}>
+                <Text style={styles.giText}>#C1314</Text>
+                <Text style={styles.giText}>30 December 2019</Text>
+                <Text style={styles.giText}>ClearOne</Text>
+                <Text style={styles.giLocationText}>
+                    4351 No 3 Rd #100,{"\n"}Richmond, BC V6X 3A7
+                </Text>
+                <Text style={styles.giText}>1pm - 4pm</Text>
+                <Text style={styles.giText}>5</Text>
+                <Text style={styles.giPlayersText}>4</Text>
+                <Text style={styles.giText}>Feather</Text>
+            </View>
           </View>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.giTitleText}>Date</Text>
-            <Text style={styles.giText}>30 December 2019</Text>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.giTitleText}>Centre</Text>
-            <Text style={styles.giText}>ClearOne</Text>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.giTitleText}>Location</Text>
-            <Text style={styles.giText}>
-              4351 No 3 Rd #100,{"\n"}Richmond, BC V6X 3A7
-            </Text>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.giTitleText}>Time</Text>
-            <Text style={styles.giText}>1pm - 4pm</Text>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.giTitleText}>Group Limit</Text>
-            <Text style={styles.giText}>5</Text>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.giTitleText}>Players</Text>
-            <Text style={styles.giText}>4</Text>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.giTitleText}>Bird Type</Text>
-            <Text style={styles.giText}>Feather</Text>
-          </View>
+          {/* Organizer Cards */}
+          <Card_organizer />
+          <Card_organizer />
         </ScrollView>
       </View>
+      {/* Join Button */}
+      <Button_Join />
+
     </View>
   );
 }
