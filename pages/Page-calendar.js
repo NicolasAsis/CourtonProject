@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     fontFamily: "Open sans",
     fontSize: 16,
     fontWeight: "500",
-    color: "#094E76"
+    color: "#ffffff"
   }
 });
 

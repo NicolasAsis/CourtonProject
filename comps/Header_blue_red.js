@@ -11,9 +11,9 @@ function Header_blue_red(props) {
             source={require("../assets/but_back.png")}
           />
         </TouchableOpacity>
-
+        <View style={{alignItems:'center', justifyContent:'center'}}>
         <Text style={styles.txtTitle}>{props.headerTitle}</Text>
-
+        </View>
         <TouchableOpacity style={{ width: 0, height: 0 }}>
           <Image
             style={styles.butHam}
@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
     fontFamily: "Open sans",
     fontWeight: "bold",
     fontSize: 20,
-    left: 119,
     top: 27
   },
   butHam: {
