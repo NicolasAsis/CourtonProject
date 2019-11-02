@@ -81,7 +81,7 @@ function Card_members(props) {
           {/* Organizer Name Section */}
           <View style={styles.organizerNameSec}>
             <Text style={styles.organizerText}>{props.organizer}</Text>
-            <Text style={styles.organizerNameText}>Toby Wong</Text>
+            <Text style={styles.organizerNameText}>{props.memberName}</Text>
           </View>
         </View>
       </View>
