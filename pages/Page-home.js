@@ -10,48 +10,43 @@ import {
   TouchableOpacity
 } from "react-native";
 
-import Card_player from "../comps/Card_player";
+import Card_for_player from "../comps/Card_for_player";
 import Footer_home from "../comps/Sticky_footer_home";
 
-
- BANNER_MAX_HEIGHT = 240;
-  BANNER_MIN_HEIGHT = 78;
+BANNER_MAX_HEIGHT = 240;
+BANNER_MIN_HEIGHT = 78;
 
 function Home() {
- 
   const [scrollY] = useState(new Animated.Value(0));
   const [opChange] = useState(new Animated.Value(0));
 
   var animatedOpacity = opChange.interpolate({
-    inputRange:[0,1],
-    outputRange:[0,1],
-    extrapolate:'clamp'
-  })
-  
-
+    inputRange: [0, 1],
+    outputRange: [0, 1],
+    extrapolate: "clamp"
+  });
 
   return (
-    
     <View>
       <ScrollView
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { y: scrollY } } }]
-        )}
+        onScroll={Animated.event([
+          { nativeEvent: { contentOffset: { y: scrollY } } }
+        ])}
       >
         <Animated.View
-        style={{
-          opacity:animatedOpacity
-        }}
+          style={{
+            opacity: animatedOpacity
+          }}
         >
-        <Image
-              style={styles.searchIcon}
-              source={require("../assets/icon_search.png")}
-            />
+          <Image
+            style={styles.searchIcon}
+            source={require("../assets/icon_search.png")}
+          />
 
-            <TextInput
-              style={styles.rearchBar}
-              placeholder="  Search Group Number, Organizer"
-            />
+          <TextInput
+            style={styles.searchBar}
+            placeholder="  Search Group Number, Organizer"
+          />
         </Animated.View>
 
         <Animated.View
@@ -76,21 +71,28 @@ function Home() {
             />
 
             <TextInput
-              style={styles.rearchBar}
+              style={styles.searchBar}
               placeholder="  Search Group Number, Organizer"
             />
           </View>
         </Animated.View>
 
-        <View style={{ flex: 1, paddingBottom:130}}>
+        <View style={{ flex: 1, paddingBottom: 135 }}>
           <ScrollView>
-            <Card_player />
-            <Card_player />
-            <Card_player />
-            <Card_player />
-            <Card_player />
-            <Card_player />
-            <Card_player />
+            <Card_for_player
+              organizerName={"Toby Wong"}
+              groupNum={"C1314"}
+              date={"Sat Dec 30"}
+              time={"1pm-2pm"}
+              price={"7"}
+              joinedMember={"10"}
+              totalMember={"20"}
+              progressBarLoad={"0.5"}
+            />
+            <Card_for_player />
+            <Card_for_player />
+            <Card_for_player />
+            <Card_for_player />
           </ScrollView>
         </View>
       </ScrollView>
@@ -101,8 +103,9 @@ function Home() {
           source={require("../assets/but_create.png")}
         />
       </TouchableOpacity>
-
-      <Footer_home />
+      <View style={styles.footer}>
+        <Footer_home />
+      </View>
     </View>
   );
 }
@@ -117,7 +120,7 @@ const styles = StyleSheet.create({
     left: 16,
     top: 58
   },
-  rearchBar: {
+  searchBar: {
     height: 36,
     width: 350,
     backgroundColor: "#FFFFFF",
@@ -143,7 +146,11 @@ const styles = StyleSheet.create({
     position: "absolute",
     zIndex: 10,
     left: "43%",
-    bottom: 120
+    bottom: 20
+  },
+  footer: {
+    bottom: 0,
+    // top: 92
   }
 });
 
