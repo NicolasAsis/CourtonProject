@@ -11,14 +11,14 @@ import SelectCourts from '../pages/Page-select-courts';
 import Footer_court_indicator from './Footer_court_indicator';
 import Sticky_footer_home from './Sticky_footer_home'
 import LoadingAnimation from './LoadingAnimation';
-import MyCreatedGroup from '../pages/Page-my-created-group'
+import MyJoinedGroup from '../pages/Page-my-joined-group'
 
 
 
 function Main(){
     return(
         <View>
-            <MyCreatedGroup />
+            <MyJoinedGroup />
         </View>
     );
 }
