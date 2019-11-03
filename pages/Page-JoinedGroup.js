@@ -10,7 +10,7 @@ function JoinedGroup() {
       </View>
       <View style={styles.summary}>
         <Image
-          style={styles.grouoIcon}
+          style={styles.groupIcon}
           source={require("../assets/icon_group_created.png")}
         />
         <View>
@@ -66,11 +66,15 @@ function JoinedGroup() {
   );
 }
 const styles = StyleSheet.create({
+
+// Background
   bg: {
     width: "100%",
     height: "100%",
     backgroundColor: "#094E76"
   },
+
+  // Page title
   title: {
     position: "absolute",
     width: 250,
@@ -86,10 +90,11 @@ const styles = StyleSheet.create({
     letterSpacing: 0.48,
     color: "#FFFFFF"
   },
+
+  // Caption title
   smallTitle: {
-    position: "absolute",
     width: 170,
-    height: 19,
+    height: 25,
     left: 31,
     top: 101,
     fontFamily: "Open Sans",
@@ -100,22 +105,24 @@ const styles = StyleSheet.create({
     letterSpacing: 0.186667,
     color: "#FFFFFF"
   },
+
+// Summary box
   summary: {
-    position: "absolute",
     width: 314,
-    height: 480,
+    height: 445,
     left: 31,
     top: 138,
     backgroundColor: "#FFFFFF",
     borderRadius: 6,
     alignItems:"center"
   },
+
+  // User Name
   player: {
-    position: "absolute",
-    width: 97,
+    width: 100,
     height: 27,
-    top:100,
-    left:-50,
+    top:40, 
+    left:-5,
     fontFamily: "Open Sans",
     fontStyle: "normal",
     fontWeight: "bold",
@@ -125,12 +132,13 @@ const styles = StyleSheet.create({
     letterSpacing: 0.48,
     color: "#333333"
   }, 
+
+// Price tag
   price: {
-    position:"absolute",
     width: 35,
-    height: 41,
-    top:93,
-    left:98,
+    height:80,
+    top:5,
+    left:145,
     fontFamily: "Open Sans",
     fontStyle:"normal",
     fontWeight: "bold",
@@ -138,13 +146,23 @@ const styles = StyleSheet.create({
     lineHeight: 41,
     color: "#FE647B"
   },
+
+  groupIcon: {
+    width: 73,
+    height: 68,
+    top:20,
+    left:2
+  },
+
+  // groups info
   info1: {
     width:261,
     height:28,
-    top:180,
     borderBottomWidth: 0.5,
     borderBottomColor: "#E0E0E0"
   },
+
+  // label tag eg: Group, Organizer, Date..
   label: {
     textAlign:"left",
     position: "absolute",
@@ -158,60 +176,69 @@ const styles = StyleSheet.create({
     letterSpacing: 0.48,
     color: "#333333"
   },
+// Data for tag eg : Group : #CC023
   data: {
     textAlign:"right"
   },
+
+  // organizer info
   info2: {
-    position: 'absolute',
+    top:10,
     width:261,
     height:28,
-    top:215,
     borderBottomWidth: 0.5,
     borderBottomColor: "#E0E0E0"
   },
+  // Date info
   info3: {
-    position: 'absolute',
+    top:20,
     width:261,
     height:28,
-    top:250,
     borderBottomWidth: 0.5,
     borderBottomColor: "#E0E0E0"
   },
+
+  //  time info
   info4: {
-    position: 'absolute',
+    top:25,
     width:261,
     height:28,
-    top:285,
     borderBottomWidth: 0.5,
     borderBottomColor: "#E0E0E0"
   },
+
+  //  center info
   info5: {
-    position: 'absolute',
+    top:25,
     width:261,
     height:28,
-    top:320,
     borderBottomWidth: 0.5,
     borderBottomColor: "#E0E0E0"
   },
+
+    //  location info
   info6: {
-    position: 'absolute',
     width:261,
     height:50,
-    top:360,
+    top:30,
     borderBottomWidth: 0.5,
     borderBottomColor: "#E0E0E0"
   },
+// Adjustment for data on info6 - address text it too long
   data6: {
     width: 167,
     height: 42,
     left:95,
     textAlign:'right'
   },
+
+
+
+  // OK Button
   button: {
-    alignItems: 'center',
     width: 165,
     height: 56,
-    top: 420,
+    top:55,
     backgroundColor:"#4FF081",
     borderRadius: 100,
   },
@@ -220,18 +247,11 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 21,
-    lineHeight: 50,
+    lineHeight: 55,
     textAlign:"center",
     letterSpacing: 0.213333,
     color:"#FFFFFF"
     
-  },
-  grouoIcon: {
-    position:'absolute',
-    width: 73,
-    height: 68,
-    top:20,
-    left:130
   }
 
 
