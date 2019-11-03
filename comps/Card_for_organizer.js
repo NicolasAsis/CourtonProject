@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import * as Progress from 'react-native-progress';
 
-function Card_player(props) {
- 
-
+function Card_for_organizer(props) {
   return (
     <View style={{ alignItems: "center", marginTop: 18 }}>
       <TouchableOpacity>
@@ -12,19 +10,18 @@ function Card_player(props) {
         <View>
           <Image style={styles.img} source={require("../assets/stage18.jpg")} />
 
-          <Text style={styles.txtorganizer}>{props.organizerName}</Text>
+          <Text style={styles.txtorganizer}>{props.bmtCentre}</Text>
 
           <Text style={styles.txtGroupNum}>Group #{props.groupNum}</Text>
           <Text style={styles.txtGroupDate}>{props.date} {props.time}</Text>
           {/* <Text style={styles.txtGroupJoinDate}>Join Before: Dec 20 11:30pm</Text> */}
           <Text style={styles.txtGroupPlayerCount}>Players {props.joinedMember}/{props.totalMember}</Text>
-          <Text style={styles.txtGroupPrice}>${props.price}</Text>
-          
+          <Text style={styles.txtGroupPrice}>${props.totalPrice}</Text>
           <Progress.Bar
             unfilledColor="#CDC5C5"
             borderColor="#FFFFFF"
             color="#81EC8D"
-            progress= {props.progressBarLoad}
+            progress= {0.5}
             width={180}
             style={styles.ProgressBar}
           />
@@ -121,4 +118,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Card_player;
+export default Card_for_organizer;
