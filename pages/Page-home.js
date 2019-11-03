@@ -49,7 +49,7 @@ function Home() {
             />
 
             <TextInput
-              style={styles.rearchBar}
+              style={styles.searchBar}
               placeholder="  Search Group Number, Organizer"
             />
         </Animated.View>
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     left: 16,
     top: 58
   },
-  rearchBar: {
+  searchBar: {
     height: 36,
     width: 350,
     backgroundColor: "#FFFFFF",
