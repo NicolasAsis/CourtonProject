@@ -2,14 +2,15 @@ import React from "react";
 import { View, Text, StyleSheet, Image, TextInput } from "react-native";
 
 import Header_blue from "../comps/Header_blue";
-import Card_organizer from "../comps/Card_organizer";
+import Card_organizer from "../comps/Card_for_organizer";
 import Footer_home from "../comps/Sticky_footer_home";
 import Footer_regular from "../comps/Sticky_footer_regular";
-import Card_player from "../comps/Card_player";
+import Card_for_player from "../comps/Card_for_player";
+import { ScrollView } from "react-native-gesture-handler";
 function MyJoinedGroup() {
   return (
     <View>
-      <Header_blue headerTitle={"All My Created Groups"} />
+      <Header_blue headerTitle={"All My Joined Groups"} />
       <Image
         style={styles.searchIcon}
         source={require("../assets/icon_search.png")}
@@ -20,18 +21,64 @@ function MyJoinedGroup() {
         placeholder="  Search Group Number, Organizer"
       />
       <View style={styles.mainContent}>
-
-          
-        <Card_player 
-        organizerName={'Toby Wong'}
-        groupNum={'C1314'}
-        date={'Sat Dec 30'}
-        time={'1pm-2pm'}
-        price={'7'}
-        joinedMember={'10'}
-        totalMember={'20'}
-        progressBarLoad ={'0.5'}
-        />
+        <View style={{height:565}}>
+          <ScrollView>
+            <View style={{ flex: 1 }}>
+              <Card_for_player
+                organizerName={"Toby Wong"}
+                groupNum={"C1314"}
+                date={"Sat Dec 30"}
+                time={"1pm-2pm"}
+                price={"7"}
+                joinedMember={"10"}
+                totalMember={"20"}
+                progressBarLoad={"0.5"}
+              />
+              <Card_for_player
+                organizerName={"Toby Wong"}
+                groupNum={"C1314"}
+                date={"Sat Dec 30"}
+                time={"1pm-2pm"}
+                price={"7"}
+                joinedMember={"10"}
+                totalMember={"20"}
+                progressBarLoad={"0.5"}
+              />
+              <Card_for_player
+                organizerName={"Toby Wong"}
+                groupNum={"C1314"}
+                date={"Sat Dec 30"}
+                time={"1pm-2pm"}
+                price={"7"}
+                joinedMember={"10"}
+                totalMember={"20"}
+                progressBarLoad={"0.5"}
+              />
+              <Card_for_player
+                organizerName={"Toby Wong"}
+                groupNum={"C1314"}
+                date={"Sat Dec 30"}
+                time={"1pm-2pm"}
+                price={"7"}
+                joinedMember={"10"}
+                totalMember={"20"}
+                progressBarLoad={"0.5"}
+              />
+              <Card_for_player
+                organizerName={"Toby Wong"}
+                groupNum={"C1314"}
+                date={"Sat Dec 30"}
+                time={"1pm-2pm"}
+                price={"7"}
+                joinedMember={"10"}
+                totalMember={"20"}
+                progressBarLoad={"0.5"}
+              />
+              
+             
+            </View>
+          </ScrollView>
+        </View>
       </View>
       <View style={styles.footer}>
         <Footer_regular />
@@ -44,11 +91,11 @@ const styles = StyleSheet.create({
   mainContent: {
     alignItems: "center",
     justifyContent: "center",
-    top: 60
+    top: 65
   },
-  footer:{
-      bottom:0,
-      top:537,
+  footer: {
+    bottom: 0,
+    top:152,
   },
   searchBar: {
     height: 36,
@@ -69,7 +116,7 @@ const styles = StyleSheet.create({
     left: 330,
     top: 120,
     zIndex: 10
-  },
+  }
 });
 
 export default MyJoinedGroup;

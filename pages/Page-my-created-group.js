@@ -2,13 +2,13 @@ import React from "react";
 import { View, Text, StyleSheet, Image, TextInput } from "react-native";
 
 import Header_blue from "../comps/Header_blue";
-import Card_organizer from "../comps/Card_organizer";
-import Footer_home from "../comps/Sticky_footer_home";
 import Footer_regular from "../comps/Sticky_footer_regular";
+import { ScrollView } from "react-native-gesture-handler";
+import Card_for_organizer from "../comps/Card_for_organizer";
 function MyCreatedGroup() {
   return (
     <View>
-      <Header_blue headerTitle={"All My Created Groups"} />
+      <Header_blue headerTitle={"All My Joined Groups"} />
       <Image
         style={styles.searchIcon}
         source={require("../assets/icon_search.png")}
@@ -18,9 +18,59 @@ function MyCreatedGroup() {
         style={styles.searchBar}
         placeholder="  Search Group Number, Organizer"
       />
-
       <View style={styles.mainContent}>
-        <Card_organizer txtBmtCentre={"Stage 11"} totalPrice={"146"} />
+        <View style={{ height: 565 }}>
+          <ScrollView>
+            <View style={{ flex: 1 }}>
+              <Card_for_organizer
+                bmtCentre={"Stage 18"}
+                groupNum={"C1314"}
+                date={"Sat Dec 30"}
+                time={"1pm-2pm"}
+                totalPrice={"146"}
+                joinedMember={"10"}
+                totalMember={"20"}
+                progressBarLoad={"0.5"}
+              />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Card_for_organizer
+                bmtCentre={"Stage 18"}
+                groupNum={"C1314"}
+                date={"Sat Dec 30"}
+                time={"1pm-2pm"}
+                totalPrice={"146"}
+                joinedMember={"10"}
+                totalMember={"20"}
+                progressBarLoad={"0.5"}
+              />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Card_for_organizer
+                bmtCentre={"Stage 18"}
+                groupNum={"C1314"}
+                date={"Sat Dec 30"}
+                time={"1pm-2pm"}
+                totalPrice={"146"}
+                joinedMember={"10"}
+                totalMember={"20"}
+                progressBarLoad={"0.5"}
+              />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Card_for_organizer
+                bmtCentre={"Stage 18"}
+                groupNum={"C1314"}
+                date={"Sat Dec 30"}
+                time={"1pm-2pm"}
+                totalPrice={"146"}
+                joinedMember={"10"}
+                totalMember={"20"}
+                progressBarLoad={"0.5"}
+              />
+            </View>
+          </ScrollView>
+        </View>
       </View>
       <View style={styles.footer}>
         <Footer_regular />
@@ -55,10 +105,9 @@ const styles = StyleSheet.create({
     top: 120,
     zIndex: 10
   },
-  footer:{
-      bottom:0,
-      top:537,
-
+  footer: {
+    bottom: 0,
+    top: 152
   }
 });
 
