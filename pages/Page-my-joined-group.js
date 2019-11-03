@@ -21,7 +21,7 @@ function MyJoinedGroup() {
         placeholder="  Search Group Number, Organizer"
       />
       <View style={styles.mainContent}>
-        <View style={{height:565}}>
+        <View style={{height:652}}>
           <ScrollView>
             <View style={{ flex: 1 }}>
               <Card_for_player
@@ -80,9 +80,9 @@ function MyJoinedGroup() {
           </ScrollView>
         </View>
       </View>
-      <View style={styles.footer}>
+      {/* <View style={styles.footer}>
         <Footer_regular />
-      </View>
+      </View> */}
     </View>
   );
 }
@@ -91,12 +91,12 @@ const styles = StyleSheet.create({
   mainContent: {
     alignItems: "center",
     justifyContent: "center",
-    top: 65
+    top: 60
   },
-  footer: {
-    bottom: 0,
-    top:152,
-  },
+  // footer: {
+  //   bottom: 0,
+  //   top:152,
+  // },
   searchBar: {
     height: 36,
     width: 350,
