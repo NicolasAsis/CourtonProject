@@ -7,6 +7,7 @@ import SelectLocation from '../pages/Page-select-location';
 import Page_Calendar from '../pages/Page-calendar';
 import JoinedGroup from '../pages/Page-JoinedGroup';
 import GroupInfo from '../pages/Page-groupInfo';
+import OnBoarding from '../pages/Page-onBoarding';
 
 
 
@@ -14,7 +15,7 @@ import GroupInfo from '../pages/Page-groupInfo';
 function Main(){
     return(
         <View>
-            <JoinedGroup/>
+            <OnBoarding/>
         </View>
     );
 }
