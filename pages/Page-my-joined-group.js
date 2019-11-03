@@ -10,8 +10,18 @@ function MyJoinedGroup() {
   return (
     <View>
       <Header_blue headerTitle={"All My Created Groups"} />
+      <Image
+        style={styles.searchIcon}
+        source={require("../assets/icon_search.png")}
+      />
 
+      <TextInput
+        style={styles.searchBar}
+        placeholder="  Search Group Number, Organizer"
+      />
       <View style={styles.mainContent}>
+
+          
         <Card_player 
         organizerName={'Toby Wong'}
         groupNum={'C1314'}
@@ -34,13 +44,32 @@ const styles = StyleSheet.create({
   mainContent: {
     alignItems: "center",
     justifyContent: "center",
-    top: 10
+    top: 60
   },
   footer:{
       bottom:0,
       top:537,
-
-  }
+  },
+  searchBar: {
+    height: 36,
+    width: 350,
+    backgroundColor: "#ECECEC",
+    position: "absolute",
+    borderRadius: 10,
+    top: 115,
+    left: 15,
+    fontSize: 16,
+    fontFamily: "Open sans",
+    color: "#8BC0DF"
+  },
+  searchIcon: {
+    width: 25,
+    height: 25,
+    position: "absolute",
+    left: 330,
+    top: 120,
+    zIndex: 10
+  },
 });
 
 export default MyJoinedGroup;
