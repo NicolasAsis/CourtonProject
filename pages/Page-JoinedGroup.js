@@ -14,60 +14,57 @@ function JoinedGroup() {
           source={require("../assets/icon_group_created.png")}
         />
         <View>
-                 <Text style={styles.player}>Jacky Lee</Text>
-                 <Text style={styles.price}>$7</Text>
+          <Text style={styles.player}>Jacky Lee</Text>
+          <Text style={styles.price}>$7</Text>
         </View>
         <View style={styles.info1}>
-            <Text style={styles.label}>Group</Text>
-            <Text style={styles.data}>#C134</Text>
+          <Text style={styles.label}>Group</Text>
+          <Text style={styles.data}>#C134</Text>
         </View>
         <View style={styles.info2}>
-            <Text style={styles.label}>Organizer</Text>
-            <Text style={styles.data}>Toby Wong</Text>
+          <Text style={styles.label}>Organizer</Text>
+          <Text style={styles.data}>Toby Wong</Text>
         </View>
         <View style={styles.info3}>
-            <Text style={styles.label}>Date</Text>
-            <Text style={styles.data}>30 December 2019</Text>
+          <Text style={styles.label}>Date</Text>
+          <Text style={styles.data}>30 December 2019</Text>
         </View>
         <View style={styles.info4}>
-            <Text style={styles.label}>Time</Text>
-            <Text style={styles.data}>1pm - 4pm</Text>
+          <Text style={styles.label}>Time</Text>
+          <Text style={styles.data}>1pm - 4pm</Text>
         </View>
         <View style={styles.info5}>
-            <Text style={styles.label}>Center</Text>
-            <Text style={styles.data}>ClearOne</Text>
+          <Text style={styles.label}>Center</Text>
+          <Text style={styles.data}>ClearOne</Text>
         </View>
         <View style={styles.info6}>
-            <Text style={styles.label}>Location</Text>
-            <Text style={styles.data6}>4351 No 3 Rd #100, Richmond, BC V6X 3A7</Text>
+          <Text style={styles.label}>Location</Text>
+          <Text style={styles.data6}>
+            4351 No 3 Rd #100, Richmond, BC V6X 3A7
+          </Text>
         </View>
         <View>
-                 <TouchableOpacity
-                    style={styles.button}
-                        onPress={this.onPress}
-                >
-                    <Text style={styles.btnText}> OK </Text>
-       </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={this.onPress}>
+            <Text style={styles.btnText}> OK </Text>
+          </TouchableOpacity>
         </View>
-        
       </View>
       <Image
-          style={{
-            position: "absolute",
-            width: 375,
-            height: 187,
-            left: 0,
-            bottom:-30,
-            zIndex:-2
-          }}
-          source={require("../assets/img_tybg.png")}
-        />
+        style={{
+          position: "absolute",
+          width: 375,
+          height: 187,
+          left: 0,
+          bottom: -30,
+          zIndex: -2
+        }}
+        source={require("../assets/img_tybg.png")}
+      />
     </View>
   );
 }
 const styles = StyleSheet.create({
-
-// Background
+  // Background
   bg: {
     width: "100%",
     height: "100%",
@@ -106,7 +103,7 @@ const styles = StyleSheet.create({
     color: "#FFFFFF"
   },
 
-// Summary box
+  // Summary box
   summary: {
     width: 314,
     height: 445,
@@ -114,15 +111,15 @@ const styles = StyleSheet.create({
     top: 138,
     backgroundColor: "#FFFFFF",
     borderRadius: 6,
-    alignItems:"center"
+    alignItems: "center"
   },
 
   // User Name
   player: {
     width: 100,
     height: 27,
-    top:40, 
-    left:-5,
+    top: 40,
+    left: -5,
     fontFamily: "Open Sans",
     fontStyle: "normal",
     fontWeight: "bold",
@@ -131,16 +128,16 @@ const styles = StyleSheet.create({
     textAlign: "center",
     letterSpacing: 0.48,
     color: "#333333"
-  }, 
+  },
 
-// Price tag
+  // Price tag
   price: {
     width: 35,
-    height:80,
-    top:5,
-    left:145,
+    height: 80,
+    top: 5,
+    left: 145,
     fontFamily: "Open Sans",
-    fontStyle:"normal",
+    fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 30,
     lineHeight: 41,
@@ -150,97 +147,95 @@ const styles = StyleSheet.create({
   groupIcon: {
     width: 73,
     height: 68,
-    top:20,
-    left:2
+    top: 20,
+    left: 2
   },
 
   // groups info
   info1: {
-    width:261,
-    height:28,
+    width: 261,
+    height: 28,
     borderBottomWidth: 0.5,
     borderBottomColor: "#E0E0E0"
   },
 
   // label tag eg: Group, Organizer, Date..
   label: {
-    textAlign:"left",
+    textAlign: "left",
     position: "absolute",
     width: 109,
     height: 17,
     fontFamily: "Open Sans",
     fontStyle: "normal",
     fontWeight: "bold",
-    fontSize:12,
-    lineHeight:16,
+    fontSize: 12,
+    lineHeight: 16,
     letterSpacing: 0.48,
     color: "#333333"
   },
-// Data for tag eg : Group : #CC023
+  // Data for tag eg : Group : #CC023
   data: {
-    textAlign:"right"
+    textAlign: "right"
   },
 
   // organizer info
   info2: {
-    top:10,
-    width:261,
-    height:28,
+    top: 10,
+    width: 261,
+    height: 28,
     borderBottomWidth: 0.5,
     borderBottomColor: "#E0E0E0"
   },
   // Date info
   info3: {
-    top:20,
-    width:261,
-    height:28,
+    top: 20,
+    width: 261,
+    height: 28,
     borderBottomWidth: 0.5,
     borderBottomColor: "#E0E0E0"
   },
 
   //  time info
   info4: {
-    top:25,
-    width:261,
-    height:28,
+    top: 25,
+    width: 261,
+    height: 28,
     borderBottomWidth: 0.5,
     borderBottomColor: "#E0E0E0"
   },
 
   //  center info
   info5: {
-    top:25,
-    width:261,
-    height:28,
+    top: 25,
+    width: 261,
+    height: 28,
     borderBottomWidth: 0.5,
     borderBottomColor: "#E0E0E0"
   },
 
-    //  location info
+  //  location info
   info6: {
-    width:261,
-    height:50,
-    top:30,
+    width: 261,
+    height: 50,
+    top: 30,
     borderBottomWidth: 0.5,
     borderBottomColor: "#E0E0E0"
   },
-// Adjustment for data on info6 - address text it too long
+  // Adjustment for data on info6 - address text it too long
   data6: {
     width: 167,
     height: 42,
-    left:95,
-    textAlign:'right'
+    left: 95,
+    textAlign: "right"
   },
-
-
 
   // OK Button
   button: {
     width: 165,
     height: 56,
-    top:55,
-    backgroundColor:"#4FF081",
-    borderRadius: 100,
+    top: 51,
+    backgroundColor: "#4FF081",
+    borderRadius: 100
   },
   btnText: {
     fontFamily: "Open Sans",
@@ -248,15 +243,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 21,
     lineHeight: 55,
-    textAlign:"center",
+    textAlign: "center",
     letterSpacing: 0.213333,
-    color:"#FFFFFF"
-    
+    color: "#FFFFFF"
   }
-
-
-
-
 });
 
 export default JoinedGroup;

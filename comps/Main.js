@@ -15,7 +15,6 @@ function Main(){
     return(
         <View>
             <JoinedGroup/>
-
         </View>
     );
 }
