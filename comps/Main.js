@@ -24,7 +24,7 @@ import MyCreatedGroup from '../pages/Page-my-created-group';
 function Main(){
     return(
         <View>
-            <OnBoarding/>
+            <Home/>
 
         </View>
     );
