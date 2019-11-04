@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-function Footer_home() {
+function Footer_regular() {
   return (
     <View>
       <View style={styles.footer}>
@@ -39,10 +39,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     position: "absolute",
     backgroundColor: "#FFFFFF",
-    shadowOffset: { width: 0, height: -10 },
-    shadowColor: "black",
-    shadowOpacity: 0.6,
-    shadowRadius: 30,
     flexDirection: "row"
   },
   icons: {
@@ -69,4 +65,4 @@ const styles = StyleSheet.create({
     height: 30
   }
 });
-export default Footer_home;
+export default Footer_regular;

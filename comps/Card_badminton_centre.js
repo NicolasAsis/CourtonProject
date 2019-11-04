@@ -9,12 +9,12 @@ function Card_badminton_centre() {
           <View style={styles.card}>
             <Image
               style={styles.img}
-              source={require("../assets/img_c1.jpg")}
+              source={require("../assets/img_stage18.png")}
             />
           </View>
 
           
-            <Text style={styles.txtLocationName}>CLEAR ONE</Text>
+            <Text style={styles.txtLocationName}>Stage 18</Text>
             <Image
               style={styles.imgLocation}
               source={require("../assets/icon_location_white.png")}

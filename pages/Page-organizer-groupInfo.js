@@ -13,7 +13,7 @@ import Card_members from "../comps/Card_members";
 import Bar_group_countdown_price from "../comps/Bar_group_countdown_price";
 import Circle_extra_member from "../comps/Circle_extra_member";
 
-function GroupInfo() {
+function Organizer_groupInfo() {
   const styles = StyleSheet.create({
     // Page Structure
     gipageStructure: {
@@ -195,9 +195,6 @@ function GroupInfo() {
                   memberName={"Tony Wong"}
                 />
                 <Card_members memberName={"William Williams"} />
-                <Card_members memberName={"William Williams"} />
-                <Card_members memberName={"William Williams"} />
-                <Card_members memberName={"William Williams"} />
               </View>
               <View style={{ flexDirection: "row" }}>
                 <View>
@@ -213,10 +210,8 @@ function GroupInfo() {
         </View>
       </View>
 
-      {/* Join Button */}
-      <Button_Join price={7} />
     </View>
   );
 }
 
-export default GroupInfo;
+export default Organizer_groupInfo;

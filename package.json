@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.5.1",
+    "@react-native-community/art": "^1.0.2",
     "react": "16.8.1",
     "react-native": "0.61.2",
+    "react-native-asset": "^2.0.0",
     "react-native-calender": "^1.0.1",
     "react-native-gesture-handler": "^1.4.1",
     "react-native-progress": "^4.0.1",

@@ -1,30 +1,16 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Calendar } from "react-native-calender";
+import Header_blue_red from '../comps/Header_blue_red';
 
 function Page_Calendar() {
   return (
     <View>
-      <View style={styles.header}>
-        <TouchableOpacity>
-          <Image
-            style={styles.butBack}
-            source={require("../assets/but_back.png")}
-          />
-        </TouchableOpacity>
-
-        <Text style={styles.txtTitle}>Choose a day</Text>
-
-        <TouchableOpacity style={{ width: 0, height: 0 }}>
-          <Image
-            style={styles.butHam}
-            source={require("../assets/but_ham.png")}
-          />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.courtIndicatedBar}>
-        <Text style={styles.txtBmtCentre}>Clear One</Text>
-      </View>
+      <Header_blue_red
+      headerTitle='Choose a day'
+      courtName='Stage 18'
+      />
+      
       <TouchableOpacity>
         <View style={styles.butNext}>
           <Text style={styles.txtNext}>Next</Text>
@@ -37,44 +23,6 @@ function Page_Calendar() {
   );
 }
 const styles = StyleSheet.create({
-  header: {
-    width: "100%",
-    height: 100,
-    backgroundColor: "#094E76"
-  },
-  butBack: {
-    width: 20,
-    height: 30,
-    left: 23,
-    top: 55
-  },
-  txtTitle: {
-    color: "#FFFFFF",
-    fontFamily: "Open sans",
-    fontWeight: "bold",
-    fontSize: 20,
-    left: 119,
-    top: 27
-  },
-  butHam: {
-    width: 35,
-    height: 23,
-    left: 315,
-    top: 2
-  },
-  courtIndicatedBar: {
-    backgroundColor: "#FE647B",
-    width: "100%",
-    height: 39,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  txtBmtCentre: {
-    color: "#FFFFFF",
-    fontFamily: "Open sans",
-    fontSize: 16,
-    fontWeight: "400"
-  },
   butNext: {
     width: 311,
     height: 56,
@@ -93,7 +41,7 @@ const styles = StyleSheet.create({
     fontFamily: "Open sans",
     fontSize: 16,
     fontWeight: "500",
-    color: "#094E76"
+    color: "#ffffff"
   }
 });
 
