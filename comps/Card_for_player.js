@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import * as Progress from 'react-native-progress';
 
-function Card_player() {
+function Card_for_player(props) {
+ 
+
   return (
     <View style={{ alignItems: "center", marginTop: 18 }}>
       <TouchableOpacity>
@@ -10,18 +12,19 @@ function Card_player() {
         <View>
           <Image style={styles.img} source={require("../assets/stage18.jpg")} />
 
-          <Text style={styles.txtorganizer}>Jackson Williams</Text>
+          <Text style={styles.txtorganizer}>{props.organizerName}</Text>
 
-          <Text style={styles.txtGroupNum}>Group#C2344</Text>
-          <Text style={styles.txtGroupDate}>Fri, Dec 23 1pm-2pm</Text>
+          <Text style={styles.txtGroupNum}>Group #{props.groupNum}</Text>
+          <Text style={styles.txtGroupDate}>{props.date} {props.time}</Text>
           {/* <Text style={styles.txtGroupJoinDate}>Join Before: Dec 20 11:30pm</Text> */}
-          <Text style={styles.txtGroupPlayerCount}>Players 20/22</Text>
-          <Text style={styles.txtGroupPrice}>$7</Text>
+          <Text style={styles.txtGroupPlayerCount}>Players {props.joinedMember}/{props.totalMember}</Text>
+          <Text style={styles.txtGroupPrice}>${props.price}</Text>
+          
           <Progress.Bar
             unfilledColor="#CDC5C5"
             borderColor="#FFFFFF"
             color="#81EC8D"
-            progress= {0.3}
+            progress= {props.progressBarLoad}
             width={180}
             style={styles.ProgressBar}
           />
@@ -118,4 +121,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Card_player;
+export default Card_for_player;

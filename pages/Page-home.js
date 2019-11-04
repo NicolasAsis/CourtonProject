@@ -10,50 +10,30 @@ import {
   TouchableOpacity
 } from "react-native";
 
-import Card_player from "../comps/Card_player";
+import Card_for_player from "../comps/Card_for_player";
 import Footer_home from "../comps/Sticky_footer_home";
 
-
- BANNER_MAX_HEIGHT = 240;
-  BANNER_MIN_HEIGHT = 78;
+bannerScrollHeight = 150;
+bannerMaxHeight = 240;
+bannerMinHeight = 100;
 
 function Home() {
- 
   const [scrollY] = useState(new Animated.Value(0));
-  const [opChange] = useState(new Animated.Value(0));
 
-  var animatedOpacity = opChange.interpolate({
-    inputRange:[0,1],
-    outputRange:[0,1],
-    extrapolate:'clamp'
-  })
-  
-
+  var bannerAnimatedHeight = scrollY.interpolate({
+    inputRange: [0, bannerScrollHeight],
+    outputRange: [bannerMaxHeight, bannerMinHeight],
+    extrapolate: "clamp"
+  });
 
   return (
-    
     <View>
       <ScrollView
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { y: scrollY } } }]
-        )}
+      scrollEventThrottle={16}
+      onScroll={Animated.event([
+        { nativeEvent: { contentOffset: { y: scrollY } } }
+      ])}
       >
-        <Animated.View
-        style={{
-          opacity:animatedOpacity
-        }}
-        >
-        <Image
-              style={styles.searchIcon}
-              source={require("../assets/icon_search.png")}
-            />
-
-            <TextInput
-              style={styles.rearchBar}
-              placeholder="  Search Group Number, Organizer"
-            />
-        </Animated.View>
-
         <Animated.View
           style={{
             position: "relative",
@@ -61,48 +41,70 @@ function Home() {
             top: 0,
             left: 0,
             right: 0,
-            height: 240
+            height: 240,
+            
           }}
         >
-          <View style={{ height: 240 }}>
-            <Image
-              style={{ width: "100%", height: BANNER_MAX_HEIGHT }}
-              source={require("../assets/img_homepage_banner.png")}
-            />
-            <Text style={styles.title}>Upcoming Available Groups</Text>
-            <Image
-              style={styles.searchIcon}
-              source={require("../assets/icon_search.png")}
-            />
-
-            <TextInput
-              style={styles.rearchBar}
-              placeholder="  Search Group Number, Organizer"
-            />
-          </View>
         </Animated.View>
 
-        <View style={{ flex: 1, paddingBottom:130}}>
+        <View style={{ flex: 1, paddingBottom: 135 }}>
           <ScrollView>
-            <Card_player />
-            <Card_player />
-            <Card_player />
-            <Card_player />
-            <Card_player />
-            <Card_player />
-            <Card_player />
+            <Card_for_player
+              organizerName={"Toby Wong"}
+              groupNum={"C1314"}
+              date={"Sat Dec 30"}
+              time={"1pm-2pm"}
+              price={"7"}
+              joinedMember={"10"}
+              totalMember={"20"}
+              progressBarLoad={"0.5"}
+            />
+            <Card_for_player />
+            <Card_for_player />
+            <Card_for_player />
+            <Card_for_player />
           </ScrollView>
         </View>
       </ScrollView>
 
+      <Animated.View
+        style={{
+          backgroundColor: "#094E76",
+          width: "100%",
+          height: bannerAnimatedHeight,
+          borderColor: "#FFFFFF",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          overflow: "hidden"
+        }}
+      >
+        <Image
+              style={{ width: "100%", height: 240 }}
+              source={require("../assets/img_homepage_banner.png")}
+            />
+            <Text style={styles.title}>Upcoming Available Groups</Text>
+        <Image
+          style={styles.fixedSearchIcon}
+          source={require("../assets/icon_search.png")}
+        />
+
+        <TextInput
+          style={styles.fixedSearchBar}
+          placeholder="  Search Group Number, Organizer"
+        />
+      </Animated.View>
+
+      <View style={styles.footer}>
+        <Footer_home />
+      </View>
       <TouchableOpacity>
         <Image
           style={styles.createBtn}
           source={require("../assets/but_create.png")}
         />
       </TouchableOpacity>
-
-      <Footer_home />
     </View>
   );
 }
@@ -115,28 +117,9 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     position: "absolute",
     left: 16,
-    top: 58
+    top: 100
   },
-  rearchBar: {
-    height: 36,
-    width: 350,
-    backgroundColor: "#FFFFFF",
-    position: "absolute",
-    borderRadius: 10,
-    top: 186,
-    left: 15,
-    fontSize: 16,
-    fontFamily: "Open sans",
-    color: "#8BC0DF"
-  },
-  searchIcon: {
-    width: 25,
-    height: 25,
-    position: "absolute",
-    left: 330,
-    top: 192,
-    zIndex: 10
-  },
+  
   createBtn: {
     width: 54,
     height: 54,
@@ -144,6 +127,30 @@ const styles = StyleSheet.create({
     zIndex: 10,
     left: "43%",
     bottom: 120
+  },
+  footer: {
+    bottom: 0
+    // top: 92
+  },
+  fixedSearchBar: {
+    height: 36,
+    width: 350,
+    backgroundColor: "#FFFFFF",
+    position: "absolute",
+    borderRadius: 10,
+    top: 50,
+    left: 15,
+    fontSize: 16,
+    fontFamily: "Open sans",
+    color: "#8BC0DF"
+  },
+  fixedSearchIcon: {
+    width: 25,
+    height: 25,
+    position: "absolute",
+    left: 330,
+    top: 55,
+    zIndex: 10
   }
 });
 
