@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import {Text,View, Image, TouchableOpacity, StyleSheet, ScrollView} from 'react-native';
+import Footer_regular from "../comps/Sticky_footer_regular";
 
 function Profile(){
     return(
         <View>
+        
             {/* this is the header part */}
             <View styes={{fontFamily:'Open Sans'}}>
                 <View style={styles.header}>
@@ -39,34 +41,35 @@ function Profile(){
                 </View>
             </View>
 
-            {/* the other links on the profile page */}
-            <View>
-                <View style={styles.profileIcons}>
-                <TouchableOpacity>
-                    <Image style={{width:25, height: 35}} source={require ('../assets/icon_notification.png')}/>
-                    <Text style={styles.optionsText}>Notfications</Text>
-                 {/* </TouchableOpacity>
-                </View> */}
-                {/* <View style={styles.profileIcons}>
-                <TouchableOpacity> */}
-                    <Image style={{width:25, height: 25, marginBottom: 30}} source={require ('../assets/icon_help.png')}/>
+            <View style={{width:'100%',height:240, top:390,display:'flex',justifyContent:'center',alignItems:'center'}}>
+                <View style={{width:180,height:217, left: 20}}>
+                    <TouchableOpacity>
+                        <Image 
+                        style={{width:25, height: 30,marginBottom:15}} 
+                        source={require ('../assets/icon_notification.png')}
+                        />
+                        <Text style={styles.optionsText}>Notfications</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                    <Image style={{width:25, height: 25, marginBottom: 15}} source={require ('../assets/icon_help.png')}/>
                     <Text style={styles.optionsText}>Help</Text>               
-                {/* </TouchableOpacity >
-                </View>
-                <View style={styles.profileIcons}>
-                <TouchableOpacity > */}
-                    <Image style={{width:25, height: 25, marginBottom: 30}} source={require ('../assets/icon_faq.png')}/>
+                    </TouchableOpacity >
+                    <TouchableOpacity >
+                    <Image style={{width:25, height: 25, marginBottom: 15}} source={require ('../assets/icon_faq.png')}/>
                     <Text style={styles.optionsText}>FAQ</Text>
-                {/* </TouchableOpacity>
-                </View>
-                <View style={styles.profileIcons}>
-                <TouchableOpacity>  */}
-                    <Image style={{width:25, height: 25, marginBottom: 30}} source={require ('../assets/icon_comment.png')}/>
+                </TouchableOpacity>
+                <TouchableOpacity> 
+                    <Image style={{width:25, height: 25, marginBottom: 15}} source={require ('../assets/icon_about.png')}/>
                     <Text style={styles.optionsText}>About CourtOn</Text>
                 </TouchableOpacity>
                 </View>
             </View>
-        </View>
+        
+            <View style={{top: 420}}>
+                 <Footer_regular/>
+            </View>
+            
+        </View> 
 
     );
 
@@ -166,21 +169,23 @@ const styles = StyleSheet.create({
         width: '100%',
         flex: 1,
         flexDirection:'column',
-        top: 380,
-        left:140,
+        alignItems:'center',
+        // top: 380,
+        // left:140,
+        // backgroundColor:'black'
 
     },
 
     optionsText:{
-        fontWeight: 'normal',
+        fontFamily:'Open sans',
         fontSize: 14,
         lineHeight: 19,
-        textAlign: 'center',
+        textAlign: 'left',
         color: '#3C3C3C',
-        left: -60,
-        top: -30,
-    }
-    
+        marginLeft: 65,
+        top: -34,
+    },
+
 
 });
 
