@@ -69,7 +69,7 @@ function Button_Join(props) {
       width: 165,
       height: 56,
       borderRadius: 100,
-      backgroundColor: "#81EC8D",
+      backgroundColor: "#4FF081",
       position: "absolute",
       right: 0,
       display: "flex",
