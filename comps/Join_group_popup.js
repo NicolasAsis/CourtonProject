@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 
-function Join_group_pop() {
+function Join_group_popup() {
   return (
     <View style={styles.container}>
       <View style={styles.popup}>
@@ -89,4 +89,4 @@ const styles = StyleSheet.create({
 
    
 
-export default Join_group_pop;
+export default Join_group_popup;

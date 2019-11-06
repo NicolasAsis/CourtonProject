@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-function Footer_regular() {
+function Sticky_footer_regular() {
   return (
     <View>
       <View style={styles.footer}>
@@ -65,4 +65,4 @@ const styles = StyleSheet.create({
     height: 30
   }
 });
-export default Footer_regular;
+export default Sticky_footer_regular;
