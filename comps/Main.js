@@ -13,9 +13,6 @@ import Sticky_footer_home from './Sticky_footer_home';
 import LoadingAnimation from './LoadingAnimation';
 import GroupSummary from '../pages/Page-group-summary';
 import Organizer_groupInfo from '../pages/Page-organizer-groupInfo';
-import LoadingAnimation from './LoadingAnimation';
-import MyJoinedGroup from '../pages/Page-my-joined-group'
-import MyCreatedGroup from '../pages/Page-my-created-group';
 
 
 
@@ -23,9 +20,7 @@ import MyCreatedGroup from '../pages/Page-my-created-group';
 function Main(){
     return(
         <View>
-
             <Organizer_groupInfo />
-
         </View>
     );
 }
