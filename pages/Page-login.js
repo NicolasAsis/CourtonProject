@@ -9,7 +9,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-function Login() {
+function Login(props) {
 
     const styles=StyleSheet.create({
         loginpageStructure:{
@@ -125,7 +125,12 @@ function Login() {
                 style={styles.loginBut}
             /> */}
 
-            <TouchableOpacity style={styles.loginBut}>
+            <TouchableOpacity 
+                style={styles.loginBut}
+                onPress={()=>{
+                    props.navigation.navigate('Home')
+                }}
+            >
                 <Text style={styles.loginButText}>LOGIN</Text>
             </TouchableOpacity>
 
