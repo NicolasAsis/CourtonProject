@@ -6,7 +6,8 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "storybook": "(adb reverse tcp:7007 tcp:7007 || true) && start-storybook"
   },
   "dependencies": {
     "@material-ui/core": "^4.5.1",
@@ -24,7 +25,10 @@
     "@babel/core": "^7.5.0",
     "@babel/runtime": "^7.5.0",
     "@react-native-community/eslint-config": "^0.0.3",
+    "@storybook/react-native": "^5.2.5",
+    "@storybook/react-native-server": "^5.2.5",
     "babel-jest": "^24.1.0",
+    "babel-loader": "^8.0.6",
     "jest": "^24.1.0",
     "metro-react-native-babel-preset": "^0.51.1",
     "react-test-renderer": "16.8.1"
