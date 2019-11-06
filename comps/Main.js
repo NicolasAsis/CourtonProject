@@ -24,8 +24,8 @@ import MyCreatedGroup from '../pages/Page-my-created-group';
 function Main(){
     return(
         <View>
-            <JoinedGroup/>
 
+            <Organizer_groupInfo />
         </View>
     );
 }

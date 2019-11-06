@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
-function Header_blue_red(props) {
+function Header_blue(props) {
   return (
     <View>
       <View style={styles.header}>
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header_blue_red;
+export default Header_blue;

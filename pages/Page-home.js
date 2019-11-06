@@ -18,37 +18,32 @@ bannerMaxHeight = 240;
 bannerMinHeight = 100;
 
 function Home() {
-  const [scrollY] = useState(new Animated.Value(0));
+  // const [scrollY] = useState(new Animated.Value(0));
 
-  var bannerAnimatedHeight = scrollY.interpolate({
-    inputRange: [0, bannerScrollHeight],
-    outputRange: [bannerMaxHeight, bannerMinHeight],
-    extrapolate: "clamp"
-  });
+  // var bannerAnimatedHeight = scrollY.interpolate({
+  //   inputRange: [0, bannerScrollHeight],
+  //   outputRange: [bannerMaxHeight, bannerMinHeight],
+  //   extrapolate: "clamp"
+  // });
 
   return (
     <View>
       <ScrollView
-      scrollEventThrottle={16}
-      onScroll={Animated.event([
-        { nativeEvent: { contentOffset: { y: scrollY } } }
-      ])}
+      // scrollEventThrottle={16}
+      // onScroll={Animated.event([
+      //   { nativeEvent: { contentOffset: { y: scrollY } } }
+      // ])}
       >
-        <Animated.View
-          style={{
-            position: "relative",
-            width: "100%",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: 240,
-            
-          }}
-        >
-        </Animated.View>
+        
 
         <View style={{ flex: 1, paddingBottom: 135 }}>
           <ScrollView>
+          <Image
+              style={{ width: "100%", height: 240 }}
+              source={require("../assets/img_homepage_banner.png")}
+            />
+            <Text style={styles.title}>Upcoming Available Groups</Text>
+        
             <Card_for_player
               organizerName={"Toby Wong"}
               groupNum={"C1314"}
@@ -71,7 +66,7 @@ function Home() {
         style={{
           backgroundColor: "#094E76",
           width: "100%",
-          height: bannerAnimatedHeight,
+          height: 100,
           borderColor: "#FFFFFF",
           position: "absolute",
           top: 0,
@@ -80,16 +75,11 @@ function Home() {
           overflow: "hidden"
         }}
       >
-        <Image
-              style={{ width: "100%", height: 240 }}
-              source={require("../assets/img_homepage_banner.png")}
-            />
-            <Text style={styles.title}>Upcoming Available Groups</Text>
+        
         <Image
           style={styles.fixedSearchIcon}
           source={require("../assets/icon_search.png")}
         />
-
         <TextInput
           style={styles.fixedSearchBar}
           placeholder="  Search Group Number, Organizer"

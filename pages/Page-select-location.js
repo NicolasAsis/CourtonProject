@@ -36,13 +36,37 @@ function SelectLocation() {
 
         
         <ScrollView style={{flex:1, paddingBottom:950, paddingTop:100}}>
-        <View style={{height:1650}}>
-          <Card_badminton_centre />
-          <Card_badminton_centre />
-          <Card_badminton_centre />
-          <Card_badminton_centre />
-          <Card_badminton_centre />
-          <Card_badminton_centre />
+        <View style={{height:1450}}>
+          <Card_badminton_centre 
+          badmintonCentreName={'Stage 18'}
+          badmintonCentreLocation={'2351 No 6 Rd #170, Richmond, BC V6V 1P3'}
+          badmintonCentreImg={require('../assets/img_stage18.png')}
+          />
+          <Card_badminton_centre 
+          badmintonCentreName={'Clear One'}
+          badmintonCentreLocation={'4351 No 3 Rd #100, Richmond, BC V6X 3A7'}
+          badmintonCentreImg={require('../assets/img_c1.jpg')}
+          />
+          <Card_badminton_centre 
+          badmintonCentreName={'Richmond Pro'}
+          badmintonCentreLocation={'5800 Minoru Blvd #130, Richmond, BC V6X 2B1'}
+          badmintonCentreImg={require('../assets/img_pro.jpg')}
+          />
+          <Card_badminton_centre 
+          badmintonCentreName={'Badminton Van'}
+          badmintonCentreLocation={'13100 Mitchell Road, Richmond BC, V6V 1M8'}
+          badmintonCentreImg={require('../assets/img_bv.jpg')}
+          />
+          <Card_badminton_centre 
+          badmintonCentreName={'Drive Badminton'}
+          badmintonCentreLocation={'4551 No 3 Rd #138, Richmond, BC V6X 2C3'}
+          badmintonCentreImg={require('../assets/img_drive.jpg')}
+          />
+          <Card_badminton_centre 
+          badmintonCentreName={'VRC'}
+          badmintonCentreLocation={'4867 Ontario St, Vancouver, BC V5V 3H4'}
+          badmintonCentreImg={require('../assets/img_vrc.jpeg')}
+          />
           <Card_badminton_centre />
           </View>
         </ScrollView>
