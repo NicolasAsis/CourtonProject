@@ -34,7 +34,7 @@ function Login(props) {
                 width: 0,
                 height: 3,
             },
-            shadowOpacity: 1,
+            shadowOpacity: 0.5,
             shadowRadius: 10,
             elevation:8
         },
@@ -48,14 +48,14 @@ function Login(props) {
         passwordContainer: {
             height: 39,
             width:230,
-            marginTop:50,
+            marginTop:20,
             borderRadius:20,
             shadowColor: "#D8D8D8",
             shadowOffset: {
                 width: 0,
                 height: 3,
             },
-            shadowOpacity: 1,
+            shadowOpacity: 0.5,
             shadowRadius: 10,
             elevation:8
         },

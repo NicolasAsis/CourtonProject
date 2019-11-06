@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
   },
   txtIcon: {
     fontFamily: "Open sans",
-    fontSize: 11
+    fontSize: 11,
+    color:'#686868'
   },
   icons_home: {
     width: 28,
