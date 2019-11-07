@@ -8,13 +8,18 @@ import {
   Animated
 } from "react-native";
 
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
+
+// const [animatedImg, setAnimatedImg] = useState()
 
 
 
 
-function OnBoarding() {
+
+function OnBoarding_1() {
   return (
     <View style={styles.pg}>
+      {/*this will be animated*/}
       <View style={styles.top}>
         <Image
           style={styles.createBut}
@@ -24,17 +29,21 @@ function OnBoarding() {
       </View>
 
       <View style={styles.bottom}>
+        {/* this is a comps */}
         <Text style={styles.step}>Become a group organizer</Text>
         <Text></Text>
+        {/* this will be Animated */}
         <View style={styles.indicator}>
           <View style={styles.c_red}></View>
           <View style={styles.c_grey}></View>
-        </View>
+          <View style={styles.c_grey}></View>
+      </View>
         <TouchableOpacity>
           <Text style={styles.skipBtn}>SKIP</Text>
         </TouchableOpacity>
+        
       </View>
-
+      
 
       
     </View>
@@ -86,8 +95,8 @@ const styles = StyleSheet.create({
   // circle red
   c_red: {
     margin: 15,
-    width: 24,
-    height: 24,
+    width: 20,
+    height: 20,
     borderRadius: 100 / 2,
     backgroundColor: "#FE647B"
   },
@@ -112,4 +121,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default OnBoarding;
+export default OnBoarding_1;

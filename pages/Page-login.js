@@ -70,7 +70,7 @@ function Login(props) {
             marginTop:48,
             borderRadius:28,
             width:230,
-            height:39,
+            height:36,
             backgroundColor:'#FE647B',
             display:'flex',
             justifyContent:'center',

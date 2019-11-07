@@ -40,7 +40,7 @@ function Button_Join(props) {
     //Left Side of Button
     JoinButLeft: {
       width: 175,
-      height: 56,
+      height: 36,
       borderRadius: 100,
       backgroundColor: "white",
       display: "flex",
@@ -50,7 +50,7 @@ function Button_Join(props) {
     //Left Button Shadow
     JoinButLeftShadow: {
       width: 175,
-      height: 56,
+      height: 36,
       position: "relative",
       backgroundColor: "#FFFFFF",
       // alignItems: 'center',
@@ -67,7 +67,7 @@ function Button_Join(props) {
     //Right Side of Join Button
     JoinButRight: {
       width: 165,
-      height: 56,
+      height: 36,
       borderRadius: 100,
       backgroundColor: "#4FF081",
       position: "absolute",
@@ -79,7 +79,7 @@ function Button_Join(props) {
     //Right Side Button Shadow
     JoingButRightShadow: {
       width: 165,
-      height: 56,
+      height: 36,
       right: 0,
       position: "absolute",
       backgroundColor: "#FFFFFF",

@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   },
   butBg: {
     width: 311,
-    height: 56,
+    height: 38,
     backgroundColor: "#FFFFFF",
     borderRadius: 50,
     shadowColor: "#000000",
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   },
   butOk: {
     width: 165,
-    height: 56,
+    height: 38,
     backgroundColor: "#4FF081",
     borderRadius: 50,
     justifyContent: "center",

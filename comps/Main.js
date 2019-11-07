@@ -7,7 +7,7 @@ import SelectLocation from '../pages/Page-select-location';
 import Page_Calendar from '../pages/Page-calendar';
 import JoinedGroup from '../pages/Page-JoinedGroup';
 import GroupInfo from '../pages/Page-groupInfo';
-import OnBoarding from '../pages/Page-onBoarding';
+import OnBoarding_1 from '../pages/Page-onBoarding-1';
 import SelectCourts from '../pages/Page-select-courts';
 import Footer_court_indicator from './Footer_court_indicator';
 import Sticky_footer_home from './Sticky_footer_home';
