@@ -9,6 +9,8 @@ import {
     TouchableOpacity
 } from 'react-native';
 
+import {Actions} from 'react-native-router-flux';
+
 function Login(props) {
 
     const styles=StyleSheet.create({
@@ -128,7 +130,7 @@ function Login(props) {
             <TouchableOpacity 
                 style={styles.loginBut}
                 onPress={()=>{
-                    props.navigation.navigate('Home')
+                    Actions.Home()
                 }}
             >
                 <Text style={styles.loginButText}>LOGIN</Text>

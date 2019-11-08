@@ -2,12 +2,18 @@ import React, { useState } from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import * as Progress from 'react-native-progress';
 
+import {Actions} from 'react-native-router-flux';
+
 function Card_for_player(props) {
  
 
   return (
     <View style={{ alignItems: "center", marginTop: 18 }}>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={()=>{
+          Actions.GroupInfo()
+      }}
+      >
       <View style={styles.card}>
         <View>
           <Image style={styles.img} source={require("../assets/stage18.jpg")} />
