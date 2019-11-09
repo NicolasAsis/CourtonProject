@@ -26,11 +26,13 @@ import JoinedGroup from '../pages/Page-JoinedGroup';
 import Login from '../pages/Page-login';
 import MyCreatedGroup from '../pages/Page-my-created-group';
 import MyJoinedGroup from '../pages/Page-my-joined-group';
-import OnBoarding from '../pages/Page-onBoarding';
+import OnBoarding_1 from '../pages/Page-onBoarding-1';
 import Organizer_groupInfo from '../pages/Page-organizer-groupInfo';
 import Profile from '../pages/Page-profile';
 import SelectCourts from '../pages/Page-select-courts';
 import SelectLocation from '../pages/Page-select-location';
+import MoreMembers from '../pages/Page-more-members';
+import MyGroup from '../pages/Page-my-group';
 
 storiesOf('courton_comps', module)
   .add('Bar_group_countdown_price', ()=>{
@@ -115,8 +117,8 @@ storiesOf('courton_pages', module)
   .add('Page-my-joined-group', ()=>{
     return<MyJoinedGroup />
   })
-  .add('Page-onBoarding', ()=>{
-    return<OnBoarding />
+  .add('Page-onBoarding-1', ()=>{
+    return<OnBoarding_1 />
   })
   .add('Page-organizer-groupInfo', ()=>{
     return<Organizer_groupInfo />
@@ -129,4 +131,10 @@ storiesOf('courton_pages', module)
   })
   .add('Page-select-location', ()=>{
     return<SelectLocation />
+  })
+  .add('Page-more-members', ()=>{
+    return<MoreMembers/>
+  })
+  .add('Page-my-group', ()=>{
+    return <MyGroup/>
   })

@@ -14,7 +14,7 @@ function Card_members(props) {
     },
     //Card container shadow
     cardContainerShadow: {
-      width: 302,
+      width: 330,
       height: 68,
       borderRadius: 10,
       position: "relative",
@@ -74,7 +74,13 @@ function Card_members(props) {
       {/* Card Container */}
       <View style={styles.cardContainer}>
         <View style={styles.cardContainerShadow}>
-          {/* Organizer Image Section */}
+          {/* Organizer Image
+          <Image
+            style={styles.organizerImg}
+            source={{uri: props.url}}
+          />
+          
+          Section */}
           <View style={styles.organizerImgSec}>
             <View style={styles.organizerImg}></View>
           </View>
