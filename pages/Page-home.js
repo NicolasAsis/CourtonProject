@@ -33,6 +33,7 @@ function Home() {
       // onScroll={Animated.event([
       //   { nativeEvent: { contentOffset: { y: scrollY } } }
       // ])}
+      style={{backgroundColor:'#FFFFFF'}}
       >
         
 

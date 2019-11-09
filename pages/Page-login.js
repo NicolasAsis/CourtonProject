@@ -19,7 +19,8 @@ function Login(props) {
             flexDirection:'column',
             // justifyContent:'center',
             alignItems:'center',
-            height:'100%'
+            height:'100%',
+            backgroundColor:'#FFFFFF'
         },
         loginLogo:{
             width:175,

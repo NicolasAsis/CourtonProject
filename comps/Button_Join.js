@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
+import {Actions} from 'react-native-router-flux';
+
 function Button_Join(props) {
   const styles = StyleSheet.create({
     //Overall Box
@@ -116,7 +118,12 @@ function Button_Join(props) {
           </View>
           <View style={styles.JoingButRightShadow}>
             {/* Right side of button */}
-            <TouchableOpacity style={styles.JoinButRight}>
+            <TouchableOpacity 
+              style={styles.JoinButRight}
+              onPress={()=>{
+                Actions.Join_group_popup()
+              }}
+            >
               <Text style={styles.joinText}>JOIN</Text>
             </TouchableOpacity>
           </View>
