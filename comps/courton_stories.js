@@ -31,6 +31,7 @@ import Organizer_groupInfo from '../pages/Page-organizer-groupInfo';
 import Profile from '../pages/Page-profile';
 import SelectCourts from '../pages/Page-select-courts';
 import SelectLocation from '../pages/Page-select-location';
+import MoreMembers from '../pages/Page-more-members';
 
 storiesOf('courton_comps', module)
   .add('Bar_group_countdown_price', ()=>{
@@ -129,4 +130,7 @@ storiesOf('courton_pages', module)
   })
   .add('Page-select-location', ()=>{
     return<SelectLocation />
+  })
+  .add('Page-more-members', ()=>{
+    return<MoreMembers/>
   })
