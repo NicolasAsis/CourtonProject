@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     height: 800,
-    paddingTop: 140,
+    marginTop: 140,
     paddingBottom: 148
   }
 });

@@ -13,9 +13,9 @@ import {
 import Card_for_player from "../comps/Card_for_player";
 import Footer_home from "../comps/Sticky_footer_home";
 
-bannerScrollHeight = 150;
-bannerMaxHeight = 240;
-bannerMinHeight = 100;
+// bannerScrollHeight = 150;
+// bannerMaxHeight = 240;
+// bannerMinHeight = 100;
 
 function Home() {
   // const [scrollY] = useState(new Animated.Value(0));
@@ -33,6 +33,7 @@ function Home() {
       // onScroll={Animated.event([
       //   { nativeEvent: { contentOffset: { y: scrollY } } }
       // ])}
+      style={{backgroundColor:'#FFFFFF'}}
       >
         
 

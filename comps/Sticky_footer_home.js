@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-function Footer_home() {
+function Sticky_footer_home() {
   return (
     <View>
       <View style={styles.footer}>
@@ -54,7 +54,8 @@ const styles = StyleSheet.create({
   },
   txtIcon: {
     fontFamily: "Open sans",
-    fontSize: 11
+    fontSize: 11,
+    color:'#686868'
   },
   icons_home: {
     width: 28,
@@ -69,4 +70,4 @@ const styles = StyleSheet.create({
     height: 30
   }
 });
-export default Footer_home;
+export default Sticky_footer_home;
