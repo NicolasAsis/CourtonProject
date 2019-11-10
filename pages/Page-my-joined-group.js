@@ -9,7 +9,7 @@ import Card_for_player from "../comps/Card_for_player";
 import { ScrollView } from "react-native-gesture-handler";
 function MyJoinedGroup() {
   return (
-    <View>
+    <View style={{backgroundColor:'#FFFFFF', width:'100%'}}>
       <Header_blue headerTitle={"All My Joined Groups"} />
       <Image
         style={styles.searchIcon}
@@ -21,9 +21,9 @@ function MyJoinedGroup() {
         placeholder="  Search Group Number, Organizer"
       />
       <View style={styles.mainContent}>
-        <View style={{height:652}}>
+        <View style={{height:655}}>
           <ScrollView>
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, paddingBottom:30, paddingLeft:10, paddingRight:10}}>
               <Card_for_player
                 organizerName={"Toby Wong"}
                 groupNum={"C1314"}
