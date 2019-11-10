@@ -22,7 +22,8 @@ function GroupInfo() {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      height: "100%"
+      height: "100%",
+      backgroundColor: "#FFFFFF"
     },
 
     //Page Header
@@ -35,7 +36,6 @@ function GroupInfo() {
       width: "100%",
       height: "100%"
     },
-    //Back Button
     giBackTouchableOp: {
       position: "absolute",
       width: 20,
@@ -51,20 +51,6 @@ function GroupInfo() {
       //   top: 40,
       //   position: "absolute"
     },
-    //Ham Button
-    giHamTouchableOp: {
-      position: "absolute",
-      width: 25,
-      height: 16,
-      left: 331,
-      top: 40
-      // backgroundColor:'red'
-    },
-    giHamBut: {
-      width:25,
-      height:25
-    },
-    //Organizer Image
     giOrganizerImg: {
       width: 52,
       height: 52,
@@ -98,7 +84,7 @@ function GroupInfo() {
       height: 250,
       // backgroundColor:'#DAD',
       marginTop: 20,
-      left: 23
+      // left: 23
     },
     //Group Description Text
     groupDescHeaderText: {
@@ -159,28 +145,15 @@ function GroupInfo() {
             style={styles.giImg}
             source={require("../assets/img_stage18.png")}
           />
-          {/* Back Button */}
           <TouchableOpacity
             style={styles.giBackTouchableOp}
             onPress={() => {
-              Actions.pop("Home")
+              Actions.pop("Home");
             }}
           >
             <Image
               style={styles.giBackBut}
               source={require("../assets/but_back.png")}
-            />
-          </TouchableOpacity>
-          {/* Ham Button */}
-          <TouchableOpacity
-            style={styles.giHamTouchableOp}
-            onPress={() => {
-              Actions.drawer('HamMenu')
-            }}
-          >
-            <Image
-              style={styles.giHamBut}
-              source={require("../assets/but_ham.png")}
             />
           </TouchableOpacity>
           <View style={styles.giOrganizerImg}></View>
@@ -199,59 +172,68 @@ function GroupInfo() {
             }}
           >
             <ScrollView style={{ flex: 1 }}>
-              {/* Group Description */}
-              <Text style={styles.groupDescHeaderText}>Group Description</Text>
-              <Text style={styles.groupDescText}>
-                This is a group description for players who are looking at other
-                created groups cards. So you can only view no editing.
-              </Text>
-
-              {/* All group information text */}
-              <View style={{ display: "flex", flexDirection: "row" }}>
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.giTitleText}>Group</Text>
-                  <Text style={styles.giTitleText}>Date</Text>
-                  <Text style={styles.giTitleText}>Centre</Text>
-                  <Text style={styles.giTitleText}>Location</Text>
-                  <Text style={styles.giTitleText}>Time</Text>
-                  <Text style={styles.giTitleText}>Group Limit</Text>
-                  <Text style={styles.giTitleText}>Players</Text>
-                  <Text style={styles.giTitleText}>Bird Type</Text>
-                </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.giText}>#C1314</Text>
-                  <Text style={styles.giText}>30 December 2019</Text>
-                  <Text style={styles.giText}>ClearOne</Text>
-                  <Text style={styles.giLocationText}>
-                    4351 No 3 Rd #100,{"\n"}Richmond, BC V6X 3A7
-                  </Text>
-                  <Text style={styles.giText}>1pm - 4pm</Text>
-                  <Text style={styles.giText}>5</Text>
-                  <Text style={styles.giPlayersText}>4</Text>
-                  <Text style={styles.giText}>Feather</Text>
-                </View>
-              </View>
-              {/* Member Cards */}
-              <View style={{ alignItems: "flex-start" }}>
-                <Card_members
-                  organizer={"Organizer"}
-                  memberName={"Tony Wong"}
-                />
-                <Card_members memberName={"William Williams"} />
-                <Card_members memberName={"William Williams"} />
-                <Card_members memberName={"William Williams"} />
-                <Card_members memberName={"William Williams"} />
-              </View>
-              <View style={{ flexDirection: "row" }}>
-                <View>
-                  <Circle_extra_member />
-                </View>
-                <View style={{ position: "absolute", left: 20 }}>
-                  <Circle_extra_member />
-                </View>
-                <Text style={[styles.giText, { left: 26, top: 5 }]}>
-                  +2 more
+              <View
+                style={{
+                  paddingLeft: 20,
+                  paddingRight: 20,
+                }}
+              >
+                {/* Group Description */}
+                <Text style={styles.groupDescHeaderText}>
+                  Group Description
                 </Text>
+                <Text style={styles.groupDescText}>
+                  This is a group description for players who are looking at
+                  other created groups cards. So you can only view no editing.
+                </Text>
+
+                {/* All group information text */}
+                <View style={{ display: "flex", flexDirection: "row" }}>
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.giTitleText}>Group</Text>
+                    <Text style={styles.giTitleText}>Date</Text>
+                    <Text style={styles.giTitleText}>Centre</Text>
+                    <Text style={styles.giTitleText}>Location</Text>
+                    <Text style={styles.giTitleText}>Time</Text>
+                    <Text style={styles.giTitleText}>Group Limit</Text>
+                    <Text style={styles.giTitleText}>Players</Text>
+                    <Text style={styles.giTitleText}>Bird Type</Text>
+                  </View>
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.giText}>#C1314</Text>
+                    <Text style={styles.giText}>30 December 2019</Text>
+                    <Text style={styles.giText}>ClearOne</Text>
+                    <Text style={styles.giLocationText}>
+                      4351 No 3 Rd #100,{"\n"}Richmond, BC V6X 3A7
+                    </Text>
+                    <Text style={styles.giText}>1pm - 4pm</Text>
+                    <Text style={styles.giText}>5</Text>
+                    <Text style={styles.giPlayersText}>4</Text>
+                    <Text style={styles.giText}>Feather</Text>
+                  </View>
+                </View>
+                {/* Member Cards */}
+                <View style={{ alignItems: "flex-start" }}>
+                  <Card_members
+                    organizer={"Organizer"}
+                    memberName={"Tony Wong"}
+                  />
+                  <Card_members memberName={"William Williams"} />
+                  <Card_members memberName={"William Williams"} />
+                  <Card_members memberName={"William Williams"} />
+                  <Card_members memberName={"William Williams"} />
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                  <View>
+                    <Circle_extra_member />
+                  </View>
+                  <View style={{ position: "absolute", left: 20 }}>
+                    <Circle_extra_member />
+                  </View>
+                  <Text style={[styles.giText, { left: 26, top: 5 }]}>
+                    +2 more
+                  </Text>
+                </View>
               </View>
             </ScrollView>
           </View>

@@ -15,7 +15,7 @@ import {Actions} from 'react-native-router-flux';
 
 function SelectLocation() {
   return (
-    <View>
+    <View style={{backgroundColor:'#FFFFFF'}}>
       <View style={styles.header}>
         <TouchableOpacity 
           style = {styles.butBackTouchableOp}
@@ -43,7 +43,7 @@ function SelectLocation() {
 
         
         <ScrollView style={{flex:1, paddingBottom:950, paddingTop:17}}>
-        <View style={{height:1450}}>
+        <View style={{height:1400}}>
           <Card_badminton_centre 
           badmintonCentreName={'Stage 18'}
           badmintonCentreLocation={'2351 No 6 Rd #170, Richmond, BC V6V 1P3'}
