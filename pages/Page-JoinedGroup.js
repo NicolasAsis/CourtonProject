@@ -49,7 +49,7 @@ function JoinedGroup() {
           <TouchableOpacity 
             style={styles.button} 
             onPress={()=>{
-              Actions.Home()
+              Actions.MyJoinedGroup()
             }}
           >
             <Text style={styles.btnText}> OK </Text>

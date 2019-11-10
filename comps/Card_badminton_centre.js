@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     fontFamily: "Open sans",
     fontSize: 34,
     fontWeight: "bold",
-    left: 40,
+    left: 23,
     top: 93,
     color: "#FFFFFF",
     position: "absolute"
@@ -67,12 +67,12 @@ const styles = StyleSheet.create({
     width: 10,
     height: 14,
     top: 139,
-    left:40,
+    left:23,
     position: "absolute"
   },
   txtLocation: {
     color: "#FFFFFF",
-    left: 55,
+    left: 40,
     top: 139,
     fontSize: 10,
     fontFamily: "Open sans",

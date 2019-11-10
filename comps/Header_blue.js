@@ -1,11 +1,18 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
+import {Actions} from 'react-native-router-flux';
+
 function Header_blue(props) {
   return (
     <View>
       <View style={styles.header}>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={()=>{
+            Actions.Profile()
+          }}
+          style={styles.butBackTouchableOp}
+        >
           <Image
             style={styles.butBack}
             source={require("../assets/but_back.png")}
@@ -32,6 +39,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#094E76"
   },
   butBack: {
+    width: 20,
+    height: 30,
+    // left: 23,
+    // top: 55
+  },
+  butBackTouchableOp :{
     width: 20,
     height: 30,
     left: 23,

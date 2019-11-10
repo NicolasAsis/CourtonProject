@@ -2,6 +2,8 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
+import {Actions} from 'react-native-router-flux';
+
 function Footer_court_indicator(props) {
   return (
     <View>
@@ -29,7 +31,12 @@ function Footer_court_indicator(props) {
         >
           <View style={styles.butBg}>
             <Text style={styles.price}>${props.txtPrice}/Hour</Text>
-            <TouchableOpacity style={styles.butOk}>
+            <TouchableOpacity 
+              style={styles.butOk}
+              onPress={()=>{
+                Actions.GroupSummary()
+              }}
+            >
               <Text style={styles.txtOk}>Ok</Text>
             </TouchableOpacity>
           </View>

@@ -11,6 +11,8 @@ import {
 import { StyleSheet } from "react-native";
 import Header_blue_red from "../comps/Header_blue_red";
 
+import {Actions} from 'react-native-router-flux';
+
 function GroupSummary() {
   const [grouplimit,setGroupLimit] = useState(0);
 
@@ -91,7 +93,12 @@ function GroupSummary() {
           />
 
           {/* Post Button */}
-          <TouchableOpacity style={styles.postBut}>
+          <TouchableOpacity 
+            style={styles.postBut}
+            onPress={()=>{
+              Actions.MyCreatedGroup()
+            }}
+          >
             <Text style={styles.postButText}>POST</Text>
           </TouchableOpacity>
         </ScrollView>
@@ -124,7 +131,7 @@ const styles = StyleSheet.create({
   //Information Section
   gsTextSec: {
     width: "100%",
-    height: 600,
+    height: 665,
     // backgroundColor: "#DAD",
     marginTop: 10,
     left: 25
