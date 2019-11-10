@@ -127,7 +127,8 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 800,
     marginTop: 140,
-    paddingBottom: 148
+    paddingBottom: 148,
+    backgroundColor:'#FFFFFF'
   }
 });
 
