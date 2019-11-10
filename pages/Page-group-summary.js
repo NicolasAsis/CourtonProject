@@ -86,8 +86,6 @@ function GroupSummary() {
           <TextInput
             style={styles.descInput}
             placeholder="Type a group description..."
-            multiline
-            
           />
 
           {/* Post Button */}
@@ -124,9 +122,9 @@ const styles = StyleSheet.create({
   //Information Section
   gsTextSec: {
     width: "100%",
-    height: 600,
+    height: 500,
     // backgroundColor: "#DAD",
-    marginTop: 10,
+    marginTop: 33,
     left: 25
   },
   //Left side title text
@@ -141,7 +139,7 @@ const styles = StyleSheet.create({
   //Inputted Text
   gsText: {
     fontFamily: "Open sans",
-    fontSize: 13,
+    fontSize: 15,
     color: "#4B4B4B",
     lineHeight: 20,
     marginBottom: 32
@@ -175,8 +173,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     backgroundColor: "#F2F2F2",
     marginTop: -5,
-    marginBottom: 39,
-    textAlignVertical:'top'
+    marginBottom: 39
     //   display:'flex'
   },
   //Post button

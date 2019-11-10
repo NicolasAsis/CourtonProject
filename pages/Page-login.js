@@ -9,9 +9,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-import {Actions} from 'react-native-router-flux';
-
-function Login(props) {
+function Login() {
 
     const styles=StyleSheet.create({
         loginpageStructure:{
@@ -19,8 +17,7 @@ function Login(props) {
             flexDirection:'column',
             // justifyContent:'center',
             alignItems:'center',
-            height:'100%',
-            backgroundColor:'#FFFFFF'
+            height:'100%'
         },
         loginLogo:{
             width:175,
@@ -37,7 +34,7 @@ function Login(props) {
                 width: 0,
                 height: 3,
             },
-            shadowOpacity: 0.5,
+            shadowOpacity: 1,
             shadowRadius: 10,
             elevation:8
         },
@@ -51,14 +48,14 @@ function Login(props) {
         passwordContainer: {
             height: 39,
             width:230,
-            marginTop:20,
+            marginTop:50,
             borderRadius:20,
             shadowColor: "#D8D8D8",
             shadowOffset: {
                 width: 0,
                 height: 3,
             },
-            shadowOpacity: 0.5,
+            shadowOpacity: 1,
             shadowRadius: 10,
             elevation:8
         },
@@ -73,7 +70,7 @@ function Login(props) {
             marginTop:48,
             borderRadius:28,
             width:230,
-            height:36,
+            height:39,
             backgroundColor:'#FE647B',
             display:'flex',
             justifyContent:'center',
@@ -128,12 +125,7 @@ function Login(props) {
                 style={styles.loginBut}
             /> */}
 
-            <TouchableOpacity 
-                style={styles.loginBut}
-                onPress={()=>{
-                    Actions.Home()
-                }}
-            >
+            <TouchableOpacity style={styles.loginBut}>
                 <Text style={styles.loginButText}>LOGIN</Text>
             </TouchableOpacity>
 

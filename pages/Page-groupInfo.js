@@ -13,8 +13,6 @@ import Card_members from "../comps/Card_members";
 import Bar_group_countdown_price from "../comps/Bar_group_countdown_price";
 import Circle_extra_member from "../comps/Circle_extra_member";
 
-import { Actions } from "react-native-router-flux";
-
 function GroupInfo() {
   const styles = StyleSheet.create({
     // Page Structure
@@ -29,26 +27,18 @@ function GroupInfo() {
     giHeader: {
       width: "100%",
       height: 240,
-      backgroundColor: "#FAB"
+      backgroundColor: "#Fab"
     },
     giImg: {
       width: "100%",
       height: "100%"
     },
-    giBackTouchableOp:{
-        position:'absolute',
-        width: 20,
-        height: 30,
-        left: 35,
-        top: 40,
-        // backgroundColor:'red'
-    },
     giBackBut: {
       width: 20,
-      height: 30
-    //   left: 35,
-    //   top: 40,
-    //   position: "absolute"
+      height: 30,
+      left: 35,
+      top: 40,
+      position: "absolute"
     },
     giOrganizerImg: {
       width: 52,
@@ -144,12 +134,7 @@ function GroupInfo() {
             style={styles.giImg}
             source={require("../assets/img_stage18.png")}
           />
-          <TouchableOpacity 
-            style={styles.giBackTouchableOp}
-            onPress={()=>{
-                Actions.pop('Home')
-            }}
-          >
+          <TouchableOpacity style={{ position: "absolute" }}>
             <Image
               style={styles.giBackBut}
               source={require("../assets/but_back.png")}
@@ -221,9 +206,7 @@ function GroupInfo() {
                 <View style={{ position: "absolute", left: 20 }}>
                   <Circle_extra_member />
                 </View>
-                <Text style={[styles.giText, { left: 26, top: 5 }]}>
-                  +2 more
-                </Text>
+                <Text style={[styles.giText, {left:26, top:5}]}>+2 more</Text>
               </View>
             </ScrollView>
           </View>

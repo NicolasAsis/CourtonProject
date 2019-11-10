@@ -5,15 +5,13 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  ScrollView,
-  TextInput
+  ScrollView
 } from "react-native";
 
 import Button_Join from "../comps/Button_Join";
 import Card_members from "../comps/Card_members";
 import Bar_group_countdown_price from "../comps/Bar_group_countdown_price";
 import Circle_extra_member from "../comps/Circle_extra_member";
-import Card_comment from "../comps/Card_comment";
 
 function Organizer_groupInfo() {
   const styles = StyleSheet.create({
@@ -21,7 +19,8 @@ function Organizer_groupInfo() {
     gipageStructure: {
       display: "flex",
       flexDirection: "column",
-      alignItems: "center"
+      alignItems: "center",
+      height: "100%"
     },
 
     //Page Header
@@ -55,7 +54,7 @@ function Organizer_groupInfo() {
       fontSize: 20,
       color: "#FFFFFF",
       position: "absolute",
-      left: 45,
+      left: 95,
       top: 163
     },
     giOrganizerText: {
@@ -64,7 +63,7 @@ function Organizer_groupInfo() {
       fontSize: 24,
       color: "#FFFFFF",
       position: "absolute",
-      left: 45,
+      left: 95,
       top: 190
     },
 
@@ -123,70 +122,6 @@ function Organizer_groupInfo() {
       color: "#094E76",
       marginBottom: 32,
       marginTop: -16
-    },
-    descInput: {
-      width: 312,
-      height: 126,
-      borderRadius: 6,
-      backgroundColor: "#F2F2F2",
-      marginBottom: 39,
-      textAlignVertical: "top"
-      //   display:'flex'
-    },
-    btnReset:{
-      backgroundColor:'#BDBDBD',
-      alignItems:'center',
-      justifyContent:'center',
-      width:150,
-      height:35,
-      borderRadius:30,
-      shadowColor:'#000000',
-      shadowOpacity:0.10,
-      shadowRadius:7,
-      shadowOffset:{x: 2, y:3},
-      marginRight:4
-    },
-    txtRest:{
-      color:'#FFFFFF',
-      fontFamily:'Open sans',
-      fontWeight:'bold'
-    },
-    btnSubmit:{
-      backgroundColor:'#56CCF2',
-      alignItems:'center',
-      justifyContent:'center',
-      width:150,
-      height:35,
-      borderRadius:30,
-      shadowColor:'#000000',
-      shadowOpacity:0.10,
-      shadowRadius:7,
-      shadowOffset:{x: 2, y:3},
-      marginLeft:15
-    },
-    txtSubmit:{
-      color:'#FFFFFF',
-      fontFamily:'Open sans',
-      fontWeight:'bold'
-    },
-    txtDelete:{
-      color:'#FFFFFF',
-      fontFamily:'Open sans',
-      fontWeight:'bold'
-    },
-    btnDelete:{
-      backgroundColor:'#FE647B',
-      alignItems:'center',
-      justifyContent:'center',
-      width:320,
-      height:40,
-      borderRadius:50,
-      shadowColor:'#000000',
-      shadowOpacity:0.10,
-      shadowRadius:7,
-      shadowOffset:{x: 2, y:3},
-      marginTop:20,
-      marginBottom:50
     }
   });
 
@@ -205,9 +140,9 @@ function Organizer_groupInfo() {
               source={require("../assets/but_back.png")}
             />
           </TouchableOpacity>
-          {/* <View style={styles.giOrganizerImg}></View> */}
-          <Text style={styles.giOrganizedByText}>#s11111</Text>
-          <Text style={styles.giOrganizerText}>Stage 18</Text>
+          <View style={styles.giOrganizerImg}></View>
+          <Text style={styles.giOrganizedByText}>Organized by</Text>
+          <Text style={styles.giOrganizerText}>Toby Wong</Text>
         </View>
 
         <Bar_group_countdown_price titlePrice={7} countdown={100} />
@@ -217,10 +152,10 @@ function Organizer_groupInfo() {
             style={{
               flex: 1,
               position: "absolute",
-              height: 500
+              height: 375
             }}
           >
-            <ScrollView style={{ flex: 1,width:'100%' }}>
+            <ScrollView style={{ flex: 1 }}>
               {/* Group Description */}
               <Text style={styles.groupDescHeaderText}>Group Description</Text>
               <Text style={styles.groupDescText}>
@@ -268,44 +203,13 @@ function Organizer_groupInfo() {
                 <View style={{ position: "absolute", left: 20 }}>
                   <Circle_extra_member />
                 </View>
-                <Text style={[styles.giText, { left: 26, top: 5 }]}>
-                  +2 more
-                </Text>
-              </View>
-              <Image
-                  style={{ width: 24, height: 24, marginTop: 25, marginLeft:10}}
-                  source={require("../assets/icon_comment.png")}
-                />
-              <View style={{ alignItems: "center" }}>
-                
-                <Card_comment />
-                <Card_comment />
-                <View style={{ marginTop: 50 }}>
-                  <TextInput
-                    style={styles.descInput}
-                    placeholder="Type a group description..."
-                    multiline
-                  />
-                  <View style={{ flexDirection: "column"}}>
-                    <View style={{ flexDirection: "row" }}>
-                      <TouchableOpacity style={styles.btnReset}>
-                        <Text style={styles.txtRest}>Reset</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity style={styles.btnSubmit}>
-                        <Text style={styles.txtSubmit}>Submit</Text>
-                      </TouchableOpacity>
-                    </View>
-
-                    <TouchableOpacity style={styles.btnDelete}>
-                      <Text style={styles.txtDelete}>Delete Group</Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
+                <Text style={[styles.giText, {left:26, top:5}]}>+2 more</Text>
               </View>
             </ScrollView>
           </View>
         </View>
       </View>
+
     </View>
   );
 }

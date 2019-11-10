@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
-function Card_badminton_centre(props) {
+function Card_badminton_centre() {
   return (
     <View >
       <View style={{marginBottom:180}}>
@@ -9,19 +9,18 @@ function Card_badminton_centre(props) {
           <View style={styles.card}>
             <Image
               style={styles.img}
-              source={props.badmintonCentreImg}
+              source={require("../assets/img_stage18.png")}
             />
           </View>
 
           
-            <Text style={styles.txtLocationName}>{props.badmintonCentreName}</Text>
+            <Text style={styles.txtLocationName}>Stage 18</Text>
             <Image
               style={styles.imgLocation}
               source={require("../assets/icon_location_white.png")}
             />
             <Text style={styles.txtLocation}>
-              
-              {props.badmintonCentreLocation}
+              4351 No 3 Rd #100, Richmond, BC V6X 3A7
             </Text>
          
         </TouchableOpacity>

@@ -1,9 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 
-import {Actions} from 'react-native-router-flux';
-
-function Join_group_popup() {
+function Join_group_pop() {
   return (
     <View style={styles.container}>
       <View style={styles.popup}>
@@ -13,20 +11,11 @@ function Join_group_popup() {
           Your payment must be given to your organizer
         </Text>
 
-        <TouchableOpacity
-          onPress={()=>{
-            Actions.GroupInfo()
-          }}
-        >
+        <TouchableOpacity>
           <Image style={styles.noButton} source={require("../assets/but_no.png")}></Image> 
         </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={()=>{
-            Actions.JoinedGroup()
-          }}
-          style={{backgroundColor:'red',height:50,width:50}}
-        >
+        <TouchableOpacity>
           <Image style={styles.yesButton} source={require("../assets/but_yes.png")}/>
         </TouchableOpacity>
 
@@ -100,4 +89,4 @@ const styles = StyleSheet.create({
 
    
 
-export default Join_group_popup;
+export default Join_group_pop;

@@ -1,28 +1,28 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-function Sticky_footer_regular(props) {
+function Footer_regular() {
   return (
     <View>
       <View style={styles.footer}>
         <TouchableOpacity style={styles.icons}>
           <Image
             style={styles.icons_home}
-            source={props.homeIcon}
+            source={require("../assets/icon_home_blue.png")}
           />
           <Text style={styles.txtIcon}>HOME</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.icons}>
           <Image
             style={styles.icons_group}
-            source={props.myGroupIcon}
+            source={require("../assets/icon_mygroup_grey.png")}
           />
           <Text style={styles.txtIcon}>MY GROUPS</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.icons}>
           <Image
             style={styles.icons_profile}
-            source={props.profileIcon}
+            source={require("../assets/icon_profile_grey.png")}
           />
           <Text style={styles.txtIcon}>PROFILE</Text>
         </TouchableOpacity>
@@ -50,8 +50,7 @@ const styles = StyleSheet.create({
   },
   txtIcon: {
     fontFamily: "Open sans",
-    fontSize: 11,
-    color:'#686868'
+    fontSize: 11
   },
   icons_home: {
     width: 28,
@@ -66,4 +65,4 @@ const styles = StyleSheet.create({
     height: 30
   }
 });
-export default Sticky_footer_regular;
+export default Footer_regular;
