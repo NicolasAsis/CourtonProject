@@ -17,6 +17,7 @@ function Join_group_popup() {
           onPress={()=>{
             Actions.GroupInfo()
           }}
+          style={styles.noButTouchableOp}
         >
           <Image style={styles.noButton} source={require("../assets/but_no.png")}></Image> 
         </TouchableOpacity>
@@ -80,13 +81,19 @@ const styles = StyleSheet.create({
   },
 
    noButton:{
-       position: 'absolute',
+      //  position: 'absolute',
        width: 100,
        height: 38,
-       left: -112,
-       top: 14,
+      //  left: -112,
+      //  top: 14,
     },
-
+    noButTouchableOp:{
+      position: 'absolute',
+      width: 100,
+      height: 38,
+      left: 12,
+      top: 143,
+    },
     yesButton:{
         position: 'absolute',
         width: 100,

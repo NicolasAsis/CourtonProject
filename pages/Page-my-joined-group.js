@@ -91,7 +91,8 @@ const styles = StyleSheet.create({
   mainContent: {
     alignItems: "center",
     justifyContent: "center",
-    top: 60
+    top: 60,
+    backgroundColor:'#FFFFFF'
   },
   // footer: {
   //   bottom: 0,

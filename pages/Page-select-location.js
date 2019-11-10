@@ -42,7 +42,7 @@ function SelectLocation() {
         
 
         
-        <ScrollView style={{flex:1, paddingBottom:950, paddingTop:100}}>
+        <ScrollView style={{flex:1, paddingBottom:950, paddingTop:17}}>
         <View style={{height:1450}}>
           <Card_badminton_centre 
           badmintonCentreName={'Stage 18'}

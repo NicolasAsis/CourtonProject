@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Calendar } from "react-native-calender";
 import Header_blue_red from '../comps/Header_blue_red';
 
+import {Actions} from 'react-native-router-flux';
+
 function Page_Calendar() {
   return (
     <View>
@@ -11,8 +13,13 @@ function Page_Calendar() {
       courtName='Stage 18'
       />
       
-      <TouchableOpacity>
-        <View style={styles.butNext}>
+      <TouchableOpacity
+        onPress={()=>{
+          Actions.SelectCourts()
+        }}
+        style={styles.butNext}
+      >
+        <View>
           <Text style={styles.txtNext}>Next</Text>
         </View>
       </TouchableOpacity>
