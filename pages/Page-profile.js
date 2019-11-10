@@ -1,192 +1,230 @@
-import React, {useState} from 'react';
-import {Text,View, Image, TouchableOpacity, StyleSheet, ScrollView} from 'react-native';
-import Footer_regular from "../comps/Sticky_footer_regular";
+import React, { useState } from "react";
+import {
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView
+} from "react-native";
+import Sticky_footer_regular from "../comps/Sticky_footer_regular";
+import Card_recent from "../comps/Card_recent";
 
-function Profile(){
-    return(
-        <View>
-        
-            {/* this is the header part */}
-            <View styes={{fontFamily:'Open Sans'}}>
-                <View style={styles.header}>
-                    <Text style={styles.name}>Jacky Lee</Text>
-                    <View style={{position: 'absolute'}}>
-                    <TouchableOpacity>
-                        <Image style={styles.iconEdit}
-                        source={require("../assets/icon_edit.png")}/>
-                    </TouchableOpacity>
+function Profile(props) {
+  return (
+    <View>
+      <TouchableOpacity
+        style={{ position: "absolute", left: 320, top: 50, zIndex: 10 }}
+      >
+        <Image
+          style={{ width: 26, height: 26 }}
+          source={require("../assets/icon_setting.png")}
+        />
+      </TouchableOpacity>
+      <View>
+        <Image
+          style={{ width: "100%", height: 262 }}
+          source={require("../assets/img_profile_banner.png")}
+        />
+      </View>
+
+      <View style={styles.pageStructure}>
+        <View style={styles.profileHeader}>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Image
+              style={styles.profilePic}
+              source={require("../assets/img_profile_banner.png")}
+            />
+            <View
+              style={{
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                paddingLeft: "15%"
+              }}
+            >
+              <Text style={styles.txtName}>Jacky Lee</Text>
+              <View style={{ flexDirection: "row", flex: 1, marginTop: 10 }}>
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginRight: "15%"
+                  }}
+                >
+                  <Text style={styles.txtCreatedNum}>
+                    {props.txtCreatedNum}2
+                  </Text>
+                  <Text style={styles.txtCreatedJoined}>
+                    {props.txtCreatedGroup}Created{" "}
+                  </Text>
                 </View>
-                
-                    <TouchableOpacity>
-                    <View style={styles.profileImg}>
-                        <Image style={styles.iconCamera}
-                        source={require("../assets/icon_camera.png")}/>
-                    </View>
-                    </TouchableOpacity>
+                <View
+                  style={{ alignItems: "center", justifyContent: "center" }}
+                >
+                  <Text style={styles.txtJoinedNum}>{props.txtJoinedNum}5</Text>
+                  <Text style={styles.txtCreatedJoined}>
+                    {props.txtJoinedGroup}Joined
+                  </Text>
+                </View>
+              </View>
             </View>
+          </View>
         </View>
-            {/* this is the group numbers and text */}
-            <View style={styles.groupsText}>
-                <View style={{flex:1}}>
-                    <TouchableOpacity>
-                    <Text style={styles.numberGroups}>2</Text>
-                    <Text style={styles.createdGroups}>Created{"\n"}Groups</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={{flex:1}}>
-                    <TouchableOpacity>
-                    <Text style={styles.numberGroups2}>5</Text>
-                    <Text style={styles.joinedGroups}>Joined{"\n"}Groups</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
+      </View>
 
-            <View style={{width:'100%',height:240, top:390,display:'flex',justifyContent:'center',alignItems:'center'}}>
-                <View style={{width:180,height:217, left: 20}}>
-                    <TouchableOpacity>
-                        <Image 
-                        style={{width:25, height: 30,marginBottom:15}} 
-                        source={require ('../assets/icon_notification.png')}
-                        />
-                        <Text style={styles.optionsText}>Notfications</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                    <Image style={{width:25, height: 25, marginBottom: 15}} source={require ('../assets/icon_help.png')}/>
-                    <Text style={styles.optionsText}>Help</Text>               
-                    </TouchableOpacity >
-                    <TouchableOpacity >
-                    <Image style={{width:25, height: 25, marginBottom: 15}} source={require ('../assets/icon_faq.png')}/>
-                    <Text style={styles.optionsText}>FAQ</Text>
-                </TouchableOpacity>
-                <TouchableOpacity> 
-                    <Image style={{width:25, height: 25, marginBottom: 15}} source={require ('../assets/icon_about.png')}/>
-                    <Text style={styles.optionsText}>About CourtOn</Text>
-                </TouchableOpacity>
-                </View>
-            </View>
-        
-            <View style={{top: 420}}>
-                 <Footer_regular/>
-            </View>
-            
-        </View> 
+      <View
+        style={{
+          backgroundColor: "#FFFFFF",
+          zIndex: -10,
+          paddingTop: 20,
+          justifyContent: "center",
+          alignItems: "center",
+          height: 550
+        }}
+      >
+        <View style={{ width: "100%", height: 100, zIndex: 10 }}>
+            <View style={{flexDirection:'row', justifyContent:'center', alignItems:'center', top:70}}>
 
-    );
-
-};
+           
+            <View style={{flexDirection:'row', paddingRight:30}} > 
+                <View style={styles.circleIndicatorJoined}></View>
+                <Text style={styles.txtIndicator}>Joined</Text>
+            </View>
+            <View style={{flexDirection:'row', paddingLeft:30}} > 
+                <View style={styles.circleIndicatorCreated}></View>
+                <Text style={styles.txtIndicator}>Created</Text>
+            </View>
+            </View>
+          <Text style={styles.txtRecent}>Recent</Text>
+        </View>
+        <ScrollView>
+          <View
+            style={{
+              alignItems: "center",
+              paddingTop: "10%",
+              paddingBottom: 80,
+              paddingLeft:20,
+              paddingRight:20
+            }}
+          >
+            <Card_recent 
+            verIndicatorColor={'#094E76'}
+            />
+            <Card_recent 
+            verIndicatorColor={'#FE647B'}
+            />
+            <Card_recent 
+            verIndicatorColor={'#094E76'}
+            />
+            <Card_recent 
+            verIndicatorColor={'#094E76'}
+            />
+            <Card_recent 
+            verIndicatorColor={'#094E76'}
+            />
+            <Card_recent 
+            verIndicatorColor={'#FE647B'}
+            />
+          </View>
+        </ScrollView>
+      </View>
+      <Sticky_footer_regular
+        homeIcon={require("../assets/icon_home_grey.png")}
+        myGroupIcon={require("../assets/icon_mygroup_grey.png")}
+        profileIcon={require("../assets/icon_profile_blue.png")}
+        style={styles.footer}
+      />
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
-    header: {
-        position: 'absolute',
-        width: '100%',
-        height: 241,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#094E76',
-    },
-
-    name:{
-        textAlign: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontWeight: 'bold',
-        fontSize: 30,
-        lineHeight: 46,
-        color: 'white',
-
-    },
-
-    iconEdit:{
-        width: 20,
-        height: 21,
-        top: -45,
-        left: 145,
-    },
-
-    profileImg:{
-        width: 95,
-        height: 95,
-        backgroundColor: "lightblue",
-        borderRadius: 50,
-        top: 20,
-    },
-    iconCamera:{
-        width: 28,
-        height: 28,
-        left: 73,
-        top: 65,
-        position: 'absolute',
-    },
-
-    groupsText:{
-        position: 'absolute',
-        width: '100%',
-        top: 266,
-        display:'flex',
-        flexDirection: 'row'
-    },
-
-    numberGroups:{
-        fontWeight: 'bold',
-        fontSize: 25,
-        lineHeight: 34,
-        color: '#4A4A4A',
-        flexDirection: 'row',
-        left: 132,
-    },
-    numberGroups2:{
-        fontWeight: 'bold',
-        fontSize: 25,
-        lineHeight: 34,
-        color: '#4A4A4A',
-        left: 60,
-    
-    },
-    createdGroups:{
-        fontWeight: 'normal',
-        fontSize: 15,
-        lineHeight: 25,
-        color: '#4A4A4A',
-        flexDirection: 'row',
-        textAlign: 'center',
-        left: 40,
-        letterSpacing: 2.5,
-        // top: 40,
-    },
-
-    joinedGroups:{
-        fontWeight: 'normal',
-        fontSize: 15,
-        lineHeight: 25,
-        color: '#4A4A4A',
-        flexDirection: 'row',
-        textAlign: 'center',
-        left: -32,
-        letterSpacing: 2.5,
-
-    },
-    profileIcons:{
-        width: '100%',
-        flex: 1,
-        flexDirection:'column',
-        alignItems:'center',
-        // top: 380,
-        // left:140,
-        // backgroundColor:'black'
-
-    },
-
-    optionsText:{
+  pageStructure: {
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  profileHeader: {
+    width: 325,
+    height: 153,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 8,
+    position: "absolute",
+    shadowOffset: { x: 0, y: 3 },
+    shadowColor: "#000000",
+    shadowRadius: 10,
+    shadowOpacity: 0.07,
+    justifyContent: "center"
+  },
+  profilePic: {
+    width: 85,
+    height: 85,
+    borderRadius: 100,
+    backgroundColor: "#fab"
+  },
+  txtName: {
+    fontFamily: "Open sans",
+    fontSize: 24,
+    color: "#094E76",
+    fontWeight: "bold",
+    flex: 1
+  },
+  txtCreatedNum: {
+    fontFamily: "Open sans",
+    fontSize: 20,
+    color: "#FE647B",
+    fontWeight: "bold"
+  },
+  txtJoinedNum: {
+    fontFamily: "Open sans",
+    fontSize: 20,
+    color: "#094E76",
+    fontWeight: "bold"
+  },
+  txtCreatedJoined: {
+    color: "#094E76",
+    fontFamily: "Open sans",
+    fontSize: 12
+  },
+  txtRecent: {
+    fontFamily: "Open sans",
+    fontSize: 18,
+    color: "#C2C1C1",
+    paddingLeft: "10%",
+    backgroundColor: "#ffffff",
+    width: "100%",
+    top: 80
+  },
+  footer: {
+    position: "absolute"
+  },
+  circleIndicatorJoined:{
+      width:17,
+      height:17,
+      backgroundColor:'#FE647B',
+      borderRadius:30,
+      marginRight:5
+      //094E76
+  },
+  circleIndicatorCreated:{
+    width:17,
+    height:17,
+    backgroundColor:'#094E76',
+    borderRadius:30,
+    marginRight:5
+    //
+},
+    txtIndicator:{
+        fontSize:12,
         fontFamily:'Open sans',
-        fontSize: 14,
-        lineHeight: 19,
-        textAlign: 'left',
-        color: '#3C3C3C',
-        marginLeft: 65,
-        top: -34,
-    },
-
-
+        color:'#094E76'
+    }
 });
 
 export default Profile;

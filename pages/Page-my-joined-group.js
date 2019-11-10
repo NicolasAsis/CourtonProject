@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image, TextInput } from "react-native";
 import Header_blue from "../comps/Header_blue";
 import Card_organizer from "../comps/Card_for_organizer";
 import Footer_home from "../comps/Sticky_footer_home";
-import Footer_regular from "../comps/Sticky_footer_regular";
+import Sticky_footer_regular from "../comps/Sticky_footer_regular";
 import Card_for_player from "../comps/Card_for_player";
 import { ScrollView } from "react-native-gesture-handler";
 function MyJoinedGroup() {
