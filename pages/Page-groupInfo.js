@@ -35,21 +35,36 @@ function GroupInfo() {
       width: "100%",
       height: "100%"
     },
-    giBackTouchableOp:{
-        position:'absolute',
-        width: 20,
-        height: 30,
-        left: 35,
-        top: 40,
-        // backgroundColor:'red'
+    //Back Button
+    giBackTouchableOp: {
+      position: "absolute",
+      width: 20,
+      height: 30,
+      left: 35,
+      top: 40
+      // backgroundColor:'red'
     },
     giBackBut: {
       width: 20,
       height: 30
-    //   left: 35,
-    //   top: 40,
-    //   position: "absolute"
+      //   left: 35,
+      //   top: 40,
+      //   position: "absolute"
     },
+    //Ham Button
+    giHamTouchableOp: {
+      position: "absolute",
+      width: 25,
+      height: 16,
+      left: 331,
+      top: 40
+      // backgroundColor:'red'
+    },
+    giHamBut: {
+      width:25,
+      height:25
+    },
+    //Organizer Image
     giOrganizerImg: {
       width: 52,
       height: 52,
@@ -144,15 +159,28 @@ function GroupInfo() {
             style={styles.giImg}
             source={require("../assets/img_stage18.png")}
           />
-          <TouchableOpacity 
+          {/* Back Button */}
+          <TouchableOpacity
             style={styles.giBackTouchableOp}
-            onPress={()=>{
-                Actions.pop('Home')
+            onPress={() => {
+              Actions.pop("Home")
             }}
           >
             <Image
               style={styles.giBackBut}
               source={require("../assets/but_back.png")}
+            />
+          </TouchableOpacity>
+          {/* Ham Button */}
+          <TouchableOpacity
+            style={styles.giHamTouchableOp}
+            onPress={() => {
+              Actions.drawer('HamMenu')
+            }}
+          >
+            <Image
+              style={styles.giHamBut}
+              source={require("../assets/but_ham.png")}
             />
           </TouchableOpacity>
           <View style={styles.giOrganizerImg}></View>

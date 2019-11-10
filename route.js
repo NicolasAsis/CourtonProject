@@ -18,6 +18,8 @@ import GroupSummary from './pages/Page-group-summary';
 import MyCreatedGroup from './pages/Page-my-created-group';
 import MyJoinedGroup from './pages/Page-my-joined-group';
 
+import HamMenu from './comps/HamMenu';
+
 function Route() {
     return (
         <Router>
@@ -39,6 +41,8 @@ function Route() {
                 <Scene key="SelectCourts" component={SelectCourts} />
                 <Scene key="GroupSummary" component={GroupSummary} />
                 <Scene key="MyCreatedGroup" component={MyCreatedGroup} />
+
+                <Scene key="HamMenu" component={HamMenu} drawer={true} drawerPosition='right' />
                 
             </Stack>
         </Router>

@@ -26,7 +26,7 @@ function Join_group_popup() {
           onPress={()=>{
             Actions.JoinedGroup()
           }}
-          style={{backgroundColor:'red',height:50,width:50}}
+          style={styles.yesButTouchableOp}
         >
           <Image style={styles.yesButton} source={require("../assets/but_yes.png")}/>
         </TouchableOpacity>
@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: "100%"
+    height: "100%",
+    backgroundColor:'rgba(0, 0, 0, 0.401636)'
   },
 
   popup: {
@@ -91,15 +92,22 @@ const styles = StyleSheet.create({
       position: 'absolute',
       width: 100,
       height: 38,
-      left: 12,
+      left: 20,
       top: 143,
     },
     yesButton:{
-        position: 'absolute',
+        // position: 'absolute',
         width: 100,
         height: 38,
-        left: 12,
-        top: 14,
+        // left: 12,
+        // top: 14,
+     },
+     yesButTouchableOp:{
+      position: 'absolute',
+      width: 100,
+      height: 38,
+      left: 135,
+      top: 143,
      }
 
 
