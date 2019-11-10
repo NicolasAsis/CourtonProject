@@ -42,7 +42,7 @@ function Route() {
                 <Scene key="GroupSummary" component={GroupSummary} />
                 <Scene key="MyCreatedGroup" component={MyCreatedGroup} />
 
-                <Scene key="HamMenu" component={HamMenu} drawer={true} drawerPosition='left' />
+                <Scene key="HamMenu" component={HamMenu} drawer={true} drawerPosition='right' />
                 
             </Stack>
         </Router>
