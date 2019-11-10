@@ -51,6 +51,20 @@ function GroupInfo() {
       //   top: 40,
       //   position: "absolute"
     },
+    //Ham Button
+    giHamTouchableOp: {
+      position: "absolute",
+      width: 25,
+      height: 16,
+      left: 331,
+      top: 40
+      // backgroundColor:'red'
+    },
+    giHamBut: {
+      width:25,
+      height:25
+    },
+    //Organizer Image
     giOrganizerImg: {
       width: 52,
       height: 52,
@@ -154,6 +168,18 @@ function GroupInfo() {
             <Image
               style={styles.giBackBut}
               source={require("../assets/but_back.png")}
+            />
+          </TouchableOpacity>
+          {/* Ham Button */}
+          <TouchableOpacity
+            style={styles.giHamTouchableOp}
+            onPress={() => {
+              Actions.drawer('HamMenu')
+            }}
+          >
+            <Image
+              style={styles.giHamBut}
+              source={require("../assets/but_ham.png")}
             />
           </TouchableOpacity>
           <View style={styles.giOrganizerImg}></View>
