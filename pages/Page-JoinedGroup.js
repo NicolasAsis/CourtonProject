@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
+import {Actions} from 'react-native-router-flux';
+
 function JoinedGroup() {
   return (
     <View style={styles.bg}>
@@ -44,7 +46,12 @@ function JoinedGroup() {
           </Text>
         </View>
         <View>
-          <TouchableOpacity style={styles.button} onPress={this.onPress}>
+          <TouchableOpacity 
+            style={styles.button} 
+            onPress={()=>{
+              Actions.Home()
+            }}
+          >
             <Text style={styles.btnText}> OK </Text>
           </TouchableOpacity>
         </View>

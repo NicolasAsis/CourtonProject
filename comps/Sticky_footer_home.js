@@ -1,25 +1,42 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 
+import {Actions} from 'react-native-router-flux';
+
 function Sticky_footer_home() {
   return (
     <View>
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.icons}>
+        <TouchableOpacity 
+          style={styles.icons}
+          onPress={()=>{
+            Actions.Home()
+          }}
+        >
           <Image
             style={styles.icons_home}
             source={require("../assets/icon_home_blue.png")}
           />
           <Text style={styles.txtIcon}>HOME</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.icons}>
+        <TouchableOpacity 
+          style={styles.icons}
+          onPress={()=>{
+            Actions.MyGroup()
+          }}
+        >
           <Image
             style={styles.icons_group}
             source={require("../assets/icon_mygroup_grey.png")}
           />
           <Text style={styles.txtIcon}>MY GROUPS</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.icons}>
+        <TouchableOpacity 
+          style={styles.icons}
+          onPress={()=>{
+            Actions.Profile()
+          }}
+        >
           <Image
             style={styles.icons_profile}
             source={require("../assets/icon_profile_grey.png")}

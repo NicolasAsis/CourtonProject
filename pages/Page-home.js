@@ -13,6 +13,8 @@ import {
 import Card_for_player from "../comps/Card_for_player";
 import Footer_home from "../comps/Sticky_footer_home";
 
+import {Actions} from 'react-native-router-flux';
+
 // bannerScrollHeight = 150;
 // bannerMaxHeight = 240;
 // bannerMinHeight = 100;
@@ -53,7 +55,7 @@ function Home() {
               price={"7"}
               joinedMember={"10"}
               totalMember={"20"}
-              progressBarLoad={"0.5"}
+              progressBarLoad={0.5}
             />
             <Card_for_player />
             <Card_for_player />
@@ -90,7 +92,12 @@ function Home() {
       <View style={styles.footer}>
         <Footer_home />
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity
+        style = {styles.createButTouchableOp}
+        onPress={()=>{
+          Actions.SelectLocation()
+        }}
+      >
         <Image
           style={styles.createBtn}
           source={require("../assets/but_create.png")}
@@ -110,8 +117,17 @@ const styles = StyleSheet.create({
     left: 16,
     top: 100
   },
-  
   createBtn: {
+    width: 54,
+    height: 54,
+    // position: "absolute",
+    // zIndex: 10,
+    // left: "43%",
+    // bottom: 120
+  },
+  
+  //Styling for the touchable opacity surrounding the create But
+  createButTouchableOp: {
     width: 54,
     height: 54,
     position: "absolute",

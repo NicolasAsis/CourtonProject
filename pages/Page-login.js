@@ -120,6 +120,7 @@ function Login(props) {
                 <TextInput
                     style={styles.passwordInput}
                     placeholder="Password"
+                    secureTextEntry={true}
                 />
             </View>
 
