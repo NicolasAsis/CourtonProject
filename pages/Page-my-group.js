@@ -67,9 +67,9 @@ function MyGroup() {
       >
         <View style={styles.selectedLine}></View>
       </Animated.View>
-      <View>
+      <View style={{backgroundColor:'#FFFFFF' }}>
         <ScrollView style={{ height: 610 }}>
-          <View style={{ marginBottom: 100 }}>
+          <View style={{ marginBottom: 100}}>
             <Card_for_player />
             <Card_for_player />
             <Card_for_player />

@@ -8,13 +8,14 @@ function Card_for_player(props) {
  
 
   return (
-    <View style={{ alignItems: "center", marginTop: 18 }}>
+    <View style={{ alignItems: "center", marginTop: 18, width:'100%' }}>
       <TouchableOpacity
+       style={styles.card}
         onPress={()=>{
           Actions.GroupInfo()
       }}
       >
-      <View style={styles.card}>
+      <View>
         <View>
           <Image style={styles.img} source={require("../assets/stage18.jpg")} />
 

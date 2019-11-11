@@ -21,13 +21,10 @@ function Card_members(props) {
       backgroundColor: "#FFFFFF",
       display: "flex",
       flexDirection: "row",
-      shadowOffset: {
-        width: 0,
-        height: 3
-      },
-      shadowOpacity: 0.07,
-      shadowRadius: 10,
-      elevation: 5
+      shadowOpacity: 0.1,
+      shadowOffset: { x: 0, y: 3 },
+      shadowRadius: 5,
+      shadowColor: "#000000"
     },
     //Organizer image section
     organizerImgSec: {
