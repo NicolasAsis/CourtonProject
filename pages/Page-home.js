@@ -39,8 +39,9 @@ function Home() {
       >
         
 
-        <View style={{ flex: 1, paddingBottom: 135 }}>
+        <View style={{ flex: 1, paddingBottom: 130 }}>
           <ScrollView>
+            <View style={{paddingBottom:10}}>
           <Image
               style={{ width: "100%", height: 240 }}
               source={require("../assets/img_homepage_banner.png")}
@@ -61,6 +62,7 @@ function Home() {
             <Card_for_player />
             <Card_for_player />
             <Card_for_player />
+            </View>
           </ScrollView>
         </View>
       </ScrollView>

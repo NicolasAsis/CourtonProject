@@ -178,13 +178,13 @@ const styles = StyleSheet.create({
   txtCreatedNum: {
     fontFamily: "Open sans",
     fontSize: 20,
-    color: "#FE647B",
+    color: "#094E76",
     fontWeight: "bold"
   },
   txtJoinedNum: {
     fontFamily: "Open sans",
     fontSize: 20,
-    color: "#094E76",
+    color:"#FE647B",
     fontWeight: "bold"
   },
   txtCreatedJoined: {

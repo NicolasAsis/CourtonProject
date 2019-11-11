@@ -260,7 +260,7 @@ export default class Switch_groupType extends Component {
     if (callOnPress && onPress) {
       onPress(returnObject ? options[index] : options[index].value);
     } else {
-      console.log("Call onPress with value: ", options[index].value);
+      console.log("You are selecting ", options[index].value);
     }
     this.setState({ selected: index });
   };
