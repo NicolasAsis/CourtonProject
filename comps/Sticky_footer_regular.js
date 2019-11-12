@@ -10,7 +10,7 @@ function Sticky_footer_regular(props) {
         <TouchableOpacity 
           style={styles.icons}
           onPress={()=>{
-            Actions.Home()
+            Actions.reset('Home')
           }}
         >
           <Image
@@ -22,7 +22,7 @@ function Sticky_footer_regular(props) {
         <TouchableOpacity 
           style={styles.icons}
           onPress={()=>{
-            Actions.MyGroup()
+            Actions.reset('MyGroup')
           }}
         >
           <Image
@@ -34,7 +34,7 @@ function Sticky_footer_regular(props) {
         <TouchableOpacity 
           style={styles.icons}
           onPress={()=>{
-            Actions.Profile()
+            Actions.reset('Profile')
           }}
         >
           <Image

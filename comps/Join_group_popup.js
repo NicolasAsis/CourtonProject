@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 
 import {Actions} from 'react-native-router-flux';
 
-function Join_group_popup() {
+function Join_group_popup(props) {
   return (
     <View style={styles.container}>
       <View style={styles.popup}>
@@ -15,7 +15,8 @@ function Join_group_popup() {
 
         <TouchableOpacity
           onPress={()=>{
-            Actions.GroupInfo()
+            // Actions.GroupInfo()
+            props.setShowPopup(false)
           }}
           style={styles.noButTouchableOp}
         >
@@ -24,6 +25,7 @@ function Join_group_popup() {
 
         <TouchableOpacity
           onPress={()=>{
+            props.setShowPopup(false)
             Actions.JoinedGroup()
           }}
           style={styles.yesButTouchableOp}

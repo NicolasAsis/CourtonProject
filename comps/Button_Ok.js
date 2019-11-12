@@ -122,7 +122,7 @@ function Button_Ok(props) {
             <TouchableOpacity 
               style={styles.JoinButRight}
               onPress={()=>{
-                Actions.Join_group_popup()
+                Actions.SelectCourts()
               }}
             >
               <Text style={styles.joinText}>Ok</Text>

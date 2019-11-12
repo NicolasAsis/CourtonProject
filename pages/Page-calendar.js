@@ -18,7 +18,7 @@ function Page_Calendar() {
       {/* next buttom */}
       <TouchableOpacity
         onPress={()=>{
-          Actions.SelectCourts()
+          Actions.SelectTime()
         }}
         style={styles.butNext}
       >

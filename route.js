@@ -17,6 +17,7 @@ import SelectCourts from './pages/Page-select-courts';
 import GroupSummary from './pages/Page-group-summary';
 import MyCreatedGroup from './pages/Page-my-created-group';
 import MyJoinedGroup from './pages/Page-my-joined-group';
+import SelectTime from './pages/Page-select-time';
 
 import HamMenu from './comps/HamMenu';
 
@@ -38,6 +39,7 @@ function Route() {
 
                 <Scene key="SelectLocation" component={SelectLocation} />
                 <Scene key="Page_Calendar" component={Page_Calendar} />
+                <Scene key="SelectTime" component={SelectTime} />
                 <Scene key="SelectCourts" component={SelectCourts} />
                 <Scene key="GroupSummary" component={GroupSummary} />
                 <Scene key="MyCreatedGroup" component={MyCreatedGroup} />
