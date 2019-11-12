@@ -1,17 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   Image,
-  ScrollView
+  ScrollView,
+  Modal
 } from "react-native";
 
 import Button_Join from "../comps/Button_Join";
 import Card_members from "../comps/Card_members";
 import Bar_group_countdown_price from "../comps/Bar_group_countdown_price";
 import Circle_extra_member from "../comps/Circle_extra_member";
+import Join_group_popup from '../comps/Join_group_popup';
 
 import { Actions } from "react-native-router-flux";
 
@@ -136,9 +138,23 @@ function GroupInfo() {
     }
   });
 
+  const [modalVisible,setModalVisible] = useState(false);
+
   return (
     <View>
       <View style={styles.gipageStructure}>
+        
+        {/* Popup */}
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modalVisible}
+        >
+          <Join_group_popup 
+            setShowPopup = {setModalVisible}
+          />
+        </Modal>
+        
         {/* Main Header */}
         <View style={styles.giHeader}>
           <Image
@@ -171,6 +187,13 @@ function GroupInfo() {
               height: 375
             }}
           >
+          <TouchableOpacity
+            onPress={()=>{
+              setModalVisible(true)
+            }}
+          >
+            <Text>Hi</Text>
+          </TouchableOpacity>
             <ScrollView style={{ flex: 1 }}>
               <View
                 style={{
@@ -241,7 +264,10 @@ function GroupInfo() {
       </View>
 
       {/* Join Button */}
-      <Button_Join price={7} />
+      <Button_Join 
+        price={7} 
+        setShowPopup = {setModalVisible}
+      />
     </View>
   );
 }

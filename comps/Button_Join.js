@@ -121,7 +121,7 @@ function Button_Join(props) {
             <TouchableOpacity 
               style={styles.JoinButRight}
               onPress={()=>{
-                Actions.Join_group_popup()
+                props.setShowPopup(true)
               }}
             >
               <Text style={styles.joinText}>JOIN</Text>

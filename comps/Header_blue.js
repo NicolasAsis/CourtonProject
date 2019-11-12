@@ -9,7 +9,7 @@ function Header_blue(props) {
       <View style={styles.header}>
         <TouchableOpacity
           onPress={()=>{
-            Actions.Profile()
+            Actions.reset("Profile")
           }}
           style={styles.butBackTouchableOp}
         >
