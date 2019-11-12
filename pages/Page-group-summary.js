@@ -157,7 +157,8 @@ const styles = StyleSheet.create({
   gsStructure: {
     display: "flex",
     flexDirection: "column",
-    height: "100%"
+    height: "100%",
+    backgroundColor:'#ffffff'
   },
   //Line Separator
   lineSep: {
@@ -230,10 +231,9 @@ const styles = StyleSheet.create({
     marginBottom:21,
     shadowOffset: { x: 0, y: 4 },
     shadowColor: "#000000",
-    shadowOpacity: 0.10,
-    shadowRadius: 10,
-    elevation:3,
-    borderRadius:100
+    shadowOpacity: 0.07,
+    shadowRadius: 4
+
   },
   //Description text input
   descInput: {
