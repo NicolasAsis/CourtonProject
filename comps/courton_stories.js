@@ -33,8 +33,8 @@ import SelectCourts from '../pages/Page-select-courts';
 import SelectLocation from '../pages/Page-select-location';
 import MoreMembers from '../pages/Page-more-members';
 import MyGroup from '../pages/Page-my-group';
-import Profile from '../pages/Page-profile';
 import Card_recent from '../comps/Card_recent';
+import SelectTime from'../pages/Page-select-time';
 
 storiesOf('courton_comps', module)
   .add('Bar_group_countdown_price', ()=>{
@@ -145,4 +145,7 @@ storiesOf('courton_pages', module)
   })
   .add ('Page-Profile', ()=>{
     return<Profile/>
+  })
+  .add ('Page-select-time', ()=>{
+    return<SelectTime/>
   })
