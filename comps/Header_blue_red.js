@@ -1,9 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import Courts from '../comps/Courts';
 
 import {Actions} from 'react-native-router-flux';
 
 function Header_blue_red(props) {
+
+
   return (
     <View>
       <View style={styles.header}>
@@ -30,6 +33,7 @@ function Header_blue_red(props) {
       </View>
       <View style={styles.courtIndicatedBar}>
         <Text style={styles.txtBmtCentre}>{props.courtName}</Text>
+        <Text style={styles.txtCourtNum}>{props.courtNum}</Text>
       </View>
     </View>
   );
@@ -72,13 +76,20 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 39,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    flexDirection:'row',
   },
   txtBmtCentre: {
     color: "#FFFFFF",
     fontFamily: "Open sans",
     fontSize: 16,
     fontWeight: "400"
+  },
+  txtCourtNum: {
+    color: "#FFFFFF",
+    fontFamily: "Open sans",
+    fontSize: 16,
+    fontWeight: "bold"
   }
 });
 
