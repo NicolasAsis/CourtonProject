@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     // justifyContent:'center',
     shadowOffset: { width: 0, height: 3 },
-    shadowColor: "#D8D8D8",
-    shadowOpacity: 1,
+    shadowColor: "#000000",
+    shadowOpacity: 0.1,
     borderRadius: 8
   },
   img: {

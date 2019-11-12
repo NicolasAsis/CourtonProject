@@ -10,21 +10,23 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import Card_for_player from "../comps/Card_for_player";
 import Sticky_footer_regular from "../comps/Sticky_footer_regular";
-
+import Switch_groupType from '../comps/Switch_groupType';
+import SwitchSelector from 'react-native-switch-selector';
 function MyGroup() {
-  const [linePostionXRight, setPositionXRight] = useState(
-    new Animated.Value(setPositionXRight ? 200 : 0)
-  );
-  const [linePostionXLeft] = useState(new Animated.Value(0));
+  // const [linePostionXRight, setPositionXRight] = useState(
+  //   new Animated.Value(setPositionXRight ? 200 : 0)
+  // );
+  // const [linePostionXLeft] = useState(new Animated.Value(0));
 
-  var animatedLineRight = linePostionXRight.interpolate({
-    inputRange: [0, 200],
-    outputRange: [0, 200]
-  });
-  var animatedLineLeft = linePostionXLeft.interpolate({
-    inputRange: [0, 200],
-    outputRange: [0, 200]
-  });
+  // var animatedLineRight = linePostionXRight.interpolate({
+  //   inputRange: [0, 200],
+  //   outputRange: [0, 200]
+  // });
+  // var animatedLineLeft = linePostionXLeft.interpolate({
+  //   inputRange: [0, 200],
+  //   outputRange: [0, 200]
+  // });
+
 
   return (
     <View>
@@ -35,7 +37,55 @@ function MyGroup() {
         />
         <Text style={styles.txtTitle}>My Groups</Text>
       </View>
-      <View style={styles.subTitleBar}>
+      {/* <SwitchSelector
+                // style={styles.gsSwitch}
+                initial={0}
+                // onPress={value => this.setState({ gender: value })}
+                textColor='#094E76' //'#7a44cf'
+                selectedColor='white'
+                buttonColor='#C73C50'
+                // borderColor='#5DB9F0'
+                borderRadius='false'
+                backgroundColor='#FE647B'
+                textStyle={styles.txtBar}
+                selectedTextStyle={styles.selectedTxtBar}
+                // hasPadding
+                options={[
+                  { 
+                    label: "Joined", 
+                    value: "Joined"
+                  }, 
+                  {
+                    label: "Created",
+                    value: "Created",
+                  } 
+                ]}
+              /> */}
+              <Switch_groupType
+              initial={0}
+              // onPress={value => this.setState({ gender: value })}
+              textColor='#094E76' //'#7a44cf'
+              selectedColor='white'
+              buttonColor='#FE647B'
+              // borderColor='#5DB9F0'
+              borderRadius={0}
+              backgroundColor='#FE647B'
+              textStyle={styles.txtBar}
+              selectedTextStyle={styles.selectedTxtBar}
+              // hasPadding
+              options={[
+                { 
+                  label: "Joined", 
+                  value: "Joined"
+                }, 
+                {
+                  label: "Created",
+                  value: "Created",
+                } 
+              ]}
+              />
+              
+      {/* <View style={styles.subTitleBar}>
         <TouchableOpacity
           style={styles.btnBar}
           onPress={() => {
@@ -66,7 +116,7 @@ function MyGroup() {
         }}
       >
         <View style={styles.selectedLine}></View>
-      </Animated.View>
+      </Animated.View> */}
       <View style={{backgroundColor:'#FFFFFF' }}>
         <ScrollView style={{ height: 610 }}>
           <View style={{ marginBottom: 100}}>
@@ -107,19 +157,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-  txtBar: {
+  selectedTxtBar: {
     flex: 1,
     fontSize: 20,
     fontWeight: "bold",
     fontFamily: "Open sans",
     color: "#FFFFFF",
-    top: 8,
-    textAlign: "center"
+    textAlign: "center",
+    bottom:2
   },
-  selectedLine: {
-    width: "50%",
-    height: 3,
-    backgroundColor: "#C73C50"
+  txtBar: {
+    flex: 1,
+    fontSize: 20,
+    fontFamily: "Open sans",
+    color: "#FFFFFF",
+    textAlign: "center",
+    bottom:2
   },
   btnBar: {
     width: "50%",

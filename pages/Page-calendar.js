@@ -7,25 +7,32 @@ import {Actions} from 'react-native-router-flux';
 
 function Page_Calendar() {
   return (
-    <View>
+    <View style={{backgroundColor:'#FFFFFF'}}>
       <Header_blue_red
       headerTitle='Choose a day'
       courtName='Stage 18'
       />
-      
+      <View style={{backgroundColor:'#FFFFFF'}}>
+
+     
+      {/* next buttom */}
       <TouchableOpacity
         onPress={()=>{
           Actions.SelectCourts()
         }}
         style={styles.butNext}
       >
-        <View>
+        <View  >
           <Text style={styles.txtNext}>Next</Text>
         </View>
+        
       </TouchableOpacity>
-      <View>
-        <Calendar></Calendar>
+
+      <View  style={{backgroundColor:'#FFFFFF', marginBottom:310}}>
+        <Calendar/>
       </View>
+      </View>
+
     </View>
   );
 }

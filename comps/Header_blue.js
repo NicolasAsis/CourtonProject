@@ -22,7 +22,7 @@ function Header_blue(props) {
         <Text style={styles.txtTitle}>{props.headerTitle}</Text>
         </View>
         <TouchableOpacity 
-          style={styles.butHamTouchableOp}
+          // style={styles.butHamTouchableOp}
           onPress={()=>{
             Actions.HamMenu()
           }}
@@ -65,9 +65,9 @@ const styles = StyleSheet.create({
   butHam: {
     width: 35,
     height: 23,
-    // left: 315,
-    // top: 2,
-    // position: "absolute"
+    left: 315,
+    top: 2,
+    position: "absolute"
   },
   butHamTouchableOp: {
     width: 35,
