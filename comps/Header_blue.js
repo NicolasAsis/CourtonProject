@@ -1,11 +1,18 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
+import {Actions} from 'react-native-router-flux';
+
 function Header_blue(props) {
   return (
     <View>
       <View style={styles.header}>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={()=>{
+            Actions.reset("Profile")
+          }}
+          style={styles.butBackTouchableOp}
+        >
           <Image
             style={styles.butBack}
             source={require("../assets/but_back.png")}
@@ -14,7 +21,12 @@ function Header_blue(props) {
         <View style={{alignItems:'center', justifyContent:'center'}}>
         <Text style={styles.txtTitle}>{props.headerTitle}</Text>
         </View>
-        <TouchableOpacity style={{ width: 0, height: 0 }}>
+        <TouchableOpacity 
+          // style={styles.butHamTouchableOp}
+          onPress={()=>{
+            Actions.HamMenu()
+          }}
+        >
           <Image
             style={styles.butHam}
             source={require("../assets/but_ham.png")}
@@ -34,6 +46,12 @@ const styles = StyleSheet.create({
   butBack: {
     width: 20,
     height: 30,
+    // left: 23,
+    // top: 55
+  },
+  butBackTouchableOp :{
+    width: 20,
+    height: 30,
     left: 23,
     top: 55
   },
@@ -51,6 +69,14 @@ const styles = StyleSheet.create({
     top: 2,
     position: "absolute"
   },
+  butHamTouchableOp: {
+    width: 35,
+    height: 23,
+    left: 315,
+    top: 2,
+    // backgroundColor:'red',
+    position: "absolute"
+  }
 });
 
 export default Header_blue;

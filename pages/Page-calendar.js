@@ -3,22 +3,36 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Calendar } from "react-native-calender";
 import Header_blue_red from '../comps/Header_blue_red';
 
+import {Actions} from 'react-native-router-flux';
+
 function Page_Calendar() {
   return (
-    <View>
+    <View style={{backgroundColor:'#FFFFFF'}}>
       <Header_blue_red
       headerTitle='Choose a day'
       courtName='Stage 18'
       />
-      
-      <TouchableOpacity>
-        <View style={styles.butNext}>
+      <View style={{backgroundColor:'#FFFFFF'}}>
+
+     
+      {/* next buttom */}
+      <TouchableOpacity
+        onPress={()=>{
+          Actions.SelectTime()
+        }}
+        style={styles.butNext}
+      >
+        <View  >
           <Text style={styles.txtNext}>Next</Text>
         </View>
+        
       </TouchableOpacity>
-      <View>
-        <Calendar></Calendar>
+
+      <View  style={{backgroundColor:'#FFFFFF', marginBottom:310}}>
+        <Calendar/>
       </View>
+      </View>
+
     </View>
   );
 }

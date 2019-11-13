@@ -10,6 +10,7 @@ import {
 import Header_blue_red from "../comps/Header_blue_red";
 import Footer_court_indicator from "../comps/Footer_court_indicator";
 import Courts from "../comps/Courts";
+import {Actions} from 'react-native-router-flux';
 
 function SelectCourts() {
   return (
@@ -17,7 +18,8 @@ function SelectCourts() {
       <View>
         <Header_blue_red
           headerTitle="Choose courts"
-          courtName="Your selected court                                            "
+          courtName="Your selected court(s) "
+          selectedCourtsNum='{courtNum}'
         />
 
         <View style={styles.courtView}>
@@ -115,8 +117,10 @@ function SelectCourts() {
           </ScrollView>
         </View>
       </View>
+      {/* <Courts_layout_red_bar/> */}
       <Footer_court_indicator txtPrice="22" />
     </View>
+
   );
 }
 const styles = StyleSheet.create({
@@ -124,9 +128,9 @@ const styles = StyleSheet.create({
     flex: 1,
     position: "absolute",
     width: "100%",
-    height: 800,
-    paddingTop: 140,
-    paddingBottom: 148
+    height: 524,
+    marginTop: 140,
+    backgroundColor:'#FFFFFF'
   }
 });
 

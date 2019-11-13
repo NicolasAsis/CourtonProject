@@ -14,20 +14,17 @@ function Card_members(props) {
     },
     //Card container shadow
     cardContainerShadow: {
-      width: 302,
+      width: 330,
       height: 68,
       borderRadius: 10,
       position: "relative",
       backgroundColor: "#FFFFFF",
       display: "flex",
       flexDirection: "row",
-      shadowOffset: {
-        width: 0,
-        height: 3
-      },
-      shadowOpacity: 0.07,
-      shadowRadius: 10,
-      elevation: 5
+      shadowOpacity: 0.1,
+      shadowOffset: { x: 0, y: 3 },
+      shadowRadius: 5,
+      shadowColor: "#000000"
     },
     //Organizer image section
     organizerImgSec: {
@@ -74,7 +71,13 @@ function Card_members(props) {
       {/* Card Container */}
       <View style={styles.cardContainer}>
         <View style={styles.cardContainerShadow}>
-          {/* Organizer Image Section */}
+          {/* Organizer Image
+          <Image
+            style={styles.organizerImg}
+            source={{uri: props.url}}
+          />
+          
+          Section */}
           <View style={styles.organizerImgSec}>
             <View style={styles.organizerImg}></View>
           </View>

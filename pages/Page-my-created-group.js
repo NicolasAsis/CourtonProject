@@ -7,7 +7,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import Card_for_organizer from "../comps/Card_for_organizer";
 function MyCreatedGroup() {
   return (
-    <View>
+    <View style={{backgroundColor:'#FFFFFF'}}>
       <Header_blue headerTitle={"All My Created Groups"} />
       <Image
         style={styles.searchIcon}
@@ -19,9 +19,9 @@ function MyCreatedGroup() {
         placeholder="  Search Group Number, Organizer"
       />
       <View style={styles.mainContent}>
-        <View style={{ height: 652}}>
+        <View style={{ height: 652, backgroundColor:'#FFFFFF'}}>
           <ScrollView>
-            <View style={{ flex: 1}}>
+            <View style={{ flex: 1, paddingLeft:20, paddingRight:20, paddingBottom:20}}>
               <Card_for_organizer
                 bmtCentre={"Stage 18"}
                 groupNum={"C1314"}

@@ -4,12 +4,12 @@ import { View, Text, StyleSheet, Image, TextInput } from "react-native";
 import Header_blue from "../comps/Header_blue";
 import Card_organizer from "../comps/Card_for_organizer";
 import Footer_home from "../comps/Sticky_footer_home";
-import Footer_regular from "../comps/Sticky_footer_regular";
+import Sticky_footer_regular from "../comps/Sticky_footer_regular";
 import Card_for_player from "../comps/Card_for_player";
 import { ScrollView } from "react-native-gesture-handler";
 function MyJoinedGroup() {
   return (
-    <View>
+    <View style={{backgroundColor:'#FFFFFF', width:'100%'}}>
       <Header_blue headerTitle={"All My Joined Groups"} />
       <Image
         style={styles.searchIcon}
@@ -21,9 +21,9 @@ function MyJoinedGroup() {
         placeholder="  Search Group Number, Organizer"
       />
       <View style={styles.mainContent}>
-        <View style={{height:652}}>
+        <View style={{height:655}}>
           <ScrollView>
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, paddingBottom:30, paddingLeft:10, paddingRight:10}}>
               <Card_for_player
                 organizerName={"Toby Wong"}
                 groupNum={"C1314"}
@@ -91,7 +91,8 @@ const styles = StyleSheet.create({
   mainContent: {
     alignItems: "center",
     justifyContent: "center",
-    top: 60
+    top: 60,
+    backgroundColor:'#FFFFFF'
   },
   // footer: {
   //   bottom: 0,

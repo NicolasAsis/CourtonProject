@@ -2,13 +2,20 @@ import React, { useState } from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import * as Progress from 'react-native-progress';
 
+import {Actions} from 'react-native-router-flux';
+
 function Card_for_player(props) {
  
 
   return (
-    <View style={{ alignItems: "center", marginTop: 18 }}>
-      <TouchableOpacity>
-      <View style={styles.card}>
+    <View style={{ alignItems: "center", marginTop: 18, width:'100%' }}>
+      <TouchableOpacity
+       style={styles.card}
+        onPress={()=>{
+          Actions.GroupInfo()
+      }}
+      >
+      <View>
         <View>
           <Image style={styles.img} source={require("../assets/stage18.jpg")} />
 
@@ -44,8 +51,8 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     // justifyContent:'center',
     shadowOffset: { width: 0, height: 3 },
-    shadowColor: "#D8D8D8",
-    shadowOpacity: 1,
+    shadowColor: "#000000",
+    shadowOpacity: 0.1,
     borderRadius: 8
   },
   img: {

@@ -15,7 +15,7 @@ import Bar_group_countdown_price from "../comps/Bar_group_countdown_price";
 import Circle_extra_member from "../comps/Circle_extra_member";
 import Card_comment from "../comps/Card_comment";
 
-function Organizer_groupInfo() {
+function Member_groupInfo() {
   const styles = StyleSheet.create({
     // Page Structure
     gipageStructure: {
@@ -169,12 +169,12 @@ function Organizer_groupInfo() {
       fontFamily:'Open sans',
       fontWeight:'bold'
     },
-    txtDelete:{
+    txtLeave:{
       color:'#FFFFFF',
       fontFamily:'Open sans',
       fontWeight:'bold'
     },
-    btnDelete:{
+    btnLeave:{
       backgroundColor:'#FE647B',
       alignItems:'center',
       justifyContent:'center',
@@ -206,8 +206,8 @@ function Organizer_groupInfo() {
             />
           </TouchableOpacity>
           {/* <View style={styles.giOrganizerImg}></View> */}
-          <Text style={styles.giOrganizedByText}>#s11111</Text>
-          <Text style={styles.giOrganizerText}>Stage 18</Text>
+          <Text style={styles.giOrganizedByText}>Organized by</Text>
+          <Text style={styles.giOrganizerText}>Toby Wong</Text>
         </View>
 
         <Bar_group_countdown_price titlePrice={7} countdown={100} />
@@ -296,8 +296,8 @@ function Organizer_groupInfo() {
                       </TouchableOpacity>
                     </View>
 
-                    <TouchableOpacity style={styles.btnDelete}>
-                      <Text style={styles.txtDelete}>Delete Group</Text>
+                    <TouchableOpacity style={styles.btnLeave}>
+                      <Text style={styles.txtLeave}>Leave Group</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -310,4 +310,4 @@ function Organizer_groupInfo() {
   );
 }
 
-export default Organizer_groupInfo;
+export default Member_groupInfo;

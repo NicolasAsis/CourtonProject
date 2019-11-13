@@ -11,11 +11,18 @@ import {
 } from "react-native";
 import Card_badminton_centre from "../comps/Card_badminton_centre";
 
+import {Actions} from 'react-native-router-flux';
+
 function SelectLocation() {
   return (
-    <View>
+    <View >
       <View style={styles.header}>
-        <TouchableOpacity >
+        <TouchableOpacity 
+          style = {styles.butBackTouchableOp}
+          onPress={()=>{
+            Actions.pop('Home')
+        }}
+        >
           <Image
             style={styles.butBack}
             source={require("../assets/but_back.png")}
@@ -35,8 +42,8 @@ function SelectLocation() {
         
 
         
-        <ScrollView style={{flex:1, paddingBottom:950, paddingTop:100}}>
-        <View style={{height:1450}}>
+        <ScrollView style={{flex:1, paddingBottom:950, paddingTop:17, backgroundColor:'#FFFFFF'}}>
+        <View style={{height:1400}}>
           <Card_badminton_centre 
           badmintonCentreName={'Stage 18'}
           badmintonCentreLocation={'2351 No 6 Rd #170, Richmond, BC V6V 1P3'}
@@ -82,6 +89,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#094E76",
   },
   butBack: {
+    width: 20,
+    height: 30,
+    // left: 23,
+    // top: 55
+  },
+  butBackTouchableOp: {
     width: 20,
     height: 30,
     left: 23,

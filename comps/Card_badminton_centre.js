@@ -1,18 +1,24 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
+import {Actions} from 'react-native-router-flux';
+
 function Card_badminton_centre(props) {
   return (
     <View >
-      <View style={{marginBottom:180}}>
-        <TouchableOpacity style={styles.container}>
+      {/* <View style={{marginBottom:180}}> */}
+        <TouchableOpacity 
+            style={styles.container}
+            onPress={()=>{
+              Actions.Page_Calendar()
+            }}
+        >
           <View style={styles.card}>
             <Image
               style={styles.img}
               source={props.badmintonCentreImg}
             />
           </View>
-
           
             <Text style={styles.txtLocationName}>{props.badmintonCentreName}</Text>
             <Image
@@ -23,9 +29,9 @@ function Card_badminton_centre(props) {
               
               {props.badmintonCentreLocation}
             </Text>
-         
+            
         </TouchableOpacity>
-      </View>
+      {/* </View> */}
      
     </View>
   );
@@ -33,41 +39,41 @@ function Card_badminton_centre(props) {
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
-    alignItems: "center",
-    
+    alignItems: "center",  
+    marginBottom:17
   },
   card: {
     shadowOffset: { width: 0, height: 3 },
     shadowColor: "#808080",
     shadowOpacity: 0.7,
     borderRadius: 10,
-    position: "absolute"
+    // position: "absolute"
   },
   img: {
     borderRadius: 6,
-    width: 330,
-    height: 160
+    width: 359,
+    height: 168
   },
   txtLocationName: {
     fontFamily: "Open sans",
     fontSize: 34,
     fontWeight: "bold",
-    left: 35,
-    top: 10,
+    left: 23,
+    top: 93,
     color: "#FFFFFF",
     position: "absolute"
   },
   imgLocation: {
     width: 10,
     height: 14,
-    top: 55,
-    left:40,
+    top: 139,
+    left:23,
     position: "absolute"
   },
   txtLocation: {
     color: "#FFFFFF",
-    left: 55,
-    top: 55,
+    left: 40,
+    top: 139,
     fontSize: 10,
     fontFamily: "Open sans",
     position: "absolute"

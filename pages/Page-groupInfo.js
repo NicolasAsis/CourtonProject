@@ -1,17 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   Image,
-  ScrollView
+  ScrollView,
+  Modal
 } from "react-native";
 
 import Button_Join from "../comps/Button_Join";
 import Card_members from "../comps/Card_members";
 import Bar_group_countdown_price from "../comps/Bar_group_countdown_price";
 import Circle_extra_member from "../comps/Circle_extra_member";
+import Join_group_popup from '../comps/Join_group_popup';
+
+import { Actions } from "react-native-router-flux";
 
 function GroupInfo() {
   const styles = StyleSheet.create({
@@ -20,25 +24,34 @@ function GroupInfo() {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      height: "100%"
+      height: "100%",
+      backgroundColor: "#FFFFFF"
     },
 
     //Page Header
     giHeader: {
       width: "100%",
       height: 240,
-      backgroundColor: "#Fab"
+      backgroundColor: "#FAB"
     },
     giImg: {
       width: "100%",
       height: "100%"
     },
-    giBackBut: {
+    giBackTouchableOp: {
+      position: "absolute",
       width: 20,
       height: 30,
       left: 35,
-      top: 40,
-      position: "absolute"
+      top: 40
+      // backgroundColor:'red'
+    },
+    giBackBut: {
+      width: 20,
+      height: 30
+      //   left: 35,
+      //   top: 40,
+      //   position: "absolute"
     },
     giOrganizerImg: {
       width: 52,
@@ -73,7 +86,7 @@ function GroupInfo() {
       height: 250,
       // backgroundColor:'#DAD',
       marginTop: 20,
-      left: 23
+      // left: 23
     },
     //Group Description Text
     groupDescHeaderText: {
@@ -125,16 +138,35 @@ function GroupInfo() {
     }
   });
 
+  const [modalVisible,setModalVisible] = useState(false);
+
   return (
     <View>
       <View style={styles.gipageStructure}>
+        
+        {/* Popup */}
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modalVisible}
+        >
+          <Join_group_popup 
+            setShowPopup = {setModalVisible}
+          />
+        </Modal>
+        
         {/* Main Header */}
         <View style={styles.giHeader}>
           <Image
             style={styles.giImg}
             source={require("../assets/img_stage18.png")}
           />
-          <TouchableOpacity style={{ position: "absolute" }}>
+          <TouchableOpacity
+            style={styles.giBackTouchableOp}
+            onPress={() => {
+              Actions.pop("Home");
+            }}
+          >
             <Image
               style={styles.giBackBut}
               source={require("../assets/but_back.png")}
@@ -155,58 +187,76 @@ function GroupInfo() {
               height: 375
             }}
           >
+          <TouchableOpacity
+            onPress={()=>{
+              setModalVisible(true)
+            }}
+          >
+            <Text>Hi</Text>
+          </TouchableOpacity>
             <ScrollView style={{ flex: 1 }}>
-              {/* Group Description */}
-              <Text style={styles.groupDescHeaderText}>Group Description</Text>
-              <Text style={styles.groupDescText}>
-                This is a group description for players who are looking at other
-                created groups cards. So you can only view no editing.
-              </Text>
+              <View
+                style={{
+                  paddingLeft: 20,
+                  paddingRight: 20,
+                }}
+              >
+                {/* Group Description */}
+                <Text style={styles.groupDescHeaderText}>
+                  Group Description
+                </Text>
+                <Text style={styles.groupDescText}>
+                  This is a group description for players who are looking at
+                  other created groups cards. So you can only view no editing.
+                </Text>
 
-              {/* All group information text */}
-              <View style={{ display: "flex", flexDirection: "row" }}>
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.giTitleText}>Group</Text>
-                  <Text style={styles.giTitleText}>Date</Text>
-                  <Text style={styles.giTitleText}>Centre</Text>
-                  <Text style={styles.giTitleText}>Location</Text>
-                  <Text style={styles.giTitleText}>Time</Text>
-                  <Text style={styles.giTitleText}>Group Limit</Text>
-                  <Text style={styles.giTitleText}>Players</Text>
-                  <Text style={styles.giTitleText}>Bird Type</Text>
+                {/* All group information text */}
+                <View style={{ display: "flex", flexDirection: "row" }}>
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.giTitleText}>Group</Text>
+                    <Text style={styles.giTitleText}>Date</Text>
+                    <Text style={styles.giTitleText}>Centre</Text>
+                    <Text style={styles.giTitleText}>Location</Text>
+                    <Text style={styles.giTitleText}>Time</Text>
+                    <Text style={styles.giTitleText}>Group Limit</Text>
+                    <Text style={styles.giTitleText}>Players</Text>
+                    <Text style={styles.giTitleText}>Bird Type</Text>
+                  </View>
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.giText}>#C1314</Text>
+                    <Text style={styles.giText}>30 December 2019</Text>
+                    <Text style={styles.giText}>ClearOne</Text>
+                    <Text style={styles.giLocationText}>
+                      4351 No 3 Rd #100,{"\n"}Richmond, BC V6X 3A7
+                    </Text>
+                    <Text style={styles.giText}>1pm - 4pm</Text>
+                    <Text style={styles.giText}>5</Text>
+                    <Text style={styles.giPlayersText}>4</Text>
+                    <Text style={styles.giText}>Feather</Text>
+                  </View>
                 </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.giText}>#C1314</Text>
-                  <Text style={styles.giText}>30 December 2019</Text>
-                  <Text style={styles.giText}>ClearOne</Text>
-                  <Text style={styles.giLocationText}>
-                    4351 No 3 Rd #100,{"\n"}Richmond, BC V6X 3A7
+                {/* Member Cards */}
+                <View style={{ alignItems: "flex-start" }}>
+                  <Card_members
+                    organizer={"Organizer"}
+                    memberName={"Tony Wong"}
+                  />
+                  <Card_members memberName={"William Williams"} />
+                  <Card_members memberName={"William Williams"} />
+                  <Card_members memberName={"William Williams"} />
+                  <Card_members memberName={"William Williams"} />
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                  <View>
+                    <Circle_extra_member />
+                  </View>
+                  <View style={{ position: "absolute", left: 20 }}>
+                    <Circle_extra_member />
+                  </View>
+                  <Text style={[styles.giText, { left: 26, top: 5 }]}>
+                    +2 more
                   </Text>
-                  <Text style={styles.giText}>1pm - 4pm</Text>
-                  <Text style={styles.giText}>5</Text>
-                  <Text style={styles.giPlayersText}>4</Text>
-                  <Text style={styles.giText}>Feather</Text>
                 </View>
-              </View>
-              {/* Member Cards */}
-              <View style={{ alignItems: "flex-start" }}>
-                <Card_members
-                  organizer={"Organizer"}
-                  memberName={"Tony Wong"}
-                />
-                <Card_members memberName={"William Williams"} />
-                <Card_members memberName={"William Williams"} />
-                <Card_members memberName={"William Williams"} />
-                <Card_members memberName={"William Williams"} />
-              </View>
-              <View style={{ flexDirection: "row" }}>
-                <View>
-                  <Circle_extra_member />
-                </View>
-                <View style={{ position: "absolute", left: 20 }}>
-                  <Circle_extra_member />
-                </View>
-                <Text style={[styles.giText, {left:26, top:5}]}>+2 more</Text>
               </View>
             </ScrollView>
           </View>
@@ -214,7 +264,10 @@ function GroupInfo() {
       </View>
 
       {/* Join Button */}
-      <Button_Join price={7} />
+      <Button_Join 
+        price={7} 
+        setShowPopup = {setModalVisible}
+      />
     </View>
   );
 }

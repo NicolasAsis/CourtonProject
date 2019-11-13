@@ -13,9 +13,11 @@ import {
 import Card_for_player from "../comps/Card_for_player";
 import Footer_home from "../comps/Sticky_footer_home";
 
-bannerScrollHeight = 150;
-bannerMaxHeight = 240;
-bannerMinHeight = 100;
+import {Actions} from 'react-native-router-flux';
+
+// bannerScrollHeight = 150;
+// bannerMaxHeight = 240;
+// bannerMinHeight = 100;
 
 function Home() {
   // const [scrollY] = useState(new Animated.Value(0));
@@ -33,11 +35,13 @@ function Home() {
       // onScroll={Animated.event([
       //   { nativeEvent: { contentOffset: { y: scrollY } } }
       // ])}
+      style={{backgroundColor:'#FFFFFF'}}
       >
         
 
-        <View style={{ flex: 1, paddingBottom: 135 }}>
+        <View style={{ flex: 1, paddingBottom: 130 }}>
           <ScrollView>
+            <View style={{paddingBottom:10}}>
           <Image
               style={{ width: "100%", height: 240 }}
               source={require("../assets/img_homepage_banner.png")}
@@ -52,12 +56,13 @@ function Home() {
               price={"7"}
               joinedMember={"10"}
               totalMember={"20"}
-              progressBarLoad={"0.5"}
+              progressBarLoad={0.5}
             />
             <Card_for_player />
             <Card_for_player />
             <Card_for_player />
             <Card_for_player />
+            </View>
           </ScrollView>
         </View>
       </ScrollView>
@@ -89,7 +94,12 @@ function Home() {
       <View style={styles.footer}>
         <Footer_home />
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity
+        style = {styles.createButTouchableOp}
+        onPress={()=>{
+          Actions.SelectLocation()
+        }}
+      >
         <Image
           style={styles.createBtn}
           source={require("../assets/but_create.png")}
@@ -109,8 +119,17 @@ const styles = StyleSheet.create({
     left: 16,
     top: 100
   },
-  
   createBtn: {
+    width: 54,
+    height: 54,
+    // position: "absolute",
+    // zIndex: 10,
+    // left: "43%",
+    // bottom: 120
+  },
+  
+  //Styling for the touchable opacity surrounding the create But
+  createButTouchableOp: {
     width: 54,
     height: 54,
     position: "absolute",

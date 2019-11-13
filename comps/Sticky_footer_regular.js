@@ -1,28 +1,45 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-function Sticky_footer_regular() {
+import {Actions} from 'react-native-router-flux';
+
+function Sticky_footer_regular(props) {
   return (
     <View>
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.icons}>
+        <TouchableOpacity 
+          style={styles.icons}
+          onPress={()=>{
+            Actions.reset('Home')
+          }}
+        >
           <Image
             style={styles.icons_home}
-            source={require("../assets/icon_home_blue.png")}
+            source={props.homeIcon}
           />
           <Text style={styles.txtIcon}>HOME</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.icons}>
+        <TouchableOpacity 
+          style={styles.icons}
+          onPress={()=>{
+            Actions.reset('MyGroup')
+          }}
+        >
           <Image
             style={styles.icons_group}
-            source={require("../assets/icon_mygroup_grey.png")}
+            source={props.myGroupIcon}
           />
           <Text style={styles.txtIcon}>MY GROUPS</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.icons}>
+        <TouchableOpacity 
+          style={styles.icons}
+          onPress={()=>{
+            Actions.reset('Profile')
+          }}
+        >
           <Image
             style={styles.icons_profile}
-            source={require("../assets/icon_profile_grey.png")}
+            source={props.profileIcon}
           />
           <Text style={styles.txtIcon}>PROFILE</Text>
         </TouchableOpacity>
@@ -50,7 +67,8 @@ const styles = StyleSheet.create({
   },
   txtIcon: {
     fontFamily: "Open sans",
-    fontSize: 11
+    fontSize: 11,
+    color:'#686868'
   },
   icons_home: {
     width: 28,

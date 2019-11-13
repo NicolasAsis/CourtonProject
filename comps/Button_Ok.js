@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
 import {Actions} from 'react-native-router-flux';
 
-function Button_Join(props) {
+function Button_Ok(props) {
   const styles = StyleSheet.create({
     //Overall Box
     JoinButBox: {
@@ -13,8 +13,9 @@ function Button_Join(props) {
       left: 0,
       bottom: 0,
       right: 0,
-      top: 700,
-      position: "absolute"
+      top:560,
+      position: "absolute",
+     
     },
     //Overall Box Shadow
     JoinButBoxShadow: {
@@ -93,7 +94,7 @@ function Button_Join(props) {
       fontFamily: "Open sans",
       fontSize: 16,
       fontWeight: "bold",
-      color: "#686868",
+      color: "#FE647B",
       left: -10
     },
     //Join Button Text
@@ -113,7 +114,7 @@ function Button_Join(props) {
           <View style={styles.JoinButLeftShadow}>
             {/* Left side of button */}
             <View style={styles.JoinButLeft}>
-              <Text style={styles.priceText}>${props.price}/Person</Text>
+              <Text style={styles.priceText}>{props.hrsPlay}hrs Play</Text>
             </View>
           </View>
           <View style={styles.JoingButRightShadow}>
@@ -121,10 +122,10 @@ function Button_Join(props) {
             <TouchableOpacity 
               style={styles.JoinButRight}
               onPress={()=>{
-                props.setShowPopup(true)
+                Actions.SelectCourts()
               }}
             >
-              <Text style={styles.joinText}>JOIN</Text>
+              <Text style={styles.joinText}>Ok</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -133,4 +134,4 @@ function Button_Join(props) {
   );
 }
 
-export default Button_Join;
+export default Button_Ok;

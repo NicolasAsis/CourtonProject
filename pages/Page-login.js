@@ -9,6 +9,8 @@ import {
     TouchableOpacity
 } from 'react-native';
 
+import {Actions} from 'react-native-router-flux';
+
 function Login(props) {
 
     const styles=StyleSheet.create({
@@ -17,7 +19,8 @@ function Login(props) {
             flexDirection:'column',
             // justifyContent:'center',
             alignItems:'center',
-            height:'100%'
+            height:'100%',
+            backgroundColor:'#FFFFFF'
         },
         loginLogo:{
             width:175,
@@ -34,7 +37,7 @@ function Login(props) {
                 width: 0,
                 height: 3,
             },
-            shadowOpacity: 1,
+            shadowOpacity: 0.5,
             shadowRadius: 10,
             elevation:8
         },
@@ -48,14 +51,14 @@ function Login(props) {
         passwordContainer: {
             height: 39,
             width:230,
-            marginTop:50,
+            marginTop:20,
             borderRadius:20,
             shadowColor: "#D8D8D8",
             shadowOffset: {
                 width: 0,
                 height: 3,
             },
-            shadowOpacity: 1,
+            shadowOpacity: 0.5,
             shadowRadius: 10,
             elevation:8
         },
@@ -70,7 +73,7 @@ function Login(props) {
             marginTop:48,
             borderRadius:28,
             width:230,
-            height:39,
+            height:36,
             backgroundColor:'#FE647B',
             display:'flex',
             justifyContent:'center',
@@ -117,6 +120,7 @@ function Login(props) {
                 <TextInput
                     style={styles.passwordInput}
                     placeholder="Password"
+                    secureTextEntry={true}
                 />
             </View>
 
@@ -128,7 +132,7 @@ function Login(props) {
             <TouchableOpacity 
                 style={styles.loginBut}
                 onPress={()=>{
-                    props.navigation.navigate('Home')
+                    Actions.Home()
                 }}
             >
                 <Text style={styles.loginButText}>LOGIN</Text>

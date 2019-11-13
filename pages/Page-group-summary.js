@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -6,16 +6,20 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  ScrollView,
+  ScrollView
 } from "react-native";
 import { StyleSheet } from "react-native";
 import Header_blue_red from "../comps/Header_blue_red";
 
-function GroupSummary() {
-  const [grouplimit,setGroupLimit] = useState(0);
+import SwitchSelector from "react-native-switch-selector";
 
-  if(grouplimit < 0){
-      setGroupLimit(0);
+import { Actions } from "react-native-router-flux";
+
+function GroupSummary() {
+  const [grouplimit, setGroupLimit] = useState(0);
+
+  if (grouplimit < 0) {
+    setGroupLimit(0);
   }
   return (
     <View style={styles.gsStructure}>
@@ -28,7 +32,6 @@ function GroupSummary() {
         <ScrollView>
           {/* All group information text */}
           <View style={{ display: "flex", flexDirection: "row" }}>
-            
             {/* Left side text */}
             <View style={{ flex: 2 }}>
               <Text style={styles.gsTitleText}>Date</Text>
@@ -52,10 +55,10 @@ function GroupSummary() {
 
               {/* Add or subtract number of group members */}
               <View style={{ display: "flex", flexDirection: "row" }}>
-                <TouchableOpacity 
-                onPress={() => { 
-                    setGroupLimit(grouplimit-1);
-                }} 
+                <TouchableOpacity
+                  onPress={() => {
+                    setGroupLimit(grouplimit - 1);
+                  }}
                 >
                   <Image
                     style={styles.minusImg}
@@ -65,9 +68,9 @@ function GroupSummary() {
                 {/* Group limit text */}
                 <Text style={styles.gsText}>{grouplimit}</Text>
                 <TouchableOpacity
-                onPress={() => { 
-                    setGroupLimit(grouplimit+1);
-                }} 
+                  onPress={() => {
+                    setGroupLimit(grouplimit + 1);
+                  }}
                 >
                   <Image
                     style={styles.addImg}
@@ -76,8 +79,52 @@ function GroupSummary() {
                 </TouchableOpacity>
               </View>
               <Text style={styles.gsText}>7, 8</Text>
-              <Text style={styles.gsText}>Switch</Text>
-              <Text style={styles.gsText}>Switch</Text>
+
+              {/* Switches for the 'type of bird' & 'group frequency' */}
+              <SwitchSelector
+                style={styles.gsSwitch}
+                initial={0}
+                // onPress={value => this.setState({ gender: value })}
+                textColor='#094E76' //'#7a44cf'
+                selectedColor='white'
+                buttonColor='#5DB9F0'
+                // borderColor='#5DB9F0'
+                hasPadding
+                options={[
+                  { 
+                    label: "Feather", 
+                    value: "Feather"
+                  }, 
+                  {
+                    label: "Birdie",
+                    value: "Birdie",
+                  } 
+                ]}
+              />
+             
+              <SwitchSelector
+                style={styles.gsSwitch}
+                initial={0}
+                // onPress={value => this.setState({ gender: value })}
+                textColor='#094E76' //'#7a44cf'
+                selectedColor='white'
+                buttonColor='#5DB9F0'
+                // borderColor='#5DB9F0'
+                hasPadding
+                options={[
+                  { 
+                    label: "Weekly", 
+                    value: "Weekly"
+                  }, 
+                  {
+                    label: "Once",
+                    value: "Once"
+                  } 
+                ]}
+              />
+             
+
+              {/* Total Price */}
               <Text style={styles.gsPriceText}>$176</Text>
             </View>
           </View>
@@ -87,11 +134,15 @@ function GroupSummary() {
             style={styles.descInput}
             placeholder="Type a group description..."
             multiline
-            
           />
 
           {/* Post Button */}
-          <TouchableOpacity style={styles.postBut}>
+          <TouchableOpacity
+            style={styles.postBut}
+            onPress={() => {
+              Actions.MyCreatedGroup();
+            }}
+          >
             <Text style={styles.postButText}>POST</Text>
           </TouchableOpacity>
         </ScrollView>
@@ -106,7 +157,8 @@ const styles = StyleSheet.create({
   gsStructure: {
     display: "flex",
     flexDirection: "column",
-    height: "100%"
+    height: "100%",
+    backgroundColor:'#ffffff'
   },
   //Line Separator
   lineSep: {
@@ -124,7 +176,7 @@ const styles = StyleSheet.create({
   //Information Section
   gsTextSec: {
     width: "100%",
-    height: 600,
+    height: 665,
     // backgroundColor: "#DAD",
     marginTop: 10,
     left: 25
@@ -154,19 +206,34 @@ const styles = StyleSheet.create({
     color: "#EB5757",
     lineHeight: 33,
     marginBottom: 11.1,
-    marginTop: -8
+    // marginTop: 
   },
   //Add button image
-  minusImg:{
-    width:19,
-    height:19,
-    marginRight:21
+  minusImg: {
+    width: 19,
+    height: 19,
+    marginRight: 21
   },
   //Minus button image
-  addImg:{
-    width:19,
-    height:19,
-    marginLeft:21
+  addImg: {
+    width: 19,
+    height: 19,
+    marginLeft: 21
+  },
+  //Switches
+  gsSwitch:{
+    width:172,
+    height:30,
+    fontFamily:'Open sans',
+    fontSize:13,
+    lineHeight:18,
+    fontWeight:'600',
+    marginBottom:21,
+    shadowOffset: { x: 0, y: 4 },
+    shadowColor: "#000000",
+    shadowOpacity: 0.07,
+    shadowRadius: 4
+
   },
   //Description text input
   descInput: {
@@ -176,7 +243,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F2F2F2",
     marginTop: -5,
     marginBottom: 39,
-    textAlignVertical:'top'
+    textAlignVertical: "top"
     //   display:'flex'
   },
   //Post button
