@@ -1,22 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
   StyleSheet,
   Animated,
   Button,
-  InteractionManager
+  InteractionManager,
 } from "react-native";
 import PercentageCircle from "react-native-percentage-circle";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Actions } from "react-native-router-flux";
+
+import {CircularProgressbar,buildStyles} from 'react-circular-progressbar';
+
 function LoadingAnimation() {
   const [num] = useState(new Animated.Value(0));
   var animatedNum = num.interpolate({
-    inputRange: [0, 50, 100],
-    outputRange: [0, 80, 100]
+    inputRange: [0, 100],
+    outputRange: [0, 100]
   });
 
   return (
+console.log(animatedNum),
+
     <View style={{ top: 100 }}>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
         <View style={styles.popupBg}>
@@ -24,36 +30,40 @@ function LoadingAnimation() {
             <Text style={styles.txt}>Creating Group</Text>
             <View>
               <Animated.View
-                onLayout={() => {
-                  Animated.timing(
-                    num,
-                    {
-                      toValue: 100,
-                      duration: 1000
-                    },
-                  ).start();
+                // useEffect={() => {
+                  // Animated.timing(
+                  //   num,
+                  //   {
+                  //     toValue: 100,
+                  //     duration: 1000
+                  //   },
+                  // ).start();
 
-                  InteractionManager.runAfterInteractions(() => {
-                    Animated.timing(num, {
-                      toValue: 100,
-                      duration: 1000,
-                    }).start();
-                  });
-                }}
+                //   InteractionManager.runAfterInteractions(() => {
+                //     Animated.timing(num, {
+                //       toValue: 100,
+                //       duration: 1000,
+                //     }).start();
+                //   });
+                // }}
               >
-                <PercentageCircle
+                
+                {/* <PercentageCircle
+                
                   bgcolor={"#ffffff"}
                   textStyle={{ fontSize: 20, fontFamily: "Open sans" }}
                   radius={47}
                   percent={
-                      90
+                      (3)
+                      
                     }
                   borderWidth={5}
                   color={"#3498db"}
-                ></PercentageCircle>
+                ></PercentageCircle> */}
               </Animated.View>
+              <CircularProgressbar/>
             </View>
-            <TouchableOpacity style={styles.cancelBtn}>
+            <TouchableOpacity style={styles.cancelBtn} onPress={()=>{Actions.Home()}}>
               <Text style={styles.txtCancel}>Cancel</Text>
             </TouchableOpacity>
           </View>
