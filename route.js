@@ -1,7 +1,7 @@
 import React from 'react';
 import {View,Text} from 'react-native';
 
-import { Router, Scene, Stack} from 'react-native-router-flux';
+import { Router, Scene, Stack, Drawer} from 'react-native-router-flux';
 
 //Import all pages
 import Login from './pages/Page-login';
@@ -20,6 +20,7 @@ import MyJoinedGroup from './pages/Page-my-joined-group';
 import SelectTime from './pages/Page-select-time';
 
 import HamMenu from './comps/HamMenu';
+import LoadingAnimation from './comps/LoadingAnimation';
 
 function Route() {
     return (
@@ -43,8 +44,19 @@ function Route() {
                 <Scene key="SelectCourts" component={SelectCourts} />
                 <Scene key="GroupSummary" component={GroupSummary} />
                 <Scene key="MyCreatedGroup" component={MyCreatedGroup} />
+                <Scene key="LoadingAnimation" component={LoadingAnimation}/>
 
                 <Scene key="HamMenu" component={HamMenu} drawer={true} drawerPosition='right' />
+
+                <Drawer
+                    hideNavBar
+                    key='drawerMenu'
+                    component={HamMenu}
+                    drawerPosition="right"
+                    transparent={true}
+                >
+                    <Scene key="Home" component={Home} />
+                </Drawer>
                 
             </Stack>
         </Router>

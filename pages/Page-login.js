@@ -46,7 +46,8 @@ function Login(props) {
             width:230,
             borderRadius:20,
             paddingLeft:10,
-            backgroundColor:'white'
+            backgroundColor:'white',
+            color:'#3C3C3C'
         },
         passwordContainer: {
             height: 39,
@@ -67,13 +68,14 @@ function Login(props) {
             width:230,
             borderRadius:20,
             paddingLeft:10,
-            backgroundColor:'white'
+            backgroundColor:'white',
+            color:'#3C3C3C'
         },
         loginBut:{
             marginTop:48,
             borderRadius:28,
             width:230,
-            height:36,
+            height:40,
             backgroundColor:'#FE647B',
             display:'flex',
             justifyContent:'center',
@@ -113,6 +115,7 @@ function Login(props) {
                 <TextInput
                     style={styles.emailInput}
                     placeholder="Email"
+                    placeholderTextColor={'#686868'} 
                 />
             </View>
 
@@ -121,6 +124,7 @@ function Login(props) {
                     style={styles.passwordInput}
                     placeholder="Password"
                     secureTextEntry={true}
+                    placeholderTextColor={'#686868'} 
                 />
             </View>
 

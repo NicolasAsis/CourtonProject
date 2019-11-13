@@ -12,108 +12,43 @@ import Footer_court_indicator from "../comps/Footer_court_indicator";
 import Courts from "../comps/Courts";
 import {Actions} from 'react-native-router-flux';
 
+const courts = [10,1,11,2,12,3,13,4,14,5,15,6,16,7,17,8,18,9];
 function SelectCourts() {
+
+  const [crts, setCrts] = useState([]);
+  
+  var cComp = courts.map((o,i)=>{
+    return <Courts setCrts={setCrts} crts={crts} courtNum={o} />;
+  });
+
+  var vComp = [];
+  for(var i = 0; i<cComp.length; i+=2){
+    vComp.push(
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center"
+        }}
+      >
+        {cComp[i]}
+        {cComp[i+1]}
+      </View>
+    )
+  }
+
   return (
     <View>
       <View>
         <Header_blue_red
           headerTitle="Choose courts"
           courtName="Your selected court(s) "
-          selectedCourtsNum='{courtNum}'
+          courtNum={crts.length}
         />
 
         <View style={styles.courtView}>
           <ScrollView style={{ flex: 1 }}>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <Courts courtNum="10" />
-              <Courts courtNum="1" />
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <Courts courtNum="11" />
-              <Courts courtNum="2" />
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <Courts courtNum="12" />
-              <Courts courtNum="3" />
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <Courts courtNum="13" />
-              <Courts courtNum="4" />
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <Courts courtNum="14" />
-              <Courts courtNum="5" />
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <Courts courtNum="15" />
-              <Courts courtNum="6" />
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <Courts courtNum="16" />
-              <Courts courtNum="7" />
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <Courts courtNum="17" />
-              <Courts courtNum="8" />
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <Courts courtNum="18" />
-              <Courts courtNum="9" />
-            </View>
+            {vComp}
           </ScrollView>
         </View>
       </View>

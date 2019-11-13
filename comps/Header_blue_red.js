@@ -24,7 +24,12 @@ function Header_blue_red(props) {
         <View style={{alignItems:'center', justifyContent:'center'}}>
         <Text style={styles.txtTitle}>{props.headerTitle}</Text>
         </View>
-        <TouchableOpacity style={{ width: 0, height: 0 }}>
+        <TouchableOpacity 
+          style={styles.butHamTouchableOp}
+          onPress={()=>{
+            Actions.drawerMenu()
+          }}
+        >
           <Image
             style={styles.butHam}
             source={require("../assets/but_ham.png")}
@@ -67,8 +72,15 @@ const styles = StyleSheet.create({
   butHam: {
     width: 35,
     height: 23,
+    // left: 315,
+    // top: 2,
+    // position: "absolute"
+  },
+  butHamTouchableOp: {
+    width: 35,
+    height: 23,
     left: 315,
-    top: 2,
+    top: 55,
     position: "absolute"
   },
   courtIndicatedBar: {

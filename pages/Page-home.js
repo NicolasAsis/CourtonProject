@@ -13,7 +13,9 @@ import {
 import Card_for_player from "../comps/Card_for_player";
 import Footer_home from "../comps/Sticky_footer_home";
 
-import {Actions} from 'react-native-router-flux';
+import { Actions } from "react-native-router-flux";
+import LoadingAnimation from '../comps/LoadingAnimation';
+
 
 // bannerScrollHeight = 150;
 // bannerMaxHeight = 240;
@@ -31,37 +33,45 @@ function Home() {
   return (
     <View>
       <ScrollView
-      // scrollEventThrottle={16}
-      // onScroll={Animated.event([
-      //   { nativeEvent: { contentOffset: { y: scrollY } } }
-      // ])}
-      style={{backgroundColor:'#FFFFFF'}}
+        // scrollEventThrottle={16}
+        // onScroll={Animated.event([
+        //   { nativeEvent: { contentOffset: { y: scrollY } } }
+        // ])}
+        style={{ backgroundColor: "#FFFFFF" }}
       >
-        
-
         <View style={{ flex: 1, paddingBottom: 130 }}>
           <ScrollView>
-            <View style={{paddingBottom:10}}>
-          <Image
-              style={{ width: "100%", height: 240 }}
-              source={require("../assets/img_homepage_banner.png")}
-            />
-            <Text style={styles.title}>Upcoming Available Groups</Text>
-        
-            <Card_for_player
-              organizerName={"Toby Wong"}
-              groupNum={"C1314"}
-              date={"Sat Dec 30"}
-              time={"1pm-2pm"}
-              price={"7"}
-              joinedMember={"10"}
-              totalMember={"20"}
-              progressBarLoad={0.5}
-            />
-            <Card_for_player />
-            <Card_for_player />
-            <Card_for_player />
-            <Card_for_player />
+            <View style={{ paddingBottom: 10 }}>
+              <Image
+                style={{ width: "100%", height: 240 }}
+                source={require("../assets/img_homepage_banner.png")}
+              />
+
+              <TouchableOpacity
+              onPress={()=>{
+                Actions.LoadingAnimation();
+              }}
+              >
+                <Text>Test</Text>
+              </TouchableOpacity>
+
+
+              <Text style={styles.title}>Upcoming Available Groups</Text>
+
+              <Card_for_player
+                organizerName={"Toby Wong"}
+                groupNum={"C1314"}
+                date={"Sat Dec 30"}
+                time={"1pm-2pm"}
+                price={"7"}
+                joinedMember={10}
+                totalMember={20}
+                progressBarLoad={0.5}
+              />
+              <Card_for_player />
+              <Card_for_player />
+              <Card_for_player />
+              <Card_for_player />
             </View>
           </ScrollView>
         </View>
@@ -80,7 +90,6 @@ function Home() {
           overflow: "hidden"
         }}
       >
-        
         <Image
           style={styles.fixedSearchIcon}
           source={require("../assets/icon_search.png")}
@@ -88,6 +97,7 @@ function Home() {
         <TextInput
           style={styles.fixedSearchBar}
           placeholder="  Search Group Number, Organizer"
+          placeholderTextColor="#7D7D7D"
         />
       </Animated.View>
 
@@ -95,9 +105,9 @@ function Home() {
         <Footer_home />
       </View>
       <TouchableOpacity
-        style = {styles.createButTouchableOp}
-        onPress={()=>{
-          Actions.SelectLocation()
+        style={styles.createButTouchableOp}
+        onPress={() => {
+          Actions.SelectLocation();
         }}
       >
         <Image
@@ -121,13 +131,13 @@ const styles = StyleSheet.create({
   },
   createBtn: {
     width: 54,
-    height: 54,
+    height: 54
     // position: "absolute",
     // zIndex: 10,
     // left: "43%",
     // bottom: 120
   },
-  
+
   //Styling for the touchable opacity surrounding the create But
   createButTouchableOp: {
     width: 54,
@@ -151,7 +161,7 @@ const styles = StyleSheet.create({
     left: 15,
     fontSize: 16,
     fontFamily: "Open sans",
-    color: "#8BC0DF"
+    color: "#4A4A4A"
   },
   fixedSearchIcon: {
     width: 25,
