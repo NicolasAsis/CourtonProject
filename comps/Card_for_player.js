@@ -4,7 +4,7 @@ import * as Progress from 'react-native-progress';
 
 import {Actions} from 'react-native-router-flux';
 
-function Card_for_player(props) {
+function Card_for_player({organizerName, groupNum, date,time, joinedMember,totalMember,price,progressBarLoad}) {
  
 
   return (
@@ -19,19 +19,19 @@ function Card_for_player(props) {
         <View>
           <Image style={styles.img} source={require("../assets/stage18.jpg")} />
 
-          <Text style={styles.txtorganizer}>{props.organizerName}</Text>
+          <Text style={styles.txtorganizer}>{organizerName}</Text>
 
-          <Text style={styles.txtGroupNum}>Group #{props.groupNum}</Text>
-          <Text style={styles.txtGroupDate}>{props.date} {props.time}</Text>
+          <Text style={styles.txtGroupNum}>Group #{groupNum}</Text>
+          <Text style={styles.txtGroupDate}>{date} {time}</Text>
           {/* <Text style={styles.txtGroupJoinDate}>Join Before: Dec 20 11:30pm</Text> */}
-          <Text style={styles.txtGroupPlayerCount}>Players {props.joinedMember}/{props.totalMember}</Text>
-          <Text style={styles.txtGroupPrice}>${props.price}</Text>
+          <Text style={styles.txtGroupPlayerCount}>Players {joinedMember}/{totalMember}</Text>
+          <Text style={styles.txtGroupPrice}>${price}</Text>
           
           <Progress.Bar
             unfilledColor="#CDC5C5"
             borderColor="#FFFFFF"
             color="#81EC8D"
-            progress= {props.progressBarLoad}
+            progress= {progressBarLoad}
             width={180}
             style={styles.ProgressBar}
           />

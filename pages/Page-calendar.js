@@ -29,7 +29,9 @@ function Page_Calendar() {
       </TouchableOpacity>
 
       <View  style={{backgroundColor:'#FFFFFF', marginBottom:310}}>
-        <Calendar/>
+        <Calendar
+        
+        />
       </View>
       </View>
 

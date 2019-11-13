@@ -43,7 +43,18 @@ function GroupSummary() {
               <Text style={styles.gsTitleText}>Type of Bird</Text>
               <Text style={styles.gsTitleText}>Group Frequency</Text>
               <Text style={styles.gsTitleText}>Price in Total</Text>
-              <Text style={styles.gsTitleText}>Description</Text>
+              
+              <View>
+              <Text style={styles.gsTitleText}>Price for Members</Text>
+              <View style={{flexDirection:'row', marginTop:-25}}>
+              <Text style={{color:"#FE647B", fontWeight:'bold',fontFamily:'Open sans', fontSize:20}}>$</Text>
+              <TextInput
+                style={styles.priceInput}
+                multiline
+              />
+              </View>
+              </View>
+              
             </View>
 
             {/* Right side text */}
@@ -52,6 +63,7 @@ function GroupSummary() {
               <Text style={styles.gsText}>Stage 18</Text>
               <Text style={styles.gsText}>4351 No 3 Rd #100, Richmond</Text>
               <Text style={styles.gsText}>9am - 1pm </Text>
+              
 
               {/* Add or subtract number of group members */}
               <View style={{ display: "flex", flexDirection: "row" }}>
@@ -130,11 +142,14 @@ function GroupSummary() {
           </View>
 
           {/* Description text input */}
+          <View>
+          <Text style={styles.gsTitleText}>Description</Text>
           <TextInput
             style={styles.descInput}
             placeholder="Type a group description..."
             multiline
           />
+          </View>
 
           {/* Post Button */}
           <TouchableOpacity
@@ -237,14 +252,25 @@ const styles = StyleSheet.create({
   },
   //Description text input
   descInput: {
-    width: 312,
+    width: "86%",
     height: 126,
     borderRadius: 6,
-    backgroundColor: "#F2F2F2",
-    marginTop: -5,
+    backgroundColor: "#F7F7F7",
+    marginTop: -25,
     marginBottom: 39,
     textAlignVertical: "top"
     //   display:'flex'
+  },
+
+  priceInput:{
+    width: 50,
+    height: 30,
+    borderRadius: 10,
+    backgroundColor: "#F7F7F7",
+    // marginTop: -25,
+    marginLeft:8,
+    marginBottom: 39,
+    textAlignVertical: "top"
   },
   //Post button
   postBut: {
