@@ -115,7 +115,6 @@ useEffect(()=>{
                 Actions.LoadingAnimation();
               }}
               >
-                <Text>Test</Text>
               </TouchableOpacity>
 
 
@@ -152,6 +151,7 @@ useEffect(()=>{
                 />
                 })
             }
+            
             </View>
           </ScrollView>
         </View>
