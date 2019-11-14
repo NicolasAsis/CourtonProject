@@ -5,23 +5,29 @@ import {
   StyleSheet,
   Animated,
   Button,
-  InteractionManager,
+  InteractionManager
 } from "react-native";
 import PercentageCircle from "react-native-percentage-circle";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Actions } from "react-native-router-flux";
 
-import {CircularProgressbar,buildStyles} from 'react-circular-progressbar';
+// import {CircularProgressbar,buildStyles} from 'react-circular-progressbar';
 
 function LoadingAnimation() {
-  const [num] = useState(new Animated.Value(0));
-  var animatedNum = num.interpolate({
-    inputRange: [0, 100],
-    outputRange: [0, 100]
-  });
-
+  const [num, setNum] = useState(0);
+  const [numB, setNumB] = useState(30);
+  
+  useEffect(()=>{
+    setInterval(()=>{
+      console.log(num);
+      for(var i=0;i<101;i++){
+        var newnum = num+i;
+      }
+      
+      setNum(newnum);
+    },800);
+  }, [])
   return (
-console.log(animatedNum),
 
     <View style={{ top: 100 }}>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -48,20 +54,19 @@ console.log(animatedNum),
                 // }}
               >
                 
-                {/* <PercentageCircle
+                <PercentageCircle
                 
                   bgcolor={"#ffffff"}
                   textStyle={{ fontSize: 20, fontFamily: "Open sans" }}
                   radius={47}
                   percent={
-                      (3)
+                      num
                       
                     }
                   borderWidth={5}
                   color={"#3498db"}
-                ></PercentageCircle> */}
+                ></PercentageCircle>
               </Animated.View>
-              <CircularProgressbar/>
             </View>
             <TouchableOpacity style={styles.cancelBtn} onPress={()=>{Actions.Home()}}>
               <Text style={styles.txtCancel}>Cancel</Text>

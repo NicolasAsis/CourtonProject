@@ -15,6 +15,8 @@ import Bar_group_countdown_price from "../comps/Bar_group_countdown_price";
 import Circle_extra_member from "../comps/Circle_extra_member";
 import Card_comment from "../comps/Card_comment";
 
+import {Actions} from 'react-native-router-flux';
+
 function Member_groupInfo() {
   const styles = StyleSheet.create({
     // Page Structure
@@ -199,7 +201,12 @@ function Member_groupInfo() {
             style={styles.giImg}
             source={require("../assets/img_stage18.png")}
           />
-          <TouchableOpacity style={{ position: "absolute" }}>
+          <TouchableOpacity 
+            style={{ position: "absolute" }}
+            onPress={()=>{
+              Actions.pop()
+            }}
+          >
             <Image
               style={styles.giBackBut}
               source={require("../assets/but_back.png")}

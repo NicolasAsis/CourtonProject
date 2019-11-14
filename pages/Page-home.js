@@ -17,7 +17,7 @@ import { Actions } from "react-native-router-flux";
 import LoadingAnimation from '../comps/LoadingAnimation';
 
 function Home() {
-  const [group, setGroup] = useState([]);
+  // const [group, setGroup] = useState([]);
   const LoadGroup = async()=>{
     var obj = {
         key:"groups_read",
@@ -44,7 +44,7 @@ const data=[
    joinedMember : 2,
     totalMember : 10,
     price : 7,
-    progressBarLoad : '0.2'
+    progressBarLoad : 0.2
   },
   {
     organizerName : 'Dan Dhanika',
@@ -54,7 +54,7 @@ const data=[
    joinedMember : 2,
     totalMember : 10,
     price : 7,
-    progressBarLoad : '0.67'
+    progressBarLoad : 0.67
   },
   {
     organizerName : 'Nico Asis',
@@ -64,7 +64,7 @@ const data=[
    joinedMember : 2,
     totalMember : 10,
     price : 7,
-    progressBarLoad : '0.4'
+    progressBarLoad : 0.4
   },
   {
     organizerName : 'Heidi Tang',
@@ -74,7 +74,7 @@ const data=[
    joinedMember : 2,
     totalMember : 10,
     price : 7,
-    progressBarLoad : '0.8'
+    progressBarLoad : 0.8
   },
   {
     organizerName : 'Siya Yang',
@@ -84,7 +84,7 @@ const data=[
    joinedMember : 2,
     totalMember : 10,
     price : 7,
-    progressBarLoad : '0.5'
+    progressBarLoad : 0.5
   }
 ]
 

@@ -18,6 +18,8 @@ import GroupSummary from './pages/Page-group-summary';
 import MyCreatedGroup from './pages/Page-my-created-group';
 import MyJoinedGroup from './pages/Page-my-joined-group';
 import SelectTime from './pages/Page-select-time';
+import Member_groupInfo from './pages/Page-member-groupInfo';
+import Organizer_groupInfo from './pages/Page-organizer-groupInfo';
 
 import HamMenu from './comps/HamMenu';
 import LoadingAnimation from './comps/LoadingAnimation';
@@ -45,6 +47,8 @@ function Route() {
                 <Scene key="GroupSummary" component={GroupSummary} />
                 <Scene key="MyCreatedGroup" component={MyCreatedGroup} />
                 <Scene key="LoadingAnimation" component={LoadingAnimation}/>
+                <Scene key="Member_groupInfo" component={Member_groupInfo}/>
+                <Scene key="Organizer_groupInfo" component={Organizer_groupInfo}/>
 
                 <Scene key="HamMenu" component={HamMenu} drawer={true} drawerPosition='right' />
 

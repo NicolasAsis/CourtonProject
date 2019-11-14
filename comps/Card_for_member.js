@@ -4,19 +4,19 @@ import * as Progress from 'react-native-progress';
 
 import {Actions} from 'react-native-router-flux';
 
-function Card_for_organizer(props) {
+function Card_for_member(props) {
   return (
     <View style={{ alignItems: "center", marginTop: 18 }}>
       <TouchableOpacity
         onPress={()=>{
-          Actions.Organizer_groupInfo()
+          Actions.Member_groupInfo()
         }}
       >
       <View style={styles.card}>
         <View>
           <Image style={styles.img} source={require("../assets/stage18.jpg")} />
 
-          <Text style={styles.txtorganizer}>{props.bmtCentre}</Text>
+          <Text style={styles.txtBmtCentre}>{props.organizerName}</Text>
 
           <Text style={styles.txtGroupNum}>Group #{props.groupNum}</Text>
           <Text style={styles.txtGroupDate}>{props.date} {props.time}</Text>
@@ -27,7 +27,7 @@ function Card_for_organizer(props) {
             unfilledColor="#CDC5C5"
             borderColor="#FFFFFF"
             color="#81EC8D"
-            progress= {0.5}
+            progress= {props.progressBarLoad}
             width={180}
             style={styles.ProgressBar}
           />
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 0
   },
-  txtorganizer: {
+  txtBmtCentre: {
     fontWeight: "bold",
     fontSize: 16,
     lineHeight: 27,
@@ -124,4 +124,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Card_for_organizer;
+export default Card_for_member;
