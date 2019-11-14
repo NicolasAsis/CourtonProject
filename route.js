@@ -21,6 +21,8 @@ import SelectTime from './pages/Page-select-time';
 import Member_groupInfo from './pages/Page-member-groupInfo';
 import Organizer_groupInfo from './pages/Page-organizer-groupInfo';
 
+import MoreMembers from './pages/Page-more-members';
+
 import HamMenu from './comps/HamMenu';
 import LoadingAnimation from './comps/LoadingAnimation';
 
@@ -33,6 +35,7 @@ function Route() {
 
                 <Scene key="Home" component={Home} />
                 <Scene key="GroupInfo" component={GroupInfo} />
+                <Scene key="MoreMembers" component={MoreMembers} />
                 <Scene key="Join_group_popup" component={Join_group_popup} />
                 <Scene key="JoinedGroup" component={JoinedGroup} />
                 <Scene key="MyJoinedGroup" component={MyJoinedGroup} />
