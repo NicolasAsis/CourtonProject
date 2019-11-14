@@ -42,9 +42,17 @@ function GroupInfo() {
       position: "absolute",
       width: 20,
       height: 30,
-      left: 35,
+      left: '9%',
       top: 40
       // backgroundColor:'red'
+    },
+    giHamTouchableOp: {
+      // backgroundColor:'red'
+      // // width: 35,
+      // height: 23,
+      left: "80%",
+      top: 45,
+      position: "absolute"
     },
     giBackBut: {
       width: 20,
@@ -52,6 +60,15 @@ function GroupInfo() {
       //   left: 35,
       //   top: 40,
       //   position: "absolute"
+    },
+    giHamBtn: {
+      top:2,
+      width: 35,
+      height: 23,
+      // marginLeft:263,
+      //   left: 35,
+      //   top: 40,
+        // position: "absolute"
     },
     giOrganizerImg: {
       width: 52,
@@ -172,6 +189,17 @@ function GroupInfo() {
               source={require("../assets/but_back.png")}
             />
           </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.giHamTouchableOp}
+            onPress={() => {
+              // Actions.pop("Home");
+            }}
+          >
+            <Image
+              style={styles.giHamBtn}
+              source={require("../assets/but_ham.png")}
+            />
+          </TouchableOpacity>
           <View style={styles.giOrganizerImg}></View>
           <Text style={styles.giOrganizedByText}>Organized by</Text>
           <Text style={styles.giOrganizerText}>Toby Wong</Text>
@@ -187,13 +215,13 @@ function GroupInfo() {
               height: 375
             }}
           >
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={()=>{
               setModalVisible(true)
             }}
           >
             <Text>Hi</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
             <ScrollView style={{ flex: 1 }}>
               <View
                 style={{
@@ -246,6 +274,12 @@ function GroupInfo() {
                   <Card_members memberName={"William Williams"} />
                   <Card_members memberName={"William Williams"} />
                 </View>
+                {/* this TO go to expanded member page */}
+                <TouchableOpacity
+                  onPress={()=>{
+                    Actions.MoreMembers()
+                  }}
+                >
                 <View style={{ flexDirection: "row" }}>
                   <View>
                     <Circle_extra_member />
@@ -257,6 +291,7 @@ function GroupInfo() {
                     +2 more
                   </Text>
                 </View>
+                </TouchableOpacity>
               </View>
             </ScrollView>
           </View>

@@ -4,31 +4,66 @@ import Header_blue_red from "../comps/Header_blue_red";
 import SwitchSelector from "react-native-switch-selector";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import Button_Ok from "../comps/Button_Ok";
+import moment from 'moment';
 
 import {Actions} from 'react-native-router-flux';
 
+// import Moment from 'react-moment';
+// import {Moment} from 'react-moment';
+
 function SelectTime() {
   const [isDateTimePickerVisible, setIsDateTimePickerVisible] = useState(false);
-  const [showDateTimePicker, setShowDateTimePicker] = useState(true);
-  const [hideDateTimePicker, setHideDateTimePicker] = useState(true);
-  const [handleDatePicked, setHandleDatePicked] = useState(true);
+  // const [showDateTimePicker, setShowDateTimePicker] = useState(true);
+  // const [hideDateTimePicker, setHideDateTimePicker] = useState(true);
+  // const [handleDatePicked, setHandleDatePicked] = useState(true);
 
-  //   showDateTimePicker = () => {
-  //     this.setState({ isDateTimePickerVisible: true });
-  //   };
+  const [time,setTime] = useState();
 
-  //   hideDateTimePicker = () => {
-  //     this.setState({ isDateTimePickerVisible: false });
-  //   };
+  const [chosenDate,setChosenDate] = useState(" ");
+  const [chosenDate2,setChosenDate2] = useState(" ");
 
-  //   handleDatePicked = date => {
-  //     console.log("A date has been picked: ", date);
-  //     this.hideDateTimePicker();
-  //   };
+    function showDateTimePicker() {
+      setIsDateTimePickerVisible(true);
+    };
+
+    function showDateTimePicker2(){
+      setIsDateTimePickerVisible(true);
+    }
+
+    function hideDateTimePicker() {
+      setIsDateTimePickerVisible(false)
+    };
+
+    function handleDatePicked(date) {
+      console.log("A date has been picked: ", date);
+      // startDate = moment(date).format('lll');
+      if(time == "START"){
+        setChosenDate(moment(date).format('lll'));
+      }
+      else if(time == "END"){
+        setChosenDate2(moment(date).format('lll'));
+      }
+      hideDateTimePicker();
+    };
 
   return (
-    <View>
+    <View style={{backgroundColor:'#FFFFFF', height:'100%'}}>
       <Header_blue_red headerTitle={"Choose a time"} courtName={"Stage 18"} />
+      {/* <TouchableOpacity
+        onPress={()=>{
+          showDateTimePicker()
+        }}
+      >
+        <Text>Hi</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={()=>{
+          showDateTimePicker()
+        }}
+      >
+        <Text>Bye</Text>
+      </TouchableOpacity> */}
       <View
         style={{
           flexDirection: "column",
@@ -61,12 +96,25 @@ function SelectTime() {
                 value: "END"
               }
             ]}
+            onPress={(val)=>{
+              if(val=="START"){
+              showDateTimePicker();
+              setTime("START");
+              // alert(val);
+              }
+              else if(val=="END"){
+                showDateTimePicker();
+                setTime("END")
+                // alert(val);
+                }  
+            }}
+            
           />
           <View>
             <DateTimePicker
-              isVisible={setIsDateTimePickerVisible}
-            //   onConfirm={setHandleDatePicked}
-              onCancel={setHideDateTimePicker}
+              isVisible={isDateTimePickerVisible}
+              onConfirm={handleDatePicked}
+              onCancel={hideDateTimePicker}
               mode='time'
             />
           </View>
@@ -93,8 +141,8 @@ function SelectTime() {
             <Text style={styles.txtLeft}>TO</Text>
           </View>
           <View style={{ flexDirection: "column", alignItems: "flex-end" }}>
-            <Text style={styles.txtRight}>7:00</Text>
-            <Text style={styles.txtRight}>10:00</Text>
+            <Text style={styles.txtRight}>{chosenDate}</Text>
+            <Text style={styles.txtRight}>{chosenDate2}</Text>
           </View>
         </View>
 

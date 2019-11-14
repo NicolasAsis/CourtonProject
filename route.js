@@ -1,7 +1,7 @@
 import React from 'react';
 import {View,Text} from 'react-native';
 
-import { Router, Scene, Stack} from 'react-native-router-flux';
+import { Router, Scene, Stack, Drawer} from 'react-native-router-flux';
 
 //Import all pages
 import Login from './pages/Page-login';
@@ -18,8 +18,13 @@ import GroupSummary from './pages/Page-group-summary';
 import MyCreatedGroup from './pages/Page-my-created-group';
 import MyJoinedGroup from './pages/Page-my-joined-group';
 import SelectTime from './pages/Page-select-time';
+import Member_groupInfo from './pages/Page-member-groupInfo';
+import Organizer_groupInfo from './pages/Page-organizer-groupInfo';
+
+import MoreMembers from './pages/Page-more-members';
 
 import HamMenu from './comps/HamMenu';
+import LoadingAnimation from './comps/LoadingAnimation';
 
 function Route() {
     return (
@@ -30,6 +35,7 @@ function Route() {
 
                 <Scene key="Home" component={Home} />
                 <Scene key="GroupInfo" component={GroupInfo} />
+                <Scene key="MoreMembers" component={MoreMembers} />
                 <Scene key="Join_group_popup" component={Join_group_popup} />
                 <Scene key="JoinedGroup" component={JoinedGroup} />
                 <Scene key="MyJoinedGroup" component={MyJoinedGroup} />
@@ -43,8 +49,21 @@ function Route() {
                 <Scene key="SelectCourts" component={SelectCourts} />
                 <Scene key="GroupSummary" component={GroupSummary} />
                 <Scene key="MyCreatedGroup" component={MyCreatedGroup} />
+                <Scene key="LoadingAnimation" component={LoadingAnimation}/>
+                <Scene key="Member_groupInfo" component={Member_groupInfo}/>
+                <Scene key="Organizer_groupInfo" component={Organizer_groupInfo}/>
 
                 <Scene key="HamMenu" component={HamMenu} drawer={true} drawerPosition='right' />
+
+                <Drawer
+                    hideNavBar
+                    key='drawerMenu'
+                    component={HamMenu}
+                    drawerPosition="right"
+                    transparent={true}
+                >
+                    <Scene key="Home" component={Home} />
+                </Drawer>
                 
             </Stack>
         </Router>

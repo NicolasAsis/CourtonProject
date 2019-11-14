@@ -15,13 +15,18 @@ import Bar_group_countdown_price from "../comps/Bar_group_countdown_price";
 import Circle_extra_member from "../comps/Circle_extra_member";
 import Card_comment from "../comps/Card_comment";
 
+import {Actions} from 'react-native-router-flux';
+
 function Organizer_groupInfo() {
   const styles = StyleSheet.create({
     // Page Structure
     gipageStructure: {
       display: "flex",
       flexDirection: "column",
-      alignItems: "center"
+      alignItems: "center",
+      backgroundColor:"#ffffff",
+      width:'100%',
+      justifyContent:'center'
     },
 
     //Page Header
@@ -74,7 +79,8 @@ function Organizer_groupInfo() {
       height: 250,
       // backgroundColor:'#DAD',
       marginTop: 20,
-      left: 23
+      // left: 23,
+      backgroundColor:"#ffffff"
     },
     //Group Description Text
     groupDescHeaderText: {
@@ -89,7 +95,9 @@ function Organizer_groupInfo() {
       color: "#7C7B7B",
       lineHeight: 20,
       marginBottom: 43,
-      width: 330
+      width: 330,
+      justifyContent:'center',
+      alignItems:'center'
     },
 
     //Group Information Text
@@ -105,7 +113,6 @@ function Organizer_groupInfo() {
       fontSize: 15,
       color: "#7C7B7B",
       lineHeight: 20,
-
       marginBottom: 32
     },
     //Style location text, since mostly two lines
@@ -187,11 +194,28 @@ function Organizer_groupInfo() {
       shadowOffset:{x: 2, y:3},
       marginTop:20,
       marginBottom:50
-    }
+    },
+    giHamTouchableOp: {
+      // backgroundColor:'red'
+      // // width: 35,
+      // height: 23,
+      left: "80%",
+      top: 45,
+      position: "absolute"
+    },
+    giHamBtn: {
+      top:2,
+      width: 35,
+      height: 23,
+      // marginLeft:263,
+      //   left: 35,
+      //   top: 40,
+        // position: "absolute"
+    },
   });
 
   return (
-    <View>
+    <View style={{backgroundColor:"#ffffff"}}>
       <View style={styles.gipageStructure}>
         {/* Main Header */}
         <View style={styles.giHeader}>
@@ -199,10 +223,26 @@ function Organizer_groupInfo() {
             style={styles.giImg}
             source={require("../assets/img_stage18.png")}
           />
-          <TouchableOpacity style={{ position: "absolute" }}>
+          <TouchableOpacity 
+            style={{ position: "absolute" }}
+            onPress={()=>{
+              Actions.pop()
+            }}
+          >
             <Image
               style={styles.giBackBut}
               source={require("../assets/but_back.png")}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.giHamTouchableOp}
+            onPress={() => {
+              // Actions.pop("Home");
+            }}
+          >
+            <Image
+              style={styles.giHamBtn}
+              source={require("../assets/but_ham.png")}
             />
           </TouchableOpacity>
           {/* <View style={styles.giOrganizerImg}></View> */}
@@ -217,11 +257,16 @@ function Organizer_groupInfo() {
             style={{
               flex: 1,
               position: "absolute",
-              height: 500
+              height: 500,
+              backgroundColor:"#ffffff",
+              width:'100%',
+              justifyContent:'center',
+              alignItems:'center',
             }}
           >
-            <ScrollView style={{ flex: 1,width:'100%' }}>
+            <ScrollView style={{ flex: 1,width:'100%',backgroundColor:"#ffffff"}}>
               {/* Group Description */}
+              <View style={{backgroundColor:"#ffffff", paddingLeft:"6%"}}>
               <Text style={styles.groupDescHeaderText}>Group Description</Text>
               <Text style={styles.groupDescText}>
                 This is a group description for players who are looking at other
@@ -229,8 +274,8 @@ function Organizer_groupInfo() {
               </Text>
 
               {/* All group information text */}
-              <View style={{ display: "flex", flexDirection: "row" }}>
-                <View style={{ flex: 1 }}>
+              <View style={{ display: "flex", flexDirection: "row", backgroundColor:"#ffffff", justifyContent:'center', alignItems:'center'}}>
+                <View style={{ flex: 1, backgroundColor:"#ffffff"}}>
                   <Text style={styles.giTitleText}>Group</Text>
                   <Text style={styles.giTitleText}>Date</Text>
                   <Text style={styles.giTitleText}>Centre</Text>
@@ -240,7 +285,7 @@ function Organizer_groupInfo() {
                   <Text style={styles.giTitleText}>Players</Text>
                   <Text style={styles.giTitleText}>Bird Type</Text>
                 </View>
-                <View style={{ flex: 1 }}>
+                <View style={{ flex: 1, backgroundColor:"#ffffff" }}>
                   <Text style={styles.giText}>#C1314</Text>
                   <Text style={styles.giText}>30 December 2019</Text>
                   <Text style={styles.giText}>ClearOne</Text>
@@ -254,18 +299,18 @@ function Organizer_groupInfo() {
                 </View>
               </View>
               {/* Member Cards */}
-              <View style={{ alignItems: "flex-start" }}>
+              <View style={{ alignItems: "flex-start",backgroundColor:"#ffffff"}}>
                 <Card_members
                   organizer={"Organizer"}
                   memberName={"Tony Wong"}
                 />
                 <Card_members memberName={"William Williams"} />
               </View>
-              <View style={{ flexDirection: "row" }}>
+              <View style={{ flexDirection: "row",backgroundColor:"#ffffff"}}>
                 <View>
                   <Circle_extra_member />
                 </View>
-                <View style={{ position: "absolute", left: 20 }}>
+                <View style={{ position: "absolute", left: '6%' }}>
                   <Circle_extra_member />
                 </View>
                 <Text style={[styles.giText, { left: 26, top: 5 }]}>
@@ -276,7 +321,7 @@ function Organizer_groupInfo() {
                   style={{ width: 24, height: 24, marginTop: 25, marginLeft:10}}
                   source={require("../assets/icon_comment.png")}
                 />
-              <View style={{ alignItems: "center" }}>
+              <View style={{ alignItems: "center",backgroundColor:"#ffffff", marginLeft:'-5%' }}>
                 
                 <Card_comment />
                 <Card_comment />
@@ -286,8 +331,8 @@ function Organizer_groupInfo() {
                     placeholder="Type a group description..."
                     multiline
                   />
-                  <View style={{ flexDirection: "column"}}>
-                    <View style={{ flexDirection: "row" }}>
+                  <View style={{ flexDirection: "column", backgroundColor:"#ffffff"}}>
+                    <View style={{ flexDirection: "row", backgroundColor:"#ffffff" }}>
                       <TouchableOpacity style={styles.btnReset}>
                         <Text style={styles.txtRest}>Reset</Text>
                       </TouchableOpacity>
@@ -301,6 +346,7 @@ function Organizer_groupInfo() {
                     </TouchableOpacity>
                   </View>
                 </View>
+              </View>
               </View>
             </ScrollView>
           </View>

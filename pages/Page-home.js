@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -13,55 +13,145 @@ import {
 import Card_for_player from "../comps/Card_for_player";
 import Footer_home from "../comps/Sticky_footer_home";
 
-import {Actions} from 'react-native-router-flux';
-
-// bannerScrollHeight = 150;
-// bannerMaxHeight = 240;
-// bannerMinHeight = 100;
+import { Actions } from "react-native-router-flux";
+import LoadingAnimation from '../comps/LoadingAnimation';
 
 function Home() {
-  // const [scrollY] = useState(new Animated.Value(0));
+  // const [group, setGroup] = useState([]);
+  const LoadGroup = async()=>{
+    var obj = {
+        key:"groups_read",
+        data:{
+          organizerName:organizerName,
+          date:date
 
-  // var bannerAnimatedHeight = scrollY.interpolate({
-  //   inputRange: [0, bannerScrollHeight],
-  //   outputRange: [bannerMaxHeight, bannerMinHeight],
-  //   extrapolate: "clamp"
-  // });
+        }
+    }
+    // var r = await axios.post("http://142.232.162.71:3001/post", obj);
+    // console.log("read", r.data);
+    // var dbusers = JSON.parse(r.data.body);
+    // console.log("read", dbusers);
+    // setUsers(dbusers.data);
+}
 
+
+const data=[
+  {
+    organizerName : 'Tony Wong',
+    groupNum : '1511',
+    date : 'Sat Dec 10',
+    time : '1pm -2pm',
+   joinedMember : 2,
+    totalMember : 10,
+    price : 7,
+    progressBarLoad : 0.2
+  },
+  {
+    organizerName : 'Dan Dhanika',
+    groupNum : '1141',
+    date : 'Sat Dec 10',
+    time : '1pm -2pm',
+   joinedMember : 2,
+    totalMember : 10,
+    price : 7,
+    progressBarLoad : 0.67
+  },
+  {
+    organizerName : 'Nico Asis',
+    groupNum : '1311',
+    date : 'Sat Dec 10',
+    time : '1pm -2pm',
+   joinedMember : 2,
+    totalMember : 10,
+    price : 7,
+    progressBarLoad : 0.4
+  },
+  {
+    organizerName : 'Heidi Tang',
+    groupNum : '2111',
+    date : 'Sat Dec 10',
+    time : '1pm -2pm',
+   joinedMember : 2,
+    totalMember : 10,
+    price : 7,
+    progressBarLoad : 0.8
+  },
+  {
+    organizerName : 'Siya Yang',
+    groupNum : '0111',
+    date : 'Sat Dec 10',
+    time : '1pm -2pm',
+   joinedMember : 2,
+    totalMember : 10,
+    price : 7,
+    progressBarLoad : 0.5
+  }
+]
+
+useEffect(()=>{
+  LoadGroup();
+}, []);
+
+  const [searchKey, setSearchKey] = useState(' ')
+
+  const filteredGroup = data.filter((obj)=>{
+    return obj.organizerName.indexOf(searchKey) >= 0 || obj.groupNum.indexOf(searchKey) >= 0;
+  })
   return (
     <View>
       <ScrollView
-      // scrollEventThrottle={16}
-      // onScroll={Animated.event([
-      //   { nativeEvent: { contentOffset: { y: scrollY } } }
-      // ])}
-      style={{backgroundColor:'#FFFFFF'}}
+        style={{ backgroundColor: "#FFFFFF" }}
       >
-        
+        <View style={{ flex: 1, paddingBottom: 130, height:850 }}>
+          <ScrollView >
+            <View style={{ paddingBottom: 10, height:"100%"}}>
+              <Image
+                style={{ width: "100%", height: 240 }}
+                source={require("../assets/img_homepage_banner.png")}
+              />
 
-        <View style={{ flex: 1, paddingBottom: 130 }}>
-          <ScrollView>
-            <View style={{paddingBottom:10}}>
-          <Image
-              style={{ width: "100%", height: 240 }}
-              source={require("../assets/img_homepage_banner.png")}
-            />
-            <Text style={styles.title}>Upcoming Available Groups</Text>
-        
-            <Card_for_player
-              organizerName={"Toby Wong"}
-              groupNum={"C1314"}
-              date={"Sat Dec 30"}
-              time={"1pm-2pm"}
-              price={"7"}
-              joinedMember={"10"}
-              totalMember={"20"}
-              progressBarLoad={0.5}
-            />
-            <Card_for_player />
-            <Card_for_player />
-            <Card_for_player />
-            <Card_for_player />
+              <TouchableOpacity
+              onPress={()=>{
+                Actions.LoadingAnimation();
+              }}
+              >
+                <Text>Test</Text>
+              </TouchableOpacity>
+
+
+              <Text style={styles.title}>Upcoming Available Groups</Text>
+
+              {/* <Card_for_player
+                organizerName={"Toby Wong"}
+                groupNum={"C1314"}
+                date={"Sat Dec 30"}
+                time={"1pm-2pm"}
+                price={"7"}
+                joinedMember={10}
+                totalMember={20}
+                progressBarLoad={0.5}
+              /> */}
+              {/* <Card_for_player />
+              <Card_for_player />
+              <Card_for_player />
+              <Card_for_player /> */}
+                 {
+                filteredGroup.map((obj,i)=>{
+                    return <Card_for_player
+                    // key = {i}
+                    id = {obj.id}
+                    organizerName = {obj.organizerName}
+                    groupNum = {obj.groupNum}
+                    date = {obj.date}
+                    time = {obj.time}
+                    joinedMember = {obj.joinedMember}
+                    totalMember = {obj.totalMember}
+                    price = {obj.price}
+                    progressBarLoad = {obj.progressBarLoad}
+
+                />
+                })
+            }
             </View>
           </ScrollView>
         </View>
@@ -80,7 +170,6 @@ function Home() {
           overflow: "hidden"
         }}
       >
-        
         <Image
           style={styles.fixedSearchIcon}
           source={require("../assets/icon_search.png")}
@@ -88,6 +177,11 @@ function Home() {
         <TextInput
           style={styles.fixedSearchBar}
           placeholder="  Search Group Number, Organizer"
+          placeholderTextColor="#7D7D7D"
+          onChangeText={(value) => {
+            setSearchKey(value)
+          }}
+          // value={searchKey.value}
         />
       </Animated.View>
 
@@ -95,9 +189,9 @@ function Home() {
         <Footer_home />
       </View>
       <TouchableOpacity
-        style = {styles.createButTouchableOp}
-        onPress={()=>{
-          Actions.SelectLocation()
+        style={styles.createButTouchableOp}
+        onPress={() => {
+          Actions.SelectLocation();
         }}
       >
         <Image
@@ -121,13 +215,13 @@ const styles = StyleSheet.create({
   },
   createBtn: {
     width: 54,
-    height: 54,
+    height: 54
     // position: "absolute",
     // zIndex: 10,
     // left: "43%",
     // bottom: 120
   },
-  
+
   //Styling for the touchable opacity surrounding the create But
   createButTouchableOp: {
     width: 54,
@@ -150,8 +244,9 @@ const styles = StyleSheet.create({
     top: 50,
     left: 15,
     fontSize: 16,
-    fontFamily: "Open Sans",
+    fontFamily: "Open sans",
     color: "#8BC0DF"
+
   },
   fixedSearchIcon: {
     width: 25,
