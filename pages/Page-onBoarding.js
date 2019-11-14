@@ -50,66 +50,18 @@ const styles = StyleSheet.create({
 
   top: {
     flex: 1.5,
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor:"red"
   },
 
   bottom: {
     flex: 1,
+    backgroundColor:"red",
     justifyContent: "center",
     alignItems: "center"
-  },
-
-  createBut: {
-    width: 48,
-    height: 48,
-    top: 400
-  },
-  step: {
-    width: 242,
-    height: 71,
-    fontFamily: "Open Sans",
-    fontWeight: "bold",
-    fontSize: 24,
-    textAlign: "center",
-    color: "#094E76"
-  },
-  indicator: {
-    display: "flex",
-    width: 80,
-    height: 24,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 50
-  },
-
-  // circle red
-  c_red: {
-    margin: 15,
-    width: 24,
-    height: 24,
-    borderRadius: 100 / 2,
-    backgroundColor: "#FE647B"
-  },
-
-  // circle grey
-  c_grey: {
-    margin: 15,
-    width: 16,
-    height: 16,
-    borderRadius: 100 / 2,
-    backgroundColor: "#ECECEC"
-  },
-
-  skipBtn: {
-    fontFamily: "Open Sans",
-    fontWeight: "bold",
-    fontSize: 18,
-    lineHeight: 25,
-    textAlign: "center",
-    letterSpacing: 0.213333,
-    color: "#094E76"
   }
+
+
 });
 
 export default OnBoarding;

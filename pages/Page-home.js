@@ -245,7 +245,8 @@ const styles = StyleSheet.create({
     left: 15,
     fontSize: 16,
     fontFamily: "Open sans",
-    color: "#4A4A4A"
+    color: "#8BC0DF"
+
   },
   fixedSearchIcon: {
     width: 25,

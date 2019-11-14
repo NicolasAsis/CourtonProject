@@ -14,30 +14,41 @@ import GestureRecognizer, {
 
 // const [animatedImg, setAnimatedImg] = useState()
 
-function OnBoarding_1() {
+function OnBoarding_3() {
   return (
     <View style={styles.pg}>
       <View style={styles.top}>
         <Image
           style={styles.infograph1}
-          source={require("../assets/img_infographic3Birdie.png")}
+          source={require("../assets/img_infographic_onphone.png")}
         />
         <Image
           style={styles.infograph2}
-          source={require("../assets/img_infographic3.png")}
+          source={require("../assets/img_infographic_createGroup_2.png")}
         />
+
+        <Image
+          style={styles.infograph3}
+          source={require("../assets/img_infographic_createGroup_2.png")}
+        />
+
+        <Image
+            style={styles.infograph4}
+            source={require("../assets/img_infographic_createGroup_2.png")}
+        /> 
+       
       </View>
       <View style={styles.bottom}>
-        <Text style={styles.step}>Intro</Text>
+        <Text style={styles.step}>Create Groups</Text>
         <Text style={styles.descp}>
-          CourtOn is a platform for badminton players to host a game with a self
-          created group or to join other organizer’s groups at any of the
-          badminton centres in Vancouver, BC.
+          Click on the light blue “+” button to create your own badminton group.
+          Choose which badminton centre, date, time, badminton court, maximum
+          members and price per person to host a game.
         </Text>
         <View style={styles.indicator}>
+          <View style={styles.sCircle}></View>
+          <View style={styles.sCircle}></View>
           <View style={styles.bCircle}></View>
-          <View style={styles.sCircle}></View>
-          <View style={styles.sCircle}></View>
           <View style={styles.sCircle}></View>
         </View>
         <TouchableOpacity>
@@ -56,22 +67,43 @@ const styles = StyleSheet.create({
   },
   top: {
     flex: 1.7,
-    alignItems: "center",
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignItems: "center"
   },
-  // Birdie
+  // boy on phone - infograph
   infograph1: {
-    width: 27.25,
-    height: 34.17,
-    top: 20,
+    width: 344,
+    height: 275.64,
+    top: 70
   },
-  // girl
+  //  1 create group - infograph
   infograph2: {
-    width: 140,
-    height: 350.8,
-    top: 30
+    position: "absolute",
+    width: 123,
+    height: 123,
+    left: 223,
+    top: 160
   },
+
+  //  2 create group - infograph
+  infograph3: {
+    position: "absolute",
+    width: 78,
+    height: 78,
+    left: 68,
+    top: 280
+  },
+
+  //  3 create group - infograph
+  infograph4: {
+    position: "absolute",
+    width: 95,
+    height: 95,
+    left: 320,
+    top: 303,
+  },
+
   bottom: {
     display: "flex",
     justifyContent: "center",
@@ -131,7 +163,7 @@ const styles = StyleSheet.create({
   skipBtn: {
     width: 179,
     height: 32,
-    marginTop:70,
+    marginTop: 70,
     textAlign: "center",
     fontFamily: "Open Sans",
     fontStyle: "normal",
@@ -143,4 +175,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default OnBoarding_1;
+export default OnBoarding_3;
