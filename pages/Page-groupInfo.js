@@ -275,7 +275,11 @@ function GroupInfo() {
                   <Card_members memberName={"William Williams"} />
                 </View>
                 {/* this TO go to expanded member page */}
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={()=>{
+                    Actions.MoreMembers()
+                  }}
+                >
                 <View style={{ flexDirection: "row" }}>
                   <View>
                     <Circle_extra_member />

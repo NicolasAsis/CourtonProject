@@ -14,31 +14,54 @@ import GestureRecognizer, {
 
 // const [animatedImg, setAnimatedImg] = useState()
 
-function OnBoarding_1() {
+function OnBoarding_4() {
   return (
     <View style={styles.pg}>
       <View style={styles.top}>
+      
         <Image
           style={styles.infograph1}
-          source={require("../assets/img_infographic3Birdie.png")}
+          source={require("../assets/img_infographic_blue.png")}
         />
         <Image
           style={styles.infograph2}
-          source={require("../assets/img_infographic3.png")}
+          source={require("../assets/img_infographic4.png")}
         />
+        <Image
+          style={styles.infograph3}
+          source={require("../assets/img_infograph_profile.png")}
+        />
+
+        <Image
+          style={styles.infograph4}
+          source={require("../assets/img_infograph_buttons.png")}
+        />  
+
+        <Image
+          style={styles.infograph5}
+          source={require("../assets/img_infograph_data.png")}
+        /> 
+        <Image
+          style={styles.infograph6}
+          source={require("../assets/img_infograph_data1.png")}
+        />  
+        <Image
+          style={styles.infograph7}
+          source={require("../assets/img_infograph_data1.png")}
+        /> 
+        
       </View>
       <View style={styles.bottom}>
-        <Text style={styles.step}>Intro</Text>
+        <Text style={styles.step}>Organized for You</Text>
         <Text style={styles.descp}>
-          CourtOn is a platform for badminton players to host a game with a self
-          created group or to join other organizer’s groups at any of the
-          badminton centres in Vancouver, BC.
+        Once you join or create a group, all your groups will be 
+        conveniently organized in your own profile for you.  
         </Text>
         <View style={styles.indicator}>
+          <View style={styles.sCircle}></View>
+          <View style={styles.sCircle}></View>
+          <View style={styles.sCircle}></View>
           <View style={styles.bCircle}></View>
-          <View style={styles.sCircle}></View>
-          <View style={styles.sCircle}></View>
-          <View style={styles.sCircle}></View>
         </View>
         <TouchableOpacity>
           <Text style={styles.skipBtn}>SKIP</Text>
@@ -56,21 +79,57 @@ const styles = StyleSheet.create({
   },
   top: {
     flex: 1.7,
-    alignItems: "center",
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignItems:"center"
   },
-  // Birdie
+  // blue blob - infograph
   infograph1: {
-    width: 27.25,
-    height: 34.17,
-    top: 20,
+    width: 344,
+    height: 275.64,
+    top: 70
   },
-  // girl
+  //  phone - infograph
   infograph2: {
-    width: 140,
-    height: 350.8,
-    top: 30
+    position: "absolute",
+    width: 171,
+    height: 290,
+    top: 174
+  },
+  // profile - infograph
+  infograph3: {
+    position: "absolute",
+    width: 123,
+    height: 63,
+    top: 229
+  },
+  // indicator - infograph
+  infograph4: {
+    position: "absolute",
+    width: 93,
+    height: 33,
+    left: 155,
+    top: 290
+  },
+  // red upcoming - infograph
+  infograph5: {
+    position: "absolute",
+    width: 132,
+    height: 37,
+    top: 327
+  },
+   // blue upcoming - infograph
+   infograph6: {
+    position: "absolute",
+    width: 132,
+    height: 37,
+    top:355
+  },
+  infograph7: {
+    position: "absolute",
+    width: 132,
+    height: 37,
+    top:384
   },
   bottom: {
     display: "flex",
@@ -143,4 +202,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default OnBoarding_1;
+export default OnBoarding_4;
