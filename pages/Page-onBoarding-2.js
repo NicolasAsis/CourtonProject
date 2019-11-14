@@ -14,29 +14,34 @@ import GestureRecognizer, {
 
 // const [animatedImg, setAnimatedImg] = useState()
 
-function OnBoarding_1() {
+function OnBoarding_2() {
   return (
     <View style={styles.pg}>
       <View style={styles.top}>
+      
         <Image
           style={styles.infograph1}
-          source={require("../assets/img_infographic3Birdie.png")}
+          source={require("../assets/img_infographic_onphone.png")}
         />
         <Image
           style={styles.infograph2}
-          source={require("../assets/img_infographic3.png")}
+          source={require("../assets/img_infographic_group.png")}
         />
+        <Image
+          style={styles.infograph3}
+          source={require("../assets/img_infographic_create.png")}
+        />
+        
       </View>
       <View style={styles.bottom}>
-        <Text style={styles.step}>Intro</Text>
+        <Text style={styles.step}>Join groups</Text>
         <Text style={styles.descp}>
-          CourtOn is a platform for badminton players to host a game with a self
-          created group or to join other organizer’s groups at any of the
-          badminton centres in Vancouver, BC.
+        The Home page shows the current available badminton groups 
+        made from other users that you can join to play with.  
         </Text>
         <View style={styles.indicator}>
-          <View style={styles.bCircle}></View>
           <View style={styles.sCircle}></View>
+          <View style={styles.bCircle}></View>
           <View style={styles.sCircle}></View>
           <View style={styles.sCircle}></View>
         </View>
@@ -56,21 +61,33 @@ const styles = StyleSheet.create({
   },
   top: {
     flex: 1.7,
-    alignItems: "center",
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignItems:"center"
   },
-  // Birdie
+  // buy on phone - infograph
   infograph1: {
-    width: 27.25,
-    height: 34.17,
+    width: 344,
+    height: 275.64,
+    left: 11,
+    top: 173,
     top: 20,
   },
-  // girl
+  //  group - infograph
   infograph2: {
-    width: 140,
-    height: 350.8,
-    top: 30
+    position: "absolute",
+    width: 106,
+    height: 95,
+    left: 250,
+    top: 140,
+  },
+  // check - infograph
+  infograph3: {
+    position: "absolute",
+    width: 44,
+    height: 39,
+    left: 318,
+    top: 205,
   },
   bottom: {
     display: "flex",
@@ -143,4 +160,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default OnBoarding_1;
+export default OnBoarding_2;

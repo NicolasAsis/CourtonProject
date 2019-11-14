@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     top: 50,
     left: 15,
     fontSize: 16,
-    fontFamily: "Open sans",
+    fontFamily: "Open Sans",
     color: "#8BC0DF"
   },
   fixedSearchIcon: {
