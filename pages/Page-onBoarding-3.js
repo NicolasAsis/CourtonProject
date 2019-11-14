@@ -14,35 +14,41 @@ import GestureRecognizer, {
 
 // const [animatedImg, setAnimatedImg] = useState()
 
-function OnBoarding_2() {
+function OnBoarding_3() {
   return (
     <View style={styles.pg}>
       <View style={styles.top}>
-      
         <Image
           style={styles.infograph1}
           source={require("../assets/img_infographic_onphone.png")}
         />
         <Image
           style={styles.infograph2}
-          source={require("../assets/img_infographic_group.png")}
+          source={require("../assets/img_infographic_createGroup_2.png")}
         />
+
         <Image
           style={styles.infograph3}
-          source={require("../assets/img_infographic_create.png")}
+          source={require("../assets/img_infographic_createGroup_2.png")}
         />
-        
+
+        <Image
+            style={styles.infograph4}
+            source={require("../assets/img_infographic_createGroup_2.png")}
+        /> 
+       
       </View>
       <View style={styles.bottom}>
-        <Text style={styles.step}>Join groups</Text>
+        <Text style={styles.step}>Create Groups</Text>
         <Text style={styles.descp}>
-        The Home page shows the current available badminton groups 
-        made from other users that you can join to play with.  
+          Click on the light blue “+” button to create your own badminton group.
+          Choose which badminton centre, date, time, badminton court, maximum
+          members and price per person to host a game.
         </Text>
         <View style={styles.indicator}>
           <View style={styles.sCircle}></View>
-          <View style={styles.bCircle}></View>
           <View style={styles.sCircle}></View>
+          <View style={styles.bCircle}></View>
           <View style={styles.sCircle}></View>
         </View>
         <TouchableOpacity>
@@ -63,30 +69,41 @@ const styles = StyleSheet.create({
     flex: 1.7,
     display: "flex",
     justifyContent: "center",
-    alignItems:"center"
+    alignItems: "center"
   },
-  // buy on phone - infograph
+  // boy on phone - infograph
   infograph1: {
     width: 344,
     height: 275.64,
-    top: 70,
+    top: 70
   },
-  //  group - infograph
+  //  1 create group - infograph
   infograph2: {
     position: "absolute",
-    width: 106,
-    height: 95,
-    left: 250,
-    top: 180,
+    width: 123,
+    height: 123,
+    left: 223,
+    top: 160
   },
-  // check - infograph
+
+  //  2 create group - infograph
   infograph3: {
     position: "absolute",
-    width: 44,
-    height: 39,
-    left: 318,
-    top: 205,
+    width: 78,
+    height: 78,
+    left: 68,
+    top: 280
   },
+
+  //  3 create group - infograph
+  infograph4: {
+    position: "absolute",
+    width: 95,
+    height: 95,
+    left: 320,
+    top: 303,
+  },
+
   bottom: {
     display: "flex",
     justifyContent: "center",
@@ -146,7 +163,7 @@ const styles = StyleSheet.create({
   skipBtn: {
     width: 179,
     height: 32,
-    marginTop:70,
+    marginTop: 70,
     textAlign: "center",
     fontFamily: "Open Sans",
     fontStyle: "normal",
@@ -158,4 +175,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default OnBoarding_2;
+export default OnBoarding_3;

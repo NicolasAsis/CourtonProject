@@ -28,8 +28,8 @@ import MyCreatedGroup from '../pages/Page-my-created-group';
 import MyJoinedGroup from '../pages/Page-my-joined-group';
 import OnBoarding_1 from '../pages/Page-onBoarding-1';
 import OnBoarding_2 from '../pages/Page-onBoarding-2';
-// import OnBoarding_3 from '../pages/Page-onBoarding-3';
-// import OnBoarding_4 from '../pages/Page-onBoarding-4';
+import OnBoarding_3 from '../pages/Page-onBoarding-3';
+import OnBoarding_4 from '../pages/Page-onBoarding-4';
 import Organizer_groupInfo from '../pages/Page-organizer-groupInfo';
 import Profile from '../pages/Page-profile';
 import SelectCourts from '../pages/Page-select-courts';
@@ -131,6 +131,14 @@ storiesOf('courton_pages', module)
 
   .add('Page-onBoarding-2', ()=>{
     return<OnBoarding_2 />
+  })
+
+  .add('Page-onBoarding-3', ()=>{
+    return<OnBoarding_3 />
+  })
+
+  .add('Page-onBoarding-4', ()=>{
+    return<OnBoarding_4 />
   })
 
   .add('Page-organizer-groupInfo', ()=>{

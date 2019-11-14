@@ -14,36 +14,54 @@ import GestureRecognizer, {
 
 // const [animatedImg, setAnimatedImg] = useState()
 
-function OnBoarding_2() {
+function OnBoarding_4() {
   return (
     <View style={styles.pg}>
       <View style={styles.top}>
       
         <Image
           style={styles.infograph1}
-          source={require("../assets/img_infographic_onphone.png")}
+          source={require("../assets/img_infographic_blue.png")}
         />
         <Image
           style={styles.infograph2}
-          source={require("../assets/img_infographic_group.png")}
+          source={require("../assets/img_infographic4.png")}
         />
         <Image
           style={styles.infograph3}
-          source={require("../assets/img_infographic_create.png")}
+          source={require("../assets/img_infograph_profile.png")}
         />
+
+        <Image
+          style={styles.infograph4}
+          source={require("../assets/img_infograph_buttons.png")}
+        />  
+
+        <Image
+          style={styles.infograph5}
+          source={require("../assets/img_infograph_data.png")}
+        /> 
+        <Image
+          style={styles.infograph6}
+          source={require("../assets/img_infograph_data1.png")}
+        />  
+        <Image
+          style={styles.infograph7}
+          source={require("../assets/img_infograph_data1.png")}
+        /> 
         
       </View>
       <View style={styles.bottom}>
-        <Text style={styles.step}>Join groups</Text>
+        <Text style={styles.step}>Organized for You</Text>
         <Text style={styles.descp}>
-        The Home page shows the current available badminton groups 
-        made from other users that you can join to play with.  
+        Once you join or create a group, all your groups will be 
+        conveniently organized in your own profile for you.  
         </Text>
         <View style={styles.indicator}>
           <View style={styles.sCircle}></View>
+          <View style={styles.sCircle}></View>
+          <View style={styles.sCircle}></View>
           <View style={styles.bCircle}></View>
-          <View style={styles.sCircle}></View>
-          <View style={styles.sCircle}></View>
         </View>
         <TouchableOpacity>
           <Text style={styles.skipBtn}>SKIP</Text>
@@ -65,27 +83,53 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems:"center"
   },
-  // buy on phone - infograph
+  // blue blob - infograph
   infograph1: {
     width: 344,
     height: 275.64,
-    top: 70,
+    top: 70
   },
-  //  group - infograph
+  //  phone - infograph
   infograph2: {
     position: "absolute",
-    width: 106,
-    height: 95,
-    left: 250,
-    top: 180,
+    width: 171,
+    height: 290,
+    top: 174
   },
-  // check - infograph
+  // profile - infograph
   infograph3: {
     position: "absolute",
-    width: 44,
-    height: 39,
-    left: 318,
-    top: 205,
+    width: 123,
+    height: 63,
+    top: 229
+  },
+  // indicator - infograph
+  infograph4: {
+    position: "absolute",
+    width: 93,
+    height: 33,
+    left: 155,
+    top: 290
+  },
+  // red upcoming - infograph
+  infograph5: {
+    position: "absolute",
+    width: 132,
+    height: 37,
+    top: 327
+  },
+   // blue upcoming - infograph
+   infograph6: {
+    position: "absolute",
+    width: 132,
+    height: 37,
+    top:355
+  },
+  infograph7: {
+    position: "absolute",
+    width: 132,
+    height: 37,
+    top:384
   },
   bottom: {
     display: "flex",
@@ -158,4 +202,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default OnBoarding_2;
+export default OnBoarding_4;
