@@ -11,6 +11,32 @@ import Sticky_footer_regular from "../comps/Sticky_footer_regular";
 import Card_recent from "../comps/Card_recent";
 
 function Profile(props) {
+
+    const LoadGroup = async()=>{
+      var obj = {
+          key:"groups_read",
+          data:{
+            bmtCentre:bmtCentre,
+            id:id
+  
+          }
+      }
+      // var r = await axios.post("http://142.232.162.71:3001/post", obj);
+      // console.log("read", r.data);
+      // var dbusers = JSON.parse(r.data.body);
+      // console.log("read", dbusers);
+      // setUsers(dbusers.data);
+  }
+  const recentGroupData=[
+    {
+      bmtCentre : 'Tony Wong',
+      groupNum : '1511',
+      bmtCentreTime : 'Fri, Dec 30 1pm - 8pm',
+      bmtCentrePostTime : '15 sec ago',
+      verIndicatorColor :'#FE647B'
+    },
+  
+  ]
   return (
     <View>
       <TouchableOpacity
@@ -114,24 +140,25 @@ function Profile(props) {
               paddingRight:20
             }}
           >
+
+            {
+              recentGroupData.map((obj,i)=>{
+                return <Card_recent
+                // key = {i}
+                id = {obj.id}
+                bmtCentre = {obj.bmtCentre}
+                groupNum = {obj.groupNum}
+                bmtCentreTime = {obj.bmtCentreTime}
+                bmtCentrePostTime = { obj.bmtCentrePostTime}
+                verIndicatorColor = {obj.verIndicatorColor}
+                
+            />
+            })
+            }
             <Card_recent 
             verIndicatorColor={'#094E76'}
             />
-            <Card_recent 
-            verIndicatorColor={'#FE647B'}
-            />
-            <Card_recent 
-            verIndicatorColor={'#094E76'}
-            />
-            <Card_recent 
-            verIndicatorColor={'#094E76'}
-            />
-            <Card_recent 
-            verIndicatorColor={'#094E76'}
-            />
-            <Card_recent 
-            verIndicatorColor={'#FE647B'}
-            />
+            
           </View>
         </ScrollView>
       </View>

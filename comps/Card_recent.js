@@ -13,19 +13,19 @@ function Card_recent(props) {
         ></View>
         <View style={{ flexDirection: "column", left:'7%', top:'15%'}}>
           <View>
-            <Text style={styles.txtBmtCentreName}>
-              {props.bmtCentreName} Clear One
+            <Text style={styles.txtbmtCentre}>
+              {props.bmtCentre}
             </Text>
-            <Text style={styles.txtBmtCentreNum}>
-              {props.bmtCentreNum} Group#C1314
+            <Text style={styles.txtgroupNum}>
+            Group#{props.groupNum}
             </Text>
           </View>
           <View style={{ flexDirection: "row", left:'5%' }}>
             <Text style={styles.txtBmtCentreTime}>
-              {props.bmtCentreTime}Fri, Dec 30 1pm - 4pm{" "}
+              {props.bmtCentreTime}{" "}
             </Text>
             <Text style={styles.txtBmtCentrePostTime}>
-              {props.bmtCentrePostTime} 15 sec ago
+              {props.bmtCentrePostTime}
             </Text>
           </View>
         </View>
@@ -52,13 +52,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     position: "absolute"
   },
-  txtBmtCentreName: {
+  txtbmtCentre: {
     fontFamily: "Open sans",
     fontSize: 16,
     fontWeight: "bold",
     color: "#3C3C3C"
   },
-  txtBmtCentreNum: {
+  txtgroupNum: {
     fontFamily: "Open sans",
     fontSize: 12,
     color: "#3C3C3C"

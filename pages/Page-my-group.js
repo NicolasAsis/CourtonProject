@@ -16,7 +16,6 @@ import Card_for_organizer from "../comps/Card_for_organizer";
 function MyGroup() {
   const [group, setGroup] = useState([]);
 
-  const [groupType, setGroupType] = useState();
 
   // const [linePostionXRight, setPositionXRight] = useState(
   //   new Animated.Value(setPositionXRight ? 200 : 0)
@@ -169,6 +168,27 @@ function MyGroup() {
       progressBarLoad: "0.5"
     }
   ];
+
+  const [groupType, setGroupType] = useState(
+    <View>
+                {joinedData.map(obj => {
+                  return (
+                    <Card_for_member
+                      // key = {i}
+                      id={obj.id}
+                      organizerName={obj.organizerName}
+                      groupNum={obj.groupNum}
+                      date={obj.date}
+                      time={obj.time}
+                      joinedMember={obj.joinedMember}
+                      totalMember={obj.totalMember}
+                      price={obj.price}
+                      progressBarLoad={obj.progressBarLoad}
+                    />
+                  );
+                })}
+              </View>
+  );
 
   useEffect(() => {
     LoadJoinedGroup();
