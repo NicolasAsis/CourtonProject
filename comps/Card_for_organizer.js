@@ -22,7 +22,7 @@ function Card_for_organizer(props) {
           <Text style={styles.txtGroupDate}>{props.date} {props.time}</Text>
           {/* <Text style={styles.txtGroupJoinDate}>Join Before: Dec 20 11:30pm</Text> */}
           <Text style={styles.txtGroupPlayerCount}>Players {props.joinedMember}/{props.totalMember}</Text>
-          <Text style={styles.txtGroupPrice}>${props.totalPrice}</Text>
+          <Text style={styles.txtGroupPrice}>${props.price}</Text>
           <Progress.Bar
             unfilledColor="#CDC5C5"
             borderColor="#FFFFFF"

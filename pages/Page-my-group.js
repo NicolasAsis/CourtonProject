@@ -33,11 +33,11 @@ function MyGroup() {
 
   const LoadJoinedGroup = async () => {
     var obj = {
-      key: "groups_read",
+      key: "users_read",
       data: {
-        id: id,
-        bmtCentre: bmtCentre,
-        date: date
+        // id: id,
+        // bmtCentre: bmtCentre,
+        // date: date
       }
     };
     // var r = await axios.post("http://142.232.162.71:3001/post", obj);
@@ -49,11 +49,11 @@ function MyGroup() {
 
   const LoadCreatedGroup = async () => {
     var obj = {
-      key: "groups_read",
+      key: "users_read",
       data: {
-        id: id,
-        organizerName: organizerName,
-        date: date
+        // id: id,
+        // organizerName: organizerName,
+        // date: date
       }
     };
     // var r = await axios.post("http://142.232.162.71:3001/post", obj);
@@ -72,7 +72,8 @@ function MyGroup() {
       joinedMember: 2,
       totalMember: 10,
       price: 7,
-      progressBarLoad: 0.2
+      progressBarLoad: 0.4,
+      color:"yellow"
     },
     {
       organizerName: "Dan Dhanika",
@@ -145,7 +146,7 @@ function MyGroup() {
       joinedMember: 2,
       totalMember: 10,
       price: 7,
-      progressBarLoad: "0.4"
+      progressBarLoad: ''
     },
     {
       bmtCentre: "Clear One",
@@ -165,9 +166,14 @@ function MyGroup() {
       joinedMember: 2,
       totalMember: 10,
       price: 7,
-      progressBarLoad: "0.5"
+      progressBarLoad: "0.5",
+      progressBarColor:'#fab'
     }
   ];
+
+  if (joinedData.progressBarLoad == 1 || createdData.progressBarLoad == 1) {
+    joinedData.color = "#DAD"
+  }
 
   const [groupType, setGroupType] = useState(
     <View>

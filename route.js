@@ -20,6 +20,7 @@ import MyJoinedGroup from './pages/Page-my-joined-group';
 import SelectTime from './pages/Page-select-time';
 import Member_groupInfo from './pages/Page-member-groupInfo';
 import Organizer_groupInfo from './pages/Page-organizer-groupInfo';
+import Signup from './pages/Page-signup';
 
 import MoreMembers from './pages/Page-more-members';
 
@@ -32,6 +33,7 @@ function Route() {
             <Stack hideNavBar={true}>
 
                 <Scene key="Login" component={Login} initial={true} />
+                <Scene key="Signup" component={Signup} />
 
                 <Scene key="Home" component={Home} />
                 <Scene key="GroupInfo" component={GroupInfo} />
