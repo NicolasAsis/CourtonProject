@@ -59,7 +59,6 @@ function Route() {
                     drawerPosition="right"
                     hideDrawerButton={true}
                     hideNavBar={true}
-                    drawerWidth={250}
                     drawerIcon={false}
                 >
                     <Scene key="Home" component={Home} hideNavBar={true} />
