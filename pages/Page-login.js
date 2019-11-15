@@ -142,7 +142,16 @@ function Login(props) {
                 <Text style={styles.loginButText}>LOGIN</Text>
             </TouchableOpacity>
 
-            <Text style={styles.loginText}>Don't have an account?<Text style={styles.signupText}> Sign Up</Text></Text>
+            <View style={{display:'flex',flexDirection:'row'}}>
+            <Text style={styles.loginText}>Don't have an account?</Text>
+            <TouchableOpacity
+                onPress={()=>{
+                    Actions.Signup()
+                }}
+            >
+                <Text style={styles.signupText}> Sign Up</Text>
+            </TouchableOpacity>
+            </View>
         </View>
     );
 }

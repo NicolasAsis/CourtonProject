@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
     View,
     Text,
@@ -11,23 +11,83 @@ import {
 } from 'react-native';
 // import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 
+import {Actions} from 'react-native-router-flux';
+// import Profile from ''
+
+import axios from 'axios';
+
+var email = "";
+var password = "";
+var first_name = "";
+var last_name = "";
+
+
 function Signup(){
+    const [users, setUsers] = useState([]);
+
+    const CreateUser = async()=>{
+        //fetch db to create users
+        console.log('email & password', first_name,last_name,email, password);
+        var obj ={
+            key:"users_create",
+            data:{
+                first_name:first_name,
+                last_name:last_name,
+                email: email,
+                password: password
+            }
+        }
+        var r = await axios.post("http://142.232.162.175:3001/post", obj);
+        console.log("create", r.data);
+        ReadUsers();
+    }
+
+    const ReadUsers = async()=>{
+        var obj = {
+            key:"users_read",
+            data:{}
+        }
+        var r = await axios.post("http://142.232.162.175:3001/post", obj);
+        // console.log("read", r.data);
+        var dbusers = JSON.parse(r.data.body);
+        console.log("read", dbusers);
+        setUsers(dbusers.data);
+    }
+    useEffect(()=>{
+        ReadUsers();
+    }, []);
+    
+
     return(
     <View>
         {/* <View style={{backgroundColor: "#ffffff"}}> */}
         {/* </View> */}
-        <ScrollView>
+        
         <View style={styles.loginpageStructure}>
             <Image
             style={styles.birdieRed} 
             source={require('../assets/img_infographic7.png')}/>
             <Text style={styles.createaccText}>CREATE ACCOUNT</Text>
 
-            <Text style={styles.nameText}>NAME</Text>
+            <Text style={styles.nameText}>FIRST NAME</Text>
             <View style={styles.nameContainer}>
                     <TextInput
                         style={styles.nameInput}
-                        placeholder="First and Last Name"
+                        placeholder="First Name"
+                        onChangeText={(t)=>{
+                            first_name=t;  
+                        }}
+                    />
+            </View>
+
+            <Text style={styles.nameText}>LAST NAME</Text>
+            <View style={styles.nameContainer}>
+                    <TextInput
+                        style={styles.nameInput}
+                        placeholder="Last Name"
+                        onChangeText={(t)=>{
+                            last_name=t;  
+                        }}
                     />
             </View>
 
@@ -36,6 +96,10 @@ function Signup(){
                         <TextInput
                             style={styles.emailInput}
                             placeholder="Email"
+                            onChangeText={(t)=>{
+                                email=t;  
+                            }}
+                            autoCapitalize='none'
                         />
             </View>
 
@@ -45,6 +109,9 @@ function Signup(){
                     <TextInput
                         style={styles.passwordInput}
                         placeholder="Password"
+                        onChangeText={(t)=>{
+                            password=t;  
+                        }}
                         secureTextEntry={true}
                     />
             </View>
@@ -64,7 +131,24 @@ function Signup(){
             onPress={this._signIn}
             disabled={this.state.isSigninInProgress} /> */}
 
-            <TouchableOpacity style={styles.loginBut}>
+            <View style={{display:'flex',flexDirection:'row'}}>
+            <Text style={styles.loginText}>Already have an account?</Text>
+            <TouchableOpacity
+                onPress={()=>{
+                    Actions.pop()
+                }}
+            >
+                <Text style={styles.signupText}> Sign In</Text>
+            </TouchableOpacity>
+            </View>
+
+            <TouchableOpacity 
+                style={styles.loginBut}
+                onPress={()=>{
+                    CreateUser();
+                    // if()
+                }}
+            >
                     <Text style={styles.loginButText}>CREATE</Text>
             </TouchableOpacity>
 
@@ -73,7 +157,7 @@ function Signup(){
              style={styles.birdieBlue} 
              source={require('../assets/img_infographic6.png')}/>
         </View>
-        </ScrollView>
+        
 </View>
     )
 };
@@ -91,10 +175,10 @@ const styles=StyleSheet.create({
 
     },
     birdieRed:{
-        width:250,
-        height: 280,
+        width:180,
+        height: 210,
         top: -30,
-        left: -80,
+        left: -50,
         transform: [{ rotate: '-135.13deg' }],
         backgroundColor:'#FFFFFF'
         
@@ -102,7 +186,7 @@ const styles=StyleSheet.create({
     birdieBlue:{
         width:180,
         height: 230,
-        marginTop:-80,
+        marginTop:-50,
         left:120,
         transform: [{ rotate: '140.12deg' }],
     },
@@ -183,7 +267,7 @@ const styles=StyleSheet.create({
 
     },
     loginBut:{
-        marginTop:48,
+        marginTop:15,
         borderRadius:28,
         width:230,
         height:36,
@@ -205,6 +289,13 @@ const styles=StyleSheet.create({
         lineHeight:16,
         color:'#094E76',
         marginTop:26
+    },
+    signupText:{
+        fontSize:12,
+        lineHeight:16,
+        color:'#5DB9F0',
+        marginTop:26,
+        textDecorationLine: 'underline'
     },
     nameText:{
         fontSize:12,

@@ -32,6 +32,10 @@ function Home() {
     // var dbusers = JSON.parse(r.data.body);
     // console.log("read", dbusers);
     // setUsers(dbusers.data);
+
+  // if(data.organizerName == obj.organizerName ){
+  //   alert('No result is found')
+  // }
 }
 
 
@@ -92,11 +96,17 @@ useEffect(()=>{
   LoadGroup();
 }, []);
 
+  const [popUp, setPopUp] = useState('sat') 
   const [searchKey, setSearchKey] = useState(' ')
 
   const filteredGroup = data.filter((obj)=>{
     return obj.organizerName.indexOf(searchKey) >= 0 || obj.groupNum.indexOf(searchKey) >= 0;
   })
+
+  if (filteredGroup.length == 0) {
+   alert('No result has found')
+  }
+
   return (
     <View>
       <ScrollView
@@ -137,7 +147,7 @@ useEffect(()=>{
                  {
                 filteredGroup.map((obj,i)=>{
                     return <Card_for_player
-                    // key = {i}
+                    key = {i}
                     id = {obj.id}
                     organizerName = {obj.organizerName}
                     groupNum = {obj.groupNum}
@@ -147,9 +157,9 @@ useEffect(()=>{
                     totalMember = {obj.totalMember}
                     price = {obj.price}
                     progressBarLoad = {obj.progressBarLoad}
-
                 />
                 })
+                
             }
             
             </View>
