@@ -55,7 +55,7 @@ function Route() {
                 <Scene key="Member_groupInfo" component={Member_groupInfo}/>
                 <Scene key="Organizer_groupInfo" component={Organizer_groupInfo}/>
 
-                <Scene key="HamMenu" 
+                {/* <Scene key="HamMenu" 
                     drawer
                     contentComponent={HamMenu}
                     drawerPosition="right"
@@ -66,7 +66,7 @@ function Route() {
                     <Scene key="Home" component={Home} hideNavBar={true} />
                     <Scene key="MyGroup" component={MyGroup} hideNavBar={true} />
                     <Scene key="Profile" component={Profile} hideNavBar={true} />
-                </Scene>
+                </Scene> */}
 
             </Stack>
         </Router>

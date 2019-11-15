@@ -37,7 +37,7 @@ function Signup(){
                 password: password
             }
         }
-        var r = await axios.post("http://142.232.162.175:3001/post", obj);
+        var r = await axios.post("http://142.232.167.141:3001/post", obj);
         console.log("create", r.data);
         ReadUsers();
     }
@@ -47,7 +47,7 @@ function Signup(){
             key:"users_read",
             data:{}
         }
-        var r = await axios.post("http://142.232.162.175:3001/post", obj);
+        var r = await axios.post("http://142.232.167.141:3001/post", obj);
         // console.log("read", r.data);
         var dbusers = JSON.parse(r.data.body);
         console.log("read", dbusers);

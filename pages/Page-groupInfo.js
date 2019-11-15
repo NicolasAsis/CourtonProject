@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {
   View,
   Text,
@@ -18,6 +18,47 @@ import Join_group_popup from '../comps/Join_group_popup';
 import { Actions } from "react-native-router-flux";
 
 function GroupInfo() {
+  const LoadMemberCard = async()=>{
+    var obj = {
+        key:"memberCard_read",
+        data:{
+          // organizerName:organizerName,
+          // date:date
+
+        }
+    }
+    // var r = await axios.post("http://142.232.162.71:3001/post", obj);
+    // console.log("read", r.data);
+    // var dbusers = JSON.parse(r.data.body);
+    // console.log("read", dbusers);
+    // setUsers(dbusers.data);
+
+  // if(data.organizerName == obj.organizerName ){
+  //   alert('No result is found')
+  // }
+}
+
+const data=[
+  {
+    memberName:'Lisa Black',
+    organizer:'Organizer',
+    url:'../assets/image.jpeg'
+  },
+  {
+    memberName:'Jonny Wick',
+    url:'../assets/image.jpeg'
+  },
+  {
+    memberName:'Melody Huang',
+    url:'../assets/image.jpeg'
+  }
+]
+
+useEffect(()=>{
+  LoadMemberCard();
+}, []);
+
+
   const styles = StyleSheet.create({
     // Page Structure
     gipageStructure: {
@@ -265,14 +306,19 @@ function GroupInfo() {
                 </View>
                 {/* Member Cards */}
                 <View style={{ alignItems: "flex-start" }}>
-                  <Card_members
-                    organizer={"Organizer"}
-                    memberName={"Tony Wong"}
-                  />
-                  <Card_members memberName={"William Williams"} />
-                  <Card_members memberName={"William Williams"} />
-                  <Card_members memberName={"William Williams"} />
-                  <Card_members memberName={"William Williams"} />
+                {
+                data.map((obj,i)=>{
+                    return <Card_members
+                    // key = {i}
+                    id={obj.id}
+                    memberName={obj.memberName}
+                    organizer={obj.organizer}
+                    url={obj.url}
+                />
+                })
+                
+            }
+                  
                 </View>
                 {/* this TO go to expanded member page */}
                 <TouchableOpacity

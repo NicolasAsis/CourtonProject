@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import Sticky_footer_regular from "../comps/Sticky_footer_regular";
 import Card_notification from "../comps/Card_notification";
+import { Actions } from "react-native-router-flux";
 
 function Profile(props) {
 
@@ -105,28 +106,35 @@ function Profile(props) {
             >
               <Text style={styles.txtName}>Jacky Lee</Text>
               <View style={{ flexDirection: "row", flex: 1, marginTop: 10 }}>
-                <View
-                  style={{
+                
+                  <TouchableOpacity style={{
                     alignItems: "center",
                     justifyContent: "center",
                     marginRight: "15%"
                   }}
-                >
+                  onPress={()=>{
+                    Actions.reset('MyCreatedGroup')
+                  }}
+                  >
                   <Text style={styles.txtCreatedNum}>
                     {props.txtCreatedNum}2
                   </Text>
                   <Text style={styles.txtCreatedJoined}>
                     {props.txtCreatedGroup}Created{" "}
                   </Text>
-                </View>
-                <View
+                  </TouchableOpacity>
+
+                <TouchableOpacity
                   style={{ alignItems: "center", justifyContent: "center" }}
+                  onPress={()=>{
+                    Actions.reset('MyJoinedGroup')
+                  }}
                 >
                   <Text style={styles.txtJoinedNum}>{props.txtJoinedNum}5</Text>
                   <Text style={styles.txtCreatedJoined}>
                     {props.txtJoinedGroup}Joined
                   </Text>
-                </View>
+                </TouchableOpacity>
               </View>
             </View>
           </View>

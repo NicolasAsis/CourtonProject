@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {
     View,
     Text,
@@ -11,7 +11,30 @@ import {
 
 import {Actions} from 'react-native-router-flux';
 
+import axios from 'axios';
+
+var email = "";
+var password = "";
+
 function Login(props) {
+
+    const [users, setUsers] = useState([]);
+    const [error, setError] = useState("");
+
+    const ReadUsers = async()=>{
+        var obj = {
+            key:"users_read",
+            data:{}
+        }
+        var r = await axios.post("http://142.232.167.141:3001/post", obj);
+        // console.log("read", r.data);
+        var dbusers = JSON.parse(r.data.body);
+        console.log("read", dbusers);
+        setUsers(dbusers.data);
+    }
+    useEffect(()=>{
+        ReadUsers();
+    }, []);
 
     const styles=StyleSheet.create({
         loginpageStructure:{
@@ -94,6 +117,12 @@ function Login(props) {
             color:'#094E76',
             marginTop:26
         },
+        errorText:{
+            fontSize:12,
+            lineHeight:16,
+            color:'#FE647B',
+            marginTop:10
+        },
         signupText:{
             fontSize:12,
             lineHeight:16,
@@ -116,6 +145,9 @@ function Login(props) {
                     style={styles.emailInput}
                     placeholder="Email"
                     placeholderTextColor={'#686868'} 
+                    onChangeText={(t)=>{
+                        email=t;
+                    }}
                 />
             </View>
 
@@ -125,8 +157,13 @@ function Login(props) {
                     placeholder="Password"
                     secureTextEntry={true}
                     placeholderTextColor={'#686868'} 
+                    onChangeText={(t)=>{
+                        password=t;
+                    }}
                 />
             </View>
+
+            <Text style={styles.errorText}>{error}</Text>
 
             {/* <Button
                 title="LOGIN"
@@ -136,7 +173,19 @@ function Login(props) {
             <TouchableOpacity 
                 style={styles.loginBut}
                 onPress={()=>{
+                    if(email.length===0 || password.length===0){
+                        setError("Please type something in.")
+                    } 
+                    else if(obj.email == email && obj.password == password){
+                        Actions.Home()
+                    }
+                    else if(obj.email != email || obj.password != password){
+                        setError("Incorrect email or password.")
+                        console.log(obj.email);
+                    }
+                    else {
                     Actions.Home()
+                    }
                 }}
             >
                 <Text style={styles.loginButText}>LOGIN</Text>

@@ -8,47 +8,51 @@ function Card_members(props) {
       width: 302,
       height: 68,
       borderRadius: 10,
-      // backgroundColor:'blue',
-      display: "flex",
-      flexDirection: "row"
-    },
-    //Card container shadow
-    cardContainerShadow: {
-      width: 330,
-      height: 68,
-      borderRadius: 10,
-      position: "relative",
       backgroundColor: "#FFFFFF",
-      display: "flex",
       flexDirection: "row",
       shadowOpacity: 0.1,
       shadowOffset: { x: 0, y: 3 },
       shadowRadius: 5,
       shadowColor: "#000000"
     },
+    //Card container shadow
+    // cardContainerShadow: {
+    //   width: 330,
+    //   height: 68,
+    //   borderRadius: 10,
+    //   // position: "relative",
+    //   // backgroundColor: "#FFFFFF",
+    //   // display: "flex",
+    //   // flexDirection: "row",
+    //   // shadowOpacity: 0.1,
+    //   // shadowOffset: { x: 0, y: 3 },
+    //   // shadowRadius: 5,
+    //   // shadowColor: "#000000"
+    // },
     //Organizer image section
     organizerImgSec: {
       flex: 1,
       borderRadius: 10,
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center"
+      alignItems: "center",
+     
       // backgroundColor:'yellow'
     },
     //Organizer image
     organizerImg: {
-      width: 52,
-      height: 52,
+      width: 45,
+      height: 45,
       borderRadius: 50,
-      backgroundColor: "skyblue"
+      backgroundColor: "skyblue",
+      paddingLeft:'25%'
+      // flex: 5
     },
     //Organizer name section
     organizerNameSec: {
-      flex: 3,
+      // flex: 3,
       borderRadius: 10,
-      // backgroundColor:'green',
-      display: "flex",
-      justifyContent: "center"
+      justifyContent: "center",
+      left:'15%'
+      // flex:6
     },
     //"Organizer" text
     organizerText: {
@@ -67,20 +71,22 @@ function Card_members(props) {
   });
   return (
     //Overall container
-    <View style={{ display: "flex", alignItems: "center", marginBottom: 20 }}>
+    <View style={{ alignItems: "center", marginBottom: 20 }}>
       {/* Card Container */}
       <View style={styles.cardContainer}>
-        <View style={styles.cardContainerShadow}>
-          {/* Organizer Image
-          <Image
-            style={styles.organizerImg}
-            source={{uri: props.url}}
-          />
-          
-          Section */}
-          <View style={styles.organizerImgSec}>
-            <View style={styles.organizerImg}></View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <View style={styles.organizerImg}>
+            {/* Organizer Image */}
+            <Image source={{ uri: props.url }} />
+            {/* Section */}
           </View>
+
           {/* Organizer Name Section */}
           <View style={styles.organizerNameSec}>
             <Text style={styles.organizerText}>{props.organizer}</Text>
