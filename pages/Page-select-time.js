@@ -46,6 +46,8 @@ function SelectTime() {
       hideDateTimePicker();
     };
 
+    // var hrsPlay = {chosenDate} - {chosenDate2};
+
   return (
     <View style={{backgroundColor:'#FFFFFF', height:'100%'}}>
       <Header_blue_red headerTitle={"Choose a time"} courtName={"Stage 18"} />
@@ -72,9 +74,6 @@ function SelectTime() {
         }}
       >
         <View style={{ justifyContent: "center", alignItems: "center" }}>
-          <TouchableOpacity style={styles.txtTime}>
-            <Text>Sat 23rd Dec 2019</Text>
-          </TouchableOpacity>
         </View>
         <View style={{ paddingTop: 50, width: 300 }}>
           <SwitchSelector
@@ -115,7 +114,8 @@ function SelectTime() {
               isVisible={isDateTimePickerVisible}
               onConfirm={handleDatePicked}
               onCancel={hideDateTimePicker}
-              mode='time'
+              mode='datetime'
+              titleIOS='Pick date and time'
             />
           </View>
         </View>
@@ -147,7 +147,9 @@ function SelectTime() {
         </View>
 
         {/* OK btn */}
-        <Button_Ok />
+        <Button_Ok 
+        hrsPlay={{chosenDate} - {chosenDate2}}
+        />
         <View></View>
       </View>
     </View>
