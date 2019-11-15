@@ -118,6 +118,14 @@ useEffect(()=>{
                 <Text>Test</Text>
               </TouchableOpacity>
 
+              <TouchableOpacity
+              onPress={()=>{
+                Actions.HamMenu();
+              }}
+              >
+                <Text>Test2</Text>
+              </TouchableOpacity>
+
 
               <Text style={styles.title}>Upcoming Available Groups</Text>
 
