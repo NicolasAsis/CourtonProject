@@ -14,36 +14,49 @@ import GestureRecognizer, {
 
 // const [animatedImg, setAnimatedImg] = useState()
 
+// Animation 
+import * as Animatable from "react-native-animatable";
+
 function OnBoarding_3() {
   return (
     <View style={styles.pg}>
       <View style={styles.top}>
+
+        <Animatable.View stlye={styles.card} animation="fadeIn" iterationCount={1} direction="alternate" delay={1000}>
         <Image
           style={styles.infograph1}
           source={require("../assets/img_infographic_onphone.png")}
         />
+        </Animatable.View>
+        
+        <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2000}>
         <Image
           style={styles.infograph2}
           source={require("../assets/img_infographic_createGroup_2.png")}
         />
+        </Animatable.View>
 
+        <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2100}>
         <Image
           style={styles.infograph3}
           source={require("../assets/img_infographic_createGroup_2.png")}
         />
+        </Animatable.View>
+        
 
+        <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2200}>
         <Image
             style={styles.infograph4}
             source={require("../assets/img_infographic_createGroup_2.png")}
         /> 
+        </Animatable.View>
        
       </View>
       <View style={styles.bottom}>
         <Text style={styles.step}>Create Groups</Text>
         <Text style={styles.descp}>
-          Click on the light blue “+” button to create your own badminton group.
-          Choose which badminton centre, date, time, badminton court, maximum
-          members and price per person to host a game.
+        Become a group organizer. Click on the light blue “+” button to create your own badminton group. Choose which badminton centre, 
+        date, time, badminton court, maximum members and price per person to host a game.
         </Text>
         <View style={styles.indicator}>
           <View style={styles.sCircle}></View>
@@ -82,17 +95,17 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 123,
     height: 123,
-    left: 223,
-    top: 160
+    left:-20,
+    top: -240
   },
 
   //  2 create group - infograph
   infograph3: {
     position: "absolute",
-    width: 78,
+    width: 80,
     height: 78,
-    left: 68,
-    top: 280
+    left:-120,
+    top:-110
   },
 
   //  3 create group - infograph
@@ -100,8 +113,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 95,
     height: 95,
-    left: 320,
-    top: 303,
+    left:80,
+    top: -100,
   },
 
   bottom: {

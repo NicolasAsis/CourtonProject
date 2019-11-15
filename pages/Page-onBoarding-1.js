@@ -5,7 +5,8 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Animated
+  Animated,
+  Easing
 } from "react-native";
 
 import GestureRecognizer, {
@@ -14,18 +15,28 @@ import GestureRecognizer, {
 
 // const [animatedImg, setAnimatedImg] = useState()
 
+// Animation 
+import * as Animatable from "react-native-animatable";
+
 function OnBoarding_1() {
   return (
     <View style={styles.pg}>
       <View style={styles.top}>
+        <Animatable.View style={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2000}>
         <Image
           style={styles.infograph1}
           source={require("../assets/img_infographic3Birdie.png")}
         />
+        </Animatable.View>
+        
+        <Animatable.View style={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={1000}>
+      
         <Image
           style={styles.infograph2}
           source={require("../assets/img_infographic3.png")}
         />
+        </Animatable.View>
+        
       </View>
       <View style={styles.bottom}>
         <Text style={styles.step}>Intro</Text>
