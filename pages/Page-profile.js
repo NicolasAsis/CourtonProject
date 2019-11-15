@@ -146,7 +146,9 @@ function Profile(props) {
         <View style={{ width: "100%", height: 100, zIndex: 10 }}>
             <View style={{flexDirection:'row', justifyContent:'center', alignItems:'center', top:70}}>
             </View>
+
           <Text style={styles.txtNotification}>Notifications</Text>
+
         </View>
         <ScrollView>
           <View
