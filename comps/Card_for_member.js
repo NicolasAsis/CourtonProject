@@ -22,11 +22,11 @@ function Card_for_member(props) {
           <Text style={styles.txtGroupDate}>{props.date} {props.time}</Text>
           {/* <Text style={styles.txtGroupJoinDate}>Join Before: Dec 20 11:30pm</Text> */}
           <Text style={styles.txtGroupPlayerCount}>Players {props.joinedMember}/{props.totalMember}</Text>
-          <Text style={styles.txtGroupPrice}>${props.totalPrice}</Text>
+          <Text style={styles.txtGroupPrice}>${props.price}</Text>
           <Progress.Bar
-            unfilledColor="#CDC5C5"
+            unfilledColor={"#CDC5C5"}
             borderColor="#FFFFFF"
-            color="#81EC8D"
+            color={"#81EC8D"}
             progress= {props.progressBarLoad}
             width={180}
             style={styles.ProgressBar}

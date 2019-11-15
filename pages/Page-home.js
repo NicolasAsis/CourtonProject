@@ -22,8 +22,8 @@ function Home() {
     var obj = {
         key:"groups_read",
         data:{
-          organizerName:organizerName,
-          date:date
+          // organizerName:organizerName,
+          // date:date
 
         }
     }

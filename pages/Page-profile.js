@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Text,
   View,
@@ -8,15 +8,15 @@ import {
   ScrollView
 } from "react-native";
 import Sticky_footer_regular from "../comps/Sticky_footer_regular";
-import Card_recent from "../comps/Card_recent";
+import Card_notification from "../comps/Card_notification";
 
 function Profile(props) {
 
-    const LoadGroup = async()=>{
+    const LoadComments = async()=>{
       var obj = {
-          key:"groups_read",
+          key:"users_read",
           data:{
-            bmtCentre:bmtCentre,
+            name:name,
             id:id
   
           }
@@ -27,16 +27,44 @@ function Profile(props) {
       // console.log("read", dbusers);
       // setUsers(dbusers.data);
   }
-  const recentGroupData=[
+
+  useEffect(()=>{
+    LoadComments();
+  }, []);
+  
+  const notificationData=[
     {
-      bmtCentre : 'Tony Wong',
+      name : 'Tony Wong',
       groupNum : '1511',
-      bmtCentreTime : 'Fri, Dec 30 1pm - 8pm',
+      comment:'From its medieval origins to the digital era,',
       bmtCentrePostTime : '15 sec ago',
       verIndicatorColor :'#FE647B'
     },
+    {
+      name : 'William Smith',
+      groupNum : '0911',
+      comment:'Lorem ipsum is placeholder text commonly ',
+      bmtCentrePostTime : '3 weeks ago',
+      verIndicatorColor :'#094E76'
+    },
+    {
+      name : 'Carol English',
+      groupNum : '0911',
+      comment:'Lorem ipsum is placeholder text commonly ',
+      bmtCentrePostTime : '4 weeks ago',
+      verIndicatorColor :'#094E76'
+    },
+    {
+      name : 'Nicolas Asis',
+      groupNum : '0911',
+      comment:'Lorem ipsum is placeholder text commonly ',
+      bmtCentrePostTime : '5 weeks ago',
+      verIndicatorColor :'#094E76'
+    },
   
   ]
+
+
   return (
     <View>
       <TouchableOpacity
@@ -117,18 +145,8 @@ function Profile(props) {
       >
         <View style={{ width: "100%", height: 100, zIndex: 10 }}>
             <View style={{flexDirection:'row', justifyContent:'center', alignItems:'center', top:70}}>
-
-           
-            <View style={{flexDirection:'row', paddingRight:30}} > 
-                <View style={styles.circleIndicatorJoined}></View>
-                <Text style={styles.txtIndicator}>Joined</Text>
             </View>
-            <View style={{flexDirection:'row', paddingLeft:30}} > 
-                <View style={styles.circleIndicatorCreated}></View>
-                <Text style={styles.txtIndicator}>Created</Text>
-            </View>
-            </View>
-          <Text style={styles.txtRecent}>Recent</Text>
+          <Text style={styles.txtNotification}>Notifications</Text>
         </View>
         <ScrollView>
           <View
@@ -142,22 +160,19 @@ function Profile(props) {
           >
 
             {
-              recentGroupData.map((obj,i)=>{
-                return <Card_recent
-                // key = {i}
+              notificationData.map((obj,i)=>{
+                return <Card_notification
+                key = {i}
                 id = {obj.id}
-                bmtCentre = {obj.bmtCentre}
+                name = {obj.name}
                 groupNum = {obj.groupNum}
-                bmtCentreTime = {obj.bmtCentreTime}
+                comment = {obj.comment}
                 bmtCentrePostTime = { obj.bmtCentrePostTime}
                 verIndicatorColor = {obj.verIndicatorColor}
-                
             />
             })
             }
-            <Card_recent 
-            verIndicatorColor={'#094E76'}
-            />
+          
             
           </View>
         </ScrollView>
@@ -219,7 +234,7 @@ const styles = StyleSheet.create({
     fontFamily: "Open sans",
     fontSize: 12
   },
-  txtRecent: {
+  txtNotification: {
     fontFamily: "Open sans",
     fontSize: 18,
     color: "#C2C1C1",
