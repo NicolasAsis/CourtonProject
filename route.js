@@ -55,18 +55,20 @@ function Route() {
                 <Scene key="Member_groupInfo" component={Member_groupInfo}/>
                 <Scene key="Organizer_groupInfo" component={Organizer_groupInfo}/>
 
-                <Scene key="HamMenu" component={HamMenu} drawer={true} drawerPosition='right' />
-
-                <Drawer
-                    hideNavBar
-                    key='drawerMenu'
-                    component={HamMenu}
+                <Scene key="HamMenu" 
+                    drawer
+                    contentComponent={HamMenu}
                     drawerPosition="right"
-                    transparent={true}
+                    hideDrawerButton={true}
+                    hideNavBar={true}
+                    drawerWidth={250}
+                    drawerIcon={false}
                 >
-                    <Scene key="Home" component={Home} />
-                </Drawer>
-                
+                    <Scene key="Home" component={Home} hideNavBar={true} />
+                    <Scene key="MyGroup" component={MyGroup} hideNavBar={true} />
+                    <Scene key="Profile" component={Profile} hideNavBar={true} />
+                </Scene>
+
             </Stack>
         </Router>
     );
