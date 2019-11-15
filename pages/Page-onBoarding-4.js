@@ -14,48 +14,66 @@ import GestureRecognizer, {
 
 // const [animatedImg, setAnimatedImg] = useState()
 
+// Animation 
+import * as Animatable from "react-native-animatable";
+
 function OnBoarding_4() {
   return (
     <View style={styles.pg}>
       <View style={styles.top}>
       
+
+      <Animatable.View stlye={styles.card} animation="fadeIn" iterationCount={1} direction="alternate" delay={1000}>
         <Image
           style={styles.infograph1}
           source={require("../assets/img_infographic_blue.png")}
         />
+      </Animatable.View>
+      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={1500}>
         <Image
           style={styles.infograph2}
           source={require("../assets/img_infographic4.png")}
         />
+      </Animatable.View>
+      
+      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={1800}>
         <Image
           style={styles.infograph3}
           source={require("../assets/img_infograph_profile.png")}
         />
-
+      </Animatable.View>
+      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2000}>
         <Image
           style={styles.infograph4}
           source={require("../assets/img_infograph_buttons.png")}
-        />  
-
+        /> 
+      </Animatable.View> 
+      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2200}>
         <Image
           style={styles.infograph5}
           source={require("../assets/img_infograph_data.png")}
         /> 
+      </Animatable.View>
+      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2400}>
         <Image
           style={styles.infograph6}
           source={require("../assets/img_infograph_data1.png")}
         />  
+      </Animatable.View>
+      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2600}>
         <Image
           style={styles.infograph7}
           source={require("../assets/img_infograph_data1.png")}
         /> 
+      </Animatable.View>
         
       </View>
       <View style={styles.bottom}>
         <Text style={styles.step}>Organized for You</Text>
         <Text style={styles.descp}>
-        Once you join or create a group, all your groups will be 
-        conveniently organized in your own profile for you.  
+        Once you join or create a group, 
+        all your notifications will be 
+        conveniently organized in your own profile for you. 
         </Text>
         <View style={styles.indicator}>
           <View style={styles.sCircle}></View>
@@ -94,42 +112,47 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 171,
     height: 290,
-    top: 174
+    top:-210,
+    left:-85
   },
   // profile - infograph
   infograph3: {
     position: "absolute",
     width: 123,
     height: 63,
-    top: 229
+    top:-160,
+    left:-58
   },
   // indicator - infograph
   infograph4: {
     position: "absolute",
     width: 93,
     height: 33,
-    left: 155,
-    top: 290
+    left:-50,
+    top:-100
   },
   // red upcoming - infograph
   infograph5: {
     position: "absolute",
     width: 132,
     height: 37,
-    top: 327
+    top:-55,
+    left:-65
   },
    // blue upcoming - infograph
    infograph6: {
     position: "absolute",
     width: 132,
-    height: 37,
-    top:355
+    height:27,
+    left:-65,
+    top:-23
   },
   infograph7: {
     position: "absolute",
     width: 132,
     height: 37,
-    top:384
+    top:0,
+    left:-65
   },
   bottom: {
     display: "flex",
