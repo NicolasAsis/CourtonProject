@@ -128,7 +128,7 @@ function Profile(props) {
                 <Text style={styles.txtIndicator}>Created</Text>
             </View>
             </View>
-          <Text style={styles.txtRecent}>Recent</Text>
+          <Text style={styles.txtRecent}>Notifications</Text>
         </View>
         <ScrollView>
           <View

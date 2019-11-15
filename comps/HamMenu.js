@@ -1,31 +1,51 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet,TouchableOpacity} from "react-native";
+
+import {Actions} from 'react-native-router-flux';
 
 function HamMenu() {
   return (
     <View style={styles.menu}>
-      <View style={styles.hamItem}>
-        <Image
-          style={styles.icon}
-          source={require("../assets/icon_ham_home.png")}
-        />
-        <Text style={styles.label}>HOME</Text>
+      <TouchableOpacity
+        onPress={()=>{
+          Actions.Home()
+        }}
+      >
+        <View style={styles.hamItem}>
+          <Image
+            style={styles.icon}
+            source={require("../assets/icon_ham_home.png")}
+          />
+          <Text style={styles.label}>HOME</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={()=>{
+          Actions.MyGroup()
+        }}
+      >
+        <View style={styles.hamItem}>
+          <Image
+            style={styles.icon}
+            source={require("../assets/icon_ham_group.png")}
+          />
+          <Text style={styles.label}>MY GROUPS</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={()=>{
+          Actions.Profile()
+        }}
+      >
+        <View style={styles.hamItem}>
+          <Image
+            style={styles.icon}
+            source={require("../assets/icon_ham_profile.png")}
+          />
+          <Text style={styles.label}>PROFILE</Text>
+        </View>
+      </TouchableOpacity>
       </View>
-      <View style={styles.hamItem}>
-        <Image
-          style={styles.icon}
-          source={require("../assets/icon_ham_group.png")}
-        />
-        <Text style={styles.label}>MY GROUPS</Text>
-      </View>
-      <View style={styles.hamItem}>
-        <Image
-          style={styles.icon}
-          source={require("../assets/icon_ham_profile.png")}
-        />
-        <Text style={styles.label}>PROFILE</Text>
-      </View>
-    </View>
   );
 }
 
