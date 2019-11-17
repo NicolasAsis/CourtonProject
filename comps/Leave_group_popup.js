@@ -3,39 +3,43 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import {Actions} from 'react-native-router-flux';
 
 
+// Animation 
+import * as Animatable from "react-native-animatable";
+
 function Leave_group_popup(props) {
   return (
     <View style={styles.container}>
-      <View style={styles.popup}>
-        <Text style={styles.boldGroupText}>Leave Group</Text>
-        <Text style={styles.boldGroupNumText}>{props.groupNum}#C1314 ?</Text>
+      
+      <Animatable.View animation="bounceIn" iterationCount={1} direction="alternate">
+          <View style={styles.popup}>
+            <Text style={styles.boldGroupText}>Leave Group</Text>
+            <Text style={styles.boldGroupNumText}>#C1314 ?</Text>
+            
 
-        <TouchableOpacity
-          onPress={() => {
+            <TouchableOpacity
+              onPress={() => {
             // Actions.GroupInfo()
             props.setShowPopup(false);
           }}
           style={styles.noButTouchableOp}
-        >
-          <Image
-            style={styles.noButton}
-            source={require("../assets/but_no.png")}
-          ></Image>
-        </TouchableOpacity>
+              >
+              <Image style={styles.noButton} source={require("../assets/but_no.png")}></Image> 
+            </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={() => {
+            <TouchableOpacity
+               onPress={() => {
             props.setShowPopup(false);
             Actions.MyGroup();
           }}
-          style={styles.yesButTouchableOp}
-        >
-          <Image
-            style={styles.yesButton}
-            source={require("../assets/but_yes.png")}
-          />
-        </TouchableOpacity>
-      </View>
+          style={styles.yesButTouchableOp}                                      
+             >
+              <Image style={styles.yesButton} source={require("../assets/but_yes.png")}/>
+            </TouchableOpacity>
+
+          </View>
+      </Animatable.View>
+      
+
     </View>
   );
 }

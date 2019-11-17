@@ -12,47 +12,70 @@ import GestureRecognizer, {
   swipeDirections
 } from "react-native-swipe-gestures";
 
+import {Actions} from 'react-native-router-flux';
+
 // const [animatedImg, setAnimatedImg] = useState()
+
+// Animation 
+import * as Animatable from "react-native-animatable";
 
 function OnBoarding_3() {
   return (
     <View style={styles.pg}>
       <View style={styles.top}>
+
+        <Animatable.View stlye={styles.card} animation="fadeIn" iterationCount={1} direction="alternate" delay={1000}>
         <Image
           style={styles.infograph1}
           source={require("../assets/img_infographic_onphone.png")}
         />
+        </Animatable.View>
+        
+        <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2000}>
         <Image
           style={styles.infograph2}
           source={require("../assets/img_infographic_createGroup_2.png")}
         />
+        </Animatable.View>
 
+        <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2100}>
         <Image
           style={styles.infograph3}
           source={require("../assets/img_infographic_createGroup_2.png")}
         />
+        </Animatable.View>
+        
 
+        <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2200}>
         <Image
             style={styles.infograph4}
             source={require("../assets/img_infographic_createGroup_2.png")}
         /> 
+        </Animatable.View>
        
       </View>
       <View style={styles.bottom}>
         <Text style={styles.step}>Create Groups</Text>
         <Text style={styles.descp}>
-          Click on the light blue “+” button to create your own badminton group.
-          Choose which badminton centre, date, time, badminton court, maximum
-          members and price per person to host a game.
+        Become a group organizer. Click on the light blue “+” button to create your own badminton group. Choose which badminton centre, 
+        date, time, badminton court, maximum members and price per person to host a game.
         </Text>
         <View style={styles.indicator}>
-          <View style={styles.sCircle}></View>
-          <View style={styles.sCircle}></View>
-          <View style={styles.bCircle}></View>
-          <View style={styles.sCircle}></View>
+          <TouchableOpacity style={styles.sCircle} onPress={()=>{
+                  Actions.OnBoarding_1()
+              }}></TouchableOpacity>
+          <TouchableOpacity  style={styles.sCircle} onPress={()=>{
+                  Actions.OnBoarding_2()
+              }}></TouchableOpacity>
+          <TouchableOpacity  style={styles.bCircle} onPress={()=>{
+                  Actions.OnBoarding_3()
+              }}></TouchableOpacity>
+          <TouchableOpacity style={styles.sCircle} onPress={()=>{
+                  Actions.OnBoarding_4()
+              }}></TouchableOpacity>
         </View>
-        <TouchableOpacity>
-          <Text style={styles.skipBtn}>SKIP</Text>
+        <TouchableOpacity onPress={()=>{Actions.Home()}}>
+        <Text style={styles.skipBtn} >SKIP</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -82,17 +105,17 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 123,
     height: 123,
-    left: 223,
-    top: 160
+    left:-20,
+    top: -240
   },
 
   //  2 create group - infograph
   infograph3: {
     position: "absolute",
-    width: 78,
+    width: 80,
     height: 78,
-    left: 68,
-    top: 280
+    left:-120,
+    top:-110
   },
 
   //  3 create group - infograph
@@ -100,8 +123,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 95,
     height: 95,
-    left: 320,
-    top: 303,
+    left:80,
+    top: -100,
   },
 
   bottom: {
@@ -156,7 +179,7 @@ const styles = StyleSheet.create({
   sCircle: {
     width: 16,
     height: 16,
-    backgroundColor: "#ECECEC",
+    backgroundColor: "#9ea2a7",
     borderRadius: 50,
     margin: 15
   },

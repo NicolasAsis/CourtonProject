@@ -37,7 +37,8 @@ import SelectLocation from '../pages/Page-select-location';
 import MoreMembers from '../pages/Page-more-members';
 import MyGroup from '../pages/Page-my-group';
 import Card_recent from '../comps/Card_recent';
-import SelectTime from'../pages/Page-select-time';
+import SelectTime from '../pages/Page-select-time';
+import Welcome from '../pages/Page-Welcome';
 
 storiesOf('courton_comps', module)
   .add('Bar_group_countdown_price', ()=>{
@@ -139,6 +140,10 @@ storiesOf('courton_pages', module)
 
   .add('Page-onBoarding-4', ()=>{
     return<OnBoarding_4 />
+  })
+
+  .add('Page-Welcome', ()=>{
+    return<Welcome />
   })
 
   .add('Page-organizer-groupInfo', ()=>{
