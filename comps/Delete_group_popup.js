@@ -1,7 +1,8 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import {Actions} from 'react-native-router-flux'
 
-function Delete_group_popup() {
+function Delete_group_popup(props) {
   return (
     <View style={styles.container}>
       <View style={styles.popup}>
@@ -9,11 +10,23 @@ function Delete_group_popup() {
         <Text style={styles.boldGroupNumText}>#S2314 ?</Text>
         
 
-        <TouchableOpacity>
+        <TouchableOpacity
+        onPress={() => {
+          // Actions.GroupInfo()
+          props.setShowPopup(false);
+        }}
+        style={styles.noButTouchableOp}
+        >
           <Image style={styles.noButton} source={require("../assets/but_no.png")}></Image> 
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity
+        onPress={() => {
+          props.setShowPopup(false);
+          Actions.MyGroup();
+        }}
+        style={styles.yesButTouchableOp}
+        >
           <Image style={styles.yesButton} source={require("../assets/but_yes.png")}/>
         </TouchableOpacity>
 
@@ -27,7 +40,8 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: "100%"
+    height: "100%",
+    backgroundColor: "rgba(0,0,0,0.401636)"
   },
 
   popup: {
@@ -62,17 +76,31 @@ const styles = StyleSheet.create({
    noButton:{
        position: 'absolute',
        width: 100,
+       height: 38
+    //  left: -112,
+    //  top: 14,
+  },
+  noButTouchableOp: {
+    position: "absolute",
+    width: 100,
        height: 38,
-       left: -112,
-       top: 21,
+       left: 20,
+    top: 143
     },
 
-    yesButton:{
-        position: 'absolute',
+    yesButton: {
+      // position: 'absolute',
+      width: 100,
+      height: 38
+      // left: 12,
+      // top: 14,
+    },
+    yesButTouchableOp: {
+      position: "absolute",
         width: 100,
         height: 38,
-        left: 12,
-        top: 21,
+        left: 135,
+        top: 143
      }
 
 

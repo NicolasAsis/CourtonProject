@@ -1,22 +1,40 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import {Actions} from 'react-native-router-flux';
 
-function Leave_group_popup() {
+
+function Leave_group_popup(props) {
   return (
     <View style={styles.container}>
       <View style={styles.popup}>
         <Text style={styles.boldGroupText}>Leave Group</Text>
-        <Text style={styles.boldGroupNumText}>#C1314 ?</Text>
-        
+        <Text style={styles.boldGroupNumText}>{props.groupNum}#C1314 ?</Text>
 
-        <TouchableOpacity>
-          <Image style={styles.noButton} source={require("../assets/but_no.png")}></Image> 
+        <TouchableOpacity
+          onPress={() => {
+            // Actions.GroupInfo()
+            props.setShowPopup(false);
+          }}
+          style={styles.noButTouchableOp}
+        >
+          <Image
+            style={styles.noButton}
+            source={require("../assets/but_no.png")}
+          ></Image>
         </TouchableOpacity>
 
-        <TouchableOpacity>
-          <Image style={styles.yesButton} source={require("../assets/but_yes.png")}/>
+        <TouchableOpacity
+          onPress={() => {
+            props.setShowPopup(false);
+            Actions.MyGroup();
+          }}
+          style={styles.yesButTouchableOp}
+        >
+          <Image
+            style={styles.yesButton}
+            source={require("../assets/but_yes.png")}
+          />
         </TouchableOpacity>
-
       </View>
     </View>
   );
@@ -27,7 +45,8 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    height: "100%"
+    height: "100%",
+    backgroundColor: "rgba(0,0,0,0.401636)"
   },
 
   popup: {
@@ -58,26 +77,35 @@ const styles = StyleSheet.create({
     color: "#3C3C3C"
   },
 
+  noButton: {
+    //  position: 'absolute',
+    width: 100,
+    height: 38
+    //  left: -112,
+    //  top: 14,
+  },
+  noButTouchableOp: {
+    position: "absolute",
+    width: 100,
+    height: 38,
+    left: 20,
+    top: 143
+  },
 
-   noButton:{
-       position: 'absolute',
-       width: 100,
-       height: 38,
-       left: -112,
-       top: 21,
-    },
-
-    yesButton:{
-        position: 'absolute',
-        width: 100,
-        height: 38,
-        left: 12,
-        top: 21,
-     }
-
-
+  yesButton: {
+    // position: 'absolute',
+    width: 100,
+    height: 38
+    // left: 12,
+    // top: 14,
+  },
+  yesButTouchableOp: {
+    position: "absolute",
+    width: 100,
+    height: 38,
+    left: 135,
+    top: 143
+  }
 });
-
-   
 
 export default Leave_group_popup;

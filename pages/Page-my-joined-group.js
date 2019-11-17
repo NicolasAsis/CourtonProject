@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { View, Text, StyleSheet, Image, TextInput } from "react-native";
+import { View, Text, StyleSheet, Image, TextInput, Alert } from "react-native";
 
 import Header_blue from "../comps/Header_blue";
 import Card_organizer from "../comps/Card_for_organizer";
@@ -92,7 +92,7 @@ const [searchKey, setSearchKey] = useState(' ')
   })
 
   if (filteredJoinedGroup.length == 0) {
-   alert('No result has found')
+    Alert.alert('Oops! No result','Try another name')
   }
 
 
