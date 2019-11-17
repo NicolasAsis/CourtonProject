@@ -20,12 +20,17 @@ import MyJoinedGroup from './pages/Page-my-joined-group';
 import SelectTime from './pages/Page-select-time';
 import Member_groupInfo from './pages/Page-member-groupInfo';
 import Organizer_groupInfo from './pages/Page-organizer-groupInfo';
-import Signup from './pages/Page-signup';
-
+import OnBoarding_1 from './pages/Page-onBoarding-1';
+import OnBoarding_2 from './pages/Page-onBoarding-2';
+import OnBoarding_3 from './pages/Page-onBoarding-3';
+import OnBoarding_4 from './pages/Page-onBoarding-4';
 import MoreMembers from './pages/Page-more-members';
+import Welcome from './pages/Page-Welcome';
 
 import HamMenu from './comps/HamMenu';
 import LoadingAnimation from './comps/LoadingAnimation';
+
+
 
 function Route() {
     return (
@@ -33,7 +38,9 @@ function Route() {
             <Stack hideNavBar={true}>
 
                 <Scene key="Login" component={Login} initial={true} />
-                <Scene key="Signup" component={Signup} />
+
+                <Scene key="Welcome" component={Welcome} initial={true} />
+                <Scene key="OnBoarding_1" component={OnBoarding_1} initial={true} />
 
                 <Scene key="Home" component={Home} />
                 <Scene key="GroupInfo" component={GroupInfo} />
@@ -41,6 +48,7 @@ function Route() {
                 <Scene key="Join_group_popup" component={Join_group_popup} />
                 <Scene key="JoinedGroup" component={JoinedGroup} />
                 <Scene key="MyJoinedGroup" component={MyJoinedGroup} />
+
 
                 <Scene key="MyGroup" component={MyGroup} />
                 <Scene key="Profile" component={Profile} />
@@ -55,19 +63,23 @@ function Route() {
                 <Scene key="Member_groupInfo" component={Member_groupInfo}/>
                 <Scene key="Organizer_groupInfo" component={Organizer_groupInfo}/>
 
-                {/* <Scene key="HamMenu" 
-                    drawer
-                    contentComponent={HamMenu}
-                    drawerPosition="right"
-                    hideDrawerButton={true}
-                    hideNavBar={true}
-                    drawerIcon={false}
-                >
-                    <Scene key="Home" component={Home} hideNavBar={true} />
-                    <Scene key="MyGroup" component={MyGroup} hideNavBar={true} />
-                    <Scene key="Profile" component={Profile} hideNavBar={true} />
-                </Scene> */}
+                <Scene key="OnBoarding_1" component={OnBoarding_1}/>
+                <Scene key="OnBoarding_2" component={OnBoarding_2}/>
+                <Scene key="OnBoarding_3" component={OnBoarding_3}/>
+                <Scene key="OnBoarding_4" component={OnBoarding_4}/>
 
+                <Scene key="HamMenu" component={HamMenu} drawer={true} drawerPosition='right' />
+
+                <Drawer
+                    hideNavBar
+                    key='drawerMenu'
+                    component={HamMenu}
+                    drawerPosition="right"
+                    transparent={true}
+                >
+                    <Scene key="Home" component={Home} />
+                </Drawer>
+                
             </Stack>
         </Router>
     );

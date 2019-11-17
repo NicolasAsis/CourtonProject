@@ -1,23 +1,29 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 
+// Animation 
+import * as Animatable from "react-native-animatable";
+
 function Delete_group_popup() {
   return (
     <View style={styles.container}>
-      <View style={styles.popup}>
-        <Text style={styles.boldGroupText}>Delete Group</Text>
-        <Text style={styles.boldGroupNumText}>#S2314 ?</Text>
-        
 
-        <TouchableOpacity>
-          <Image style={styles.noButton} source={require("../assets/but_no.png")}></Image> 
-        </TouchableOpacity>
+      <Animatable.View animation="bounce" iterationCount={1} direction="alternate">
+            <View style={styles.popup}>
+              <Text style={styles.boldGroupText}>Delete Group</Text>
+              <Text style={styles.boldGroupNumText}>#S2314 ?</Text>
+          
+              <TouchableOpacity>
+                <Image style={styles.noButton} source={require("../assets/but_no.png")}></Image> 
+              </TouchableOpacity>
 
-        <TouchableOpacity>
-          <Image style={styles.yesButton} source={require("../assets/but_yes.png")}/>
-        </TouchableOpacity>
+              <TouchableOpacity>
+                <Image style={styles.yesButton} source={require("../assets/but_yes.png")}/>
+              </TouchableOpacity>
 
-      </View>
+            </View>
+      </Animatable.View>
+
     </View>
   );
 }
