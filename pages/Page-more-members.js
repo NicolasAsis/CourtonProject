@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { View, Text } from "react-native";
 import Header_blue from "../comps/Header_blue";
 import Card_members from "../comps/Card_members";
@@ -9,8 +9,8 @@ function MoreMembers() {
     var obj = {
         key:"_read",
         data:{
-          organizerName:organizerName,
-          date:date
+          // organizerName:organizerName,
+          // date:date
 
         }
     }
@@ -44,7 +44,7 @@ function MoreMembers() {
             
            
             {
-                member.map((obj,i)=>{
+                data.map((obj,i)=>{
                     return <Card_members
                     // key = {i}
                     id = {obj.id}
