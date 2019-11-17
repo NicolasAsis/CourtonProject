@@ -5,6 +5,7 @@ import { Actions } from "react-native-router-flux";
 import * as Animatable from "react-native-animatable";
 
 function Delete_group_popup(props) {
+  import * as Animatable from "react-native-animatable";
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -31,6 +32,7 @@ function Delete_group_popup(props) {
           source={require("../assets/but_yes.png")}
         />
       </TouchableOpacity>
+
       <Animatable.View
         animation="bounce"
         iterationCount={1}
@@ -40,14 +42,26 @@ function Delete_group_popup(props) {
           <Text style={styles.boldGroupText}>Delete Group</Text>
           <Text style={styles.boldGroupNumText}>#S2314 ?</Text>
 
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              // Actions.GroupInfo()
+              props.setShowPopup(false);
+            }}
+            style={styles.noButTouchableOp}
+          >
             <Image
               style={styles.noButton}
               source={require("../assets/but_no.png")}
             ></Image>
           </TouchableOpacity>
 
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              props.setShowPopup(false);
+              Actions.MyGroup();
+            }}
+            style={styles.yesButTouchableOp}
+          >
             <Image
               style={styles.yesButton}
               source={require("../assets/but_yes.png")}
@@ -55,7 +69,6 @@ function Delete_group_popup(props) {
           </TouchableOpacity>
         </View>
       </Animatable.View>
-      >>>>>>> 115fd881faf710e32bd66751820c088b7b0f5e44
     </View>
   );
 }

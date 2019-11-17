@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import {Actions} from 'react-native-router-flux';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 function Leave_group_popup(props) {
   return (
@@ -63,6 +64,46 @@ function Leave_group_popup() {
       </Animatable.View>
       
 >>>>>>> 115fd881faf710e32bd66751820c088b7b0f5e44
+=======
+
+// Animation 
+import * as Animatable from "react-native-animatable";
+
+function Leave_group_popup(props) {
+  return (
+    <View style={styles.container}>
+      
+      <Animatable.View animation="bounceIn" iterationCount={1} direction="alternate">
+          <View style={styles.popup}>
+            <Text style={styles.boldGroupText}>Leave Group</Text>
+            <Text style={styles.boldGroupNumText}>#C1314 ?</Text>
+            
+
+            <TouchableOpacity
+              onPress={() => {
+            // Actions.GroupInfo()
+            props.setShowPopup(false);
+          }}
+          style={styles.noButTouchableOp}
+              >
+              <Image style={styles.noButton} source={require("../assets/but_no.png")}></Image> 
+            </TouchableOpacity>
+
+            <TouchableOpacity
+               onPress={() => {
+            props.setShowPopup(false);
+            Actions.MyGroup();
+          }}
+          style={styles.yesButTouchableOp}                                      
+             >
+              <Image style={styles.yesButton} source={require("../assets/but_yes.png")}/>
+            </TouchableOpacity>
+
+          </View>
+      </Animatable.View>
+      
+
+>>>>>>> 42d775081684b946aef7f4161ea2a7aa086d7329
     </View>
   );
 }
