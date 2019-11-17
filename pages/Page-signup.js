@@ -146,6 +146,7 @@ function Signup(){
                 style={styles.loginBut}
                 onPress={()=>{
                     CreateUser();
+                    Actions.Welcome()
                     // if()
                 }}
             >

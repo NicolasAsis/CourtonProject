@@ -13,6 +13,8 @@ import GestureRecognizer, {
   swipeDirections
 } from "react-native-swipe-gestures";
 
+import {Actions} from 'react-native-router-flux';
+
 // const [animatedImg, setAnimatedImg] = useState()
 
 // Animation 
@@ -46,13 +48,21 @@ function OnBoarding_1() {
           badminton centres in Vancouver, BC.
         </Text>
         <View style={styles.indicator}>
-          <View style={styles.bCircle}></View>
-          <View style={styles.sCircle}></View>
-          <View style={styles.sCircle}></View>
-          <View style={styles.sCircle}></View>
+          <TouchableOpacity style={styles.bCircle}  onPress={()=>{
+                  Actions.OnBoarding_1()
+              }}></TouchableOpacity>
+          <TouchableOpacity style={styles.sCircle}  onPress={()=>{
+                  Actions.OnBoarding_2()
+              }}></TouchableOpacity>
+          <TouchableOpacity style={styles.sCircle}  onPress={()=>{
+                  Actions.OnBoarding_3()
+              }}></TouchableOpacity>
+          <TouchableOpacity style={styles.sCircle}  onPress={()=>{
+                  Actions.OnBoarding_4()
+              }}></TouchableOpacity>
         </View>
-        <TouchableOpacity>
-          <Text style={styles.skipBtn}>SKIP</Text>
+        <TouchableOpacity onPress={()=>{Actions.Home()}}>
+        <Text style={styles.skipBtn} >SKIP</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -135,7 +145,7 @@ const styles = StyleSheet.create({
   sCircle: {
     width: 16,
     height: 16,
-    backgroundColor: "#ECECEC",
+    backgroundColor: "#9ea2a7",
     borderRadius: 50,
     margin: 15
   },

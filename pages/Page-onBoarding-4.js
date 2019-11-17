@@ -14,6 +14,8 @@ import GestureRecognizer, {
 
 // const [animatedImg, setAnimatedImg] = useState()
 
+import {Actions} from 'react-native-router-flux';
+
 // Animation 
 import * as Animatable from "react-native-animatable";
 
@@ -76,13 +78,21 @@ function OnBoarding_4() {
         conveniently organized in your own profile for you. 
         </Text>
         <View style={styles.indicator}>
-          <View style={styles.sCircle}></View>
-          <View style={styles.sCircle}></View>
-          <View style={styles.sCircle}></View>
-          <View style={styles.bCircle}></View>
+        <TouchableOpacity style={styles.sCircle} onPress={()=>{
+                  Actions.OnBoarding_1()
+              }}></TouchableOpacity>
+          <TouchableOpacity  style={styles.sCircle} onPress={()=>{
+                  Actions.OnBoarding_2()
+              }}></TouchableOpacity>
+          <TouchableOpacity  style={styles.sCircle} onPress={()=>{
+                  Actions.OnBoarding_3()
+              }}></TouchableOpacity>
+          <TouchableOpacity style={styles.bCircle} onPress={()=>{
+                  Actions.OnBoarding_4()
+              }}></TouchableOpacity>
         </View>
-        <TouchableOpacity>
-          <Text style={styles.skipBtn}>SKIP</Text>
+        <TouchableOpacity onPress={()=>{Actions.Home()}}>
+        <Text style={styles.skipBtn} >SKIP</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -206,7 +216,7 @@ const styles = StyleSheet.create({
   sCircle: {
     width: 16,
     height: 16,
-    backgroundColor: "#ECECEC",
+    backgroundColor: "#9ea2a7",
     borderRadius: 50,
     margin: 15
   },

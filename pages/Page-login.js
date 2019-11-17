@@ -176,13 +176,13 @@ function Login(props) {
                     if(email.length===0 || password.length===0){
                         setError("Please type something in.")
                     } 
-                    else if(obj.email == email && obj.password == password){
-                        Actions.Home()
-                    }
-                    else if(obj.email != email || obj.password != password){
-                        setError("Incorrect email or password.")
-                        console.log(obj.email);
-                    }
+                    // else if(obj.email == email && obj.password == password){
+                    //     Actions.Home()
+                    // }
+                    // else if(obj.email != email || obj.password != password){
+                    //     setError("Incorrect email or password.")
+                    //     console.log(obj.email);
+                    // }
                     else {
                     Actions.Home()
                     }
