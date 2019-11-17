@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import {Actions} from 'react-native-router-flux';
 
+<<<<<<< HEAD
 
 function Leave_group_popup(props) {
   return (
@@ -36,6 +37,32 @@ function Leave_group_popup(props) {
           />
         </TouchableOpacity>
       </View>
+=======
+// Animation 
+import * as Animatable from "react-native-animatable";
+
+function Leave_group_popup() {
+  return (
+    <View style={styles.container}>
+      
+      <Animatable.View animation="bounceIn" iterationCount={1} direction="alternate">
+          <View style={styles.popup}>
+            <Text style={styles.boldGroupText}>Leave Group</Text>
+            <Text style={styles.boldGroupNumText}>#C1314 ?</Text>
+            
+
+            <TouchableOpacity>
+              <Image style={styles.noButton} source={require("../assets/but_no.png")}></Image> 
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+              <Image style={styles.yesButton} source={require("../assets/but_yes.png")}/>
+            </TouchableOpacity>
+
+          </View>
+      </Animatable.View>
+      
+>>>>>>> 115fd881faf710e32bd66751820c088b7b0f5e44
     </View>
   );
 }

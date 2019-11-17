@@ -9,8 +9,8 @@ function MoreMembers() {
     var obj = {
         key:"_read",
         data:{
-          organizerName:organizerName,
-          date:date
+          // organizerName:organizerName,
+          // date:date
 
         }
     }

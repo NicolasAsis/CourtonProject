@@ -14,39 +14,59 @@ import GestureRecognizer, {
 
 // const [animatedImg, setAnimatedImg] = useState()
 
+// Animation 
+import * as Animatable from "react-native-animatable";
+
+import {Actions} from 'react-native-router-flux';
+
 function OnBoarding_2() {
   return (
     <View style={styles.pg}>
       <View style={styles.top}>
       
+      <Animatable.View style={styles.card} animation="fadeIn" iterationCount={1} direction="alternate" delay={1000}>
         <Image
           style={styles.infograph1}
           source={require("../assets/img_infographic_onphone.png")}
         />
+      </Animatable.View>
+      <Animatable.View style={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2000}>
         <Image
           style={styles.infograph2}
           source={require("../assets/img_infographic_group.png")}
         />
+         </Animatable.View>
+        <Animatable.View style={styles.card} animation="fadeIn" iterationCount={1} direction="alternate" delay={2200}>
         <Image
           style={styles.infograph3}
           source={require("../assets/img_infographic_create.png")}
         />
+        </Animatable.View>
+        
         
       </View>
       <View style={styles.bottom}>
         <Text style={styles.step}>Join groups</Text>
         <Text style={styles.descp}>
-        The Home page shows the current available badminton groups 
-        made from other users that you can join to play with.  
+        Become a member of a group. The Home page shows the current available 
+        badminton groups made from other organizers that you can join to play with.  
         </Text>
         <View style={styles.indicator}>
-          <View style={styles.sCircle}></View>
-          <View style={styles.bCircle}></View>
-          <View style={styles.sCircle}></View>
-          <View style={styles.sCircle}></View>
+          <TouchableOpacity style={styles.sCircle}  onPress={()=>{
+                  Actions.OnBoarding_1()
+              }}></TouchableOpacity>
+          <TouchableOpacity style={styles.bCircle}  onPress={()=>{
+                  Actions.OnBoarding_2()
+              }}></TouchableOpacity>
+          <TouchableOpacity style={styles.sCircle}  onPress={()=>{
+                  Actions.OnBoarding_3()
+              }}></TouchableOpacity>
+          <TouchableOpacity style={styles.sCircle}  onPress={()=>{
+                  Actions.OnBoarding_4()
+              }}></TouchableOpacity>
         </View>
-        <TouchableOpacity>
-          <Text style={styles.skipBtn}>SKIP</Text>
+        <TouchableOpacity onPress={()=>{Actions.Home()}}>
+        <Text style={styles.skipBtn} >SKIP</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -76,16 +96,16 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 106,
     height: 95,
-    left: 250,
-    top: 180,
+    left:50,
+    top:-220,
   },
   // check - infograph
   infograph3: {
     position: "absolute",
     width: 44,
     height: 39,
-    left: 318,
-    top: 205,
+    left:120,
+    top:-155,
   },
   bottom: {
     display: "flex",
@@ -139,7 +159,7 @@ const styles = StyleSheet.create({
   sCircle: {
     width: 16,
     height: 16,
-    backgroundColor: "#ECECEC",
+    backgroundColor: "#9ea2a7",
     borderRadius: 50,
     margin: 15
   },
