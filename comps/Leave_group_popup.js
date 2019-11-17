@@ -1,23 +1,30 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 
+// Animation 
+import * as Animatable from "react-native-animatable";
+
 function Leave_group_popup() {
   return (
     <View style={styles.container}>
-      <View style={styles.popup}>
-        <Text style={styles.boldGroupText}>Leave Group</Text>
-        <Text style={styles.boldGroupNumText}>#C1314 ?</Text>
-        
+      
+      <Animatable.View animation="bounceIn" iterationCount={1} direction="alternate">
+          <View style={styles.popup}>
+            <Text style={styles.boldGroupText}>Leave Group</Text>
+            <Text style={styles.boldGroupNumText}>#C1314 ?</Text>
+            
 
-        <TouchableOpacity>
-          <Image style={styles.noButton} source={require("../assets/but_no.png")}></Image> 
-        </TouchableOpacity>
+            <TouchableOpacity>
+              <Image style={styles.noButton} source={require("../assets/but_no.png")}></Image> 
+            </TouchableOpacity>
 
-        <TouchableOpacity>
-          <Image style={styles.yesButton} source={require("../assets/but_yes.png")}/>
-        </TouchableOpacity>
+            <TouchableOpacity>
+              <Image style={styles.yesButton} source={require("../assets/but_yes.png")}/>
+            </TouchableOpacity>
 
-      </View>
+          </View>
+      </Animatable.View>
+      
     </View>
   );
 }
