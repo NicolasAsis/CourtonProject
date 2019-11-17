@@ -23,8 +23,8 @@ function Welcome() {
             <TouchableOpacity 
                 style={styles.loginBut}
                 onPress={()=>{
-                    Actions.Home()
-                }}
+                  Actions.OnBoarding_1()
+              }}
             >
                 <Text style={styles.loginButText}>GET STARTED</Text>
             </TouchableOpacity>
