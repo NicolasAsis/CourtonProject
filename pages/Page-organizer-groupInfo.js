@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import {
   View,
   Text,
@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
-  TextInput
+  TextInput,
+  Modal
 } from "react-native";
 
 import Button_Join from "../comps/Button_Join";
@@ -14,8 +15,8 @@ import Card_members from "../comps/Card_members";
 import Bar_group_countdown_price from "../comps/Bar_group_countdown_price";
 import Circle_extra_member from "../comps/Circle_extra_member";
 import Card_comment from "../comps/Card_comment";
-
 import {Actions} from 'react-native-router-flux';
+import Delete_group_popup from '../comps/Delete_group_popup';
 
 function Organizer_groupInfo() {
   const styles = StyleSheet.create({
@@ -214,8 +215,18 @@ function Organizer_groupInfo() {
     },
   });
 
+  const [modalVisible,setModalVisible] = useState(false);
   return (
     <View style={{backgroundColor:"#ffffff"}}>
+      <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modalVisible}
+        >
+          <Delete_group_popup 
+            setShowPopup = {setModalVisible}
+          />
+        </Modal>
       <View style={styles.gipageStructure}>
         {/* Main Header */}
         <View style={styles.giHeader}>
@@ -306,7 +317,13 @@ function Organizer_groupInfo() {
                 />
                 <Card_members memberName={"William Williams"} />
               </View>
-              <View style={{ flexDirection: "row",backgroundColor:"#ffffff"}}>
+              <View >
+                <TouchableOpacity 
+                style={{ flexDirection: "row",backgroundColor:"#ffffff"}}
+                onPress={()=>{
+                  Actions.MoreMembers()
+                }}
+                >
                 <View>
                   <Circle_extra_member />
                 </View>
@@ -316,6 +333,7 @@ function Organizer_groupInfo() {
                 <Text style={[styles.giText, { left: 26, top: 5 }]}>
                   +2 more
                 </Text>
+                </TouchableOpacity>
               </View>
               <Image
                   style={{ width: 24, height: 24, marginTop: 25, marginLeft:10}}
@@ -341,7 +359,12 @@ function Organizer_groupInfo() {
                       </TouchableOpacity>
                     </View>
 
-                    <TouchableOpacity style={styles.btnDelete}>
+                    <TouchableOpacity 
+                    onPress={()=>{
+                      // console.log('hello')
+                      setModalVisible(!modalVisible);
+                    }}
+                    style={styles.btnDelete}>
                       <Text style={styles.txtDelete}>Delete Group</Text>
                     </TouchableOpacity>
                   </View>

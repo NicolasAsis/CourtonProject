@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   View,
   Text,
@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
-  TextInput
+  TextInput, 
+  Modal
 } from "react-native";
 
 import Button_Join from "../comps/Button_Join";
@@ -14,6 +15,7 @@ import Card_members from "../comps/Card_members";
 import Bar_group_countdown_price from "../comps/Bar_group_countdown_price";
 import Circle_extra_member from "../comps/Circle_extra_member";
 import Card_comment from "../comps/Card_comment";
+import Leave_group_popup from'../comps/Leave_group_popup';
 
 import {Actions} from 'react-native-router-flux';
 
@@ -214,10 +216,24 @@ function Member_groupInfo() {
     },
   });
 
+  const [modalVisible,setModalVisible] = useState(false);
+
   return (
     <View style={{
               backgroundColor:'#FFFFFF'}}>
                
+
+       {/* Popup */}
+       <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modalVisible}
+        >
+          <Leave_group_popup 
+            setShowPopup = {setModalVisible}
+          />
+        </Modal>
+
       <View style={styles.gipageStructure}>
         {/* Main Header */}
         
@@ -315,8 +331,12 @@ function Member_groupInfo() {
                 />
                 <Card_members memberName={"William Williams"} />
               </View>
-              <View style={{ flexDirection: "row" , 
-              backgroundColor:'#FFFFFF'}}>
+              <TouchableOpacity 
+              style={{ flexDirection: "row", backgroundColor:'#FFFFFF'}}
+              onPress={()=>{
+                Actions.MoreMembers()
+              }}
+              >
                 <View>
                   <Circle_extra_member />
                 </View>
@@ -326,7 +346,7 @@ function Member_groupInfo() {
                 <Text style={[styles.giText, { left: 26, top: 5 }]}>
                   +2 more
                 </Text>
-              </View>
+              </TouchableOpacity>
               <Image
                   style={{ width: 24, height: 24, marginTop: 25, marginLeft:10}}
                   source={require("../assets/icon_comment.png")}
@@ -354,7 +374,13 @@ function Member_groupInfo() {
                       </TouchableOpacity>
                     </View>
 
-                    <TouchableOpacity style={styles.btnLeave}>
+                    <TouchableOpacity 
+                    style={styles.btnLeave}
+                    onPress={()=>{
+                      // console.log('hello')
+                      setModalVisible(!modalVisible);
+                    }}
+                    >
                       <Text style={styles.txtLeave}>Leave Group</Text>
                     </TouchableOpacity>
                   </View>

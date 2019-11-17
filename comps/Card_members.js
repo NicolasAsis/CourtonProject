@@ -5,7 +5,7 @@ function Card_members(props) {
   const styles = StyleSheet.create({
     //Card container
     cardContainer: {
-      width: 302,
+      width: 330,
       height: 68,
       borderRadius: 10,
       backgroundColor: "#FFFFFF",
@@ -73,6 +73,7 @@ function Card_members(props) {
     //Overall container
     <View style={{ alignItems: "center", marginBottom: 20 }}>
       {/* Card Container */}
+      <TouchableOpacity>
       <View style={styles.cardContainer}>
         <View
           style={{
@@ -89,11 +90,11 @@ function Card_members(props) {
 
           {/* Organizer Name Section */}
           <View style={styles.organizerNameSec}>
-            <Text style={styles.organizerText}>{props.organizer}</Text>
             <Text style={styles.organizerNameText}>{props.memberName}</Text>
           </View>
         </View>
       </View>
+      </TouchableOpacity>
     </View>
   );
 }

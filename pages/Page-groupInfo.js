@@ -322,6 +322,7 @@ useEffect(()=>{
                 </View>
                 {/* this TO go to expanded member page */}
                 <TouchableOpacity
+                  style={{ flexDirection: "row",backgroundColor:"#ffffff"}}
                   onPress={()=>{
                     Actions.MoreMembers()
                   }}

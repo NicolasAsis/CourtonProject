@@ -22,14 +22,7 @@ function MoreMembers() {
 }
   const data=[
     {
-      organizerName : 'Tony Wong',
-      groupNum : '1511',
-      date : 'Sat Dec 10',
-      time : '1pm -2pm',
-     joinedMember : 2,
-      totalMember : 10,
-      price : 7,
-      progressBarLoad : 0.2
+      memberName:'Tony Lin'
     },
   ]
   useEffect(()=>{
@@ -48,15 +41,7 @@ function MoreMembers() {
                     return <Card_members
                     // key = {i}
                     id = {obj.id}
-                    organizerName = {obj.organizerName}
-                    groupNum = {obj.groupNum}
-                    date = {obj.date}
-                    time = {obj.time}
-                    joinedMember = {obj.joinedMember}
-                    totalMember = {obj.totalMember}
-                    price = {obj.price}
-                    progressBarLoad = {obj.progressBarLoad}
-
+                    memberName = {obj.memberName}
                 />
                 })
             }
