@@ -5,6 +5,7 @@ import { Router, Scene, Stack, Drawer} from 'react-native-router-flux';
 
 //Import all pages
 import Login from './pages/Page-login';
+import Signup from './pages/Page-signup';
 import Home from './pages/Page-home';
 import GroupInfo from './pages/Page-groupInfo';
 import Join_group_popup from './comps/Join_group_popup';
@@ -38,9 +39,10 @@ function Route() {
             <Stack hideNavBar={true}>
 
                 <Scene key="Login" component={Login} initial={true} />
+                <Scene key="Signup" component={Signup} />
 
-                <Scene key="Welcome" component={Welcome} initial={true} />
-                <Scene key="OnBoarding_1" component={OnBoarding_1} initial={true} />
+                <Scene key="Welcome" component={Welcome} />
+                <Scene key="OnBoarding_1" component={OnBoarding_1} />
 
                 <Scene key="Home" component={Home} />
                 <Scene key="GroupInfo" component={GroupInfo} />
