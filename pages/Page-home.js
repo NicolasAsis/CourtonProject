@@ -86,7 +86,28 @@ const data=[
     totalMember : 10,
     price : 7,
     progressBarLoad : 0.5
-  }
+  },
+  {
+    organizerName : 'Siya Yang',
+    groupNum : '0111',
+    date : 'Sat Dec 10',
+    time : '1pm -2pm',
+   joinedMember : 2,
+    totalMember : 10,
+    price : 7,
+    progressBarLoad : 0.5
+  },
+  {
+    organizerName : 'Siya Yang',
+    groupNum : '0111',
+    date : 'Sat Dec 10',
+    time : '1pm -2pm',
+   joinedMember : 2,
+    totalMember : 10,
+    price : 7,
+    progressBarLoad : 0.5
+  },
+  
 ]
 
 useEffect(()=>{
@@ -129,7 +150,16 @@ useEffect(()=>{
                 Actions.HamMenu();
               }}
               >
+                
                 <Text>Test2</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+              onPress={()=>{
+                Actions.LoadingAnimation();
+              }}
+              >
+                <Text>Test</Text>
               </TouchableOpacity>
 
 
