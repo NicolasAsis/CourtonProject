@@ -62,13 +62,13 @@ function OnBoarding_3() {
         </Text>
         <View style={styles.indicator}>
           <TouchableOpacity style={styles.sCircle} onPress={()=>{
-                  Actions.OnBoarding_1()
+                  Actions.jump('OnBoarding_1')
               }}></TouchableOpacity>
           <TouchableOpacity  style={styles.sCircle} onPress={()=>{
-                  Actions.OnBoarding_2()
+                  Actions.jump('OnBoarding_2')
               }}></TouchableOpacity>
           <TouchableOpacity  style={styles.bCircle} onPress={()=>{
-                  Actions.OnBoarding_3()
+                  Actions.reset('OnBoarding_3')
               }}></TouchableOpacity>
           <TouchableOpacity style={styles.sCircle} onPress={()=>{
                   Actions.OnBoarding_4()
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
   skipBtn: {
     width: 179,
     height: 32,
-    marginTop: 70,
+    marginTop: 35,
     textAlign: "center",
     fontFamily: "Open Sans",
     fontStyle: "normal",

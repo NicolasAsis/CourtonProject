@@ -13,32 +13,42 @@ import GestureRecognizer, {
   swipeDirections
 } from "react-native-swipe-gestures";
 
-import {Actions} from 'react-native-router-flux';
+import { Actions } from "react-native-router-flux";
 
 // const [animatedImg, setAnimatedImg] = useState()
 
-// Animation 
+// Animation
 import * as Animatable from "react-native-animatable";
 
 function OnBoarding_1() {
   return (
     <View style={styles.pg}>
       <View style={styles.top}>
-        <Animatable.View style={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2000}>
-        <Image
-          style={styles.infograph1}
-          source={require("../assets/img_infographic3Birdie.png")}
-        />
+        <Animatable.View
+          style={styles.card}
+          animation="fadeInUp"
+          iterationCount={1}
+          direction="alternate"
+          delay={2000}
+        >
+          <Image
+            style={styles.infograph1}
+            source={require("../assets/img_infographic3Birdie.png")}
+          />
         </Animatable.View>
-        
-        <Animatable.View style={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={1000}>
-      
-        <Image
-          style={styles.infograph2}
-          source={require("../assets/img_infographic3.png")}
-        />
+
+        <Animatable.View
+          style={styles.card}
+          animation="fadeInUp"
+          iterationCount={1}
+          direction="alternate"
+          delay={1000}
+        >
+          <Image
+            style={styles.infograph2}
+            source={require("../assets/img_infographic3.png")}
+          />
         </Animatable.View>
-        
       </View>
       <View style={styles.bottom}>
         <Text style={styles.step}>Intro</Text>
@@ -48,21 +58,31 @@ function OnBoarding_1() {
           badminton centres in Vancouver, BC.
         </Text>
         <View style={styles.indicator}>
-          <TouchableOpacity style={styles.bCircle}  onPress={()=>{
-                  Actions.OnBoarding_1()
-              }}></TouchableOpacity>
-          <TouchableOpacity style={styles.sCircle}  onPress={()=>{
-                  Actions.OnBoarding_2()
-              }}></TouchableOpacity>
-          <TouchableOpacity style={styles.sCircle}  onPress={()=>{
-                  Actions.OnBoarding_3()
-              }}></TouchableOpacity>
-          <TouchableOpacity style={styles.sCircle}  onPress={()=>{
-                  Actions.OnBoarding_4()
-              }}></TouchableOpacity>
+          <TouchableOpacity
+            style={styles.bCircle}
+            onPress={() => {
+              Actions.reset('OnBoarding_1');
+            }}
+          ></TouchableOpacity>
+          <TouchableOpacity
+            style={styles.sCircle}
+            onPress={() => {
+              Actions.OnBoarding_2();
+            }}
+          ></TouchableOpacity>
+          <TouchableOpacity
+            style={styles.sCircle}
+          ></TouchableOpacity>
+          <TouchableOpacity
+            style={styles.sCircle}
+          ></TouchableOpacity>
         </View>
-        <TouchableOpacity onPress={()=>{Actions.Home()}}>
-        <Text style={styles.skipBtn} >SKIP</Text>
+        <TouchableOpacity
+          onPress={() => {
+            Actions.Home();
+          }}
+        >
+          <Text style={styles.skipBtn}>SKIP</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -85,7 +105,7 @@ const styles = StyleSheet.create({
   infograph1: {
     width: 27.25,
     height: 34.17,
-    top: 20,
+    top: 20
   },
   // girl
   infograph2: {
@@ -152,7 +172,7 @@ const styles = StyleSheet.create({
   skipBtn: {
     width: 179,
     height: 32,
-    marginTop:70,
+    marginTop: 35,
     textAlign: "center",
     fontFamily: "Open Sans",
     fontStyle: "normal",

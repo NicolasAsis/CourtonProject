@@ -14,59 +14,88 @@ import GestureRecognizer, {
 
 // const [animatedImg, setAnimatedImg] = useState()
 
-// Animation 
+// Animation
 import * as Animatable from "react-native-animatable";
 
-import {Actions} from 'react-native-router-flux';
+import { Actions } from "react-native-router-flux";
 
 function OnBoarding_2() {
   return (
     <View style={styles.pg}>
       <View style={styles.top}>
-      
-      <Animatable.View style={styles.card} animation="fadeIn" iterationCount={1} direction="alternate" delay={1000}>
-        <Image
-          style={styles.infograph1}
-          source={require("../assets/img_infographic_onphone.png")}
-        />
-      </Animatable.View>
-      <Animatable.View style={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2000}>
-        <Image
-          style={styles.infograph2}
-          source={require("../assets/img_infographic_group.png")}
-        />
-         </Animatable.View>
-        <Animatable.View style={styles.card} animation="fadeIn" iterationCount={1} direction="alternate" delay={2200}>
-        <Image
-          style={styles.infograph3}
-          source={require("../assets/img_infographic_create.png")}
-        />
+        <Animatable.View
+          style={styles.card}
+          animation="fadeIn"
+          iterationCount={1}
+          direction="alternate"
+          delay={1000}
+        >
+          <Image
+            style={styles.infograph1}
+            source={require("../assets/img_infographic_onphone.png")}
+          />
         </Animatable.View>
-        
-        
+        <Animatable.View
+          style={styles.card}
+          animation="fadeInUp"
+          iterationCount={1}
+          direction="alternate"
+          delay={2000}
+        >
+          <Image
+            style={styles.infograph2}
+            source={require("../assets/img_infographic_group.png")}
+          />
+        </Animatable.View>
+        <Animatable.View
+          style={styles.card}
+          animation="fadeIn"
+          iterationCount={1}
+          direction="alternate"
+          delay={2200}
+        >
+          <Image
+            style={styles.infograph3}
+            source={require("../assets/img_infographic_create.png")}
+          />
+        </Animatable.View>
       </View>
       <View style={styles.bottom}>
         <Text style={styles.step}>Join groups</Text>
         <Text style={styles.descp}>
-        Become a member of a group. The Home page shows the current available 
-        badminton groups made from other organizers that you can join to play with.  
+          Become a member of a group. The Home page shows the current available
+          badminton groups made from other organizers that you can join to play
+          with.
         </Text>
         <View style={styles.indicator}>
-          <TouchableOpacity style={styles.sCircle}  onPress={()=>{
-                  Actions.OnBoarding_1()
-              }}></TouchableOpacity>
-          <TouchableOpacity style={styles.bCircle}  onPress={()=>{
-                  Actions.OnBoarding_2()
-              }}></TouchableOpacity>
-          <TouchableOpacity style={styles.sCircle}  onPress={()=>{
-                  Actions.OnBoarding_3()
-              }}></TouchableOpacity>
-          <TouchableOpacity style={styles.sCircle}  onPress={()=>{
-                  Actions.OnBoarding_4()
-              }}></TouchableOpacity>
+          <TouchableOpacity
+            style={styles.sCircle}
+            onPress={() => {
+              Actions.jump("OnBoarding_1");
+            }}
+          ></TouchableOpacity>
+          <TouchableOpacity
+            style={styles.bCircle}
+            onPress={() => {
+              Actions.reset("OnBoarding_2");
+            }}
+          ></TouchableOpacity>
+          <TouchableOpacity
+            style={styles.sCircle}
+            onPress={() => {
+              Actions.OnBoarding_3();
+            }}
+          ></TouchableOpacity>
+          <TouchableOpacity
+            style={styles.sCircle}
+          ></TouchableOpacity>
         </View>
-        <TouchableOpacity onPress={()=>{Actions.Home()}}>
-        <Text style={styles.skipBtn} >SKIP</Text>
+        <TouchableOpacity
+          onPress={() => {
+            Actions.Home();
+          }}
+        >
+          <Text style={styles.skipBtn}>SKIP</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -83,29 +112,29 @@ const styles = StyleSheet.create({
     flex: 1.7,
     display: "flex",
     justifyContent: "center",
-    alignItems:"center"
+    alignItems: "center"
   },
   // buy on phone - infograph
   infograph1: {
     width: 344,
     height: 275.64,
-    top: 70,
+    top: 70
   },
   //  group - infograph
   infograph2: {
     position: "absolute",
     width: 106,
     height: 95,
-    left:50,
-    top:-220,
+    left: 50,
+    top: -220
   },
   // check - infograph
   infograph3: {
     position: "absolute",
     width: 44,
     height: 39,
-    left:120,
-    top:-155,
+    left: 120,
+    top: -155
   },
   bottom: {
     display: "flex",
@@ -166,7 +195,7 @@ const styles = StyleSheet.create({
   skipBtn: {
     width: 179,
     height: 32,
-    marginTop:70,
+    marginTop: 35,
     textAlign: "center",
     fontFamily: "Open Sans",
     fontStyle: "normal",
