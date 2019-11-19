@@ -7,7 +7,8 @@ import {
   TextInput,
   ScrollView,
   Animated,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from "react-native";
 
 import Drawer from 'react-native-drawer';
@@ -35,10 +36,6 @@ function Home() {
     // var dbusers = JSON.parse(r.data.body);
     // console.log("read", dbusers);
     // setUsers(dbusers.data);
-
-  // if(data.organizerName == obj.organizerName ){
-  //   alert('No result is found')
-  // }
 }
 
 
@@ -107,7 +104,7 @@ useEffect(()=>{
   })
 
   if (filteredGroup.length == 0) {
-   alert('No result has found')
+   Alert.alert('Oops! No result','Try another name')
   }
 
   const [hamMenuVisible,setHamMenuVisible] = useState(false);

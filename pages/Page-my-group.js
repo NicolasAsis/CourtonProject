@@ -125,7 +125,7 @@ function MyGroup() {
       time: "1pm -2pm",
       joinedMember: 2,
       totalMember: 10,
-      price: 7,
+      price: 150,
       progressBarLoad: "0.2"
     },
     {
@@ -135,7 +135,7 @@ function MyGroup() {
       time: "1pm -2pm",
       joinedMember: 2,
       totalMember: 10,
-      price: 7,
+      price: 150,
       progressBarLoad: "0.67"
     },
     {
@@ -145,7 +145,7 @@ function MyGroup() {
       time: "1pm -2pm",
       joinedMember: 2,
       totalMember: 10,
-      price: 7,
+      price: 150,
       progressBarLoad: ''
     },
     {
@@ -155,7 +155,7 @@ function MyGroup() {
       time: "1pm -2pm",
       joinedMember: 2,
       totalMember: 10,
-      price: 7,
+      price: 150,
       progressBarLoad: "0.8"
     },
     {
@@ -165,7 +165,7 @@ function MyGroup() {
       time: "1pm -2pm",
       joinedMember: 2,
       totalMember: 10,
-      price: 7,
+      price: 150,
       progressBarLoad: "0.5",
       progressBarColor:'#fab'
     }
