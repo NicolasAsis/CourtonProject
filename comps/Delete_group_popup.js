@@ -4,10 +4,10 @@ import {Actions} from 'react-native-router-flux';
 import * as Animatable from "react-native-animatable";
 
 
+
 function Delete_group_popup(props) {
   return (
     <View style={styles.container}>
-
 
         <TouchableOpacity
         onPress={() => {
@@ -50,14 +50,28 @@ function Delete_group_popup(props) {
           Actions.MyGroup();
         }}
         style={styles.yesButTouchableOp}
+
           >
-                <Image style={styles.yesButton} source={require("../assets/but_yes.png")}/>
-              </TouchableOpacity>
+            <Image
+              style={styles.noButton}
+              source={require("../assets/but_no.png")}
+            ></Image>
+          </TouchableOpacity>
 
-            </View>
+          <TouchableOpacity
+            onPress={() => {
+              props.setShowPopup(false);
+              Actions.MyGroup();
+            }}
+            style={styles.yesButTouchableOp}
+          >
+            <Image
+              style={styles.yesButton}
+              source={require("../assets/but_yes.png")}
+            />
+          </TouchableOpacity>
+        </View>
       </Animatable.View>
-
-
     </View>
   );
 }
@@ -100,40 +114,35 @@ const styles = StyleSheet.create({
     color: "#3C3C3C"
   },
 
-
-   noButton:{
-       position: 'absolute',
-       width: 100,
-       height: 38
+  noButton: {
+    position: "absolute",
+    width: 100,
+    height: 38
     //  left: -112,
     //  top: 14,
   },
   noButTouchableOp: {
     position: "absolute",
     width: 100,
-       height: 38,
-       left: 20,
+    height: 38,
+    left: 20,
     top: 143
-    },
+  },
 
-    yesButton: {
-      // position: 'absolute',
-      width: 100,
-      height: 38
-      // left: 12,
-      // top: 14,
-    },
-    yesButTouchableOp: {
-      position: "absolute",
-        width: 100,
-        height: 38,
-        left: 135,
-        top: 143
-     }
-
-
+  yesButton: {
+    // position: 'absolute',
+    width: 100,
+    height: 38
+    // left: 12,
+    // top: 14,
+  },
+  yesButTouchableOp: {
+    position: "absolute",
+    width: 100,
+    height: 38,
+    left: 135,
+    top: 143
+  }
 });
-
-   
 
 export default Delete_group_popup;

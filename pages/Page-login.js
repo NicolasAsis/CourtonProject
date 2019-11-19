@@ -167,7 +167,7 @@ function Login(props) {
                     secureTextEntry={true}
                     placeholderTextColor={'#686868'} 
                     onChangeText={(t)=>{
-                        password=t;
+                    password=t;
                     }}
                 />
             </View>

@@ -6,7 +6,8 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  ScrollView
+  ScrollView,
+  Modal
 } from "react-native";
 import { StyleSheet } from "react-native";
 import Header_blue_red from "../comps/Header_blue_red";
@@ -14,15 +15,27 @@ import Header_blue_red from "../comps/Header_blue_red";
 import SwitchSelector from "react-native-switch-selector";
 
 import { Actions } from "react-native-router-flux";
+import LoadingAnimation from "../comps/LoadingAnimation";
 
-function GroupSummary() {
+function GroupSummary(props) {
   const [grouplimit, setGroupLimit] = useState(0);
 
   if (grouplimit < 0) {
     setGroupLimit(0);
   }
+
+  const [modalVisible,setModalVisible] = useState(false);
   return (
     <View style={styles.gsStructure}>
+      <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modalVisible}
+        >
+          <LoadingAnimation 
+            setShowPopup = {setModalVisible}
+          />
+        </Modal>
       {/* Group Summary Header */}
       <Header_blue_red
         headerTitle={"Group Summary"}
@@ -155,7 +168,7 @@ function GroupSummary() {
           <TouchableOpacity
             style={styles.postBut}
             onPress={() => {
-              Actions.MyCreatedGroup();
+              setModalVisible(!modalVisible);
             }}
           >
             <Text style={styles.postButText}>POST</Text>
