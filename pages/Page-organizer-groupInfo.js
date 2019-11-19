@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import {
   View,
   Text,
@@ -17,8 +17,9 @@ import Circle_extra_member from "../comps/Circle_extra_member";
 import Card_comment from "../comps/Card_comment";
 import {Actions} from 'react-native-router-flux';
 import Delete_group_popup from '../comps/Delete_group_popup';
+import * as Progress from 'react-native-progress';
 
-function Organizer_groupInfo() {
+function Organizer_groupInfo(props) {
   const styles = StyleSheet.create({
     // Page Structure
     gipageStructure: {
@@ -213,9 +214,61 @@ function Organizer_groupInfo() {
       //   top: 40,
         // position: "absolute"
     },
+    ProgressBar: {
+      marginTop:'1%'
+    },
+    txtMembersIndicator:{
+      marginTop:'3%',
+      fontSize:16,
+      fontFamily:'Open sans',
+      color:'#094E76'
+    }
   });
 
+  const LoadMemberCard = async()=>{
+    var obj = {
+        key:"memberCard_read",
+        data:{
+          // organizerName:organizerName,
+          // date:date
+
+        }
+    }
+    // var r = await axios.post("http://142.232.162.71:3001/post", obj);
+    // console.log("read", r.data);
+    // var dbusers = JSON.parse(r.data.body);
+    // console.log("read", dbusers);
+    // setUsers(dbusers.data);
+
+  // if(data.organizerName == obj.organizerName ){
+  //   alert('No result is found')
+  // }
+}
+
+const data=[
+  {
+    memberName:'Lisa Black',
+    organizer:'Organizer',
+    url:'../assets/image.jpeg'
+  },
+  {
+    memberName:'Jonny Wick',
+    url:'../assets/image.jpeg'
+  },
+  {
+    memberName:'Melody Huang',
+    url:'../assets/image.jpeg'
+  }
+]
+
+
+useEffect(()=>{
+  LoadMemberCard();
+}, []);
+
   const [modalVisible,setModalVisible] = useState(false);
+  var joinedMember = 50;
+  var totalMember = 80;
   return (
     <View style={{backgroundColor:"#ffffff"}}>
       <Modal
@@ -260,8 +313,20 @@ function Organizer_groupInfo() {
           <Text style={styles.giOrganizedByText}>#s11111</Text>
           <Text style={styles.giOrganizerText}>Stage 18</Text>
         </View>
+        <Text
+        style={styles.txtMembersIndicator}
+        >{props.joinedMember}30/40{props.totalMember}</Text>
+         <Progress.Bar
+            unfilledColor="#CDC5C5"
+            borderColor="#FFFFFF"
+            color="#81EC8D"
+            progress = {joinedMember/totalMember}
+            width={350}
+            height={13}
+            borderRadius={13}
+            style={styles.ProgressBar}
+          />
 
-        <Bar_group_countdown_price titlePrice={7} countdown={100} />
 
         <View style={styles.giTextSec}>
           <View
@@ -292,8 +357,6 @@ function Organizer_groupInfo() {
                   <Text style={styles.giTitleText}>Centre</Text>
                   <Text style={styles.giTitleText}>Location</Text>
                   <Text style={styles.giTitleText}>Time</Text>
-                  <Text style={styles.giTitleText}>Group Limit</Text>
-                  <Text style={styles.giTitleText}>Players</Text>
                   <Text style={styles.giTitleText}>Bird Type</Text>
                 </View>
                 <View style={{ flex: 1, backgroundColor:"#ffffff" }}>
@@ -304,18 +367,23 @@ function Organizer_groupInfo() {
                     4351 No 3 Rd #100,{"\n"}Richmond, BC V6X 3A7
                   </Text>
                   <Text style={styles.giText}>1pm - 4pm</Text>
-                  <Text style={styles.giText}>5</Text>
-                  <Text style={styles.giPlayersText}>4</Text>
                   <Text style={styles.giText}>Feather</Text>
                 </View>
               </View>
               {/* Member Cards */}
               <View style={{ alignItems: "flex-start",backgroundColor:"#ffffff"}}>
-                <Card_members
-                  organizer={"Organizer"}
-                  memberName={"Tony Wong"}
+              {
+                data.map((obj,i)=>{
+                    return <Card_members
+                    // key = {i}
+                    id={obj.id}
+                    memberName={obj.memberName}
+                    organizer={obj.organizer}
+                    url={obj.url}
                 />
-                <Card_members memberName={"William Williams"} />
+                })
+                
+            }
               </View>
               <View >
                 <TouchableOpacity 
