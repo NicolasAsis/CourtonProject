@@ -12,7 +12,6 @@ import {
 
 import { Actions } from "react-native-router-flux";
 
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import axios from "axios";
 
