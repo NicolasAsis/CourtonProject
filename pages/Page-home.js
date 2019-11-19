@@ -153,15 +153,7 @@ useEffect(()=>{
                 
                 <Text>Test2</Text>
               </TouchableOpacity>
-
-              <TouchableOpacity
-              onPress={()=>{
-                Actions.LoadingAnimation();
-              }}
-              >
-                <Text>Test</Text>
-              </TouchableOpacity>
-
+            
 
               <Text style={styles.title}>Upcoming Available Groups</Text>
 

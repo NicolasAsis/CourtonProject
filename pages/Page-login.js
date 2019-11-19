@@ -23,10 +23,10 @@ function Login(props) {
 
     const ReadUsers = async()=>{
         var obj = {
-            key:"users_read",
+            key:"user_login",
             data:{}
         }
-        var r = await axios.post("http://142.232.167.141:3001/post", obj);
+        var r = await axios.post("http://localhost:3001/post", obj);
         // console.log("read", r.data);
         var dbusers = JSON.parse(r.data.body);
         console.log("read", dbusers);
@@ -158,7 +158,7 @@ function Login(props) {
                     secureTextEntry={true}
                     placeholderTextColor={'#686868'} 
                     onChangeText={(t)=>{
-                        password=t;
+                    password=t;
                     }}
                 />
             </View>

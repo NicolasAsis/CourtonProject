@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import Select_court_popup from '../comps/Select_court_popup';
 
 import {Actions} from 'react-native-router-flux';
+var test = 0;
 
 function Footer_court_indicator(props) {
   return (
@@ -34,7 +36,15 @@ function Footer_court_indicator(props) {
             <TouchableOpacity 
               style={styles.butOk}
               onPress={()=>{
-                Actions.GroupSummary()
+                if (props.checkCourtValue == 0) {
+                  {
+                    props.setShowPopup(true)
+                    // alert('Select a court')
+                  }
+                }else{
+                  Actions.GroupSummary()
+                }
+                // alert('select a court')
               }}
             >
               <Text style={styles.txtOk}>Ok</Text>

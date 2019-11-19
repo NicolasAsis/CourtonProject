@@ -17,7 +17,7 @@ import SwitchSelector from "react-native-switch-selector";
 import { Actions } from "react-native-router-flux";
 import LoadingAnimation from "../comps/LoadingAnimation";
 
-function GroupSummary() {
+function GroupSummary(props) {
   const [grouplimit, setGroupLimit] = useState(0);
 
   if (grouplimit < 0) {

@@ -8,7 +8,9 @@ function Courts(props) {
  } else{
    console.log('')
  }
+ 
   return (
+    
     <View>
       {//do the first one if true, or else do the second one
       changeCourt == true ? (
@@ -30,7 +32,15 @@ function Courts(props) {
           
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity onPress={() => setChangeCourt(!changeCourt)}>
+        <TouchableOpacity onPress={() => {
+          var temp = props.crts;
+          temp.splice(temp.length-1);
+          temp = temp.map((o)=>{
+            return o;
+          })
+          props.setCrts(temp);
+          setChangeCourt(!changeCourt)
+          }}>
           <Image
             source={require("../assets/icon_court_green.png")}
             style={{ width: 122, height: 79, margin: 30 }}
