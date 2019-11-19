@@ -13,6 +13,9 @@ import Card_badminton_centre from "../comps/Card_badminton_centre";
 
 import {Actions} from 'react-native-router-flux';
 
+import Modal from 'react-native-modal';
+import HamMenu from '../comps/HamMenu';
+
 function SelectLocation() {
   const LoadBmtCentre = async () => {
     var obj = {
@@ -65,9 +68,28 @@ function SelectLocation() {
     
   ];
 
+  const [hamMenuVisible,setHamMenuVisible] = useState(false);
 
   return (
     <View >
+      <Modal
+        isVisible={hamMenuVisible}
+        animationIn="slideInRight"
+        animationOut="slideOutRight"
+        onBackdropPress={()=>{
+          setHamMenuVisible(false)
+        }}
+        swipeDirection="right"
+        onSwipeComplete={()=>{
+          setHamMenuVisible(false)
+        }}
+        hideModalContentWhileAnimating={true}
+      >
+        <HamMenu 
+          showHamMenu = {setHamMenuVisible}
+        />
+      </Modal>
+
       <View style={styles.header}>
         <TouchableOpacity 
           style = {styles.butBackTouchableOp}
@@ -83,7 +105,12 @@ function SelectLocation() {
 
         <Text style={styles.txtTitle}>Choose a location</Text>
 
-        <TouchableOpacity style={{width:0, height:0}}>
+        <TouchableOpacity 
+          style={styles.butHamTouchableOpacity}
+          onPress={()=>{
+            setHamMenuVisible(true)
+          }}
+        >
           <Image
             style={styles.butHam}
             source={require("../assets/but_ham.png")}
@@ -139,6 +166,12 @@ const styles = StyleSheet.create({
     top: 27
   },
   butHam: {
+    width: 35,
+    height: 23,
+    // left:315,
+    // top: 2
+  },
+  butHamTouchableOpacity:{
     width: 35,
     height: 23,
     left:315,

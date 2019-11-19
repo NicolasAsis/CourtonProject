@@ -5,28 +5,27 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
-  Modal,
   StyleSheet
 } from "react-native";
 import Header_blue_red from "../comps/Header_blue_red";
 import Footer_court_indicator from "../comps/Footer_court_indicator";
 import Courts from "../comps/Courts";
-import {Actions} from 'react-native-router-flux';
+import { Actions } from "react-native-router-flux";
 import Select_court_popup from "../comps/Select_court_popup";
 
-const courts = [10,1,11,2,12,3,13,4,14,5,15,6,16,7,17,8,18,9];
+import Modal from "react-native-modal";
+import HamMenu from "../comps/HamMenu";
 
+const courts = [10, 1, 11, 2, 12, 3, 13, 4, 14, 5, 15, 6, 16, 7, 17, 8, 18, 9];
 
 function SelectCourts(props) {
-const [crts, setCrts] = useState([]);
+  const [crts, setCrts] = useState([]);
 
-
-  
-  var cComp = courts.map((o)=>{
+  var cComp = courts.map(o => {
     return <Courts setCrts={setCrts} crts={crts} courtNum={o} />;
   });
   var vComp = [];
-  for(var i = 0; i<cComp.length; i+=2){
+  for (var i = 0; i < cComp.length; i += 2) {
     vComp.push(
       <View
         style={{
@@ -36,44 +35,61 @@ const [crts, setCrts] = useState([]);
         }}
       >
         {cComp[i]}
-        {cComp[i+1]}
+        {cComp[i + 1]}
       </View>
-    )
+    );
   }
- 
-  const [modalVisible,setModalVisible] = useState(false);
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const [hamMenuVisible, setHamMenuVisible] = useState(false);
+
   return (
     <View>
+      {/* Ham Menu */}
       <Modal
-          animationType="fade"
-          transparent={true}
-          visible={modalVisible}
-        >
-          <Select_court_popup
-            setShowPopup = {setModalVisible}
-          />
-        </Modal>
+        isVisible={hamMenuVisible}
+        animationIn="slideInRight"
+        animationOut="slideOutRight"
+        onBackdropPress={() => {
+          setHamMenuVisible(false);
+        }}
+        swipeDirection="right"
+        onSwipeComplete={() => {
+          setHamMenuVisible(false);
+        }}
+        hideModalContentWhileAnimating={true}
+      >
+        <HamMenu showHamMenu={setHamMenuVisible} />
+      </Modal>
+      
+      {/* Popup */}
+      <Modal
+        animationIn="fadeIn"
+        animationOut="fadeOut"
+        isVisible={modalVisible}
+        style={{ margin: 0 }}
+      >
+        <Select_court_popup setShowPopup={setModalVisible} />
+      </Modal>
       <View>
         <Header_blue_red
           headerTitle="Choose courts"
           subTitle="Your selected court(s) "
-          courtNum={crts.length} 
+          courtNum={crts.length}
           // -------------------------
+          showHamMenu={setHamMenuVisible}
         />
         <View style={styles.courtView}>
-          <ScrollView style={{ flex: 1 }}>
-            {vComp}
-          </ScrollView>
+          <ScrollView style={{ flex: 1 }}>{vComp}</ScrollView>
         </View>
       </View>
       {/* <Courts_layout_red_bar/> */}
-      <Footer_court_indicator 
-      setShowPopup={setModalVisible}
-      txtPrice="22" 
-      checkCourtValue={crts.length}
+      <Footer_court_indicator
+        setShowPopup={setModalVisible}
+        txtPrice="22"
+        checkCourtValue={crts.length}
       />
     </View>
-
   );
 }
 
@@ -84,7 +100,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 524,
     marginTop: 140,
-    backgroundColor:'#FFFFFF'
+    backgroundColor: "#FFFFFF"
   }
 });
 

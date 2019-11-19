@@ -8,6 +8,7 @@ import {
     StyleSheet,
     TouchableOpacity,
     ScrollView,
+    KeyboardAvoidingView, 
     Alert
 } from 'react-native';
 // import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
@@ -15,7 +16,10 @@ import {
 import {Actions} from 'react-native-router-flux';
 // import Profile from ''
 
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
 import axios from 'axios';
+
 
 var email = "";
 var password = "";
@@ -60,16 +64,27 @@ function Signup(){
     
 
     return(
-    <View>
+
+        <KeyboardAwareScrollView
+      style={{ backgroundColor: '#4c69a5' }}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      contentContainerStyle={styles.container}
+      scrollEnabled={false}
+    >
+
+
+<View>
         {/* <View style={{backgroundColor: "#ffffff"}}> */}
         {/* </View> */}
-        
+       
         <View style={styles.loginpageStructure}>
             <Image
             style={styles.birdieRed} 
             source={require('../assets/img_infographic7.png')}/>
             <Text style={styles.createaccText}>CREATE ACCOUNT</Text>
 
+    
+            
             <Text style={styles.nameText}>FIRST NAME</Text>
             <View style={styles.nameContainer}>
                     <TextInput
@@ -115,6 +130,7 @@ function Signup(){
                         }}
                         secureTextEntry={true}
                     />
+                    
             </View>
 
             
@@ -165,6 +181,12 @@ function Signup(){
         </View>
         
 </View>
+
+
+    </KeyboardAwareScrollView>
+        
+
+ 
     )
 };
 

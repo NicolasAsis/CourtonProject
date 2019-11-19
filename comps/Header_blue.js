@@ -1,11 +1,30 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
+import Modal from 'react-native-modal';
+import HamMenu from './HamMenu';
+
 import {Actions} from 'react-native-router-flux';
 
 function Header_blue(props) {
+  // const [hamMenuVisible,setHamMenuVisible] = useState(false);
   return (
     <View>
+      {/* <Modal
+        isVisible={hamMenuVisible}
+        animationIn="slideInRight"
+        animationOut="slideOutRight"
+        onBackdropPress={()=>{
+          setHamMenuVisible(false)
+        }}
+        swipeDirection="right"
+        onSwipeComplete={()=>{
+          setHamMenuVisible(false)
+        }}
+        hideModalContentWhileAnimating={true}
+      >
+        <HamMenu />
+      </Modal> */}
       <View style={styles.header}>
         <TouchableOpacity
           onPress={()=>{
@@ -24,7 +43,8 @@ function Header_blue(props) {
         <TouchableOpacity 
           // style={styles.butHamTouchableOp}
           onPress={()=>{
-            Actions.HamMenu()
+            // Actions.HamMenu()
+              props.showHamMenu(true)
           }}
         >
           <Image
