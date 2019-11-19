@@ -4,12 +4,13 @@ import { View, Text, Image, StyleSheet,TouchableOpacity} from "react-native";
 import {Actions} from 'react-native-router-flux';
 
 
-function HamMenu() {
+function HamMenu(props) {
   return (
     <View style={styles.menu}>
       <TouchableOpacity
         onPress={()=>{
           Actions.Home()
+          props.showHamMenu(false)
         }}
       >
         <View style={styles.hamItem}>
@@ -23,6 +24,7 @@ function HamMenu() {
       <TouchableOpacity
         onPress={()=>{
           Actions.MyGroup()
+          props.showHamMenu(false)
         }}
       >
         <View style={styles.hamItem}>
@@ -36,6 +38,7 @@ function HamMenu() {
       <TouchableOpacity
         onPress={()=>{
           Actions.Profile()
+          props.showHamMenu(false)
         }}
       >
         <View style={styles.hamItem}>

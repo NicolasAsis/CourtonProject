@@ -10,7 +10,7 @@ function Card_badminton_centre(props) {
         <TouchableOpacity 
             style={styles.container}
             onPress={()=>{
-              Actions.Page_Calendar()
+              Actions.SelectTime()
             }}
         >
           <View style={styles.card}>

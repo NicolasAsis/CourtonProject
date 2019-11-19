@@ -8,7 +8,8 @@ import {
     StyleSheet,
     TouchableOpacity,
     ScrollView,
-    KeyboardAvoidingView 
+    KeyboardAvoidingView, 
+    Alert
 } from 'react-native';
 // import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 
@@ -41,7 +42,7 @@ function Signup(){
                 password: password
             }
         }
-        var r = await axios.post("http://142.232.167.141:3001/post", obj);
+        var r = await axios.post("http://localhost:3001/post", obj);
         console.log("create", r.data);
         ReadUsers();
     }
@@ -51,7 +52,7 @@ function Signup(){
             key:"users_read",
             data:{}
         }
-        var r = await axios.post("http://142.232.167.141:3001/post", obj);
+        var r = await axios.post("http://localhost:3001/post", obj);
         // console.log("read", r.data);
         var dbusers = JSON.parse(r.data.body);
         console.log("read", dbusers);
@@ -161,9 +162,13 @@ function Signup(){
             <TouchableOpacity 
                 style={styles.loginBut}
                 onPress={()=>{
+                    if(first_name.length == 0 || last_name.length == 0 || email.length == 0 || password.length == 0){
+                        Alert.alert('Please fill everything out.')
+                    }else{
                     CreateUser();
                     Actions.Welcome()
                     // if()
+                    }
                 }}
             >
                     <Text style={styles.loginButText}>CREATE</Text>

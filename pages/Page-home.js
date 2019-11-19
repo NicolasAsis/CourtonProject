@@ -11,8 +11,10 @@ import {
   Alert
 } from "react-native";
 
-import Drawer from 'react-native-drawer';
+// import Drawer from 'react-native-drawer';
 import HamMenu from '../comps/HamMenu';
+
+import Modal from "react-native-modal";
 
 import Card_for_player from "../comps/Card_for_player";
 import Footer_home from "../comps/Sticky_footer_home";
@@ -89,7 +91,28 @@ const data=[
     totalMember : 10,
     price : 7,
     progressBarLoad : 0.5
-  }
+  },
+  {
+    organizerName : 'Siya Yang',
+    groupNum : '0111',
+    date : 'Sat Dec 10',
+    time : '1pm -2pm',
+   joinedMember : 2,
+    totalMember : 10,
+    price : 7,
+    progressBarLoad : 0.5
+  },
+  {
+    organizerName : 'Siya Yang',
+    groupNum : '0111',
+    date : 'Sat Dec 10',
+    time : '1pm -2pm',
+   joinedMember : 2,
+    totalMember : 10,
+    price : 7,
+    progressBarLoad : 0.5
+  },
+  
 ]
 
 useEffect(()=>{
@@ -111,21 +134,22 @@ useEffect(()=>{
 
   return (
     <View>
-      <Drawer
-        type="overlay"
-        content={<HamMenu />}
-        tapToClose={true}
-        openDrawerOffset={0.2} // 20% gap on the right side of drawer
-        panCloseMask={0.2}
-        closedDrawerOffset={-3}
-        tweenHandler={(ratio) => ({
-          main: { opacity:(2-ratio)/2 }
-        })}
-        styles={{ shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3}}
-        open={true}
+      <Modal
+        isVisible={hamMenuVisible}
+        animationIn="slideInRight"
+        animationOut="slideOutRight"
+        onBackdropPress={()=>{
+          setHamMenuVisible(false)
+        }}
+        swipeDirection="right"
+        onSwipeComplete={()=>{
+          setHamMenuVisible(false)
+        }}
+        hideModalContentWhileAnimating={true}
       >
         <HamMenu />
-      </Drawer>
+      </Modal>
+
       <ScrollView
         style={{ backgroundColor: "#FFFFFF" }}
       >
@@ -144,7 +168,7 @@ useEffect(()=>{
               >
               </TouchableOpacity>
 
-              <TouchableOpacity
+              {/* <TouchableOpacity
               onPress={()=>{
                 // Actions.drawerMenu();
                 setHamMenuVisible(true)
@@ -152,7 +176,7 @@ useEffect(()=>{
               >
                 <Text>Test2</Text>
               </TouchableOpacity>
-
+             */}
 
               <Text style={styles.title}>Upcoming Available Groups</Text>
 

@@ -1,63 +1,63 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   Image,
-  ScrollView,
-  Modal
+  ScrollView
 } from "react-native";
 
 import Button_Join from "../comps/Button_Join";
 import Card_members from "../comps/Card_members";
 import Bar_group_countdown_price from "../comps/Bar_group_countdown_price";
 import Circle_extra_member from "../comps/Circle_extra_member";
-import Join_group_popup from '../comps/Join_group_popup';
+import Join_group_popup from "../comps/Join_group_popup";
+
+import Modal from "react-native-modal";
+import HamMenu from "../comps/HamMenu";
 
 import { Actions } from "react-native-router-flux";
 
 function GroupInfo() {
-  const LoadMemberCard = async()=>{
+  const LoadMemberCard = async () => {
     var obj = {
-        key:"memberCard_read",
-        data:{
-          // organizerName:organizerName,
-          // date:date
-
-        }
-    }
+      key: "memberCard_read",
+      data: {
+        // organizerName:organizerName,
+        // date:date
+      }
+    };
     // var r = await axios.post("http://142.232.162.71:3001/post", obj);
     // console.log("read", r.data);
     // var dbusers = JSON.parse(r.data.body);
     // console.log("read", dbusers);
     // setUsers(dbusers.data);
 
-  // if(data.organizerName == obj.organizerName ){
-  //   alert('No result is found')
-  // }
-}
+    // if(data.organizerName == obj.organizerName ){
+    //   alert('No result is found')
+    // }
+  };
 
-const data=[
-  {
-    memberName:'Lisa Black',
-    organizer:'Organizer',
-    url:'../assets/image.jpeg'
-  },
-  {
-    memberName:'Jonny Wick',
-    url:'../assets/image.jpeg'
-  },
-  {
-    memberName:'Melody Huang',
-    url:'../assets/image.jpeg'
-  }
-]
+  const data = [
+    {
+      memberName: "Lisa Black",
+      organizer: "Organizer",
+      url: "../assets/image.jpeg"
+    },
+    {
+      memberName: "Jonny Wick",
+      url: "../assets/image.jpeg"
+    },
+    {
+      memberName: "Melody Huang",
+      url: "../assets/image.jpeg"
+    }
+  ];
 
-useEffect(()=>{
-  LoadMemberCard();
-}, []);
-
+  useEffect(() => {
+    LoadMemberCard();
+  }, []);
 
   const styles = StyleSheet.create({
     // Page Structure
@@ -83,7 +83,7 @@ useEffect(()=>{
       position: "absolute",
       width: 20,
       height: 30,
-      left: '9%',
+      left: "9%",
       top: 40
       // backgroundColor:'red'
     },
@@ -103,13 +103,13 @@ useEffect(()=>{
       //   position: "absolute"
     },
     giHamBtn: {
-      top:2,
+      top: 2,
       width: 35,
-      height: 23,
+      height: 23
       // marginLeft:263,
       //   left: 35,
       //   top: 40,
-        // position: "absolute"
+      // position: "absolute"
     },
     giOrganizerImg: {
       width: 52,
@@ -143,7 +143,7 @@ useEffect(()=>{
       width: "100%",
       height: 250,
       // backgroundColor:'#DAD',
-      marginTop: 20,
+      marginTop: 20
       // left: 23
     },
     //Group Description Text
@@ -196,23 +196,40 @@ useEffect(()=>{
     }
   });
 
-  const [modalVisible,setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [hamMenuVisible, setHamMenuVisible] = useState(false);
 
   return (
     <View>
       <View style={styles.gipageStructure}>
-        
+
+        {/* Ham Menu */}
+        <Modal
+          isVisible={hamMenuVisible}
+          animationIn="slideInRight"
+          animationOut="slideOutRight"
+          onBackdropPress={() => {
+            setHamMenuVisible(false);
+          }}
+          swipeDirection="right"
+          onSwipeComplete={() => {
+            setHamMenuVisible(false);
+          }}
+          hideModalContentWhileAnimating={true}
+        >
+          <HamMenu showHamMenu={setHamMenuVisible} />
+        </Modal>
+
         {/* Popup */}
         <Modal
-          animationType="fade"
-          transparent={true}
-          visible={modalVisible}
+          animationIn="fadeIn"
+          animationOut="fadeOut"
+          isVisible={modalVisible}
+          style={{ margin: 0 }}
         >
-          <Join_group_popup 
-            setShowPopup = {setModalVisible}
-          />
+          <Join_group_popup setShowPopup={setModalVisible} />
         </Modal>
-        
+
         {/* Main Header */}
         <View style={styles.giHeader}>
           <Image
@@ -233,7 +250,7 @@ useEffect(()=>{
           <TouchableOpacity
             style={styles.giHamTouchableOp}
             onPress={() => {
-              // Actions.pop("Home");
+              setHamMenuVisible(true)
             }}
           >
             <Image
@@ -256,7 +273,7 @@ useEffect(()=>{
               height: 375
             }}
           >
-          {/* <TouchableOpacity
+            {/* <TouchableOpacity
             onPress={()=>{
               setModalVisible(true)
             }}
@@ -267,7 +284,7 @@ useEffect(()=>{
               <View
                 style={{
                   paddingLeft: 20,
-                  paddingRight: 20,
+                  paddingRight: 20
                 }}
               >
                 {/* Group Description */}
@@ -306,38 +323,36 @@ useEffect(()=>{
                 </View>
                 {/* Member Cards */}
                 <View style={{ alignItems: "flex-start" }}>
-                {
-                data.map((obj,i)=>{
-                    return <Card_members
-                    // key = {i}
-                    id={obj.id}
-                    memberName={obj.memberName}
-                    organizer={obj.organizer}
-                    url={obj.url}
-                />
-                })
-                
-            }
-                  
+                  {data.map((obj, i) => {
+                    return (
+                      <Card_members
+                        // key = {i}
+                        id={obj.id}
+                        memberName={obj.memberName}
+                        organizer={obj.organizer}
+                        url={obj.url}
+                      />
+                    );
+                  })}
                 </View>
                 {/* this TO go to expanded member page */}
                 <TouchableOpacity
-                  style={{ flexDirection: "row",backgroundColor:"#ffffff"}}
-                  onPress={()=>{
-                    Actions.MoreMembers()
+                  style={{ flexDirection: "row", backgroundColor: "#ffffff" }}
+                  onPress={() => {
+                    Actions.MoreMembers();
                   }}
                 >
-                <View style={{ flexDirection: "row" }}>
-                  <View>
-                    <Circle_extra_member />
+                  <View style={{ flexDirection: "row" }}>
+                    <View>
+                      <Circle_extra_member />
+                    </View>
+                    <View style={{ position: "absolute", left: 20 }}>
+                      <Circle_extra_member />
+                    </View>
+                    <Text style={[styles.giText, { left: 26, top: 5 }]}>
+                      +2 more
+                    </Text>
                   </View>
-                  <View style={{ position: "absolute", left: 20 }}>
-                    <Circle_extra_member />
-                  </View>
-                  <Text style={[styles.giText, { left: 26, top: 5 }]}>
-                    +2 more
-                  </Text>
-                </View>
                 </TouchableOpacity>
               </View>
             </ScrollView>
@@ -346,10 +361,7 @@ useEffect(()=>{
       </View>
 
       {/* Join Button */}
-      <Button_Join 
-        price={7} 
-        setShowPopup = {setModalVisible}
-      />
+      <Button_Join price={7} setShowPopup={setModalVisible} />
     </View>
   );
 }
