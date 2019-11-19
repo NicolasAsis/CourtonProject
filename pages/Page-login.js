@@ -18,23 +18,31 @@ var password = "";
 
 function Login(props) {
 
-    const [users, setUsers] = useState([]);
+    // const [users, setUsers] = useState([]);
     const [error, setError] = useState("");
 
     const ReadUsers = async()=>{
         var obj = {
-            key:"user_login",
-            data:{}
+            key:"users_read",
+            data:{
+                email:email,
+                password:password
+            }
         }
         var r = await axios.post("http://localhost:3001/post", obj);
-        // console.log("read", r.data);
         var dbusers = JSON.parse(r.data.body);
-        console.log("read", dbusers);
-        setUsers(dbusers.data);
+        console.log(dbusers.data[0]);
+        //setUsers(dbusers);
+        if(dbusers.data[0] == null){
+            alert('Email or password is incorrect.')
+        }else {
+            //change ui
+            Actions.Home()
+        }
     }
-    useEffect(()=>{
-        ReadUsers();
-    }, []);
+
+    
+    
 
     const styles=StyleSheet.create({
         loginpageStructure:{
@@ -148,6 +156,7 @@ function Login(props) {
                     onChangeText={(t)=>{
                         email=t;
                     }}
+                    autoCapitalize='none'
                 />
             </View>
 
@@ -173,19 +182,7 @@ function Login(props) {
             <TouchableOpacity 
                 style={styles.loginBut}
                 onPress={()=>{
-                    if(email.length===0 || password.length===0){
-                        setError("Please type something in.")
-                    } 
-                    // else if(obj.email == email && obj.password == password){
-                    //     Actions.Home()
-                    // }
-                    // else if(obj.email != email || obj.password != password){
-                    //     setError("Incorrect email or password.")
-                    //     console.log(obj.email);
-                    // }
-                    else {
-                    Actions.Home()
-                    }
+                    ReadUsers();
                 }}
             >
                 <Text style={styles.loginButText}>LOGIN</Text>

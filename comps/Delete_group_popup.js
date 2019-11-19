@@ -1,28 +1,56 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
-import { Actions } from "react-native-router-flux";
-// Animation
+import {Actions} from 'react-native-router-flux';
 import * as Animatable from "react-native-animatable";
+
+
 
 function Delete_group_popup(props) {
   return (
     <View style={styles.container}>
 
-      <Animatable.View
-        animation="bounce"
-        iterationCount={1}
-        direction="alternate"
-      >
-        <View style={styles.popup}>
-          <Text style={styles.boldGroupText}>Delete Group</Text>
-          <Text style={styles.boldGroupNumText}>#S2314 ?</Text>
+        <TouchableOpacity
+        onPress={() => {
+          // Actions.GroupInfo()
+          props.setShowPopup(false);
+        }}
+        style={styles.noButTouchableOp}
+        >
+          <Image style={styles.noButton} source={require("../assets/but_no.png")}></Image> 
+        </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={() => {
-              // Actions.GroupInfo()
-              props.setShowPopup(false);
-            }}
-            style={styles.noButTouchableOp}
+        <TouchableOpacity
+        onPress={() => {
+          props.setShowPopup(false);
+          Actions.MyGroup();
+        }}
+        style={styles.yesButTouchableOp}
+        >
+          <Image style={styles.yesButton} source={require("../assets/but_yes.png")}/>
+        </TouchableOpacity>
+
+      <Animatable.View animation="bounce" iterationCount={1} direction="alternate">
+            <View style={styles.popup}>
+              <Text style={styles.boldGroupText}>Delete Group</Text>
+              <Text style={styles.boldGroupNumText}>#S2314 ?</Text>
+          
+              <TouchableOpacity
+                 onPress={() => {
+          // Actions.GroupInfo()
+          props.setShowPopup(false);
+        }}
+        style={styles.noButTouchableOp}
+              >
+                <Image style={styles.noButton} source={require("../assets/but_no.png")}></Image> 
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => {
+                props.setShowPopup(false);
+          Actions.MyGroup();
+        }}
+        style={styles.yesButTouchableOp}
+
           >
             <Image
               style={styles.noButton}
@@ -47,6 +75,7 @@ function Delete_group_popup(props) {
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
