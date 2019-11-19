@@ -11,6 +11,9 @@ import {
   Alert
 } from "react-native";
 
+import Drawer from 'react-native-drawer';
+import HamMenu from '../comps/HamMenu';
+
 import Card_for_player from "../comps/Card_for_player";
 import Footer_home from "../comps/Sticky_footer_home";
 
@@ -104,8 +107,25 @@ useEffect(()=>{
    Alert.alert('Oops! No result','Try another name')
   }
 
+  const [hamMenuVisible,setHamMenuVisible] = useState(false);
+
   return (
     <View>
+      <Drawer
+        type="overlay"
+        content={<HamMenu />}
+        tapToClose={true}
+        openDrawerOffset={0.2} // 20% gap on the right side of drawer
+        panCloseMask={0.2}
+        closedDrawerOffset={-3}
+        tweenHandler={(ratio) => ({
+          main: { opacity:(2-ratio)/2 }
+        })}
+        styles={{ shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3}}
+        open={true}
+      >
+        <HamMenu />
+      </Drawer>
       <ScrollView
         style={{ backgroundColor: "#FFFFFF" }}
       >
@@ -126,7 +146,8 @@ useEffect(()=>{
 
               <TouchableOpacity
               onPress={()=>{
-                Actions.HamMenu();
+                // Actions.drawerMenu();
+                setHamMenuVisible(true)
               }}
               >
                 <Text>Test2</Text>

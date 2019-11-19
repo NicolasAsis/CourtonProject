@@ -72,15 +72,28 @@ function Route() {
 
                 <Scene key="HamMenu" component={HamMenu} drawer={true} drawerPosition='right' />
 
-                <Drawer
-                    hideNavBar
+                {/* <Drawer
+                    hideNavBar={true}
                     key='drawerMenu'
-                    component={HamMenu}
+                    contentComponent={HamMenu}
                     drawerPosition="right"
-                    transparent={true}
                 >
                     <Scene key="Home" component={Home} />
-                </Drawer>
+                </Drawer> */}
+
+                {/* <Scene key="HamMenu"
+                    drawer
+                    contentComponent={HamMenu}
+                    drawerPosition="right"
+                    hideDrawerButton={true}
+                    hideNavBar={true}
+                    drawerIcon={false} 
+                >
+                    
+                    <Scene key="Home" component={Home} hideNavBar={true}/>
+                    <Scene key="MyGroup" component={MyGroup} hideNavBar={true}/>
+                    <Scene key="Profile" component={Profile} hideNavBar={true}/>     
+                </Scene> */}
                 
             </Stack>
         </Router>
