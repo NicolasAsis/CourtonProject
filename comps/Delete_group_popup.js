@@ -1,11 +1,12 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
-import {Actions} from 'react-native-router-flux';
+
+import {Actions} from 'react-native-router-flux'
 import * as Animatable from "react-native-animatable";
 
-
-
 function Delete_group_popup(props) {
+
+
   return (
     <View style={styles.container}>
 
@@ -50,6 +51,11 @@ function Delete_group_popup(props) {
           Actions.MyGroup();
         }}
         style={styles.yesButTouchableOp}
+
+      
+          >
+                <Image style={styles.yesButton} source={require("../assets/but_yes.png")}/>
+              </TouchableOpacity>
 
           >
             <Image

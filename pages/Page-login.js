@@ -1,23 +1,24 @@
-import React, {useState,useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 import {
-    View,
-    Text,
-    Button,
-    Image,
-    TextInput, 
-    StyleSheet,
-    TouchableOpacity
-} from 'react-native';
+  View,
+  Text,
+  Button,
+  Image,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  KeyboardAvoidingView
+} from "react-native";
 
-import {Actions} from 'react-native-router-flux';
+import { Actions } from "react-native-router-flux";
 
-import axios from 'axios';
+
+import axios from "axios";
 
 var email = "";
 var password = "";
 
 function Login(props) {
-
     // const [users, setUsers] = useState([]);
     const [error, setError] = useState("");
 
@@ -40,9 +41,6 @@ function Login(props) {
             Actions.Home()
         }
     }
-
-    
-    
 
     const styles=StyleSheet.create({
         loginpageStructure:{
@@ -172,9 +170,9 @@ function Login(props) {
                 />
             </View>
 
-            <Text style={styles.errorText}>{error}</Text>
+        <Text style={styles.errorText}>{error}</Text>
 
-            {/* <Button
+        {/* <Button
                 title="LOGIN"
                 style={styles.loginBut}
             /> */}
@@ -188,18 +186,19 @@ function Login(props) {
                 <Text style={styles.loginButText}>LOGIN</Text>
             </TouchableOpacity>
 
-            <View style={{display:'flex',flexDirection:'row'}}>
-            <Text style={styles.loginText}>Don't have an account?</Text>
-            <TouchableOpacity
-                onPress={()=>{
-                    Actions.Signup()
-                }}
-            >
-                <Text style={styles.signupText}> Sign Up</Text>
-            </TouchableOpacity>
-            </View>
+        <View style={{ display: "flex", flexDirection: "row" }}>
+          <Text style={styles.loginText}>Don't have an account?</Text>
+          <TouchableOpacity
+            onPress={() => {
+              Actions.Signup();
+            }}
+          >
+            <Text style={styles.signupText}> Sign Up</Text>
+          </TouchableOpacity>
         </View>
-    );
+      </View>
+ 
+  );
 }
 
 export default Login;
