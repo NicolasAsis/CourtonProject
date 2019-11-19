@@ -27,7 +27,7 @@ function Header_blue_red(props) {
         <TouchableOpacity 
           style={styles.butHamTouchableOp}
           onPress={()=>{
-            Actions.drawerMenu()
+            props.showHamMenu(true)
           }}
         >
           <Image
