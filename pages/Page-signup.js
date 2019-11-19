@@ -8,6 +8,7 @@ import {
     StyleSheet,
     TouchableOpacity,
     ScrollView,
+    Alert
 } from 'react-native';
 // import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 
@@ -145,9 +146,13 @@ function Signup(){
             <TouchableOpacity 
                 style={styles.loginBut}
                 onPress={()=>{
+                    if(first_name.length == 0 || last_name.length == 0 || email.length == 0 || password.length == 0){
+                        Alert.alert('Please fill everything out.')
+                    }else{
                     CreateUser();
                     Actions.Welcome()
                     // if()
+                    }
                 }}
             >
                     <Text style={styles.loginButText}>CREATE</Text>
