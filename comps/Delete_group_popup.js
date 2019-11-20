@@ -1,27 +1,11 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> fbb7094e7c6b2ed03d55a4bd437a2e8627b0a0b4
-import {Actions} from 'react-native-router-flux'
-import * as Animatable from "react-native-animatable";
-
-function Delete_group_popup(props) {
-
-<<<<<<< HEAD
-=======
 import {Actions} from 'react-native-router-flux';
 import * as Animatable from "react-native-animatable";
 
 
 
 function Delete_group_popup(props) {
->>>>>>> 8f517e780bc1a85f6aa7190bc25a1e4169ff46a5
-=======
-
->>>>>>> fbb7094e7c6b2ed03d55a4bd437a2e8627b0a0b4
   return (
     <View style={styles.container}>
 
@@ -66,22 +50,10 @@ function Delete_group_popup(props) {
           Actions.MyGroup();
         }}
         style={styles.yesButTouchableOp}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> fbb7094e7c6b2ed03d55a4bd437a2e8627b0a0b4
-      
           >
                 <Image style={styles.yesButton} source={require("../assets/but_yes.png")}/>
               </TouchableOpacity>
-<<<<<<< HEAD
-=======
->>>>>>> 8f517e780bc1a85f6aa7190bc25a1e4169ff46a5
-=======
->>>>>>> fbb7094e7c6b2ed03d55a4bd437a2e8627b0a0b4
-
-          >
+            <TouchableOpacity>
             <Image
               style={styles.noButton}
               source={require("../assets/but_no.png")}
