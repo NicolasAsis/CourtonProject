@@ -27,7 +27,7 @@ import OnBoarding_3 from './pages/Page-onBoarding-3';
 import OnBoarding_4 from './pages/Page-onBoarding-4';
 import MoreMembers from './pages/Page-more-members';
 import Welcome from './pages/Page-Welcome';
-
+import SkillLevel from './pages/Page-skill-level';
 import HamMenu from './comps/HamMenu';
 import LoadingAnimation from './comps/LoadingAnimation';
 
@@ -71,6 +71,7 @@ function Route() {
                 <Scene key="OnBoarding_4" component={OnBoarding_4}/>
 
                 <Scene key="HamMenu" component={HamMenu} drawer={true} drawerPosition='right' />
+                <Scene key="SkillLevel" component={SkillLevel}/> 
 
                 {/* <Drawer
                     hideNavBar={true}

@@ -258,6 +258,32 @@ useEffect(()=>{
               <Card_for_player />
               <Card_for_player />
               <Card_for_player /> */}
+              {/* <View style={{
+                width:50,
+                height:50,
+                borderRadius:50,
+                backgroundColor:'#5DB9F0',
+                justifyContent:'center',
+                alignItems:'center'
+              }}
+              
+              >
+              <Image
+              style={{
+                // backgroundColor:'#fab',
+                width:30,
+                height:30
+              }}
+              source={require('../assets/img_birdie_white.png')}
+              />
+              </View> */}
+              <TouchableOpacity
+              onPress={()=>{
+                Actions.SkillLevel()
+              }}
+              >
+                {/* <Text>Test</Text> */}
+              </TouchableOpacity>
                  {
                 filteredGroup.map((obj,i)=>{
                     return <Card_for_player
