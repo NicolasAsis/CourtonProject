@@ -8,11 +8,8 @@ import {
     StyleSheet,
     TouchableOpacity,
     ScrollView,
-<<<<<<< HEAD
-    KeyboardAvoidingView 
-=======
-    Alert
->>>>>>> 8f517e780bc1a85f6aa7190bc25a1e4169ff46a5
+    KeyboardAvoidingView, 
+    Alert,
 } from 'react-native';
 // import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 

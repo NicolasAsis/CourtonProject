@@ -169,7 +169,6 @@ function Login(props) {
                     }}
                 />
             </View>
->>>>>>> 8f517e780bc1a85f6aa7190bc25a1e4169ff46a5
 
         <Text style={styles.errorText}>{error}</Text>
 
@@ -177,8 +176,6 @@ function Login(props) {
                 title="LOGIN"
                 style={styles.loginBut}
             /> */}
-
-
             <TouchableOpacity 
                 style={styles.loginBut}
                 onPress={()=>{

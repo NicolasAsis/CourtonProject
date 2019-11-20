@@ -84,7 +84,7 @@ function LoadingAnimation(props) {
             
             onPress={()=>{
               props.setShowPopup(false);
-              Actions.JoinedGroup();
+              Actions.MyCreatedGroup();
             }}
             >
               <Text style={styles.txtCancel}>Next</Text>
