@@ -1,43 +1,35 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
-import {Actions} from 'react-native-router-flux';
-// Animation 
+import { Actions } from "react-native-router-flux";
+// Animation
 import * as Animatable from "react-native-animatable";
 
-function Leave_group_popup(props) {
+function Select_court_popup(props) {
   return (
     <View style={styles.container}>
-      
-      <Animatable.View animation="bounceIn" iterationCount={1} direction="alternate">
-          <View style={styles.popup}>
-            <Text style={styles.boldGroupText}>Leave Group</Text>
-            <Text style={styles.boldGroupNumText}>#C1314 ?</Text>
-            
 
-            <TouchableOpacity
+      <Animatable.View
+        animation="bounce"
+        iterationCount={1}
+        direction="alternate"
+      >
+        <View style={styles.popup}>
+          <Text style={styles.boldGroupText}>You didn't pick a court</Text>
+
+          <TouchableOpacity
             onPress={() => {
               // Actions.GroupInfo()
               props.setShowPopup(false);
             }}
             style={styles.noButTouchableOp}
-            >
-              <Image style={styles.noButton} source={require("../assets/but_no.png")}></Image> 
-            </TouchableOpacity>
-
-            <TouchableOpacity
-            onPress={() => {
-              props.setShowPopup(false);
-              Actions.MyGroup();
-            }}
-            style={styles.yesButTouchableOp}
-            >
-              <Image style={styles.yesButton} source={require("../assets/but_yes.png")}/>
-            </TouchableOpacity>
-
-          </View>
+          >
+            <Text 
+            style={{fontFamily:'Open sans', fontSize:16, fontWeight:'bold', color:'white'}}
+            >Ok</Text>
+          </TouchableOpacity>
+        </View>
       </Animatable.View>
-      </View>
-      
+    </View>
   );
 }
 
@@ -79,7 +71,7 @@ const styles = StyleSheet.create({
   },
 
   noButton: {
-    //  position: 'absolute',
+    position: "absolute",
     width: 100,
     height: 38
     //  left: -112,
@@ -89,8 +81,12 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 100,
     height: 38,
-    left: 20,
-    top: 143
+    left: 80,
+    top: 143,
+    backgroundColor:'#81EC8D',
+    borderRadius:40,
+    justifyContent:'center',
+    alignItems:'center'
   },
 
   yesButton: {
@@ -109,4 +105,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Leave_group_popup;
+export default Select_court_popup;

@@ -12,6 +12,9 @@ import Sticky_footer_regular from "../comps/Sticky_footer_regular";
 import Switch_groupType from "../comps/Switch_groupType";
 import Card_for_member from "../comps/Card_for_member";
 import Card_for_organizer from "../comps/Card_for_organizer";
+import { Actions } from "react-native-router-flux";
+// Animation
+import * as Animatable from "react-native-animatable";
 
 function MyGroup() {
   const [group, setGroup] = useState([]);

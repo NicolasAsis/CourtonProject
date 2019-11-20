@@ -14,6 +14,58 @@ import Card_badminton_centre from "../comps/Card_badminton_centre";
 import {Actions} from 'react-native-router-flux';
 
 function SelectLocation() {
+  const LoadBmtCentre = async () => {
+    var obj = {
+      key: "users_read",
+      data: {
+        // id: id,
+        // bmtCentre: bmtCentre,
+        // date: date
+      }
+    };
+    // var r = await axios.post("http://142.232.162.71:3001/post", obj);
+    // console.log("read", r.data);
+    // var dbusers = JSON.parse(r.data.body);
+    // console.log("read", dbusers);
+    // setUsers(dbusers.data);
+  };
+
+  const bmtCentreData = [
+    {
+      badmintonCentreImg:require('../assets/img_stage18.png'),
+      badmintonCentreName:'Stage 18',
+      badmintonCentreLocation:'2351 No 6 Rd #170, Richmond, BC V6V 1P3'
+    },
+    {
+      badmintonCentreImg:require('../assets/img_c1.jpg'),
+      badmintonCentreName:'Clear One',
+      badmintonCentreLocation:'4351 No 3 Rd #100, Richmond, BC V6X 3A7'
+    },
+    
+    {
+      badmintonCentreImg:require('../assets/img_pro.jpg'),
+      badmintonCentreName:'Richmond Pro',
+      badmintonCentreLocation:'5800 Minoru Blvd #130, Richmond, BC V6X 2B1'
+    },
+    {
+      badmintonCentreImg:require('../assets/img_bv.jpg'),
+      badmintonCentreName:'Badminton Van',
+      badmintonCentreLocation:'13100 Mitchell Road, Richmond BC, V6V 1M8'
+    },
+    {
+      badmintonCentreImg:require('../assets/img_drive.jpg'),
+      badmintonCentreName:'Drive',
+      badmintonCentreLocation:'4551 No 3 Rd #138, Richmond, BC V6X 2C3'
+    },
+    {
+      badmintonCentreImg:require('../assets/img_vrc.jpeg'),
+      badmintonCentreName:'VRC',
+      badmintonCentreLocation:'4867 Ontario St, Vancouver, BC V5V 3H4'
+    },
+    
+  ];
+
+
   return (
     <View >
       <View style={styles.header}>
@@ -39,42 +91,20 @@ function SelectLocation() {
         </TouchableOpacity>
       </View>
       <View style={{ flex: 1}}>
-        
+        <ScrollView style={{paddingBottom:"185%", paddingTop:17}}>
+        <View style={{paddingBottom:20, height:'100%'}}>
+        {bmtCentreData.map(obj => {
+                  return (
+                    <Card_badminton_centre
+                      // key = {i}
+                      id={obj.id}
+                      badmintonCentreImg={obj.badmintonCentreImg}
+                      badmintonCentreName={obj.badmintonCentreName}
+                      badmintonCentreLocation={obj.badmintonCentreLocation}
+                    />
+                  );
+                })}
 
-        
-        <ScrollView style={{flex:1, paddingBottom:950, paddingTop:17, backgroundColor:'#FFFFFF'}}>
-        <View style={{height:1400}}>
-          <Card_badminton_centre 
-          badmintonCentreName={'Stage 18'}
-          badmintonCentreLocation={'2351 No 6 Rd #170, Richmond, BC V6V 1P3'}
-          badmintonCentreImg={require('../assets/img_stage18.png')}
-          />
-          <Card_badminton_centre 
-          badmintonCentreName={'Clear One'}
-          badmintonCentreLocation={'4351 No 3 Rd #100, Richmond, BC V6X 3A7'}
-          badmintonCentreImg={require('../assets/img_c1.jpg')}
-          />
-          <Card_badminton_centre 
-          badmintonCentreName={'Richmond Pro'}
-          badmintonCentreLocation={'5800 Minoru Blvd #130, Richmond, BC V6X 2B1'}
-          badmintonCentreImg={require('../assets/img_pro.jpg')}
-          />
-          <Card_badminton_centre 
-          badmintonCentreName={'Badminton Van'}
-          badmintonCentreLocation={'13100 Mitchell Road, Richmond BC, V6V 1M8'}
-          badmintonCentreImg={require('../assets/img_bv.jpg')}
-          />
-          <Card_badminton_centre 
-          badmintonCentreName={'Drive Badminton'}
-          badmintonCentreLocation={'4551 No 3 Rd #138, Richmond, BC V6X 2C3'}
-          badmintonCentreImg={require('../assets/img_drive.jpg')}
-          />
-          <Card_badminton_centre 
-          badmintonCentreName={'VRC'}
-          badmintonCentreLocation={'4867 Ontario St, Vancouver, BC V5V 3H4'}
-          badmintonCentreImg={require('../assets/img_vrc.jpeg')}
-          />
-          <Card_badminton_centre />
           </View>
         </ScrollView>
         

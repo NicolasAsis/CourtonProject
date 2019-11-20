@@ -37,6 +37,7 @@ function Header_blue_red(props) {
         </TouchableOpacity>
       </View>
       <View style={styles.courtIndicatedBar}>
+        <Text style={styles.txtBmtCentre}>{props.subTitle}</Text>
         <Text style={styles.txtBmtCentre}>{props.courtName}</Text>
         <Text style={styles.txtCourtNum}>{props.courtNum}</Text>
       </View>
