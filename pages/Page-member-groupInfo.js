@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
-  TextInput, 
+  TextInput,
   Modal
 } from "react-native";
 
@@ -15,20 +15,59 @@ import Card_members from "../comps/Card_members";
 import Bar_group_countdown_price from "../comps/Bar_group_countdown_price";
 import Circle_extra_member from "../comps/Circle_extra_member";
 import Card_comment from "../comps/Card_comment";
-import Leave_group_popup from'../comps/Leave_group_popup';
+import Leave_group_popup from "../comps/Leave_group_popup";
+import * as Progress from "react-native-progress";
+import { Actions } from "react-native-router-flux";
 
-import {Actions} from 'react-native-router-flux';
+function Member_groupInfo(props) {
+  const LoadMemberCard = async () => {
+    var obj = {
+      key: "memberCard_read",
+      data: {
+        // organizerName:organizerName,
+        // date:date
+      }
+    };
+    // var r = await axios.post("http://142.232.162.71:3001/post", obj);
+    // console.log("read", r.data);
+    // var dbusers = JSON.parse(r.data.body);
+    // console.log("read", dbusers);
+    // setUsers(dbusers.data);
 
-function Member_groupInfo() {
+    // if(data.organizerName == obj.organizerName ){
+    //   alert('No result is found')
+    // }
+  };
+
+  const data = [
+    {
+      memberName: "Lisa Black",
+      organizer: "Organizer",
+      url: "../assets/image.jpeg"
+    },
+    {
+      memberName: "Jonny Wick",
+      url: "../assets/image.jpeg"
+    },
+    {
+      memberName: "Melody Huang",
+      url: "../assets/image.jpeg"
+    }
+  ];
+
+  useEffect(() => {
+    LoadMemberCard();
+  }, []);
+
   const styles = StyleSheet.create({
     // Page Structure
     gipageStructure: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      backgroundColor:'#FFFFFF',
-      width:'100%',
-      justifyContent:'center'
+      backgroundColor: "#FFFFFF",
+      width: "100%",
+      justifyContent: "center"
     },
 
     //Page Header
@@ -82,7 +121,7 @@ function Member_groupInfo() {
       // backgroundColor:'#DAD',
       marginTop: 20,
       // left:23,
-      backgroundColor:'#FFFFFF'
+      backgroundColor: "#FFFFFF"
     },
     //Group Description Text
     groupDescHeaderText: {
@@ -98,8 +137,8 @@ function Member_groupInfo() {
       lineHeight: 20,
       marginBottom: 43,
       width: 330,
-      justifyContent:'center',
-      alignItems:'center'
+      justifyContent: "center",
+      alignItems: "center"
     },
 
     //Group Information Text
@@ -142,60 +181,60 @@ function Member_groupInfo() {
       textAlignVertical: "top"
       //   display:'flex'
     },
-    btnReset:{
-      backgroundColor:'#BDBDBD',
-      alignItems:'center',
-      justifyContent:'center',
-      width:150,
-      height:35,
-      borderRadius:30,
-      shadowColor:'#000000',
-      shadowOpacity:0.10,
-      shadowRadius:7,
-      shadowOffset:{x: 2, y:3},
-      marginRight:4
+    btnReset: {
+      backgroundColor: "#BDBDBD",
+      alignItems: "center",
+      justifyContent: "center",
+      width: 150,
+      height: 35,
+      borderRadius: 30,
+      shadowColor: "#000000",
+      shadowOpacity: 0.1,
+      shadowRadius: 7,
+      shadowOffset: { x: 2, y: 3 },
+      marginRight: 4
     },
-    txtRest:{
-      color:'#FFFFFF',
-      fontFamily:'Open sans',
-      fontWeight:'bold'
+    txtRest: {
+      color: "#FFFFFF",
+      fontFamily: "Open sans",
+      fontWeight: "bold"
     },
-    btnSubmit:{
-      backgroundColor:'#56CCF2',
-      alignItems:'center',
-      justifyContent:'center',
-      width:150,
-      height:35,
-      borderRadius:30,
-      shadowColor:'#000000',
-      shadowOpacity:0.10,
-      shadowRadius:7,
-      shadowOffset:{x: 2, y:3},
-      marginLeft:15
+    btnSubmit: {
+      backgroundColor: "#56CCF2",
+      alignItems: "center",
+      justifyContent: "center",
+      width: 150,
+      height: 35,
+      borderRadius: 30,
+      shadowColor: "#000000",
+      shadowOpacity: 0.1,
+      shadowRadius: 7,
+      shadowOffset: { x: 2, y: 3 },
+      marginLeft: 15
     },
-    txtSubmit:{
-      color:'#FFFFFF',
-      fontFamily:'Open sans',
-      fontWeight:'bold'
+    txtSubmit: {
+      color: "#FFFFFF",
+      fontFamily: "Open sans",
+      fontWeight: "bold"
     },
-    txtLeave:{
-      color:'#FFFFFF',
-      fontFamily:'Open sans',
-      fontWeight:'bold'
+    txtLeave: {
+      color: "#FFFFFF",
+      fontFamily: "Open sans",
+      fontWeight: "bold"
     },
-    btnLeave:{
-      backgroundColor:'#FE647B',
-      alignItems:'center',
-      justifyContent:'center',
-      width:320,
-      height:40,
-      borderRadius:50,
-      shadowColor:'#000000',
-      shadowOpacity:0.10,
-      shadowRadius:7,
-      shadowOffset:{x: 2, y:3},
-      marginTop:20,
-      marginBottom:50
+    btnLeave: {
+      backgroundColor: "#FE647B",
+      alignItems: "center",
+      justifyContent: "center",
+      width: 320,
+      height: 40,
+      borderRadius: 50,
+      shadowColor: "#000000",
+      shadowOpacity: 0.1,
+      shadowRadius: 7,
+      shadowOffset: { x: 2, y: 3 },
+      marginTop: 20,
+      marginBottom: 50
     },
     giHamTouchableOp: {
       // backgroundColor:'red'
@@ -206,46 +245,52 @@ function Member_groupInfo() {
       position: "absolute"
     },
     giHamBtn: {
-      top:2,
+      top: 2,
       width: 35,
-      height: 23,
+      height: 23
       // marginLeft:263,
       //   left: 35,
       //   top: 40,
-        // position: "absolute"
+      // position: "absolute"
     },
+    ProgressBar: {
+      marginTop: "1%"
+    },
+    txtMembersIndicator: {
+      marginTop: "3%",
+      fontSize: 16,
+      fontFamily: "Open sans",
+      color: "#094E76"
+    }
   });
 
-  const [modalVisible,setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  var joinedMember = 30;
+  var totalMember = 40;
 
   return (
-    <View style={{
-              backgroundColor:'#FFFFFF'}}>
-               
-
-       {/* Popup */}
-       <Modal
-          animationType="fade"
-          transparent={true}
-          visible={modalVisible}
-        >
-          <Leave_group_popup 
-            setShowPopup = {setModalVisible}
-          />
-        </Modal>
+    <View
+      style={{
+        backgroundColor: "#FFFFFF"
+      }}
+    >
+      {/* Popup */}
+      <Modal animationType="fade" transparent={true} visible={modalVisible}>
+        <Leave_group_popup setShowPopup={setModalVisible} />
+      </Modal>
 
       <View style={styles.gipageStructure}>
         {/* Main Header */}
-        
+
         <View style={styles.giHeader}>
           <Image
             style={styles.giImg}
             source={require("../assets/img_stage18.png")}
           />
-          <TouchableOpacity 
+          <TouchableOpacity
             style={{ position: "absolute" }}
-            onPress={()=>{
-              Actions.pop()
+            onPress={() => {
+              Actions.pop();
             }}
           >
             <Image
@@ -268,124 +313,169 @@ function Member_groupInfo() {
           <Text style={styles.giOrganizedByText}>Organized by</Text>
           <Text style={styles.giOrganizerText}>Toby Wong</Text>
         </View>
+        <Text style={styles.txtMembersIndicator}>
+          {props.joinedMember}30/40{props.totalMember}
+        </Text>
+        <Progress.Bar
+          unfilledColor="#CDC5C5"
+          borderColor="#FFFFFF"
+          color="#81EC8D"
+          progress={joinedMember / totalMember}
+          width={350}
+          height={13}
+          borderRadius={13}
+          style={styles.ProgressBar}
+        />
 
-        <Bar_group_countdown_price titlePrice={7} countdown={100} />
         <View style={styles.giTextSec}>
           <View
             style={{
               flex: 1,
               position: "absolute",
               height: 500,
-              backgroundColor:"#ffffff",
-              width:'100%',
-              justifyContent:'center',
-              alignItems:'center',
+              backgroundColor: "#ffffff",
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center"
             }}
           >
-            <ScrollView style={{ flex: 1,width:'100%',
-          
-          backgroundColor:'#FFFFFF'
-          }}>
-              {/* Group Description */}
-              <View style={{backgroundColor:"#ffffff", paddingLeft:"6%"}}>
-              <Text style={styles.groupDescHeaderText}>Group Description</Text>
-              <Text style={styles.groupDescText}>
-                This is a group description for players who are looking at other
-                created groups cards. So you can only view no editing.
-              </Text>
+            <ScrollView
+              style={{
+                flex: 1,
+                width: "100%",
 
-              {/* All group information text */}
-              <View style={{ display: "flex", flexDirection: "row", 
-              backgroundColor:'#FFFFFF', justifyContent:'center', alignItems:'center' }}>
-                <View style={{ flex: 1,
-              backgroundColor:'#FFFFFF' }}>
-                  <Text style={styles.giTitleText}>Group</Text>
-                  <Text style={styles.giTitleText}>Date</Text>
-                  <Text style={styles.giTitleText}>Centre</Text>
-                  <Text style={styles.giTitleText}>Location</Text>
-                  <Text style={styles.giTitleText}>Time</Text>
-                  <Text style={styles.giTitleText}>Group Limit</Text>
-                  <Text style={styles.giTitleText}>Players</Text>
-                  <Text style={styles.giTitleText}>Bird Type</Text>
-                </View>
-                <View style={{ flex: 1,
-              backgroundColor:'#FFFFFF' }}>
-                  <Text style={styles.giText}>#C1314</Text>
-                  <Text style={styles.giText}>30 December 2019</Text>
-                  <Text style={styles.giText}>ClearOne</Text>
-                  <Text style={styles.giLocationText}>
-                    4351 No 3 Rd #100,{"\n"}Richmond, BC V6X 3A7
-                  </Text>
-                  <Text style={styles.giText}>1pm - 4pm</Text>
-                  <Text style={styles.giText}>5</Text>
-                  <Text style={styles.giPlayersText}>4</Text>
-                  <Text style={styles.giText}>Feather</Text>
-                </View>
-              </View>
-              {/* Member Cards */}
-              <View style={{ alignItems: "flex-start", 
-              backgroundColor:'#FFFFFF' }}>
-                <Card_members
-                  organizer={"Organizer"}
-                  memberName={"Tony Wong"}
-                />
-                <Card_members memberName={"William Williams"} />
-              </View>
-              <TouchableOpacity 
-              style={{ flexDirection: "row", backgroundColor:'#FFFFFF'}}
-              onPress={()=>{
-                Actions.MoreMembers()
+                backgroundColor: "#FFFFFF"
               }}
-              >
-                <View>
-                  <Circle_extra_member />
-                </View>
-                <View style={{ position: "absolute", left: '6%' }}>
-                  <Circle_extra_member />
-                </View>
-                <Text style={[styles.giText, { left: 26, top: 5 }]}>
-                  +2 more
+            >
+              {/* Group Description */}
+              <View style={{ backgroundColor: "#ffffff", paddingLeft: "6%" }}>
+                <Text style={styles.groupDescHeaderText}>
+                  Group Description
                 </Text>
-              </TouchableOpacity>
-              <Image
-                  style={{ width: 24, height: 24, marginTop: 25, marginLeft:10}}
-                  source={require("../assets/icon_comment.png")}
-                />
-              <View style={{ alignItems: "center", 
-              backgroundColor:'#FFFFFF', marginLeft:'-5%' }}>
-                
-                
-                <Card_comment />
-                <View style={{ marginTop: 50}}>
-                  <TextInput
-                    style={styles.descInput}
-                    placeholder="Type a group description..."
-                    multiline
-                  />
-                  <View style={{ flexDirection: "column",
-              backgroundColor:'#FFFFFF'}}>
-                    <View style={{ flexDirection: "row", 
-              backgroundColor:'#FFFFFF' }}>
-                      <TouchableOpacity style={styles.btnReset}>
-                        <Text style={styles.txtRest}>Reset</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity style={styles.btnSubmit}>
-                        <Text style={styles.txtSubmit}>Submit</Text>
-                      </TouchableOpacity>
-                    </View>
+                <Text style={styles.groupDescText}>
+                  This is a group description for players who are looking at
+                  other created groups cards. So you can only view no editing.
+                </Text>
 
-                    <TouchableOpacity 
-                    style={styles.btnLeave}
-                    onPress={()=>{
-                      // console.log('hello')
-                      setModalVisible(!modalVisible);
-                    }}
-                    >
-                      <Text style={styles.txtLeave}>Leave Group</Text>
-                    </TouchableOpacity>
+                {/* All group information text */}
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    backgroundColor: "#FFFFFF",
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
+                    <Text style={styles.giTitleText}>Group</Text>
+                    <Text style={styles.giTitleText}>Date</Text>
+                    <Text style={styles.giTitleText}>Centre</Text>
+                    <Text style={styles.giTitleText}>Location</Text>
+                    <Text style={styles.giTitleText}>Time</Text>
+                    <Text style={styles.giTitleText}>Bird Type</Text>
+                  </View>
+                  <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
+                    <Text style={styles.giText}>#C1314</Text>
+                    <Text style={styles.giText}>30 December 2019</Text>
+                    <Text style={styles.giText}>ClearOne</Text>
+                    <Text style={styles.giLocationText}>
+                      4351 No 3 Rd #100,{"\n"}Richmond, BC V6X 3A7
+                    </Text>
+                    <Text style={styles.giText}>1pm - 4pm</Text>
+                    <Text style={styles.giText}>Feather</Text>
                   </View>
                 </View>
-              </View>
+                {/* Member Cards */}
+                <View
+                  style={{
+                    alignItems: "flex-start",
+                    backgroundColor: "#FFFFFF"
+                  }}
+                >
+                  {data.map((obj, i) => {
+                    return (
+                      <Card_members
+                        // key = {i}
+                        id={obj.id}
+                        memberName={obj.memberName}
+                        organizer={obj.organizer}
+                        url={obj.url}
+                      />
+                    );
+                  })}
+                </View>
+                <TouchableOpacity
+                  style={{ flexDirection: "row", backgroundColor: "#FFFFFF" }}
+                  onPress={() => {
+                    Actions.MoreMembers();
+                  }}
+                >
+                  <View>
+                    <Circle_extra_member />
+                  </View>
+                  <View style={{ position: "absolute", left: "6%" }}>
+                    <Circle_extra_member />
+                  </View>
+                  <Text style={[styles.giText, { left: 26, top: 5 }]}>
+                    +2 more
+                  </Text>
+                </TouchableOpacity>
+                <Image
+                  style={{
+                    width: 24,
+                    height: 24,
+                    marginTop: 25,
+                    marginLeft: 10
+                  }}
+                  source={require("../assets/icon_comment.png")}
+                />
+                <View
+                  style={{
+                    alignItems: "center",
+                    backgroundColor: "#FFFFFF",
+                    marginLeft: "-5%"
+                  }}
+                >
+                  <Card_comment />
+                  <View style={{ marginTop: 50 }}>
+                    <TextInput
+                      style={styles.descInput}
+                      placeholder="Type a group description..."
+                      multiline
+                    />
+                    <View
+                      style={{
+                        flexDirection: "column",
+                        backgroundColor: "#FFFFFF"
+                      }}
+                    >
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          backgroundColor: "#FFFFFF"
+                        }}
+                      >
+                        <TouchableOpacity style={styles.btnReset}>
+                          <Text style={styles.txtRest}>Reset</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.btnSubmit}>
+                          <Text style={styles.txtSubmit}>Submit</Text>
+                        </TouchableOpacity>
+                      </View>
+
+                      <TouchableOpacity
+                        style={styles.btnLeave}
+                        onPress={() => {
+                          // console.log('hello')
+                          setModalVisible(!modalVisible);
+                        }}
+                      >
+                        <Text style={styles.txtLeave}>Leave Group</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                </View>
               </View>
             </ScrollView>
           </View>

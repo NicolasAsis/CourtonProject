@@ -12,15 +12,16 @@ import Button_Join from "../comps/Button_Join";
 import Card_members from "../comps/Card_members";
 import Bar_group_countdown_price from "../comps/Bar_group_countdown_price";
 import Circle_extra_member from "../comps/Circle_extra_member";
-import Join_group_popup from "../comps/Join_group_popup";
+import Join_group_popup from '../comps/Join_group_popup';
+import * as Progress from 'react-native-progress';
+import { Actions } from "react-native-router-flux";
 
 import Modal from "react-native-modal";
 import HamMenu from "../comps/HamMenu";
 
-import { Actions } from "react-native-router-flux";
-
-function GroupInfo() {
-  const LoadMemberCard = async () => {
+function GroupInfo(props) {
+  
+  const LoadMemberCard = async()=>{
     var obj = {
       key: "memberCard_read",
       data: {
@@ -33,27 +34,26 @@ function GroupInfo() {
     // var dbusers = JSON.parse(r.data.body);
     // console.log("read", dbusers);
     // setUsers(dbusers.data);
+  // if(data.organizerName == obj.organizerName ){
+  //   alert('No result is found')
+  // }
+}
 
-    // if(data.organizerName == obj.organizerName ){
-    //   alert('No result is found')
-    // }
-  };
-
-  const data = [
-    {
-      memberName: "Lisa Black",
-      organizer: "Organizer",
-      url: "../assets/image.jpeg"
-    },
-    {
-      memberName: "Jonny Wick",
-      url: "../assets/image.jpeg"
-    },
-    {
-      memberName: "Melody Huang",
-      url: "../assets/image.jpeg"
-    }
-  ];
+const data=[
+  {
+    memberName:'Lisa Black',
+    organizer:'Organizer',
+    url:'https://cdn.mos.cms.futurecdn.net/WrTQYE8ZnmfhKgduRX9ci5-320-80.jpeg'
+  },
+  {
+    memberName:'Jonny Wick',
+    url:'../assets/image.jpeg'
+  },
+  {
+    memberName:'Melody Huang',
+    url:'../assets/image.jpeg'
+  }
+]
 
   useEffect(() => {
     LoadMemberCard();
@@ -193,10 +193,22 @@ function GroupInfo() {
       color: "#094E76",
       marginBottom: 32,
       marginTop: -16
+    },
+    ProgressBar: {
+      marginTop:'1%'
+    },
+    txtMembersIndicator:{
+      marginTop:'3%',
+      fontSize:16,
+      fontFamily:'Open sans',
+      color:'#094E76'
     }
   });
 
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible,setModalVisible] = useState(false);
+  var joinedMember = 20;
+  var totalMember = 23;
+  
   const [hamMenuVisible, setHamMenuVisible] = useState(false);
 
   return (
@@ -262,9 +274,24 @@ function GroupInfo() {
           <Text style={styles.giOrganizedByText}>Organized by</Text>
           <Text style={styles.giOrganizerText}>Toby Wong</Text>
         </View>
+        <View
+        style={{justifyContent:'center', alignItems:'center'}}
+        >
 
-        <Bar_group_countdown_price titlePrice={7} countdown={100} />
-
+        <Text
+        style={styles.txtMembersIndicator}
+        >{props.joinedMember}20/23{props.totalMember}</Text>
+        <Progress.Bar
+            unfilledColor="#CDC5C5"
+            borderColor="#FFFFFF"
+            color="#81EC8D"
+            progress = {joinedMember/totalMember}
+            width={350}
+            height={13}
+            borderRadius={13}
+            style={styles.ProgressBar}
+          />
+        </View>
         <View style={styles.giTextSec}>
           <View
             style={{
@@ -304,8 +331,6 @@ function GroupInfo() {
                     <Text style={styles.giTitleText}>Centre</Text>
                     <Text style={styles.giTitleText}>Location</Text>
                     <Text style={styles.giTitleText}>Time</Text>
-                    <Text style={styles.giTitleText}>Group Limit</Text>
-                    <Text style={styles.giTitleText}>Players</Text>
                     <Text style={styles.giTitleText}>Bird Type</Text>
                   </View>
                   <View style={{ flex: 1 }}>
@@ -316,8 +341,6 @@ function GroupInfo() {
                       4351 No 3 Rd #100,{"\n"}Richmond, BC V6X 3A7
                     </Text>
                     <Text style={styles.giText}>1pm - 4pm</Text>
-                    <Text style={styles.giText}>5</Text>
-                    <Text style={styles.giPlayersText}>4</Text>
                     <Text style={styles.giText}>Feather</Text>
                   </View>
                 </View>

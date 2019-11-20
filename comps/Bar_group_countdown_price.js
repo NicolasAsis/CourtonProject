@@ -1,19 +1,30 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
+import * as Progress from 'react-native-progress';
 
 function Bar_group_countdown_price(props) {
   return (
     <View style={{width:'100%'}}>
       {/* Pink Subheader */}
       <View style={styles.giSubHeader}>
-        <Image
+      <Progress.Bar
+            unfilledColor="#CDC5C5"
+            borderColor="#FFFFFF"
+            color="#81EC8D"
+            progress = {props.progressBarLoad}
+            width={350}
+            height={100}
+            style={styles.ProgressBar}
+          />
+        {/* <Image
           style={styles.groupcloseIcon}
           source={require("../assets/icon_group_close.png")}
         />
         <Text style={styles.giclosingtimeText}>
           Group closes in<Text style={styles.gispectimeText}> {props.countdown} </Text>hours
         </Text>
-        <Text style={styles.gicostText}>${props.titlePrice}</Text>
+        <Text style={styles.gicostText}>${props.titlePrice}</Text> */}
+
       </View>
     </View>
   );
@@ -24,10 +35,9 @@ const styles = StyleSheet.create({
 
   giSubHeader: {
     height: 55,
-    backgroundColor: "#FE647B",
-    display: "flex",
+    backgroundColor: "#ffffff",
     alignItems: "center",
-    flexDirection: "row"
+    justifyContent:'center',
   },
   giclosingtimeText: {
     fontFamily: "Open sans",
@@ -51,6 +61,12 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     left: 100
   },
+  ProgressBar: {
+    position: "absolute",
+    height: 8,
+    right: 10,
+    bottom: 10
+  }
   
 });
 export default Bar_group_countdown_price;
