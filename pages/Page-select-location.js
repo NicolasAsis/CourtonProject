@@ -10,11 +10,13 @@ import {
   StatusBar
 } from "react-native";
 import Card_badminton_centre from "../comps/Card_badminton_centre";
-
+import Reminder_bmt_popup from '../comps/Reminder_bmt_popup';
 import {Actions} from 'react-native-router-flux';
 
 import Modal from 'react-native-modal';
 import HamMenu from '../comps/HamMenu';
+
+
 
 function SelectLocation() {
   const LoadBmtCentre = async () => {
@@ -60,11 +62,7 @@ function SelectLocation() {
       badmintonCentreName:'Drive',
       badmintonCentreLocation:'4551 No 3 Rd #138, Richmond, BC V6X 2C3'
     },
-    {
-      badmintonCentreImg:require('../assets/img_vrc.jpeg'),
-      badmintonCentreName:'VRC',
-      badmintonCentreLocation:'4867 Ontario St, Vancouver, BC V5V 3H4'
-    },
+    
     
   ];
 
@@ -72,6 +70,8 @@ function SelectLocation() {
 
   return (
     <View >
+       
+
       <Modal
         isVisible={hamMenuVisible}
         animationIn="slideInRight"
@@ -128,6 +128,9 @@ function SelectLocation() {
                       badmintonCentreImg={obj.badmintonCentreImg}
                       badmintonCentreName={obj.badmintonCentreName}
                       badmintonCentreLocation={obj.badmintonCentreLocation}
+                      onPress={()=>{
+                        
+                      }}
                     />
                   );
                 })}

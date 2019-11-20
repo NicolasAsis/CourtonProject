@@ -158,8 +158,20 @@ function SelectTime() {
             <Text style={styles.txtLeft}>TO</Text>
           </View>
           <View style={{ flexDirection: "column", alignItems: "flex-end" }}>
-            <Text style={styles.txtRight}>{chosenDate}</Text>
-            <Text style={styles.txtRight}>{chosenDate2}</Text>
+            <Text 
+              style={styles.txtRight}
+              onPress={()=>{
+                showDateTimePicker();
+                setTime("START");
+              }}
+            >{chosenDate}</Text>
+            <Text 
+              style={styles.txtRight}
+              onPress={()=>{
+                showDateTimePicker();
+                setTime("END");
+              }}
+            >{chosenDate2}</Text>
           </View>
         </View>
 
