@@ -1,10 +1,15 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { Actions } from "react-native-router-flux";
 
 function Card_notification(props) {
   return (
     <View >
-      <TouchableOpacity style={styles.CardParents}>
+      <TouchableOpacity 
+      onPress={()=>{
+        Actions.Member_groupInfo()
+      }}
+      style={styles.CardParents}>
         <View
           style={[
             styles.verIndicator,

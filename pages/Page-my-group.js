@@ -72,11 +72,10 @@ function MyGroup() {
       groupNum: "1511",
       date: "Sat Dec 10",
       time: "1pm -2pm",
-      joinedMember: 2,
+      joinedMember: 10,
       totalMember: 10,
       price: 7,
-      progressBarLoad: 0.4,
-      color:"yellow"
+      progressBarLoad:1
     },
     {
       organizerName: "Dan Dhanika",
@@ -116,7 +115,8 @@ function MyGroup() {
       joinedMember: 2,
       totalMember: 10,
       price: 7,
-      progressBarLoad: 0.5
+      progressBarLoad: 0.9
+      
     }
   ];
 
@@ -129,7 +129,7 @@ function MyGroup() {
       joinedMember: 2,
       totalMember: 10,
       price: 150,
-      progressBarLoad: "0.2"
+      progressBarLoad: "0.2",
     },
     {
       bmtCentre: "Stage 18",
@@ -178,6 +178,16 @@ function MyGroup() {
     joinedData.color = "#DAD"
   }
 
+  // if(joinedData==0){
+    
+  //     <View>
+  //       <Image
+  //       style={{width:50, height:50, position:'absolute'}}
+  //       source={require('../assets/but_create.png')}
+  //       />
+  //     </View>
+    
+  // }
   const [groupType, setGroupType] = useState(
     <View>
                 {joinedData.map(obj => {
@@ -195,6 +205,7 @@ function MyGroup() {
                       progressBarLoad={obj.progressBarLoad}
                     />
                   );
+                  
                 })}
               </View>
   );

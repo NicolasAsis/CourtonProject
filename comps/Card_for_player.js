@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   },
   txtGroupPrice: {
     position: "absolute",
-    fontSize: 16,
+    fontSize: 24,
     color: "#094E76",
     fontWeight: "bold",
     bottom: 25,
