@@ -4,28 +4,39 @@ import { Actions } from "react-native-router-flux";
 // Animation
 import * as Animatable from "react-native-animatable";
 
-function Select_court_popup(props) {
+function Reminder_bmt_popup(props) {
   return (
     <View style={styles.container}>
-
       <Animatable.View
-        animation="bounce"
+        animation="bounceIn"
         iterationCount={1}
         direction="alternate"
       >
         <View style={styles.popup}>
-          <Text style={styles.boldGroupText}>Please pick a court</Text>
+          <Text style={styles.boldGroupText}>Reminder</Text>
+          <Text style={styles.boldGroupNumText}>
+            Don't forget to call the centre for your booking!{" "}
+          </Text>
 
           <TouchableOpacity
             onPress={() => {
               // Actions.GroupInfo()
               props.setShowPopup(false);
+              Actions.SelectTime()
             }}
             style={styles.noButTouchableOp}
           >
-            <Text 
-            style={{fontFamily:'Open sans', fontSize:16, fontWeight:'bold', color:'white'}}
-            >Ok</Text>
+           
+              <Text
+                style={{
+                  color: "#ffffff",
+                  fontSize: 16,
+                  fontFamily: "Open sans",
+                  fontWeight: "bold"
+                }}
+              >
+                OK
+              </Text>
           </TouchableOpacity>
         </View>
       </Animatable.View>
@@ -51,6 +62,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 10,
     display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     fontFamily: "Open Sans"
   },
 
@@ -64,14 +77,16 @@ const styles = StyleSheet.create({
   },
 
   boldGroupNumText: {
-    fontWeight: "bold",
-    fontSize: 31,
+    // fontWeight: "bold",
+    width:250,
+    fontSize: 14,
     letterSpacing: 0.213333,
-    color: "#3C3C3C"
+    color: "#3C3C3C",
+    textAlign:'center'
   },
 
   noButton: {
-    position: "absolute",
+    //  position: 'absolute',
     width: 100,
     height: 38
     //  left: -112,
@@ -81,12 +96,12 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: 100,
     height: 38,
-    left: 80,
+    // left: 80,
     top: 143,
-    backgroundColor:'#81EC8D',
-    borderRadius:40,
+    alignItems:'center',
     justifyContent:'center',
-    alignItems:'center'
+    borderRadius: 40,
+    backgroundColor: "#81EC8D"
   },
 
   yesButton: {
@@ -105,4 +120,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Select_court_popup;
+export default Reminder_bmt_popup;

@@ -1,11 +1,16 @@
-import React from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import React,{useState} from "react";
+import { View, Text, Image, StyleSheet, TouchableOpacity, Modal } from "react-native";
+import Reminder_bmt_popup from '../comps/Reminder_bmt_popup';
 
 import {Actions} from 'react-native-router-flux';
 
 function Card_badminton_centre(props) {
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <View >
+      <Modal animationType="fade" transparent={true} visible={modalVisible}>
+        <Reminder_bmt_popup setShowPopup={setModalVisible} />
+      </Modal>
       {/* <View style={{marginBottom:180}}> */}
         <TouchableOpacity 
             style={styles.container}
@@ -16,7 +21,10 @@ function Card_badminton_centre(props) {
                 centreImage:props.badmintonCentreImg
               }})
               console.log(props.badmintonCentreImg)
+             setModalVisible(!modalVisible);
+
             }}
+           
         >
           <View style={styles.card}>
             <Image

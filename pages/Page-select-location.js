@@ -11,12 +11,15 @@ import {
 } from "react-native";
 import Card_badminton_centre from "../comps/Card_badminton_centre";
 
-import { Actions } from "react-native-router-flux";
+import Reminder_bmt_popup from '../comps/Reminder_bmt_popup';
+import {Actions} from 'react-native-router-flux';
 
 import Modal from "react-native-modal";
 import HamMenu from "../comps/HamMenu";
 
 import axios from "axios";
+
+
 
 function SelectLocation() {
   const LoadBmtCentre = async () => {
@@ -34,7 +37,7 @@ function SelectLocation() {
     // console.log("read", dbusers);
     // setUsers(dbusers.data);
   };
-
+  
   const [badmintonCentres, setCentres] = useState([]);
 
   const ReadCentres = async () => {
@@ -90,7 +93,7 @@ function SelectLocation() {
   const [hamMenuVisible, setHamMenuVisible] = useState(false);
 
   return (
-    <View>
+    <View >
       <Modal
         isVisible={hamMenuVisible}
         animationIn="slideInRight"

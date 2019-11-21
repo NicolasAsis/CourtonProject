@@ -42,7 +42,7 @@ function Card_members(props) {
       width: 45,
       height: 45,
       borderRadius: 50,
-      backgroundColor: "skyblue",
+      // backgroundColor: "skyblue",
       paddingLeft:'25%'
       // flex: 5
     },
