@@ -9,8 +9,9 @@ import {
 } from "react-native";
 
 import {Actions} from 'react-native-router-flux';
+import jssPluginPropsSort from "jss-plugin-props-sort";
 
-function Welcome() {
+function Welcome(props) {
   return (
     <View style={styles.pg}>
       <Image
@@ -18,7 +19,7 @@ function Welcome() {
         source={require("../assets/img_abstract_up.png")}
       />
       <View style={styles.welcomText}>
-            <Text style={styles.welcome}>Welcome Jacky!</Text>
+            <Text style={styles.welcome}>Welcome Jacky</Text>
             <Text style={styles.sucessfully}>Your account was created sucessfully!</Text>
             <TouchableOpacity 
                 style={styles.loginBut}

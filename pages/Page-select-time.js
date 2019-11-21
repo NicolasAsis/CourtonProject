@@ -14,12 +14,12 @@ import HamMenu from "../comps/HamMenu";
 // import Moment from 'react-moment';
 // import {Moment} from 'react-moment';
 
-function SelectTime() {
+function SelectTime({navigation}) {
   const [isDateTimePickerVisible, setIsDateTimePickerVisible] = useState(false);
   // const [showDateTimePicker, setShowDateTimePicker] = useState(true);
   // const [hideDateTimePicker, setHideDateTimePicker] = useState(true);
   // const [handleDatePicked, setHandleDatePicked] = useState(true);
-
+  console.log("params",navigation.state.params);
   const [time, setTime] = useState();
 
   const [chosenDate, setChosenDate] = useState(" ");
@@ -42,16 +42,17 @@ function SelectTime() {
   function handleDatePicked(date) {
     console.log("A date has been picked: ", date);
     // startDate = moment(date).format('lll');
+    
     if (time == "START") {
-      setChosenDate(moment(date).format("lll"));
+      setChosenDate(date);
     } else if (time == "END") {
-      setChosenDate2(moment(date).format("lll"));
+      setChosenDate2(date);
     }
     hideDateTimePicker();
   }
 
   // var hrsPlay = {chosenDate} - {chosenDate2};
-
+  console.log((Date.parse(chosenDate2)-Date.parse(chosenDate))/1000/60/60);
   return (
     <View style={{ backgroundColor: "#FFFFFF", height: "100%" }}>
       <Modal
@@ -66,6 +67,7 @@ function SelectTime() {
           setHamMenuVisible(false);
         }}
         hideModalContentWhileAnimating={true}
+        style={{ margin: 0 }}
       >
         <HamMenu showHamMenu={setHamMenuVisible} />
       </Modal>
@@ -158,25 +160,17 @@ function SelectTime() {
             <Text style={styles.txtLeft}>TO</Text>
           </View>
           <View style={{ flexDirection: "column", alignItems: "flex-end" }}>
-            <Text 
-              style={styles.txtRight}
-              onPress={()=>{
-                showDateTimePicker();
-                setTime("START");
-              }}
-            >{chosenDate}</Text>
-            <Text 
-              style={styles.txtRight}
-              onPress={()=>{
-                showDateTimePicker();
-                setTime("END");
-              }}
-            >{chosenDate2}</Text>
+            <Text style={styles.txtRight}>{moment(chosenDate).format("lll") || ""}</Text>
+            <Text style={styles.txtRight}>{moment(chosenDate2).format("lll") || ""}</Text>
           </View>
         </View>
 
         {/* OK btn */}
-        <Button_Ok hrsPlay={{ chosenDate } - { chosenDate2 }} />
+        <Button_Ok 
+          hrsPlay={Math.round((Date.parse(chosenDate2)-Date.parse(chosenDate))/1000/60/60)} 
+          startTime={Math.round(Date.parse(chosenDate)/1000/60/60)} 
+          endTime={Math.round(Date.parse(chosenDate2)/1000/60/60)}
+        />
         <View></View>
       </View>
     </View>
