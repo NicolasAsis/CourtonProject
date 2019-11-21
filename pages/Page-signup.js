@@ -17,6 +17,8 @@ import {Actions} from 'react-native-router-flux';
 
 import axios from 'axios';
 
+import AsyncStorage from '@react-native-community/async-storage';
+
 var email = "";
 var password = "";
 var first_name = "";
@@ -54,6 +56,7 @@ function Signup(){
         console.log("read", dbusers);
         setUsers(dbusers.data);
     }
+    
     useEffect(()=>{
         ReadUsers();
     }, []);

@@ -10,13 +10,18 @@ function Card_badminton_centre(props) {
         <TouchableOpacity 
             style={styles.container}
             onPress={()=>{
-              Actions.SelectTime()
+              Actions.SelectTime({group_info:{
+                centreName:props.badmintonCentreName,
+                centreLocation:props.badmintonCentreLocation,
+                centreImage:props.badmintonCentreImg
+              }})
+              console.log(props.badmintonCentreImg)
             }}
         >
           <View style={styles.card}>
             <Image
               style={styles.img}
-              source={props.badmintonCentreImg}
+              source={{uri:props.badmintonCentreImg}}
             />
           </View>
           

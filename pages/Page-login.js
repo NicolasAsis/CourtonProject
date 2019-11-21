@@ -172,7 +172,7 @@ function Login(props) {
                 />
             </View>
 
-            <Text style={styles.errorText}>{error}</Text>
+            {/* <Text style={styles.errorText}>{error}</Text> */}
 
             {/* <Button
                 title="LOGIN"
