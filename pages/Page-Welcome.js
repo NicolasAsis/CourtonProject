@@ -11,7 +11,25 @@ import {
 import {Actions} from 'react-native-router-flux';
 import jssPluginPropsSort from "jss-plugin-props-sort";
 
+import AsyncStorage from '@react-native-community/async-storage';
+
 function Welcome(props) {
+  
+  const getUserName = async () => {
+    try {
+      const value = await AsyncStorage.getItem('@user_firstName')
+      console.log(value)
+      if(value !== null) {
+        // value previously stored
+      }
+    } catch(e) {
+      // error reading value
+    }
+
+  }
+
+  getUserName();
+
   return (
     <View style={styles.pg}>
       <Image
