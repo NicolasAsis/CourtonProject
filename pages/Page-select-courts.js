@@ -15,10 +15,12 @@ import Select_court_popup from "../comps/Select_court_popup";
 
 import Modal from "react-native-modal";
 import HamMenu from "../comps/HamMenu";
+// import console = require("console");
 
 const courts = [10, 1, 11, 2, 12, 3, 13, 4, 14, 5, 15, 6, 16, 7, 17, 8, 18, 9];
 
 function SelectCourts(props) {
+  console.log(props.navigation.state.params);
   const [crts, setCrts] = useState([]);
 
   var cComp = courts.map(o => {
@@ -58,6 +60,7 @@ function SelectCourts(props) {
           setHamMenuVisible(false);
         }}
         hideModalContentWhileAnimating={true}
+        style={{ margin: 0 }}
       >
         <HamMenu showHamMenu={setHamMenuVisible} />
       </Modal>

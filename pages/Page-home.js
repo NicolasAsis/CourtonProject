@@ -23,6 +23,19 @@ import { Actions } from "react-native-router-flux";
 import LoadingAnimation from '../comps/LoadingAnimation';
 
 function Home() {
+  // const [moveY] =useState(new Animated. Value(0));
+  // const [op] = useState(new Animated. Value(1));
+
+  // var animatedOp = op.interpolate({
+  //     inputRange:[0, 1],
+  //     outputRange:[0, 1]
+  // })
+
+  // var animatedMoveY = moveY.interpolate({
+  //     inputRange:[0, 10],
+  //     outputRange:[0,10]
+  // })
+
   // const [group, setGroup] = useState([]);
   const LoadGroup = async()=>{
     var obj = {
@@ -152,9 +165,60 @@ useEffect(()=>{
 
       <ScrollView
         style={{ backgroundColor: "#FFFFFF" }}
+        onScroll={()=>{
+          Animated.timing(
+            moveY,
+            {
+                toValue:10,
+                duration:300
+                
+            },
+            op,
+            {
+                toValue:0,
+                duration:300
+            }
+        ).start();
+
+        // InteractionManager.runAfterInteractions(()=>{
+        //   Animated.timing(
+        //       dim,{
+        //           toValue:50,
+        //           duration:1000,
+        //           delay:1000
+        //       }
+        //   ).start();
+        // })
+        }}
       >
         <View style={{ flex: 1, paddingBottom: 130, height:850 }}>
-          <ScrollView >
+          <ScrollView 
+          // onScroll={()=>{
+          //   Animated.timing(
+          //     moveY,
+          //     {
+          //         toValue:10,
+          //         duration:300
+                  
+          //     },
+          //     op,
+          //     {
+          //         toValue:0,
+          //         duration:1000
+          //     }
+          // ).start();
+
+          // InteractionManager.runAfterInteractions(()=>{
+          //   Animated.timing(
+          //       dim,{
+          //           toValue:50,
+          //           duration:1000,
+          //           delay:1000
+          //       }
+          //   ).start();
+          // })
+          // }}
+          >
             <View style={{ paddingBottom: 10, height:"100%"}}>
               <Image
                 style={{ width: "100%", height: 240 }}
@@ -194,6 +258,32 @@ useEffect(()=>{
               <Card_for_player />
               <Card_for_player />
               <Card_for_player /> */}
+              {/* <View style={{
+                width:50,
+                height:50,
+                borderRadius:50,
+                backgroundColor:'#5DB9F0',
+                justifyContent:'center',
+                alignItems:'center'
+              }}
+              
+              >
+              <Image
+              style={{
+                // backgroundColor:'#fab',
+                width:30,
+                height:30
+              }}
+              source={require('../assets/img_birdie_white.png')}
+              />
+              </View> */}
+              <TouchableOpacity
+              onPress={()=>{
+                Actions.SkillLevel()
+              }}
+              >
+                {/* <Text>Test</Text> */}
+              </TouchableOpacity>
                  {
                 filteredGroup.map((obj,i)=>{
                     return <Card_for_player
@@ -248,6 +338,9 @@ useEffect(()=>{
       <View style={styles.footer}>
         <Footer_home />
       </View>
+      <Animated.View 
+      // style={{marginTop:animatedMoveY, opacity:animatedOp}}
+      >
       <TouchableOpacity
         style={styles.createButTouchableOp}
         onPress={() => {
@@ -259,6 +352,7 @@ useEffect(()=>{
           source={require("../assets/but_create.png")}
         />
       </TouchableOpacity>
+      </Animated.View>
     </View>
   );
 }

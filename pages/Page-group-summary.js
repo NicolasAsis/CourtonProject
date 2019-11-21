@@ -16,6 +16,7 @@ import SwitchSelector from "react-native-switch-selector";
 
 import { Actions } from "react-native-router-flux";
 import LoadingAnimation from "../comps/LoadingAnimation";
+import TextInput_popup from '../comps/TextInput_popup'
 
 function GroupSummary(props) {
   const [grouplimit, setGroupLimit] = useState(0);
@@ -25,10 +26,18 @@ function GroupSummary(props) {
   }
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [textInputVisible, setTextInputVisible] = useState(false);
   return (
     <View style={styles.gsStructure}>
       <Modal animationType="fade" transparent={true} visible={modalVisible}>
         <LoadingAnimation setShowPopup={setModalVisible} />
+      </Modal>
+
+      <Modal animationType="fade" transparent={true} visible={textInputVisible}>
+        <TextInput_popup 
+        setShowPopup={setTextInputVisible} 
+        // desc={desc}
+        />
       </Modal>
       {/* Group Summary Header */}
       <Header_blue_red
@@ -48,11 +57,12 @@ function GroupSummary(props) {
               height: "100%"
             }}
           >
-            <Text style={styles.gsTitleText}>Price for members</Text>
+            {/* <Text style={styles.gsTitleText}>Price for members</Text> */}
             <View
               style={{
                 flexDirection: "row",
                 justifyContent: "center",
+                alignItems:'center',
                 alignItems: ""
               }}
             >
@@ -61,31 +71,42 @@ function GroupSummary(props) {
                   color: "#FE647B",
                   fontWeight: "bold",
                   fontFamily: "Open sans",
-                  fontSize: 30
+                  fontSize: 30,
+                  // flex:1,
+                  // marginLeft:'50%',
+                  top:'1%'
                 }}
               >
                 $
               </Text>
               <TextInput
-                style={styles.priceInput}
+                style={[styles.priceInput, {borderRadius:50,marginRight:'5%',}]}
                 maxLength={4}
-                fontSize={17}
+                fontSize={24}
                 placeholder=" 0.00"
-                multiline
+                // multiline
                 onChange={() => {
                   props.priceInputValue;
                 }}
               />
+              <Text style={{
+                fontFamily:'Open sans',
+                fontSize:26,
+                top:'2%',
+                color:'#3d3d3d'
+
+              }}
+              >/ Person</Text>
             </View>
             <View>
-              <View style={{ justifyContent: "center", alignItems: "center" }}>
+              {/* <View style={{ justifyContent: "center", alignItems: "center" }}>
                 <Text
                   style={{
                     fontFamily: "Open sans",
                     fontWeight: "bold",
                     fontSize: 16,
                     color: "#3C3C3C",
-                    marginBottom:'5%'
+                    marginBottom: "5%"
                   }}
                 >
                   Description
@@ -98,7 +119,7 @@ function GroupSummary(props) {
                     backgroundColor: "#F7F7F7",
                     // marginTop: -25,
                     marginBottom: 35,
-                    textAlignVertical: '5%'
+                    textAlignVertical: "5%"
                   }}
                   placeholder="Type a group description..."
                   onChangeText={() => {
@@ -106,28 +127,21 @@ function GroupSummary(props) {
                   }}
                   multiline
                 />
-              </View>
+              </View> */}
             </View>
             <View
               style={{
-                flexDirection: 'column',
-                width: "50%",
+                flexDirection: "row",
+                width: "94%",
                 justifyContent: "center",
                 alignItems: "center",
                 marginBottom: "8%"
               }}
             >
-
-<Text
-              style={[
-                styles.gsTitleText,
-                {  marginBottom: "5%" }
-              ]}
-            >
-              Group Limit
-            </Text>
-            <View style={{ display: "flex", flexDirection: "row" }}>
-              
+              <Text style={[styles.gsTitleText, { height: 20, flex: 1 }]}>
+                Group Limit
+              </Text>
+              <View style={{ left:'15%',display: "flex", flexDirection: "row", flex: 1 }}>
                 <TouchableOpacity
                   onPress={() => {
                     setGroupLimit(grouplimit - 1);
@@ -139,7 +153,7 @@ function GroupSummary(props) {
                   />
                 </TouchableOpacity>
                 {/* Group limit text */}
-                <Text style={styles.gsText}>{grouplimit}</Text>
+                <Text style={[styles.gsText, {top:'2%'}]}>{grouplimit}</Text>
                 <TouchableOpacity
                   onPress={() => {
                     setGroupLimit(grouplimit + 1);
@@ -152,11 +166,11 @@ function GroupSummary(props) {
                 </TouchableOpacity>
               </View>
             </View>
-
-            <TouchableOpacity style={styles.timeCard}
-            onPress={()=>{
-              Actions.reset('SelectTime');
-            }}
+            <TouchableOpacity
+              style={styles.timeCard}
+              onPress={() => {
+                Actions.reset("SelectTime");
+              }}
             >
               <View
                 style={{
@@ -191,11 +205,12 @@ function GroupSummary(props) {
                 </View>
               </View>
             </TouchableOpacity>
-        
-            <TouchableOpacity style={styles.card}
-            onPress={()=>{
-              Actions.reset('SelectCourts');
-            }}
+
+            <TouchableOpacity
+              style={styles.card}
+              onPress={() => {
+                Actions.reset("SelectCourts");
+              }}
             >
               <View
                 style={{
@@ -224,15 +239,53 @@ function GroupSummary(props) {
                 </View>
               </View>
             </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.card,{marginTop:'4%'}]}
+              onPress={() => {
+                // Actions.reset("SelectCourts");
+                // alert("fd")
+                setTextInputVisible(!textInputVisible);
+              }}
+            >
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginTop:'2%',
+                  left: "35%"
+                }}
+              >
+                <Text style={styles.gsTitleText}>Description</Text>
+                <View
+                  style={{
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flex: 2
+                  }}
+                >
+                  <Text style={styles.gsText} numberOfLines={1}>{props.desc}
+                  
+                  </Text>
+                </View>
+                <View style={{ marginRight: 40 }}>
+                  <Image
+                    style={{ width: 13, height: 13 }}
+                    source={require("../assets/icon_more.png")}
+                  />
+                </View>
+              </View>
+            </TouchableOpacity>
 
-            {/* Post Button */}
+            {/* location  */}
             <View
               style={{
                 flexDirection: "column",
-                alignItems: "flex-start",
+                // alignItems: "flex-start",
                 left: "-15%",
                 top: "4%",
-                paddingBottom: "15%"
+                paddingBottom: "6%"
               }}
             >
               <View>
@@ -242,7 +295,8 @@ function GroupSummary(props) {
                     fontWeight: "bold",
                     fontSize: 16,
                     color: "#3C3C3C",
-                    alignItems: "flex-start"
+                    alignItems: "flex-start",
+                    marginBottom: "1%"
                   }}
                 >
                   Location
@@ -261,116 +315,164 @@ function GroupSummary(props) {
                   4351 No 3 Rd #100, Richmond
                 </Text>
               </View>
-              <View style={{ top: "19%" }}>
-                <Text
-                  style={{
-                    fontFamily: "Open sans",
-                    fontWeight: "bold",
-                    fontSize: 16,
-                    color: "#3C3C3C",
-                    alignItems: "flex-start",
-                    paddingBottom: "2%"
-                    // bottom:'5%'
-                  }}
-                >
-                  Birdie Type
-                </Text>
-                <SwitchSelector
-                  style={styles.gsSwitch}
-                  initial={0}
-                  // onPress={value => this.setState({ gender: value })}
-                  textColor="#094E76" //'#7a44cf'
-                  selectedColor="white"
-                  buttonColor="#5DB9F0"
-                  // borderColor='#5DB9F0'
-                  hasPadding
-                  options={[
-                    {
-                      label: "Feather",
-                      value: "Feather"
-                    },
-                    {
-                      label: "Birdie",
-                      value: "Birdie"
-                    }
-                  ]}
-                />
-              </View>
-              <View style={{ top: "19%" }}>
-                <Text
-                  style={{
-                    fontFamily: "Open sans",
-                    fontWeight: "bold",
-                    fontSize: 16,
-                    color: "#3C3C3C",
-                    alignItems: "flex-start",
-                    paddingBottom: "2%"
-                    // bottom:'5%'
-                  }}
-                >
-                  Group Frequency
-                </Text>
-                <SwitchSelector
-                  style={styles.gsSwitch}
-                  initial={0}
-                  // onPress={value => this.setState({ gender: value })}
-                  textColor="#094E76" //'#7a44cf'
-                  selectedColor="white"
-                  buttonColor="#5DB9F0"
-                  // borderColor='#5DB9F0'
-                  hasPadding
-                  options={[
-                    {
-                      label: "Weekly",
-                      value: "Weekly"
-                    },
-                    {
-                      label: "Once",
-                      value: "Once"
-                    }
-                  ]}
-                />
-              </View>
-              
             </View>
+
+            {/* Birdie Type */}
+
             <View
               style={{
-                flexDirection: "column",
-                alignItems: "flex-start",
-                left: "-30%",
-                top: "1%",
-                paddingBottom: 30
+                left: "2%",
+                // right:'2%',
+                top: "7%",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center"
               }}
             >
-              <View>
-                <Text
-                  style={{
-                    fontFamily: "Open sans",
-                    fontWeight: "bold",
-                    fontSize: 16,
-                    color: "#3C3C3C",
-                    alignItems: "flex-start"
-                  }}
-                >
-                  Price In Total
-                </Text>
+              <Text
+                style={{
+                  fontFamily: "Open sans",
+                  fontWeight: "bold",
+                  fontSize: 16,
+                  color: "#3C3C3C",
+                  // alignItems: "flex-start",
+                  // paddingBottom: "2%",
+                  flex: 1
+                  // bottom:'5%'
+                }}
+              >
+                Birdie Type
+              </Text>
+              <SwitchSelector
+                style={[styles.gsSwitch, { flex: 1, right: "9%" }]}
+                initial={0}
+                // onPress={value => this.setState({ gender: value })}
+                textColor="#094E76" //'#7a44cf'
+                selectedColor="white"
+                buttonColor="#5DB9F0"
+                // borderColor='#5DB9F0'
+                hasPadding
+                options={[
+                  {
+                    label: "Feather",
+                    value: "Feather"
+                  },
+                  {
+                    label: "Birdie",
+                    value: "Birdie"
+                  }
+                ]}
+              />
+            </View>
+
+            {/* Group Frequency */}
+            <View
+              style={{
+                top: "10%",
+                left: "2%",
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
+              <Text
+                style={{
+                  fontFamily: "Open sans",
+                  fontWeight: "bold",
+                  fontSize: 16,
+                  color: "#3C3C3C",
+                  alignItems: "flex-start",
+                  // paddingBottom: "2%"
+                  // bottom:'5%'
+                  flex: 1
+                }}
+              >
+                Group Frequency
+              </Text>
+              <SwitchSelector
+                style={[styles.gsSwitch, { flex: 1, right: "9%" }]}
+                initial={0}
+                // onPress={value => this.setState({ gender: value })}
+                textColor="#094E76" //'#7a44cf'
+                selectedColor="white"
+                buttonColor="#5DB9F0"
+                // borderColor='#5DB9F0'
+                hasPadding
+                options={[
+                  {
+                    label: "Weekly",
+                    value: "Weekly"
+                  },
+                  {
+                    label: "Once",
+                    value: "Once"
+                  }
+                ]}
+              />
+            </View>
+
+            {/* Total Price */}
+            <View
+              style={{
+                flexDirection: "row",
+                top: "5%",
+                left: "2%",
+                // alignItems: "flex-start",
+                justifyContent: "center",
+                alignItems: "center",
+                // left: "-30%",
+                // top: "1%",
+                // paddingBottom: 30
+                marginTop: 30,
+                marginBottom: 50
+              }}
+            >
+              <View style={{flexDirection:'column', flex:1}}>
+              <Text
+                style={{
+                  fontFamily: "Open sans",
+                  fontWeight: "bold",
+                  fontSize: 16,
+                  height:20,
+                  left: "%",
+                  color: "#3C3C3C",
+                  // alignItems: "flex-start",
+                  flex: 1
+                }}
+              >
+                Price In Total
+              </Text>
+              <Text
+                style={{
+                  fontFamily: "Open sans",
+                  // fontWeight: "bold",
+                  fontSize: 11,
+                  left: "%",
+                  color: "#3d3d3d",
+                  // alignItems: "flex-start",
+                  flex: 1
+                }}
+              >
+                The price for badminton centre
+              </Text>
               </View>
-              <View>
-                <Text
-                   style={{
-                    color: "#FE647B",
-                    fontWeight: "bold",
-                    fontFamily: "Open sans",
-                    fontSize: 30
-                  }}
-                >
-                  ${props.totalPrice}175
-                  
-                </Text>
-                </View>
-                </View>
-            
-            
+
+              <Text
+                style={{
+                  color: "#FE647B",
+                  fontWeight: "bold",
+                  fontFamily: "Open sans",
+                  fontSize: 30,
+                  alignItems: "flex-end",
+                  flex: 1,
+                  left:'200%'
+                }}
+              >
+                ${props.totalPrice}175
+              </Text>
+            </View>
+
+            {/* Post Button */}
             <TouchableOpacity
               style={styles.postBut}
               onPress={() => {
@@ -471,14 +573,13 @@ const styles = StyleSheet.create({
   },
 
   priceInput: {
-    width: 50,
-    height: 30,
+    width: 80,
+    height: 40,
     borderRadius: 10,
     backgroundColor: "#F7F7F7",
     marginTop: 7,
     marginLeft: 8,
     marginBottom: 39,
-    textAlignVertical: "top"
   },
   //Post button
   postBut: {
@@ -520,7 +621,7 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     shadowOpacity: 0.1,
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center"
     // marginBottom: "3%"
   }
 });

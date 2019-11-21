@@ -117,6 +117,7 @@ function MyJoinedGroup() {
           setHamMenuVisible(false);
         }}
         hideModalContentWhileAnimating={true}
+        style={{ margin: 0 }}
       >
         <HamMenu showHamMenu={setHamMenuVisible} />
       </Modal>

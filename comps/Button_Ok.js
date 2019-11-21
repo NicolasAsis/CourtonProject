@@ -2,8 +2,9 @@ import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
 import {Actions} from 'react-native-router-flux';
+// import console = require("console");
 
-function Button_Ok(props) {
+function Button_Ok(props,{navigation}) {
   const styles = StyleSheet.create({
     //Overall Box
     JoinButBox: {
@@ -114,7 +115,7 @@ function Button_Ok(props) {
           <View style={styles.JoinButLeftShadow}>
             {/* Left side of button */}
             <View style={styles.JoinButLeft}>
-              <Text style={styles.priceText}>{props.hrsPlay}hrs Play</Text>
+              <Text style={styles.priceText}>{props.hrsPlay} hrs Play</Text>
             </View>
           </View>
           <View style={styles.JoingButRightShadow}>
@@ -122,7 +123,14 @@ function Button_Ok(props) {
             <TouchableOpacity 
               style={styles.JoinButRight}
               onPress={()=>{
-                Actions.SelectCourts()
+                console.log(props);
+                var g = props.navigation.group_info;
+                Actions.SelectCourts({group_info:{
+                  ...g,
+                  start_time:props.startTime,
+                  end_time:props.endTime,
+                  centreImage:props.badmintonCentreImg
+                }})
               }}
             >
               <Text style={styles.joinText}>Ok</Text>
