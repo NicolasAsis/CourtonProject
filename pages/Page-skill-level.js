@@ -20,15 +20,13 @@ function SkillLevel() {
     <View style={styles.bg}>
       <Text style={styles.title}>What is your skill level?</Text>
       <AirbnbRating
-        count={5}
+        count={3}
         reviews={[
-          "Terrible",
-          "Bad",
-          "Meh",
-          "OK",
-          "Good"
+          "Beginner",
+          "Intermediate",
+          "Professional",
         ]}
-        defaultRating={5}
+        defaultRating={3}
         size={50}
       />
       
