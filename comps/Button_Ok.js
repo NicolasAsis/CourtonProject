@@ -4,7 +4,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import {Actions} from 'react-native-router-flux';
 // import console = require("console");
 
-function Button_Ok(props) {
+function Button_Ok(props,{navigation}) {
   const styles = StyleSheet.create({
     //Overall Box
     JoinButBox: {
@@ -123,8 +123,8 @@ function Button_Ok(props) {
             <TouchableOpacity 
               style={styles.JoinButRight}
               onPress={()=>{
-                console.log(navigation.params.group_info);
-                // var g = props.navigation.state.params.group_info;
+                console.log(props);
+                var g = props.navigation.group_info;
                 Actions.SelectCourts({group_info:{
                   ...g,
                   start_time:props.startTime,

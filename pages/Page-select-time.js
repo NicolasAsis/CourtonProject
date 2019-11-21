@@ -168,8 +168,9 @@ function SelectTime({navigation}) {
         {/* OK btn */}
         <Button_Ok 
           hrsPlay={Math.round((Date.parse(chosenDate2)-Date.parse(chosenDate))/1000/60/60)} 
-          startTime={Math.round(Date.parse(chosenDate)/1000/60/60)} 
-          endTime={Math.round(Date.parse(chosenDate2)/1000/60/60)}
+          startTime={Math.round((Date.parse(chosenDate))/1000/60/60)} 
+          endTime={Math.round((Date.parse(chosenDate2))/1000/60/60)}
+          navigation={navigation.state.params}
         />
         <View></View>
       </View>
