@@ -14,7 +14,7 @@ import ImagePicker from 'react-native-image-picker';
 
 
 function Profile(props) {
-  const [avatarSource, setAvatarSource] = useState();
+  const [avatarSource, setAvatarSource] = useState('https://initia.org/wp-content/uploads/2017/07/default-profile.png');
   // const [SelectImg, setSelectImg] = useState('');
   //select image
 
@@ -122,7 +122,6 @@ function Profile(props) {
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center"
-              
             }}
           >
            {setAvatarSource && <Image style={styles.profilePic} source={{uri:avatarSource}}
