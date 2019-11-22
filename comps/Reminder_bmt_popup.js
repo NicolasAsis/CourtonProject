@@ -22,7 +22,7 @@ function Reminder_bmt_popup(props) {
             onPress={() => {
               // Actions.GroupInfo()
               props.setShowPopup(false);
-              Actions.SelectTime()
+              Actions.SelectLocation();
             }}
             style={styles.noButTouchableOp}
           >

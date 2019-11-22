@@ -19,7 +19,12 @@ function SelectTime({navigation}) {
   // const [showDateTimePicker, setShowDateTimePicker] = useState(true);
   // const [hideDateTimePicker, setHideDateTimePicker] = useState(true);
   // const [handleDatePicked, setHandleDatePicked] = useState(true);
-  console.log("params",navigation.state.params);
+  console.log("params",navigation.state.params.group_info);
+  
+  //Carrying the group info object
+  const giObj = navigation.state.params.group_info;
+
+  //For the time picker
   const [time, setTime] = useState();
 
   const [chosenDate, setChosenDate] = useState(" ");
@@ -170,7 +175,7 @@ function SelectTime({navigation}) {
           hrsPlay={Math.round((Date.parse(chosenDate2)-Date.parse(chosenDate))/1000/60/60)} 
           startTime={Math.round((Date.parse(chosenDate))/1000/60/60)} 
           endTime={Math.round((Date.parse(chosenDate2))/1000/60/60)}
-          navigation={navigation.state.params}
+          navigation={giObj}
         />
         <View></View>
       </View>

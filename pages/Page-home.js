@@ -22,6 +22,8 @@ import Footer_home from "../comps/Sticky_footer_home";
 import { Actions } from "react-native-router-flux";
 import LoadingAnimation from '../comps/LoadingAnimation';
 
+import Reminder_bmt_popup from '../comps/Reminder_bmt_popup';
+
 function Home() {
   // const [moveY] =useState(new Animated. Value(0));
   // const [op] = useState(new Animated. Value(1));
@@ -144,9 +146,11 @@ useEffect(()=>{
   }
 
   const [hamMenuVisible,setHamMenuVisible] = useState(false);
+  const [modalVisible,setModalVisible] = useState(false);
 
   return (
     <View>
+      {/* Ham Menu */}
       <Modal
         isVisible={hamMenuVisible}
         animationIn="slideInRight"
@@ -162,6 +166,16 @@ useEffect(()=>{
       >
         <HamMenu />
       </Modal>
+
+      {/* Popup */}
+      <Modal
+          animationIn="fadeIn"
+          animationOut="fadeOut"
+          isVisible={modalVisible}
+          style={{ margin: 0 }}
+        >
+          <Reminder_bmt_popup setShowPopup={setModalVisible} />
+        </Modal>
 
       <ScrollView
         style={{ backgroundColor: "#FFFFFF" }}
@@ -277,13 +291,14 @@ useEffect(()=>{
               source={require('../assets/img_birdie_white.png')}
               />
               </View> */}
-              <TouchableOpacity
+
+              {/* <TouchableOpacity
               onPress={()=>{
                 Actions.SkillLevel()
               }}
               >
-                {/* <Text>Test</Text> */}
-              </TouchableOpacity>
+                <Text>Test</Text>
+              </TouchableOpacity> */}
                  {
                 filteredGroup.map((obj,i)=>{
                     return <Card_for_player
@@ -344,7 +359,7 @@ useEffect(()=>{
       <TouchableOpacity
         style={styles.createButTouchableOp}
         onPress={() => {
-          Actions.SelectLocation();
+          setModalVisible(true);
         }}
       >
         <Image
