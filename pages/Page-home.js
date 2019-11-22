@@ -22,6 +22,8 @@ import Footer_home from "../comps/Sticky_footer_home";
 import { Actions } from "react-native-router-flux";
 import LoadingAnimation from "../comps/LoadingAnimation";
 
+import Reminder_bmt_popup from '../comps/Reminder_bmt_popup';
+
 function Home() {
   // const [moveY] =useState(new Animated. Value(0));
   // const [op] = useState(new Animated. Value(1));
@@ -142,7 +144,10 @@ function Home() {
   const [showNoresult, setShowNoresult] = useState (false);
 
 
-  const [hamMenuVisible, setHamMenuVisible] = useState(false);
+
+  const [hamMenuVisible,setHamMenuVisible] = useState(false);
+  const [modalVisible,setModalVisible] = useState(false);
+
 
   if (filteredGroup.length == 0) {
     setShowNoresult(true)
@@ -150,7 +155,9 @@ function Home() {
     
    }
   return (
+
     <View style={{backgroundColor:'#ffffff'}}>
+
       <Modal
         isVisible={hamMenuVisible}
         animationIn="slideInRight"
@@ -167,10 +174,74 @@ function Home() {
         <HamMenu />
       </Modal>
 
-      <ScrollView>
-        <View style={{ flex: 1, paddingBottom: 130, height: 850 }}>
-          <ScrollView>
-            <View style={{ paddingBottom: 10, height: "100%" }}>
+
+      {/* Popup */}
+      <Modal
+          animationIn="fadeIn"
+          animationOut="fadeOut"
+          isVisible={modalVisible}
+          style={{ margin: 0 }}
+        >
+          <Reminder_bmt_popup setShowPopup={setModalVisible} />
+        </Modal>
+
+      <ScrollView
+        style={{ backgroundColor: "#FFFFFF" }}
+        onScroll={()=>{
+          Animated.timing(
+            moveY,
+            {
+                toValue:10,
+                duration:300
+                
+            },
+            op,
+            {
+                toValue:0,
+                duration:300
+            }
+        ).start();
+
+        // InteractionManager.runAfterInteractions(()=>{
+        //   Animated.timing(
+        //       dim,{
+        //           toValue:50,
+        //           duration:1000,
+        //           delay:1000
+        //       }
+        //   ).start();
+        // })
+        }}
+      >
+        <View style={{ flex: 1, paddingBottom: 130, height:850 }}>
+          <ScrollView 
+          // onScroll={()=>{
+          //   Animated.timing(
+          //     moveY,
+          //     {
+          //         toValue:10,
+          //         duration:300
+                  
+          //     },
+          //     op,
+          //     {
+          //         toValue:0,
+          //         duration:1000
+          //     }
+          // ).start();
+
+          // InteractionManager.runAfterInteractions(()=>{
+          //   Animated.timing(
+          //       dim,{
+          //           toValue:50,
+          //           duration:1000,
+          //           delay:1000
+          //       }
+          //   ).start();
+          // })
+          // }}
+          >
+            <View style={{ paddingBottom: 10, height:"100%"}}>
               <Image
                 style={{ width: "100%", height: 240 }}
                 source={require("../assets/img_homepage_banner.png")}
@@ -218,6 +289,7 @@ function Home() {
                   />
                 );
               })}
+
                 
               {
                 (showNoresult)? 
@@ -273,17 +345,18 @@ function Home() {
       <Animated.View
       // style={{marginTop:animatedMoveY, opacity:animatedOp}}
       >
-        <TouchableOpacity
-          style={styles.createButTouchableOp}
-          onPress={() => {
-            Actions.SelectLocation();
-          }}
-        >
-          <Image
-            style={styles.createBtn}
-            source={require("../assets/but_create.png")}
-          />
-        </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.createButTouchableOp}
+        onPress={() => {
+          setModalVisible(true);
+        }}
+      >
+        <Image
+          style={styles.createBtn}
+          source={require("../assets/but_create.png")}
+        />
+      </TouchableOpacity>
       </Animated.View>
     </View>
   );

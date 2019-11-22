@@ -240,7 +240,7 @@ const data=[
           isVisible={modalVisible}
           style={{ margin: 0 }}
         >
-          <Join_group_popup setShowPopup={setModalVisible} />
+          <Reminder_bmt_popup setShowPopup={setModalVisible} />
         </Modal>
 
         {/* Main Header */}
