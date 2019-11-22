@@ -20,7 +20,8 @@ import HamMenu from "../comps/HamMenu";
 const courts = [10, 1, 11, 2, 12, 3, 13, 4, 14, 5, 15, 6, 16, 7, 17, 8, 18, 9];
 
 function SelectCourts(props) {
-  console.log(props.navigation.state.params);
+  // console.log("params2",props.navigation.state.params);
+  console.log("params3",props.navigation.state.params.group_info.hrsplay);
   const [crts, setCrts] = useState([]);
 
   var cComp = courts.map(o => {
@@ -44,6 +45,10 @@ function SelectCourts(props) {
 
   const [modalVisible, setModalVisible] = useState(false);
   const [hamMenuVisible, setHamMenuVisible] = useState(false);
+
+
+  //Gets the amount of hours they have chosen to play
+  const giObjCost = props.navigation.state.params.group_info.centreCost;
 
   return (
     <View>
@@ -89,7 +94,7 @@ function SelectCourts(props) {
       {/* <Courts_layout_red_bar/> */}
       <Footer_court_indicator
         setShowPopup={setModalVisible}
-        txtPrice="22"
+        centrePrice={giObjCost}
         checkCourtValue={crts.length}
       />
     </View>

@@ -21,9 +21,6 @@ function SelectTime({navigation}) {
   // const [handleDatePicked, setHandleDatePicked] = useState(true);
   console.log("params",navigation.state.params.group_info);
   
-  //Carrying the group info object
-  const giObj = navigation.state.params.group_info;
-
   //For the time picker
   const [time, setTime] = useState();
 
@@ -57,7 +54,11 @@ function SelectTime({navigation}) {
   }
 
   // var hrsPlay = {chosenDate} - {chosenDate2};
-  console.log((Date.parse(chosenDate2)-Date.parse(chosenDate))/1000/60/60);
+  // console.log((Date.parse(chosenDate2)-Date.parse(chosenDate))/1000/60/60);
+
+  //Carrying the group info object
+  const giObj = navigation.state.params.group_info;
+  
   return (
     <View style={{ backgroundColor: "#FFFFFF", height: "100%" }}>
       <Modal
