@@ -37,7 +37,7 @@ function Login(props) {
         if(dbusers.data[0] == null){
             alert('Email or password is incorrect.')
         }else {
-            //change ui
+        //     //change ui
             Actions.Home()
         }
     }
