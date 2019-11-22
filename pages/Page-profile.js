@@ -122,6 +122,7 @@ function Profile(props) {
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center"
+              
             }}
           >
            {setAvatarSource && <Image style={styles.profilePic} source={{uri:avatarSource}}
