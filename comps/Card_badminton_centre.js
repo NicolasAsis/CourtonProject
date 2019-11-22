@@ -27,7 +27,8 @@ function Card_badminton_centre(props) {
             group_info: {
               centreName: props.badmintonCentreName,
               centreLocation: props.badmintonCentreLocation,
-              centreImage: props.badmintonCentreImg
+              centreImage: props.badmintonCentreImg,
+              centreCost: props.costPerHour
             }
           });
           // console.log(props.badmintonCentreImg)
