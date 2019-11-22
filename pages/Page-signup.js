@@ -53,16 +53,10 @@ function Signup() {
     };
     var r = await axios.post("http://localhost:3001/post", obj);
     console.log("create", r.data);
-    storeUserName();
-    ReadUsers();
   };
 
   const storeUserName = async () => {
-    try {
       await AsyncStorage.setItem("@user_firstName", first_name);
-    } catch (e) {
-      // saving error
-    }
   };
 
   const ReadUsers = async () => {
@@ -76,7 +70,6 @@ function Signup() {
     console.log("read", dbusers);
     setUsers(dbusers.data);
   };
-
   useEffect(() => {
     ReadUsers();
   }, []);
@@ -186,6 +179,7 @@ function Signup() {
               } else {
                 CreateUser();
                 Actions.Welcome();
+                storeUserName();
                 // if()
               }
             }}

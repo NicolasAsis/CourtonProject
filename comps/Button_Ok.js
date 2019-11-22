@@ -124,12 +124,12 @@ function Button_Ok(props,{navigation}) {
               style={styles.JoinButRight}
               onPress={()=>{
                 console.log(props);
-                var g = props.navigation.group_info;
+                var g = props.navigation;
                 Actions.SelectCourts({group_info:{
                   ...g,
                   start_time:props.startTime,
                   end_time:props.endTime,
-                  centreImage:props.badmintonCentreImg
+                  hrsplay:props.hrsPlay
                 }})
               }}
             >
