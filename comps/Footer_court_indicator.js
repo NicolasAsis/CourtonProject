@@ -7,6 +7,9 @@ import {Actions} from 'react-native-router-flux';
 var test = 0;
 
 function Footer_court_indicator(props) {
+
+  const centrePrice= props.centrePrice;
+
   return (
     <View>
       <View style={styles.footer}>
@@ -32,7 +35,7 @@ function Footer_court_indicator(props) {
           }}
         >
           <View style={styles.butBg}>
-            <Text style={styles.price}>${props.txtPrice}/Hour</Text>
+            <Text style={styles.price}>${centrePrice}/Hour</Text>
             <TouchableOpacity 
               style={styles.butOk}
               onPress={()=>{
