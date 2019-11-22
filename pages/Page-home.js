@@ -12,7 +12,7 @@ import {
 } from "react-native";
 
 // import Drawer from 'react-native-drawer';
-import HamMenu from '../comps/HamMenu';
+import HamMenu from "../comps/HamMenu";
 
 import Modal from "react-native-modal";
 
@@ -20,9 +20,9 @@ import Card_for_player from "../comps/Card_for_player";
 import Footer_home from "../comps/Sticky_footer_home";
 
 import { Actions } from "react-native-router-flux";
-import LoadingAnimation from '../comps/LoadingAnimation';
+import LoadingAnimation from "../comps/LoadingAnimation";
 
-import Reminder_bmt_popup from '../comps/Reminder_bmt_popup';
+import Reminder_bmt_popup from "../comps/Reminder_bmt_popup";
 
 function Home() {
   // const [moveY] =useState(new Animated. Value(0));
@@ -39,115 +39,117 @@ function Home() {
   // })
 
   // const [group, setGroup] = useState([]);
-  const LoadGroup = async()=>{
+  const LoadGroup = async () => {
     var obj = {
-        key:"groups_read",
-        data:{
-          // organizerName:organizerName,
-          // date:date
-
-        }
-    }
+      key: "groups_read",
+      data: {
+        // organizerName:organizerName,
+        // date:date
+      }
+    };
     // var r = await axios.post("http://142.232.162.71:3001/post", obj);
     // console.log("read", r.data);
     // var dbusers = JSON.parse(r.data.body);
     // console.log("read", dbusers);
     // setUsers(dbusers.data);
-}
+  };
+
+  const data = [
+    {
+      organizerName: "Tony Wong",
+      groupNum: "1511",
+      date: "Sat Dec 10",
+      time: "1pm -2pm",
+      joinedMember: 2,
+      totalMember: 10,
+      price: 7,
+      progressBarLoad: 0.2
+    },
+    {
+      organizerName: "Dan Dhanika",
+      groupNum: "1141",
+      date: "Sat Dec 10",
+      time: "1pm -2pm",
+      joinedMember: 2,
+      totalMember: 10,
+      price: 7,
+      progressBarLoad: 0.67
+    },
+    {
+      organizerName: "Nico Asis",
+      groupNum: "1311",
+      date: "Sat Dec 10",
+      time: "1pm -2pm",
+      joinedMember: 2,
+      totalMember: 10,
+      price: 7,
+      progressBarLoad: 0.4
+    },
+    {
+      organizerName: "Heidi Tang",
+      groupNum: "2111",
+      date: "Sat Dec 10",
+      time: "1pm -2pm",
+      joinedMember: 2,
+      totalMember: 10,
+      price: 7,
+      progressBarLoad: 0.8
+    },
+    {
+      organizerName: "Siya Yang",
+      groupNum: "0111",
+      date: "Sat Dec 10",
+      time: "1pm -2pm",
+      joinedMember: 2,
+      totalMember: 10,
+      price: 7,
+      progressBarLoad: 0.5
+    },
+    {
+      organizerName: "Siya Yang",
+      groupNum: "0111",
+      date: "Sat Dec 10",
+      time: "1pm -2pm",
+      joinedMember: 2,
+      totalMember: 10,
+      price: 7,
+      progressBarLoad: 0.5
+    },
+    {
+      organizerName: "Siya Yang",
+      groupNum: "0111",
+      date: "Sat Dec 10",
+      time: "1pm -2pm",
+      joinedMember: 2,
+      totalMember: 10,
+      price: 7,
+      progressBarLoad: 0.5
+    }
+  ];
+
+  useEffect(() => {
+    LoadGroup();
+  }, []);
+
+  const [popUp, setPopUp] = useState("sat");
+  const [searchKey, setSearchKey] = useState(" ");
+
+  const filteredGroup = data.filter(obj => {
+    return (
+      obj.organizerName.indexOf(searchKey) >= 0 ||
+      obj.groupNum.indexOf(searchKey) >= 0
+    );
+  });
 
 
-const data=[
-  {
-    organizerName : 'Tony Wong',
-    groupNum : '1511',
-    date : 'Sat Dec 10',
-    time : '1pm -2pm',
-   joinedMember : 2,
-    totalMember : 10,
-    price : 7,
-    progressBarLoad : 0.2
-  },
-  {
-    organizerName : 'Dan Dhanika',
-    groupNum : '1141',
-    date : 'Sat Dec 10',
-    time : '1pm -2pm',
-   joinedMember : 2,
-    totalMember : 10,
-    price : 7,
-    progressBarLoad : 0.67
-  },
-  {
-    organizerName : 'Nico Asis',
-    groupNum : '1311',
-    date : 'Sat Dec 10',
-    time : '1pm -2pm',
-   joinedMember : 2,
-    totalMember : 10,
-    price : 7,
-    progressBarLoad : 0.4
-  },
-  {
-    organizerName : 'Heidi Tang',
-    groupNum : '2111',
-    date : 'Sat Dec 10',
-    time : '1pm -2pm',
-   joinedMember : 2,
-    totalMember : 10,
-    price : 7,
-    progressBarLoad : 0.8
-  },
-  {
-    organizerName : 'Siya Yang',
-    groupNum : '0111',
-    date : 'Sat Dec 10',
-    time : '1pm -2pm',
-   joinedMember : 2,
-    totalMember : 10,
-    price : 7,
-    progressBarLoad : 0.5
-  },
-  {
-    organizerName : 'Siya Yang',
-    groupNum : '0111',
-    date : 'Sat Dec 10',
-    time : '1pm -2pm',
-   joinedMember : 2,
-    totalMember : 10,
-    price : 7,
-    progressBarLoad : 0.5
-  },
-  {
-    organizerName : 'Siya Yang',
-    groupNum : '0111',
-    date : 'Sat Dec 10',
-    time : '1pm -2pm',
-   joinedMember : 2,
-    totalMember : 10,
-    price : 7,
-    progressBarLoad : 0.5
-  },
-  
-]
-
-useEffect(()=>{
-  LoadGroup();
-}, []);
-
-  const [popUp, setPopUp] = useState('sat') 
-  const [searchKey, setSearchKey] = useState(' ')
-
-  const filteredGroup = data.filter((obj)=>{
-    return obj.organizerName.indexOf(searchKey) >= 0 || obj.groupNum.indexOf(searchKey) >= 0;
-  })
+  const [hamMenuVisible, setHamMenuVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [showNoresult, setShowNoresult] = useState(false);
 
   if (filteredGroup.length == 0) {
-   Alert.alert('Oops! No result','Try another name')
+    Alert.alert("Oops! No result", "Try another name");
+    // setShowNoresult(true)
   }
-
-  const [hamMenuVisible,setHamMenuVisible] = useState(false);
-  const [modalVisible,setModalVisible] = useState(false);
-
   return (
     <View>
       {/* Ham Menu */}
@@ -155,12 +157,12 @@ useEffect(()=>{
         isVisible={hamMenuVisible}
         animationIn="slideInRight"
         animationOut="slideOutRight"
-        onBackdropPress={()=>{
-          setHamMenuVisible(false)
+        onBackdropPress={() => {
+          setHamMenuVisible(false);
         }}
         swipeDirection="right"
-        onSwipeComplete={()=>{
-          setHamMenuVisible(false)
+        onSwipeComplete={() => {
+          setHamMenuVisible(false);
         }}
         hideModalContentWhileAnimating={true}
       >
@@ -169,51 +171,50 @@ useEffect(()=>{
 
       {/* Popup */}
       <Modal
-          animationIn="fadeIn"
-          animationOut="fadeOut"
-          isVisible={modalVisible}
-          style={{ margin: 0 }}
-        >
-          <Reminder_bmt_popup setShowPopup={setModalVisible} />
-        </Modal>
+        animationIn="fadeIn"
+        animationOut="fadeOut"
+        isVisible={modalVisible}
+        style={{ margin: 0 }}
+      >
+        <Reminder_bmt_popup setShowPopup={setModalVisible} />
+      </Modal>
 
       <ScrollView
         style={{ backgroundColor: "#FFFFFF" }}
-        onScroll={()=>{
+        onScroll={() => {
           Animated.timing(
             moveY,
             {
-                toValue:10,
-                duration:300
-                
+              toValue: 10,
+              duration: 300
             },
             op,
             {
-                toValue:0,
-                duration:300
+              toValue: 0,
+              duration: 300
             }
-        ).start();
+          ).start();
 
-        // InteractionManager.runAfterInteractions(()=>{
-        //   Animated.timing(
-        //       dim,{
-        //           toValue:50,
-        //           duration:1000,
-        //           delay:1000
-        //       }
-        //   ).start();
-        // })
+          // InteractionManager.runAfterInteractions(()=>{
+          //   Animated.timing(
+          //       dim,{
+          //           toValue:50,
+          //           duration:1000,
+          //           delay:1000
+          //       }
+          //   ).start();
+          // })
         }}
       >
-        <View style={{ flex: 1, paddingBottom: 130, height:850 }}>
-          <ScrollView 
+        <View style={{ flex: 1, paddingBottom: 130, height: 850 }}>
+          <ScrollView
           // onScroll={()=>{
           //   Animated.timing(
           //     moveY,
           //     {
           //         toValue:10,
           //         duration:300
-                  
+
           //     },
           //     op,
           //     {
@@ -233,18 +234,17 @@ useEffect(()=>{
           // })
           // }}
           >
-            <View style={{ paddingBottom: 10, height:"100%"}}>
+            <View style={{ paddingBottom: 10, height: "100%" }}>
               <Image
                 style={{ width: "100%", height: 240 }}
                 source={require("../assets/img_homepage_banner.png")}
               />
 
               <TouchableOpacity
-              onPress={()=>{
-                Actions.LoadingAnimation();
-              }}
-              >
-              </TouchableOpacity>
+                onPress={() => {
+                  Actions.LoadingAnimation();
+                }}
+              ></TouchableOpacity>
 
               {/* <TouchableOpacity
               onPress={()=>{
@@ -299,24 +299,34 @@ useEffect(()=>{
               >
                 <Text>Test</Text>
               </TouchableOpacity> */}
-                 {
-                filteredGroup.map((obj,i)=>{
-                    return <Card_for_player
-                    key = {i}
-                    id = {obj.id}
-                    organizerName = {obj.organizerName}
-                    groupNum = {obj.groupNum}
-                    date = {obj.date}
-                    time = {obj.time}
-                    joinedMember = {obj.joinedMember}
-                    totalMember = {obj.totalMember}
-                    price = {obj.price}
-                    progressBarLoad = {obj.progressBarLoad}
+              {filteredGroup.map((obj, i) => {
+                return (
+                  <Card_for_player
+                    key={i}
+                    id={obj.id}
+                    organizerName={obj.organizerName}
+                    groupNum={obj.groupNum}
+                    date={obj.date}
+                    time={obj.time}
+                    joinedMember={obj.joinedMember}
+                    totalMember={obj.totalMember}
+                    price={obj.price}
+                    progressBarLoad={obj.progressBarLoad}
+                  />
+                );
+              })}
+              {showNoresult ? (
+                <Image
+                  style={{
+                    left: "25%",
+                    top: 70,
+                    width: 200,
+                    height: 200,
+                    position: "absolute"
+                  }}
+                  source={require("../assets/img_no_results.png")}
                 />
-                })
-                
-            }
-            
+              ) : null}
             </View>
           </ScrollView>
         </View>
@@ -343,8 +353,8 @@ useEffect(()=>{
           style={styles.fixedSearchBar}
           placeholder="  Search Group Number, Organizer"
           placeholderTextColor="#7D7D7D"
-          onChangeText={(value) => {
-            setSearchKey(value)
+          onChangeText={value => {
+            setSearchKey(value);
           }}
           // value={searchKey.value}
         />
@@ -353,20 +363,20 @@ useEffect(()=>{
       <View style={styles.footer}>
         <Footer_home />
       </View>
-      <Animated.View 
+      <Animated.View
       // style={{marginTop:animatedMoveY, opacity:animatedOp}}
       >
-      <TouchableOpacity
-        style={styles.createButTouchableOp}
-        onPress={() => {
-          setModalVisible(true);
-        }}
-      >
-        <Image
-          style={styles.createBtn}
-          source={require("../assets/but_create.png")}
-        />
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.createButTouchableOp}
+          onPress={() => {
+            setModalVisible(true);
+          }}
+        >
+          <Image
+            style={styles.createBtn}
+            source={require("../assets/but_create.png")}
+          />
+        </TouchableOpacity>
       </Animated.View>
     </View>
   );
@@ -415,7 +425,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "Open sans",
     color: "#8BC0DF"
-
   },
   fixedSearchIcon: {
     width: 25,
