@@ -110,7 +110,7 @@ function SelectTime({navigation}) {
             textColor="#094E76" //'#7a44cf'
             selectedColor="white"
             buttonColor="#5DB9F0"
-            // borderColor='#5DB9F0'
+            borderColor='#5DB9F0'
             hasPadding
             options={[
               {

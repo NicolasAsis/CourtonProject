@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  Button,
   TextInput,
   TouchableOpacity,
   Image,
@@ -14,10 +13,8 @@ import Header_blue_red from "../comps/Header_blue_red";
 
 import SwitchSelector from "react-native-switch-selector";
 
-import { Actions } from "react-native-router-flux";
 import LoadingAnimation from "../comps/LoadingAnimation";
-import TextInput_popup from "../comps/TextInput_popup";
-// import { number } from "../../../../Library/Caches/typescript/3.6/node_modules/@types/prop-types";
+import TextInput_popup from '../comps/TextInput_popup'
 
 function GroupSummary(props) {
   const [grouplimit, setGroupLimit] = useState(0);
@@ -35,9 +32,9 @@ function GroupSummary(props) {
       </Modal>
 
       <Modal animationType="fade" transparent={true} visible={textInputVisible}>
-        <TextInput_popup
-          setShowPopup={setTextInputVisible}
-          // desc={desc}
+        <TextInput_popup 
+        setShowPopup={setTextInputVisible} 
+        // desc={desc}
         />
       </Modal>
       {/* Group Summary Header */}
@@ -45,10 +42,15 @@ function GroupSummary(props) {
         headerTitle={"Group Summary"}
         courtName={"Your Group Details"}
       />
-      <View style={[styles.gsTextSec, {height:660, width:'100%', marginTop:30 }]}>
+      <View style={[styles.gsTextSec, { width: "100%", height:660, marginTop:30}]}>
         <ScrollView>
           {/* All group information text */}
-          <View style={{ display: "flex", flexDirection: "column"}}>
+          <View
+            style={{
+              flexDirection: "column",
+              alignItems: "center"
+            }}
+          >
             <View style={styles.rowStyle}>
               <Text style={styles.gsTitleText}>Price/Person</Text>
               <Text
@@ -78,7 +80,7 @@ function GroupSummary(props) {
               }}
               style={{flex:1}}
               > 
-              <Text style={styles.gsText}>Click here</Text>
+              <Text style={styles.gsText}>Add Description</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.rowStyle}>
@@ -111,9 +113,7 @@ function GroupSummary(props) {
                   />
                 </TouchableOpacity>
                 {/* Group limit text */}
-                <TextInput 
-                keyboardType={'number-pad'}
-                style={styles.gsText}>{grouplimit}</TextInput>
+                <View><Text>{grouplimit}</Text></View>
                 <TouchableOpacity
                   onPress={() => {
                     setGroupLimit(grouplimit + 1);
@@ -131,7 +131,7 @@ function GroupSummary(props) {
               <Text style={styles.gsText}>{props.courtNum}7, 8</Text>
             </View>
             <View style={styles.rowStyle}>
-              <Text style={styles.gsTitleText}>Type of Bird</Text>
+              <Text style={styles.gsTitleText}>Type of Birdie</Text>
               <SwitchSelector
                 borderColor="#ffffff"
                 style={[styles.gsSwitch, { flex: 1 }]}
@@ -182,19 +182,26 @@ function GroupSummary(props) {
               <Text style={styles.gsTitleText}>Price in Total</Text>
               <Text style={styles.gsPriceText}>{props.totalPrice}$176</Text>
             </View>
-          </View>
+        
+           
 
-          {/* Post Button */}
-          <TouchableOpacity 
-          onPress={() => {
-            // if(priceInputValue == " "){
-            //   alert('tY')
-            // }
-            setModalVisible(!modalVisible);
-          }}
-          style={styles.postBut}>
-            <Text style={styles.postButText}>POST</Text>
-          </TouchableOpacity>
+           
+
+
+
+            {/* Post Button */}
+            <TouchableOpacity
+              style={styles.postBut}
+              onPress={() => {
+                // if(priceInputValue == " "){
+                //   alert('tY')
+                // }
+                setModalVisible(!modalVisible);
+              }}
+            >
+              <Text style={styles.postButText}>POST</Text>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </View>
     </View>
@@ -217,7 +224,7 @@ const styles = StyleSheet.create({
     height: "100%",
     // backgroundColor: "#DAD",
     marginTop: 10,
-    alignItems: "center"
+    alignItems:'center'
   },
   //Left side title text
   gsTitleText: {
@@ -242,20 +249,21 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     color: "#EB5757",
-    marginBottom: 11.1,
-    flex: 1
+    lineHeight: 33,
+    marginBottom: 11.1
     // marginTop:
   },
   //Add button image
   minusImg: {
-    width: 20,
-    height: 20,
-    marginRight: 45
+    width: 30,
+    height: 30,
+    marginRight: 21
   },
   //Minus button image
   addImg: {
-    width: 20,
-    height: 20
+    width: 30,
+    height: 30,
+    marginLeft: 21
   },
   //Switches
   gsSwitch: {
@@ -290,12 +298,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#F7F7F7",
     marginTop: 7,
     marginLeft: 8,
-    marginBottom: 39
+    marginBottom: 39,
   },
   //Post button
   postBut: {
     width: 312,
-    height: 50,
+    height: 56,
     backgroundColor: "#4FF081",
     borderRadius: 100,
     justifyContent: "center",
@@ -337,7 +345,7 @@ const styles = StyleSheet.create({
   },
   rowStyle: {
     flexDirection: "row",
-    alignItems: "baseline",
+    alignItems: "center",
     paddingBottom: 30,
     
   }
