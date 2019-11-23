@@ -337,8 +337,9 @@ const styles = StyleSheet.create({
   },
   rowStyle: {
     flexDirection: "row",
-    alignItems: "center",
-    paddingBottom: 30
+    alignItems: "baseline",
+    paddingBottom: 30,
+    
   }
 });
 
