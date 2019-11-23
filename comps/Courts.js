@@ -4,10 +4,8 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 function Courts(props) {
   const [changeCourt, setChangeCourt] = useState(true);
  if(changeCourt===false){
-  console.log(props.courtNum)
- } else{
-   console.log('')
- }
+  console.log("court num" + props.courtNum)
+ } 
  
   return (
     
