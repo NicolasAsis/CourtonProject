@@ -1,9 +1,33 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { Rating, AirbnbRating } from "react-native-ratings";
+import { View, Text, StyleSheet, TouchableOpacity,Image } from "react-native";
+// import { Rating, AirbnbRating } from "react-native-ratings";
 import { Actions } from "react-native-router-flux";
+import Birdie from '../comps/Birdie'
 
-function SkillLevel() {
+
+
+const birdies = [1,2,3];
+
+function SkillLevel(props) {
+  const [brd, setbrd] = useState([]);
+  var cComp = birdies.map(o => {
+    return <Birdie setbrd={setbrd} brd={brd} birdieNum={o} />;
+  });
+  var vComp = [];
+  for (var i = 0; i < cComp.length; i ++) {
+    vComp.push(
+      <View
+        style={{
+          flexDirection: 'row',
+          // alignItems: "center",
+          // justifyContent: "center"
+        }}
+      >
+        {cComp[i]}
+        
+      </View>
+    );
+  }
     // ratingCompleted(rating);{
     //     console.log("Rating is: " + rating);
     // }
@@ -19,7 +43,7 @@ function SkillLevel() {
   return (
     <View style={styles.bg}>
       <Text style={styles.title}>What is your skill level?</Text>
-      <AirbnbRating
+      {/* <AirbnbRating
         count={3}
         reviews={[
           "Beginner",
@@ -28,8 +52,9 @@ function SkillLevel() {
         ]}
         defaultRating={3}
         size={50}
-      />
-      
+        showRating
+      /> */}
+   {vComp}
       {/* <Rating
         showRating
         onFinishRating={this.ratingCompleted}
@@ -43,7 +68,7 @@ function SkillLevel() {
         backgroundColor:'#FE647B',
         justifyContent:'center',
         alignItems:'center',
-        top:'30%'
+        top:'20%'
 
     }}
     onPress={()=>{
