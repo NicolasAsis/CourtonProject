@@ -145,21 +145,21 @@ function SelectTime({navigation}) {
           </View>
         </View>
         <View style={{ marginTop: 50 }}>
-          <View style={styles.divider}></View>
+          {/* <View style={styles.divider}></View> */}
         </View>
         <View
           style={{
             paddingTop: 30,
-            flexDirection: "row",
+            flexDirection: "column",
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           <View
             style={{
               flexDirection: "column",
-              alignItems: "flex-end",
-              marginRight: 50
+              alignItems: "center",
+              marginBottom:50
             }}
           >
             <Text 
@@ -169,6 +169,19 @@ function SelectTime({navigation}) {
                 setTime("START");
               }}
             >FROM </Text>
+            <Text style={styles.txtRight}
+            onPress={()=>{
+              showDateTimePicker();
+              setTime("START");
+            }}
+            >{moment(chosenDate).format("lll") || ""}</Text>
+             </View>
+             <View
+            style={{
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <Text 
               style={styles.txtLeft}
               onPress={()=>{
@@ -176,10 +189,17 @@ function SelectTime({navigation}) {
                 setTime("END");
               }}
             >TO</Text>
-          </View>
+             <Text style={styles.txtRight}
+             onPress={()=>{
+              showDateTimePicker();
+              setTime("END");
+            }}
+             >{moment(chosenDate2).format("lll") || ""}</Text>
+             </View>
+         
           <View style={{ flexDirection: "column", alignItems: "flex-end" }}>
-            <Text style={styles.txtRight}>{moment(chosenDate).format("lll") || ""}</Text>
-            <Text style={styles.txtRight}>{moment(chosenDate2).format("lll") || ""}</Text>
+            
+           
           </View>
         </View>
 
@@ -210,13 +230,13 @@ const styles = StyleSheet.create({
   },
   txtLeft: {
     fontFamily: "Open sans",
-    fontSize: 18,
+    fontSize: 26,
     color: "#094E76",
     fontWeight: "500"
   },
   txtRight: {
     fontFamily: "Open sans",
-    fontSize: 18,
+    fontSize: 26,
     color: "#909090"
   }
 });
