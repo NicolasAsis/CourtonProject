@@ -19,8 +19,10 @@ import HamMenu from "../comps/HamMenu";
 const courts = [10, 1, 11, 2, 12, 3, 13, 4, 14, 5, 15, 6, 16, 7, 17, 8, 18, 9];
 
 function SelectCourts(props) {
-  // console.log("params2",props.navigation.state.params);
-  console.log("params3", props.navigation.state.params.group_info.hrsplay);
+
+  console.log("params2",props.navigation.state.params);
+  // console.log("params3",props.navigation.state.params.group_info.hrsplay);
+  
   const [crts, setCrts] = useState([]);
 
   var cComp = courts.map(o => {

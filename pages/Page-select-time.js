@@ -162,8 +162,20 @@ function SelectTime({navigation}) {
               marginRight: 50
             }}
           >
-            <Text style={styles.txtLeft}>FROM </Text>
-            <Text style={styles.txtLeft}>TO</Text>
+            <Text 
+              style={styles.txtLeft}
+              onPress={()=>{
+                showDateTimePicker();
+                setTime("START");
+              }}
+            >FROM </Text>
+            <Text 
+              style={styles.txtLeft}
+              onPress={()=>{
+                showDateTimePicker();
+                setTime("END");
+              }}
+            >TO</Text>
           </View>
           <View style={{ flexDirection: "column", alignItems: "flex-end" }}>
             <Text style={styles.txtRight}>{moment(chosenDate).format("lll") || ""}</Text>
