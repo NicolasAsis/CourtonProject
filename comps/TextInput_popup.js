@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     width: 350,
     height: 300,
+    bottom:100,
     backgroundColor: "white",
     borderRadius: 10,
     display: "flex",
