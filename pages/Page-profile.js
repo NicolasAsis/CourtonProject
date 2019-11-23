@@ -10,45 +10,60 @@ import {
 import Sticky_footer_regular from "../comps/Sticky_footer_regular";
 import Card_notification from "../comps/Card_notification";
 import { Actions } from "react-native-router-flux";
-import ImagePicker from "react-native-image-picker";
+import ImagePicker from 'react-native-image-picker';
+
 
 function Profile(props) {
-  const [avatarSource, setAvatarSource] = useState(
-    "https://initia.org/wp-content/uploads/2017/07/default-profile.png"
-  );
+  const [avatarSource, setAvatarSource] = useState('https://initia.org/wp-content/uploads/2017/07/default-profile.png');
   // const [SelectImg, setSelectImg] = useState('');
   //select image
 
-  const SelectImg = async () => {
-    ImagePicker.showImagePicker(
-      { noData: true, mediaType: "photo" },
-      response => {
-        console.log("Response = ", response);
+  const SelectImg = async () =>{
 
-        if (response.didCancel) {
-          console.log("User cancelled image picker");
-        } else if (response.error) {
-          console.log("ImagePicker Error: ", response.error);
-        } else if (response.customButton) {
-          console.log("User tapped custom button: ", response.customButton);
-        } else {
-          // const source = { uri: response.uri };
-
-          // You can also display the image using data:
-          // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-          // this.setState
-          //  cost SelectImg({
-          //     avatarSource: response.url,
-          //   });
-          console.log("response", response);
-          setAvatarSource({
-            avatarSource: response.uri
-          });
-          // setChannelImageHandler(source.uri)
-        }
+    ImagePicker.showImagePicker({noData:true, mediaType:'photo'} ,(response) => {
+      console.log('Response = ', response);
+    
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        // const source = { uri: response.uri };
+    
+        // You can also display the image using data:
+        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+        // this.setState
+      //  cost SelectImg({
+      //     avatarSource: response.url,
+      //   });
+      console.log("response", response)
+      setAvatarSource({
+        avatarSource:response.uri
+      })
+      // setChannelImageHandler(source.uri)
       }
-    );
+    });
+}
+  const LoadComments = async () => {
+    var obj = {
+      key: "users_read",
+      data: {
+        name: name,
+        id: id
+      }
+    };
+    // var r = await axios.post("http://142.232.162.71:3001/post", obj);
+    // console.log("read", r.data);
+    // var dbusers = JSON.parse(r.data.body);
+    // console.log("read", dbusers);
+    // setUsers(dbusers.data);
   };
+
+  useEffect(() => {
+    LoadComments();
+  }, []);
 
   const notificationData = [
     {
@@ -83,14 +98,14 @@ function Profile(props) {
 
   return (
     <View>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={{ position: "absolute", left: 320, top: 50, zIndex: 10 }}
       >
         <Image
           style={{ width: 26, height: 26 }}
           source={require("../assets/icon_setting.png")}
         />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <View>
         <Image
           style={{ width: "100%", height: 262 }}
@@ -100,35 +115,31 @@ function Profile(props) {
 
       <View style={styles.pageStructure}>
         <View style={styles.profileHeader}>
+          
+
           <View
             style={{
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center"
+              
             }}
           >
-            {/* <Image
-              style={styles.profilePic}
-              source={require("../assets/img_profile_banner.png")}
-            /> */}
-            {setAvatarSource && (
-              <Image
-                style={styles.profilePic}
-                source={{ uri: avatarSource }}
-                // source={require("../assets/img_profile_banner.png")}
-              />
-            )}
-
+           {setAvatarSource && <Image style={styles.profilePic} source={{uri:avatarSource}}
+            // source={require("../assets/img_profile_banner.png")}
+            />
+              
+            }
             <TouchableOpacity
-              // style={styles.profilePicEdit}
-              onPress={() => {
-                SelectImg();
-              }}
+             onPress={()=>{
+              SelectImg();
+            }}
             >
-              <Image 
+            <Image
               style={styles.profilePicEdit}
-              source={require("../assets/icon_camera.png")} />
-            </TouchableOpacity>
+              source={require("../assets/icon_camera.png")}
+            />
+          </TouchableOpacity>
             <View
               style={{
                 flexDirection: "column",
@@ -192,7 +203,9 @@ function Profile(props) {
               alignItems: "center",
               top: 70
             }}
-          ></View>
+          >
+
+          </View>
 
           <Text style={styles.txtNotification}>Notifications</Text>
         </View>
@@ -253,8 +266,8 @@ const styles = StyleSheet.create({
     width: 85,
     height: 85,
     borderRadius: 100,
-    // backgroundColor: "#fab",
-    resizeMode: "contain"
+    resizeMode:'contain',
+    // backgroundColor: "#fab"
   },
   txtName: {
     fontFamily: "Open sans",
@@ -313,12 +326,12 @@ const styles = StyleSheet.create({
     fontFamily: "Open sans",
     color: "#094E76"
   },
-  profilePicEdit: {
-    width: 30,
-    height: 30,
-    position: "absolute",
-    left: -30,
-    top: 10
+  profilePicEdit:{
+    width:30,
+    height:30,
+    position:'absolute',
+    left:-30,
+    top:10
   }
 });
 

@@ -22,7 +22,7 @@ import Footer_home from "../comps/Sticky_footer_home";
 import { Actions } from "react-native-router-flux";
 import LoadingAnimation from "../comps/LoadingAnimation";
 
-import Reminder_bmt_popup from "../comps/Reminder_bmt_popup";
+import Reminder_bmt_popup from '../comps/Reminder_bmt_popup';
 
 function Home() {
   // const [moveY] =useState(new Animated. Value(0));
@@ -141,18 +141,23 @@ function Home() {
     );
   });
 
+  const [showNoresult, setShowNoresult] = useState (false);
 
-  const [hamMenuVisible, setHamMenuVisible] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [showNoresult, setShowNoresult] = useState(false);
+
+
+  const [hamMenuVisible,setHamMenuVisible] = useState(false);
+  const [modalVisible,setModalVisible] = useState(false);
+
 
   if (filteredGroup.length == 0) {
-    Alert.alert("Oops! No result", "Try another name");
-    // setShowNoresult(true)
-  }
+    setShowNoresult(true)
+   //  Alert.alert('Oops, No result', 'Try another name')
+    
+   }
   return (
-    <View>
-      {/* Ham Menu */}
+
+    <View style={{backgroundColor:'#ffffff'}}>
+
       <Modal
         isVisible={hamMenuVisible}
         animationIn="slideInRight"
@@ -169,52 +174,54 @@ function Home() {
         <HamMenu />
       </Modal>
 
+
       {/* Popup */}
       <Modal
-        animationIn="fadeIn"
-        animationOut="fadeOut"
-        isVisible={modalVisible}
-        style={{ margin: 0 }}
-      >
-        <Reminder_bmt_popup setShowPopup={setModalVisible} />
-      </Modal>
+          animationIn="fadeIn"
+          animationOut="fadeOut"
+          isVisible={modalVisible}
+          style={{ margin: 0 }}
+        >
+          <Reminder_bmt_popup setShowPopup={setModalVisible} />
+        </Modal>
 
       <ScrollView
         style={{ backgroundColor: "#FFFFFF" }}
-        onScroll={() => {
+        onScroll={()=>{
           Animated.timing(
             moveY,
             {
-              toValue: 10,
-              duration: 300
+                toValue:10,
+                duration:300
+                
             },
             op,
             {
-              toValue: 0,
-              duration: 300
+                toValue:0,
+                duration:300
             }
-          ).start();
+        ).start();
 
-          // InteractionManager.runAfterInteractions(()=>{
-          //   Animated.timing(
-          //       dim,{
-          //           toValue:50,
-          //           duration:1000,
-          //           delay:1000
-          //       }
-          //   ).start();
-          // })
+        // InteractionManager.runAfterInteractions(()=>{
+        //   Animated.timing(
+        //       dim,{
+        //           toValue:50,
+        //           duration:1000,
+        //           delay:1000
+        //       }
+        //   ).start();
+        // })
         }}
       >
-        <View style={{ flex: 1, paddingBottom: 130, height: 850 }}>
-          <ScrollView
+        <View style={{ flex: 1, paddingBottom: 130, height:850 }}>
+          <ScrollView 
           // onScroll={()=>{
           //   Animated.timing(
           //     moveY,
           //     {
           //         toValue:10,
           //         duration:300
-
+                  
           //     },
           //     op,
           //     {
@@ -234,7 +241,7 @@ function Home() {
           // })
           // }}
           >
-            <View style={{ paddingBottom: 10, height: "100%" }}>
+            <View style={{ paddingBottom: 10, height:"100%"}}>
               <Image
                 style={{ width: "100%", height: 240 }}
                 source={require("../assets/img_homepage_banner.png")}
@@ -257,48 +264,15 @@ function Home() {
              */}
 
               <Text style={styles.title}>Upcoming Available Groups</Text>
-
-              {/* <Card_for_player
-                organizerName={"Toby Wong"}
-                groupNum={"C1314"}
-                date={"Sat Dec 30"}
-                time={"1pm-2pm"}
-                price={"7"}
-                joinedMember={10}
-                totalMember={20}
-                progressBarLoad={0.5}
-              /> */}
-              {/* <Card_for_player />
-              <Card_for_player />
-              <Card_for_player />
-              <Card_for_player /> */}
-              {/* <View style={{
-                width:50,
-                height:50,
-                borderRadius:50,
-                backgroundColor:'#5DB9F0',
-                justifyContent:'center',
-                alignItems:'center'
-              }}
-              
+              <TouchableOpacity
+                onPress={() => {
+                  Actions.SkillLevel();
+                }}
               >
-              <Image
-              style={{
-                // backgroundColor:'#fab',
-                width:30,
-                height:30
-              }}
-              source={require('../assets/img_birdie_white.png')}
-              />
-              </View> */}
+                <Text>To skill SkillLevel</Text>
+              </TouchableOpacity>
+              <Image />
 
-              {/* <TouchableOpacity
-              onPress={()=>{
-                Actions.SkillLevel()
-              }}
-              >
-                <Text>Test</Text>
-              </TouchableOpacity> */}
               {filteredGroup.map((obj, i) => {
                 return (
                   <Card_for_player
@@ -315,18 +289,23 @@ function Home() {
                   />
                 );
               })}
-              {showNoresult ? (
+
+                
+              {
+                (showNoresult)? 
                 <Image
                   style={{
-                    left: "25%",
-                    top: 70,
+                    left:'25%',
+                    top:70,
                     width: 200,
                     height: 200,
                     position: "absolute"
                   }}
                   source={require("../assets/img_no_results.png")}
                 />
-              ) : null}
+               : null
+              }
+              
             </View>
           </ScrollView>
         </View>
@@ -366,17 +345,18 @@ function Home() {
       <Animated.View
       // style={{marginTop:animatedMoveY, opacity:animatedOp}}
       >
-        <TouchableOpacity
-          style={styles.createButTouchableOp}
-          onPress={() => {
-            setModalVisible(true);
-          }}
-        >
-          <Image
-            style={styles.createBtn}
-            source={require("../assets/but_create.png")}
-          />
-        </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.createButTouchableOp}
+        onPress={() => {
+          setModalVisible(true);
+        }}
+      >
+        <Image
+          style={styles.createBtn}
+          source={require("../assets/but_create.png")}
+        />
+      </TouchableOpacity>
       </Animated.View>
     </View>
   );
