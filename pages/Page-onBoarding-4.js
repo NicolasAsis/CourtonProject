@@ -23,51 +23,38 @@ function OnBoarding_4() {
   return (
     <View style={styles.pg}>
       <View style={styles.top}>
-      
-
       <Animatable.View stlye={styles.card} animation="fadeIn" iterationCount={1} direction="alternate" delay={1000}>
         <Image
           style={styles.infograph1}
           source={require("../assets/img_infographic_blue.png")}
         />
       </Animatable.View>
-      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={1500}>
+      
+      <Animatable.View stlye={styles.card} animation="fadeIn" iterationCount={1} direction="alternate" delay={1500}>
         <Image
           style={styles.infograph2}
-          source={require("../assets/img_infographic4.png")}
+          source={require("../assets/img_infograph_phone.png")}
         />
       </Animatable.View>
-      
+      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={1500}>
+        <Image
+          style={styles.infograph4}
+          source={require("../assets/img_infograph_tile_red.png")}
+        />
+      </Animatable.View>
       <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={1800}>
         <Image
-          style={styles.infograph3}
-          source={require("../assets/img_infograph_profile.png")}
+          style={styles.infograph5}
+          source={require("../assets/img_infograph_tile_blue.png")}
         />
       </Animatable.View>
       <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2000}>
         <Image
-          style={styles.infograph4}
-          source={require("../assets/img_infograph_buttons.png")}
-        /> 
-      </Animatable.View> 
-      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2200}>
-        <Image
-          style={styles.infograph5}
-          source={require("../assets/img_infograph_data.png")}
-        /> 
-      </Animatable.View>
-      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2400}>
-        <Image
           style={styles.infograph6}
-          source={require("../assets/img_infograph_data1.png")}
-        />  
+          source={require("../assets/img_infograph_tile_blue.png")}
+        />
       </Animatable.View>
-      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2600}>
-        <Image
-          style={styles.infograph7}
-          source={require("../assets/img_infograph_data1.png")}
-        /> 
-      </Animatable.View>
+     
         
       </View>
       <View style={styles.bottom}>
@@ -133,37 +120,32 @@ const styles = StyleSheet.create({
     top:-160,
     left:-58
   },
-  // indicator - infograph
+  // indicator - group tile red
   infograph4: {
     position: "absolute",
-    width: 93,
-    height: 33,
-    left:-50,
-    top:-100
+    width: 120,
+    height: 40,
+    left:-65,
+    top:-110
   },
-  // red upcoming - infograph
+
+  // indicator - group tile red
   infograph5: {
     position: "absolute",
-    width: 132,
-    height: 37,
-    top:-55,
-    left:-65
+    width: 120,
+    height: 40,
+    left:-65,
+    top:-65
   },
-   // blue upcoming - infograph
+
    infograph6: {
     position: "absolute",
-    width: 132,
-    height:27,
+    width: 120,
+    height: 40,
     left:-65,
-    top:-23
+    top:-20
   },
-  infograph7: {
-    position: "absolute",
-    width: 132,
-    height: 37,
-    top:0,
-    left:-65
-  },
+  
   bottom: {
     display: "flex",
     justifyContent: "center",
