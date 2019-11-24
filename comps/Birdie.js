@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
+import { bindExpression } from "@babel/types";
+
+
 
 function Birdie(props) {
   const [changeBirdie, setChangeBirdie] = useState(true);
  if(changeBirdie===false){
 //   console.log("birdie" + props.birdieNum)
  } 
-
- 
   return (
     
     <View>
@@ -20,8 +21,8 @@ function Birdie(props) {
             return o;
           })
           props.setbrd(temp);
-          setChangeBirdie(!changeBirdie)
-          console.log(temp)
+          setChangeBirdie(!changeBirdie);
+          // console.log(temp)
         }}>
           <Image
             source={require("../assets/img_birdie_deselect.png")}
@@ -48,6 +49,7 @@ function Birdie(props) {
           <Text style={{ left: 88, marginTop: -20 }}></Text>
         </TouchableOpacity>
       )}
+      
     </View>
   );
 }

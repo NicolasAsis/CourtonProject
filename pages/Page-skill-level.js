@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity,Image } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity,Image, Alert } from "react-native";
 // import { Rating, AirbnbRating } from "react-native-ratings";
 import { Actions } from "react-native-router-flux";
 import Birdie from '../comps/Birdie'
@@ -9,6 +9,7 @@ import Birdie from '../comps/Birdie'
 const birdies = [1,2,3];
 
 function SkillLevel(props) {
+  // const [slTxt, setSlTxt] = useState('');
   const [brd, setbrd] = useState([]);
   var cComp = birdies.map(o => {
     return <Birdie setbrd={setbrd} brd={brd} birdieNum={o} />;
@@ -16,30 +17,16 @@ function SkillLevel(props) {
   var vComp = [];
   for (var i = 0; i < cComp.length; i ++) {
     vComp.push(
-      <View
-        style={{
-          flexDirection: 'row',
-          // alignItems: "center",
-          // justifyContent: "center"
-        }}
-      >
+      <View>
         {cComp[i]}
-        
       </View>
     );
   }
-    // ratingCompleted(rating);{
-    //     console.log("Rating is: " + rating);
-    // }
-// const[ratingCompleted, setRatingCompleted] = useState(
-//     function ratingCompleted(rating) {
-//         console.log("Rating is: " + rating)
-//       }
-// )
-//   const birdieIcon = require("../assets/img_birdie_white.png");
-
-
-
+// console.log(vComp)
+// if(brd.length == 1 ){
+//   slTxt="beginer"
+// };
+console.log(brd.length)
   return (
     <View style={styles.bg}>
       <Text style={styles.title}>What is your skill level?</Text>
@@ -54,7 +41,25 @@ function SkillLevel(props) {
         size={50}
         showRating
       /> */}
-   {vComp}
+      <View
+        style={{
+          flexDirection:'row'
+        }}
+      >
+      {vComp}
+      </View>
+      <Text style={styles.sklNum}>{brd.length}</Text>
+      <View>
+      <Text style={[styles.sklText, {marginTop:70}]}>
+        1: Beginner
+      </Text>
+      <Text style={styles.sklText}>
+        2: Intermediate
+      </Text>
+      <Text style={styles.sklText}>
+        3: Advanced
+      </Text>
+      </View>
       {/* <Rating
         showRating
         onFinishRating={this.ratingCompleted}
@@ -68,11 +73,15 @@ function SkillLevel(props) {
         backgroundColor:'#FE647B',
         justifyContent:'center',
         alignItems:'center',
-        top:'20%'
+        top:'18%'
 
     }}
     onPress={()=>{
-        Actions.Welcome()
+        if (brd.length==0) {
+          Alert.alert('Skill Level','Please select your skill level')
+        } else{
+          Actions.Welcome()
+        }
     }}
     >
         <Text
@@ -101,7 +110,21 @@ const styles = StyleSheet.create({
     fontSize: 26,
     color: "#094E76",
     fontWeight: "bold",
-    top: "-10%"
+    top: "-10%",
+  },
+  sklNum:{
+    fontSize:30,
+    fontWeight:'bold',
+    fontFamily:'Open sans',
+    color:'#5DB9F0',
+    bottom:30,
+    top:16
+  },
+  sklText:{
+    fontSize:18,
+    fontFamily:'Open sans',
+    color:'#094E76',
+    marginBottom:20
   }
 });
 export default SkillLevel;
