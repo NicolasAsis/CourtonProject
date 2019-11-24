@@ -6,8 +6,7 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
-  TextInput,
-  Modal
+  TextInput
 } from "react-native";
 
 import Button_Join from "../comps/Button_Join";
@@ -18,6 +17,9 @@ import Card_comment from "../comps/Card_comment";
 import Leave_group_popup from "../comps/Leave_group_popup";
 import * as Progress from "react-native-progress";
 import { Actions } from "react-native-router-flux";
+
+import Modal from "react-native-modal";
+import HamMenu from "../comps/HamMenu";
 
 function Member_groupInfo(props) {
   const LoadMemberCard = async () => {
@@ -265,6 +267,7 @@ function Member_groupInfo(props) {
   });
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [hamMenuVisible, setHamMenuVisible] = useState(false);
   var joinedMember = 30;
   var totalMember = 40;
 
@@ -274,8 +277,31 @@ function Member_groupInfo(props) {
         backgroundColor: "#FFFFFF"
       }}
     >
+      {/* Ham Menu */}
+      <Modal
+        isVisible={hamMenuVisible}
+        animationIn="slideInRight"
+        animationOut="slideOutRight"
+        onBackdropPress={() => {
+          setHamMenuVisible(false);
+        }}
+        swipeDirection="right"
+        onSwipeComplete={() => {
+          setHamMenuVisible(false);
+        }}
+        hideModalContentWhileAnimating={true}
+        style={{margin:0}}
+      >
+        <HamMenu showHamMenu={setHamMenuVisible} />
+      </Modal>
+
       {/* Popup */}
-      <Modal animationType="fade" transparent={true} visible={modalVisible}>
+      <Modal
+        animationIn="fadeIn"
+        animationOut="fadeOut"
+        isVisible={modalVisible}
+        style={{ margin: 0 }}
+      >
         <Leave_group_popup setShowPopup={setModalVisible} />
       </Modal>
 
@@ -301,7 +327,7 @@ function Member_groupInfo(props) {
           <TouchableOpacity
             style={styles.giHamTouchableOp}
             onPress={() => {
-              // Actions.pop("Home");
+              setHamMenuVisible(true);
             }}
           >
             <Image

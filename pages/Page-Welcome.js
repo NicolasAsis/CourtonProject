@@ -18,7 +18,7 @@ function Welcome(props) {
   const [firstName,setFirstName] = useState("");
   
   const getUserName = async () => {
-      const value = await AsyncStorage.getItem('@user_firstName')
+      const value = await AsyncStorage.getItem('user_firstName')
       console.log(value);
       setFirstName(value);
   }

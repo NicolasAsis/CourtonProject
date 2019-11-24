@@ -56,7 +56,7 @@ function Signup() {
   };
 
   const storeUserName = async () => {
-      await AsyncStorage.setItem("@user_firstName", first_name);
+      await AsyncStorage.setItem("user_firstName", first_name);
   };
 
   const ReadUsers = async () => {
