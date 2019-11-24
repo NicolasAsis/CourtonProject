@@ -15,6 +15,8 @@ import { Actions } from "react-native-router-flux";
 
 import axios from "axios";
 
+import AsyncStorage from "@react-native-community/async-storage";
+
 var email = "";
 var password = "";
 
@@ -23,23 +25,27 @@ function Login(props) {
     const [error, setError] = useState("");
 
     const ReadUsers = async()=>{
-        // var obj = {
-        //     key:"users_read",
-        //     data:{
-        //         email:email,
-        //         password:password
-        //     }
-        // }
-        // var r = await axios.post("http://localhost:3001/post", obj);
-        // var dbusers = JSON.parse(r.data.body);
-        // console.log(dbusers.data[0]);
-        // //setUsers(dbusers);
-        // if(dbusers.data[0] == null){
-        //     alert('Email or password is incorrect.')
-        // }else {
-        //     //change ui
+        var obj = {
+            key:"users_read",
+            data:{
+                email:email,
+                password:password
+            }
+        }
+        var r = await axios.post("http://localhost:3001/post", obj);
+        var dbusers = JSON.parse(r.data.body);
+        var userData = dbusers.data[0];
+
+        console.log(dbusers.data[0]);
+        //setUsers(dbusers);
+        if(dbusers.data[0] == null){
+            alert('Email or password is incorrect.')
+        }else {
+            //change ui
+            // console.log("test",userData.id)
             Actions.Home()
-        // }
+            await AsyncStorage.setItem("userId", JSON.stringify(userData.id));
+        }
     }
 
     const styles=StyleSheet.create({
@@ -169,14 +175,6 @@ function Login(props) {
                     }}
                 />
             </View>
-
-
-            {/* <Text style={styles.errorText}>{error}</Text> */}
-
-        {/* <Button
-                title="LOGIN"
-                style={styles.loginBut}
-            /> */}
 
             <TouchableOpacity 
                 style={styles.loginBut}

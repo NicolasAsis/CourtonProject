@@ -12,8 +12,39 @@ import Card_notification from "../comps/Card_notification";
 import { Actions } from "react-native-router-flux";
 import ImagePicker from 'react-native-image-picker';
 
+import axios from "axios";
+import AsyncStorage from "@react-native-community/async-storage";
+
 
 function Profile(props) {
+
+  const [userFN,setUserFN] = useState("");
+  const [userLN,setUserLN] = useState("");
+
+  const ReadUsers = async()=>{
+    const userId = await AsyncStorage.getItem('userId')
+    // userId = JSON.parse(userId);
+    var obj = {
+        key:"users_read",
+        data:{
+            id:userId
+        }
+    }
+    var r = await axios.post("http://localhost:3001/post", obj);
+    var dbusers = JSON.parse(r.data.body);
+    var userData = dbusers.data[0];
+
+    console.log(dbusers.data[0]);
+    // console.log("test",userData.id)
+    setUserFN(userData.first_name);
+    setUserLN(userData.last_name);
+
+}
+
+useEffect(() => {
+  ReadUsers();
+}, []);
+
   const [avatarSource, setAvatarSource] = useState('https://initia.org/wp-content/uploads/2017/07/default-profile.png');
   // const [SelectImg, setSelectImg] = useState('');
   //select image
@@ -148,7 +179,7 @@ function Profile(props) {
                 paddingLeft: "15%"
               }}
             >
-              <Text style={styles.txtName}>{props.userName} Jacky Lee</Text>
+              <Text style={styles.txtName}>{userFN} {userLN}</Text>
               <View style={{ flexDirection: "row", flex: 1, marginTop: 10 }}>
                 <TouchableOpacity
                   style={{
