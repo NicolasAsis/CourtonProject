@@ -22,22 +22,7 @@ import axios from "axios";
 
 
 function SelectLocation() {
-  const LoadBmtCentre = async () => {
-    var obj = {
-      key: "users_read",
-      data: {
-        // id: id,
-        // bmtCentre: bmtCentre,
-        // date: date
-      }
-    };
-    // var r = await axios.post("http://142.232.162.71:3001/post", obj);
-    // console.log("read", r.data);
-    // var dbusers = JSON.parse(r.data.body);
-    // console.log("read", dbusers);
-    // setUsers(dbusers.data);
-  };
-  
+
   const [badmintonCentres, setCentres] = useState([]);
 
   const ReadCentres = async () => {
@@ -47,9 +32,9 @@ function SelectLocation() {
     };
     var r = await axios.post("http://localhost:3001/post", obj);
     // console.log("read", r.data);
-    var dbusers = JSON.parse(r.data.body);
-    console.log("read", dbusers);
-    setCentres(dbusers.data);
+    var dbCentres = JSON.parse(r.data.body);
+    console.log("read", dbCentres);
+    setCentres(dbCentres.data);
   };
 
   useEffect(() => {
@@ -162,6 +147,7 @@ function SelectLocation() {
                   badmintonCentreImg={obj.image}
                   badmintonCentreName={obj.name}
                   badmintonCentreLocation={obj.location}
+                  costPerHour={obj.cost_per_hour}
                 />
               );
             })

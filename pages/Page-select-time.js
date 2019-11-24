@@ -19,7 +19,9 @@ function SelectTime({navigation}) {
   // const [showDateTimePicker, setShowDateTimePicker] = useState(true);
   // const [hideDateTimePicker, setHideDateTimePicker] = useState(true);
   // const [handleDatePicked, setHandleDatePicked] = useState(true);
-  console.log("params",navigation.state.params);
+  console.log("params",navigation.state.params.group_info);
+  
+  //For the time picker
   const [time, setTime] = useState();
 
   const [chosenDate, setChosenDate] = useState(" ");
@@ -52,7 +54,11 @@ function SelectTime({navigation}) {
   }
 
   // var hrsPlay = {chosenDate} - {chosenDate2};
-  console.log((Date.parse(chosenDate2)-Date.parse(chosenDate))/1000/60/60);
+  // console.log((Date.parse(chosenDate2)-Date.parse(chosenDate))/1000/60/60);
+
+  //Carrying the group info object
+  const giObj = navigation.state.params.group_info;
+  
   return (
     <View style={{ backgroundColor: "#FFFFFF", height: "100%" }}>
       <Modal
@@ -104,7 +110,7 @@ function SelectTime({navigation}) {
             textColor="#094E76" //'#7a44cf'
             selectedColor="white"
             buttonColor="#5DB9F0"
-            // borderColor='#5DB9F0'
+            borderColor='#5DB9F0'
             hasPadding
             options={[
               {
@@ -156,8 +162,20 @@ function SelectTime({navigation}) {
               marginRight: 50
             }}
           >
-            <Text style={styles.txtLeft}>FROM </Text>
-            <Text style={styles.txtLeft}>TO</Text>
+            <Text 
+              style={styles.txtLeft}
+              onPress={()=>{
+                showDateTimePicker();
+                setTime("START");
+              }}
+            >FROM </Text>
+            <Text 
+              style={styles.txtLeft}
+              onPress={()=>{
+                showDateTimePicker();
+                setTime("END");
+              }}
+            >TO</Text>
           </View>
           <View style={{ flexDirection: "column", alignItems: "flex-end" }}>
             <Text style={styles.txtRight}>{moment(chosenDate).format("lll") || ""}</Text>
@@ -170,7 +188,7 @@ function SelectTime({navigation}) {
           hrsPlay={Math.round((Date.parse(chosenDate2)-Date.parse(chosenDate))/1000/60/60)} 
           startTime={Math.round((Date.parse(chosenDate))/1000/60/60)} 
           endTime={Math.round((Date.parse(chosenDate2))/1000/60/60)}
-          navigation={navigation.state.params}
+          navigation={giObj}
         />
         <View></View>
       </View>

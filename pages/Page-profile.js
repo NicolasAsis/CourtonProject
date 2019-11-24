@@ -10,72 +10,102 @@ import {
 import Sticky_footer_regular from "../comps/Sticky_footer_regular";
 import Card_notification from "../comps/Card_notification";
 import { Actions } from "react-native-router-flux";
+import ImagePicker from 'react-native-image-picker';
+
 
 function Profile(props) {
+  const [avatarSource, setAvatarSource] = useState('https://initia.org/wp-content/uploads/2017/07/default-profile.png');
+  // const [SelectImg, setSelectImg] = useState('');
+  //select image
 
-    const LoadComments = async()=>{
-      var obj = {
-          key:"users_read",
-          data:{
-            name:name,
-            id:id
-  
-          }
+  const SelectImg = async () =>{
+
+    ImagePicker.showImagePicker({noData:true, mediaType:'photo'} ,(response) => {
+      console.log('Response = ', response);
+    
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        // const source = { uri: response.uri };
+    
+        // You can also display the image using data:
+        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+        // this.setState
+      //  cost SelectImg({
+      //     avatarSource: response.url,
+      //   });
+      console.log("response", response)
+      setAvatarSource({
+        avatarSource:response.uri
+      })
+      // setChannelImageHandler(source.uri)
       }
-      // var r = await axios.post("http://142.232.162.71:3001/post", obj);
-      // console.log("read", r.data);
-      // var dbusers = JSON.parse(r.data.body);
-      // console.log("read", dbusers);
-      // setUsers(dbusers.data);
-  }
+    });
+}
+  const LoadComments = async () => {
+    var obj = {
+      key: "users_read",
+      data: {
+        name: name,
+        id: id
+      }
+    };
+    // var r = await axios.post("http://142.232.162.71:3001/post", obj);
+    // console.log("read", r.data);
+    // var dbusers = JSON.parse(r.data.body);
+    // console.log("read", dbusers);
+    // setUsers(dbusers.data);
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     LoadComments();
   }, []);
-  
-  const notificationData=[
-    {
-      name : 'Tony Wong',
-      groupNum : '1511',
-      comment:'From its medieval origins to the digital era,',
-      bmtCentrePostTime : '15 sec ago',
-      verIndicatorColor :'#FE647B'
-    },
-    {
-      name : 'William Smith',
-      groupNum : '0911',
-      comment:'Lorem ipsum is placeholder text commonly ',
-      bmtCentrePostTime : '3 weeks ago',
-      verIndicatorColor :'#094E76'
-    },
-    {
-      name : 'Carol English',
-      groupNum : '0911',
-      comment:'Lorem ipsum is placeholder text commonly ',
-      bmtCentrePostTime : '4 weeks ago',
-      verIndicatorColor :'#094E76'
-    },
-    {
-      name : 'Nicolas Asis',
-      groupNum : '0911',
-      comment:'Lorem ipsum is placeholder text commonly ',
-      bmtCentrePostTime : '5 weeks ago',
-      verIndicatorColor :'#094E76'
-    },
-  
-  ]
 
+  const notificationData = [
+    {
+      name: "Tony Wong",
+      groupNum: "1511",
+      comment: "From its medieval origins to the digital era,",
+      bmtCentrePostTime: "15 sec ago",
+      verIndicatorColor: "#FE647B"
+    },
+    {
+      name: "William Smith",
+      groupNum: "0911",
+      comment: "Lorem ipsum is placeholder text commonly ",
+      bmtCentrePostTime: "3 weeks ago",
+      verIndicatorColor: "#094E76"
+    },
+    {
+      name: "Carol English",
+      groupNum: "0911",
+      comment: "Lorem ipsum is placeholder text commonly ",
+      bmtCentrePostTime: "4 weeks ago",
+      verIndicatorColor: "#094E76"
+    },
+    {
+      name: "Nicolas Asis",
+      groupNum: "0911",
+      comment: "Lorem ipsum is placeholder text commonly ",
+      bmtCentrePostTime: "5 weeks ago",
+      verIndicatorColor: "#094E76"
+    }
+  ];
 
   return (
     <View>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={{ position: "absolute", left: 320, top: 50, zIndex: 10 }}
       >
         <Image
           style={{ width: 26, height: 26 }}
           source={require("../assets/icon_setting.png")}
         />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <View>
         <Image
           style={{ width: "100%", height: 262 }}
@@ -85,17 +115,31 @@ function Profile(props) {
 
       <View style={styles.pageStructure}>
         <View style={styles.profileHeader}>
+          
+
           <View
             style={{
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center"
+              
             }}
           >
-            <Image
-              style={styles.profilePic}
-              source={require("../assets/img_profile_banner.png")}
+           {setAvatarSource && <Image style={styles.profilePic} source={{uri:avatarSource}}
+            // source={require("../assets/img_profile_banner.png")}
             />
+              
+            }
+            <TouchableOpacity
+             onPress={()=>{
+              SelectImg();
+            }}
+            >
+            <Image
+              style={styles.profilePicEdit}
+              source={require("../assets/icon_camera.png")}
+            />
+          </TouchableOpacity>
             <View
               style={{
                 flexDirection: "column",
@@ -104,30 +148,30 @@ function Profile(props) {
                 paddingLeft: "15%"
               }}
             >
-              <Text style={styles.txtName}>Jacky Lee</Text>
+              <Text style={styles.txtName}>{props.userName} Jacky Lee</Text>
               <View style={{ flexDirection: "row", flex: 1, marginTop: 10 }}>
-                
-                  <TouchableOpacity style={{
+                <TouchableOpacity
+                  style={{
                     alignItems: "center",
                     justifyContent: "center",
                     marginRight: "15%"
                   }}
-                  onPress={()=>{
-                    Actions.reset('MyCreatedGroup')
+                  onPress={() => {
+                    Actions.reset("MyCreatedGroup");
                   }}
-                  >
+                >
                   <Text style={styles.txtCreatedNum}>
                     {props.txtCreatedNum}2
                   </Text>
                   <Text style={styles.txtCreatedJoined}>
                     {props.txtCreatedGroup}Created{" "}
                   </Text>
-                  </TouchableOpacity>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                   style={{ alignItems: "center", justifyContent: "center" }}
-                  onPress={()=>{
-                    Actions.reset('MyJoinedGroup')
+                  onPress={() => {
+                    Actions.reset("MyJoinedGroup");
                   }}
                 >
                   <Text style={styles.txtJoinedNum}>{props.txtJoinedNum}5</Text>
@@ -152,11 +196,18 @@ function Profile(props) {
         }}
       >
         <View style={{ width: "100%", height: 100, zIndex: 10 }}>
-            <View style={{flexDirection:'row', justifyContent:'center', alignItems:'center', top:70}}>
-            </View>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              top: 70
+            }}
+          >
+
+          </View>
 
           <Text style={styles.txtNotification}>Notifications</Text>
-
         </View>
         <ScrollView>
           <View
@@ -164,26 +215,23 @@ function Profile(props) {
               alignItems: "center",
               paddingTop: "10%",
               paddingBottom: 80,
-              paddingLeft:20,
-              paddingRight:20
+              paddingLeft: 20,
+              paddingRight: 20
             }}
           >
-
-            {
-              notificationData.map((obj,i)=>{
-                return <Card_notification
-                key = {i}
-                id = {obj.id}
-                name = {obj.name}
-                groupNum = {obj.groupNum}
-                comment = {obj.comment}
-                bmtCentrePostTime = { obj.bmtCentrePostTime}
-                verIndicatorColor = {obj.verIndicatorColor}
-            />
-            })
-            }
-          
-            
+            {notificationData.map((obj, i) => {
+              return (
+                <Card_notification
+                  key={i}
+                  id={obj.id}
+                  name={obj.name}
+                  groupNum={obj.groupNum}
+                  comment={obj.comment}
+                  bmtCentrePostTime={obj.bmtCentrePostTime}
+                  verIndicatorColor={obj.verIndicatorColor}
+                />
+              );
+            })}
           </View>
         </ScrollView>
       </View>
@@ -218,7 +266,8 @@ const styles = StyleSheet.create({
     width: 85,
     height: 85,
     borderRadius: 100,
-    backgroundColor: "#fab"
+    resizeMode:'contain',
+    // backgroundColor: "#fab"
   },
   txtName: {
     fontFamily: "Open sans",
@@ -236,7 +285,7 @@ const styles = StyleSheet.create({
   txtJoinedNum: {
     fontFamily: "Open sans",
     fontSize: 20,
-    color:"#FE647B",
+    color: "#FE647B",
     fontWeight: "bold"
   },
   txtCreatedJoined: {
@@ -256,27 +305,34 @@ const styles = StyleSheet.create({
   footer: {
     position: "absolute"
   },
-  circleIndicatorJoined:{
-      width:17,
-      height:17,
-      backgroundColor:'#FE647B',
-      borderRadius:30,
-      marginRight:5
-      //094E76
+  circleIndicatorJoined: {
+    width: 17,
+    height: 17,
+    backgroundColor: "#FE647B",
+    borderRadius: 30,
+    marginRight: 5
+    //094E76
   },
-  circleIndicatorCreated:{
-    width:17,
-    height:17,
-    backgroundColor:'#094E76',
-    borderRadius:30,
-    marginRight:5
+  circleIndicatorCreated: {
+    width: 17,
+    height: 17,
+    backgroundColor: "#094E76",
+    borderRadius: 30,
+    marginRight: 5
     //
-},
-    txtIndicator:{
-        fontSize:12,
-        fontFamily:'Open sans',
-        color:'#094E76'
-    }
+  },
+  txtIndicator: {
+    fontSize: 12,
+    fontFamily: "Open sans",
+    color: "#094E76"
+  },
+  profilePicEdit:{
+    width:30,
+    height:30,
+    position:'absolute',
+    left:-30,
+    top:10
+  }
 });
 
 export default Profile;

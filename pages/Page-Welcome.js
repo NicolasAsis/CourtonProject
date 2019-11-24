@@ -11,7 +11,20 @@ import {
 import {Actions} from 'react-native-router-flux';
 import jssPluginPropsSort from "jss-plugin-props-sort";
 
+import AsyncStorage from '@react-native-community/async-storage';
+
 function Welcome(props) {
+
+  const [firstName,setFirstName] = useState("");
+  
+  const getUserName = async () => {
+      const value = await AsyncStorage.getItem('@user_firstName')
+      console.log(value);
+      setFirstName(value);
+  }
+
+  getUserName();
+
   return (
     <View style={styles.pg}>
       <Image
@@ -19,7 +32,7 @@ function Welcome(props) {
         source={require("../assets/img_abstract_up.png")}
       />
       <View style={styles.welcomText}>
-            <Text style={styles.welcome}>Welcome Jacky</Text>
+            <Text style={styles.welcome}>Welcome {firstName}</Text>
             <Text style={styles.sucessfully}>Your account was created sucessfully!</Text>
             <TouchableOpacity 
                 style={styles.loginBut}
