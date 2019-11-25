@@ -24,6 +24,18 @@ function MoreMembers() {
     {
       memberName:'Tony Lin'
     },
+    {
+      memberName:'Lisa Black'
+    },
+    {
+      memberName:'Jhonny Wick'
+    },
+    {
+      memberName:'Melody Haung'
+    },
+    {
+      memberName:'Julie Rose'
+    },
   ]
   useEffect(()=>{
     LoadMembers();

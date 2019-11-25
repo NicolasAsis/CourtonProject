@@ -57,8 +57,8 @@ function OnBoarding_3() {
       <View style={styles.bottom}>
         <Text style={styles.step}>Create Groups</Text>
         <Text style={styles.descp}>
-        Become a group organizer. Click on the light blue “+” button to create your own badminton group. Choose which badminton centre, 
-        date, time, badminton court, maximum members and price per person to host a game.
+        Become a group organizer. Click on “+” button to create your own badminton group choosing a badminton centre, 
+        date, time, badminton court, capacity and price to host a game.
         </Text>
         <View style={styles.indicator}>
           <TouchableOpacity style={styles.sCircle} onPress={()=>{
@@ -135,30 +135,32 @@ const styles = StyleSheet.create({
     display: "flex"
   },
   step: {
-    width: 286,
+    width: 266,
     height: 41,
     fontFamily: "Open Sans",
     fontWeight: "bold",
-    fontSize: 24,
+    fontSize: 28,
     lineHeight: 33,
     textAlign: "center",
-    color: "#094E76"
+    color: "#094E76",
+    top:-20
   },
   descp: {
     fontFamily: "Open Sans",
     fontStyle: "normal",
     fontWeight: "normal",
-    fontSize: 12,
+    fontSize: 14,
     textAlign: "center",
     color: "#7C7B7B",
-    width: 308,
-    height: 72,
+    width: "100%",
+    padding:20,
     justifyContent: "center",
     alignItems: "center",
-    display: "flex"
+    display: "flex",
+    top:-10
   },
   indicator: {
-    marginTop: 30,
+    marginTop: 20,
     width: 192,
     height: 24,
     display: "flex",

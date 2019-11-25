@@ -11,6 +11,8 @@ import { ScrollView } from "react-native-gesture-handler";
 import Modal from "react-native-modal";
 import HamMenu from "../comps/HamMenu";
 
+var noResult = null;
+
 function MyJoinedGroup() {
   const [hamMenuVisible, setHamMenuVisible] = useState(false);
 
@@ -100,9 +102,20 @@ function MyJoinedGroup() {
   });
 
   if (filteredJoinedGroup.length == 0) {
-    Alert.alert("Oops! No result", "Try another name");
-  }
-
+    noResult = <Image
+      style={{
+        left:'25%',
+        top:70,
+        width: 200,
+        height: 200
+      }}
+      source={require("../assets/img_no_results.png")}
+    />
+    // Alert.alert('Oops, No result', 'Try another name')
+   }
+   else{
+     noResult = null;
+   }
   return (
     <View style={{ backgroundColor: "#FFFFFF", width: "100%" }}>
       <Modal
