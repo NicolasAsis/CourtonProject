@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
-import {Actions} from 'react-native-router-flux';
+import { Actions } from "react-native-router-flux";
 // import console = require("console");
 
-function Button_Ok(props,{navigation}) {
+function Button_Ok(props, { navigation }) {
   const styles = StyleSheet.create({
     //Overall Box
     JoinButBox: {
@@ -14,9 +14,8 @@ function Button_Ok(props,{navigation}) {
       left: 0,
       bottom: 0,
       right: 0,
-      top:560,
-      position: "absolute",
-     
+      top: 560,
+      position: "absolute"
     },
     //Overall Box Shadow
     JoinButBoxShadow: {
@@ -86,7 +85,7 @@ function Button_Ok(props,{navigation}) {
       height: 38,
       right: 0,
       position: "absolute",
-      backgroundColor: "#FFFFFF",
+      backgroundColor: "#FFFFFF"
       // alignItems: 'center',
       // justifyContent:'center',
     },
@@ -120,17 +119,19 @@ function Button_Ok(props,{navigation}) {
           </View>
           <View style={styles.JoingButRightShadow}>
             {/* Right side of button */}
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.JoinButRight}
-              onPress={()=>{
+              onPress={() => {
                 console.log(props);
                 var g = props.navigation;
-                Actions.SelectCourts({group_info:{
-                  ...g,
-                  start_time:props.startTime,
-                  end_time:props.endTime,
-                  hrsplay:props.hrsPlay
-                }})
+                Actions.SelectCourts({
+                  group_info: {
+                    ...g,
+                    start_time: props.startTime,
+                    end_time: props.endTime,
+                    hrsPlay: props.hrsPlay
+                  }
+                });
               }}
             >
               <Text style={styles.joinText}>Ok</Text>

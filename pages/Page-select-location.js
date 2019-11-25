@@ -10,21 +10,15 @@ import {
   StatusBar
 } from "react-native";
 import Card_badminton_centre from "../comps/Card_badminton_centre";
-
-import Reminder_bmt_popup from '../comps/Reminder_bmt_popup';
 import {Actions} from 'react-native-router-flux';
-
 import Modal from "react-native-modal";
 import HamMenu from "../comps/HamMenu";
-
 import axios from "axios";
 
 
 
 function SelectLocation() {
-
   const [badmintonCentres, setCentres] = useState([]);
-
   const ReadCentres = async () => {
     var obj = {
       key: "badminton_centres_read",
@@ -40,40 +34,6 @@ function SelectLocation() {
   useEffect(() => {
     ReadCentres();
   }, []);
-
-  // const bmtCentreData = [
-  //   {
-  //     badmintonCentreImg: require("../assets/img_stage18.png"),
-  //     badmintonCentreName: "Stage 18",
-  //     badmintonCentreLocation: "2351 No 6 Rd #170, Richmond, BC V6V 1P3"
-  //   },
-  //   {
-  //     badmintonCentreImg: require("../assets/img_c1.jpg"),
-  //     badmintonCentreName: "Clear One",
-  //     badmintonCentreLocation: "4351 No 3 Rd #100, Richmond, BC V6X 3A7"
-  //   },
-
-  //   {
-  //     badmintonCentreImg: require("../assets/img_pro.jpg"),
-  //     badmintonCentreName: "Richmond Pro",
-  //     badmintonCentreLocation: "5800 Minoru Blvd #130, Richmond, BC V6X 2B1"
-  //   },
-  //   {
-  //     badmintonCentreImg: require("../assets/img_bv.jpg"),
-  //     badmintonCentreName: "Badminton Van",
-  //     badmintonCentreLocation: "13100 Mitchell Road, Richmond BC, V6V 1M8"
-  //   },
-  //   {
-  //     badmintonCentreImg: require("../assets/img_drive.jpg"),
-  //     badmintonCentreName: "Drive",
-  //     badmintonCentreLocation: "4551 No 3 Rd #138, Richmond, BC V6X 2C3"
-  //   },
-  //   {
-  //     badmintonCentreImg: require("../assets/img_vrc.jpeg"),
-  //     badmintonCentreName: "VRC",
-  //     badmintonCentreLocation: "4867 Ontario St, Vancouver, BC V5V 3H4"
-  //   }
-  // ];
 
   const [hamMenuVisible, setHamMenuVisible] = useState(false);
 
@@ -126,17 +86,6 @@ function SelectLocation() {
       <View style={{ flex: 1 }}>
         <ScrollView style={{ paddingBottom: "185%", paddingTop: 17 }}>
           <View style={{ paddingBottom: 20, height: "100%" }}>
-            {/* {bmtCentreData.map(obj => {
-              return (
-                // <Card_badminton_centre
-                //   // key = {i}
-                //   id={obj.id}
-                //   badmintonCentreImg={obj.badmintonCentreImg}
-                //   badmintonCentreName={obj.badmintonCentreName}
-                //   badmintonCentreLocation={obj.badmintonCentreLocation}
-                // />
-              );
-            })} */}
 
           {
               badmintonCentres.map(obj => {

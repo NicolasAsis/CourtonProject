@@ -12,16 +12,15 @@ import Button_Join from "../comps/Button_Join";
 import Card_members from "../comps/Card_members";
 import Bar_group_countdown_price from "../comps/Bar_group_countdown_price";
 import Circle_extra_member from "../comps/Circle_extra_member";
-import Join_group_popup from '../comps/Join_group_popup';
-import * as Progress from 'react-native-progress';
+import Join_group_popup from "../comps/Join_group_popup";
+import * as Progress from "react-native-progress";
 import { Actions } from "react-native-router-flux";
 
 import Modal from "react-native-modal";
 import HamMenu from "../comps/HamMenu";
 
 function GroupInfo(props) {
-  
-  const LoadMemberCard = async()=>{
+  const LoadMemberCard = async () => {
     var obj = {
       key: "memberCard_read",
       data: {
@@ -34,26 +33,27 @@ function GroupInfo(props) {
     // var dbusers = JSON.parse(r.data.body);
     // console.log("read", dbusers);
     // setUsers(dbusers.data);
-  // if(data.organizerName == obj.organizerName ){
-  //   alert('No result is found')
-  // }
-}
+    // if(data.organizerName == obj.organizerName ){
+    //   alert('No result is found')
+    // }
+  };
 
-const data=[
-  {
-    memberName:'Lisa Black',
-    organizer:'Organizer',
-    url:'https://cdn.mos.cms.futurecdn.net/WrTQYE8ZnmfhKgduRX9ci5-320-80.jpeg'
-  },
-  {
-    memberName:'Jonny Wick',
-    url:'../assets/image.jpeg'
-  },
-  {
-    memberName:'Melody Huang',
-    url:'../assets/image.jpeg'
-  }
-]
+  const data = [
+    {
+      memberName: "Lisa Black",
+      organizer: "Organizer",
+      url:
+        "https://cdn.mos.cms.futurecdn.net/WrTQYE8ZnmfhKgduRX9ci5-320-80.jpeg"
+    },
+    {
+      memberName: "Jonny Wick",
+      url: "../assets/image.jpeg"
+    },
+    {
+      memberName: "Melody Huang",
+      url: "../assets/image.jpeg"
+    }
+  ];
 
   useEffect(() => {
     LoadMemberCard();
@@ -151,6 +151,7 @@ const data=[
       fontFamily: "Open sans",
       fontWeight: "bold",
       fontSize: 15,
+      marginBottom:25,
       color: "#3C3C3C"
     },
     groupDescText: {
@@ -159,7 +160,8 @@ const data=[
       color: "#7C7B7B",
       lineHeight: 20,
       marginBottom: 43,
-      width: 330
+      width: 330,
+
     },
 
     //Group Information Text
@@ -195,26 +197,25 @@ const data=[
       marginTop: -16
     },
     ProgressBar: {
-      marginTop:'1%'
+      marginTop: "1%"
     },
-    txtMembersIndicator:{
-      marginTop:'3%',
-      fontSize:16,
-      fontFamily:'Open sans',
-      color:'#094E76'
+    txtMembersIndicator: {
+      marginTop: "3%",
+      fontSize: 16,
+      fontFamily: "Open sans",
+      color: "#094E76"
     }
   });
 
-  const [modalVisible,setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   var joinedMember = 20;
   var totalMember = 23;
-  
+
   const [hamMenuVisible, setHamMenuVisible] = useState(false);
 
   return (
     <View>
       <View style={styles.gipageStructure}>
-
         {/* Ham Menu */}
         <Modal
           isVisible={hamMenuVisible}
@@ -263,7 +264,7 @@ const data=[
           <TouchableOpacity
             style={styles.giHamTouchableOp}
             onPress={() => {
-              setHamMenuVisible(true)
+              setHamMenuVisible(true);
             }}
           >
             <Image
@@ -275,18 +276,15 @@ const data=[
           <Text style={styles.giOrganizedByText}>Organized by</Text>
           <Text style={styles.giOrganizerText}>Toby Wong</Text>
         </View>
-        <View
-        style={{justifyContent:'center', alignItems:'center'}}
-        >
-
-        <Text
-        style={styles.txtMembersIndicator}
-        >{props.joinedMember}20/23{props.totalMember}</Text>
-        <Progress.Bar
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <Text style={styles.txtMembersIndicator}>
+            {props.joinedMember}Players 20/23{props.totalMember}
+          </Text>
+          <Progress.Bar
             unfilledColor="#CDC5C5"
             borderColor="#FFFFFF"
             color="#81EC8D"
-            progress = {joinedMember/totalMember}
+            progress={joinedMember / totalMember}
             width={350}
             height={13}
             borderRadius={13}

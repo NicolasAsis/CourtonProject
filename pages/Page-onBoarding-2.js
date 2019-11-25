@@ -63,7 +63,7 @@ function OnBoarding_2() {
       <View style={styles.bottom}>
         <Text style={styles.step}>Join groups</Text>
         <Text style={styles.descp}>
-          Become a member of a group. The Home page shows the current available
+          Become a member of a group. Home page shows current available
           badminton groups made from other organizers that you can join to play
           with.
         </Text>
@@ -143,28 +143,31 @@ const styles = StyleSheet.create({
     flex: 1,
     display: "flex"
   },
+ 
   step: {
-    width: 286,
+    width: 266,
     height: 41,
     fontFamily: "Open Sans",
     fontWeight: "bold",
-    fontSize: 24,
+    fontSize: 28,
     lineHeight: 33,
     textAlign: "center",
-    color: "#094E76"
+    color: "#094E76",
+    top:-20
   },
   descp: {
     fontFamily: "Open Sans",
     fontStyle: "normal",
     fontWeight: "normal",
-    fontSize: 12,
+    fontSize: 14,
     textAlign: "center",
     color: "#7C7B7B",
-    width: 308,
-    height: 72,
+    width: "100%",
+    padding:20,
     justifyContent: "center",
     alignItems: "center",
-    display: "flex"
+    display: "flex",
+    top:-10
   },
   indicator: {
     marginTop: 30,

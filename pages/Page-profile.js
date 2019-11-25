@@ -71,8 +71,9 @@ useEffect(() => {
       //   });
       console.log("response", response)
       setAvatarSource({
-        avatarSource:response.uri
+        avatarSource: response.uri
       })
+      console.log(avatarSource);
       // setChannelImageHandler(source.uri)
       }
     });
@@ -96,36 +97,6 @@ useEffect(() => {
     LoadComments();
   }, []);
 
-  const notificationData = [
-    {
-      name: "Tony Wong",
-      groupNum: "1511",
-      comment: "From its medieval origins to the digital era,",
-      bmtCentrePostTime: "15 sec ago",
-      verIndicatorColor: "#FE647B"
-    },
-    {
-      name: "William Smith",
-      groupNum: "0911",
-      comment: "Lorem ipsum is placeholder text commonly ",
-      bmtCentrePostTime: "3 weeks ago",
-      verIndicatorColor: "#094E76"
-    },
-    {
-      name: "Carol English",
-      groupNum: "0911",
-      comment: "Lorem ipsum is placeholder text commonly ",
-      bmtCentrePostTime: "4 weeks ago",
-      verIndicatorColor: "#094E76"
-    },
-    {
-      name: "Nicolas Asis",
-      groupNum: "0911",
-      comment: "Lorem ipsum is placeholder text commonly ",
-      bmtCentrePostTime: "5 weeks ago",
-      verIndicatorColor: "#094E76"
-    }
-  ];
 
   return (
     <View>
@@ -153,10 +124,9 @@ useEffect(() => {
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center"
-              
             }}
           >
-           {setAvatarSource && <Image style={styles.profilePic} source={{uri:avatarSource}}
+           {setAvatarSource && <Image style={styles.profilePic} source={avatarSource}
             // source={require("../assets/img_profile_banner.png")}
             />
               
@@ -176,7 +146,7 @@ useEffect(() => {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                paddingLeft: "15%"
+                paddingLeft: "15%",
               }}
             >
               <Text style={styles.txtName}>{userFN} {userLN}</Text>
@@ -218,54 +188,29 @@ useEffect(() => {
 
       <View
         style={{
-          backgroundColor: "#FFFFFF",
           zIndex: -10,
-          paddingTop: 20,
           justifyContent: "center",
           alignItems: "center",
-          height: 550
+          height: 550,
+          backgroundColor:"#F3F1F1"
         }}
       >
         <View style={{ width: "100%", height: 100, zIndex: 10 }}>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              top: 70
-            }}
-          >
-
-          </View>
-
-          <Text style={styles.txtNotification}>Notifications</Text>
         </View>
-        <ScrollView>
-          <View
-            style={{
-              alignItems: "center",
-              paddingTop: "10%",
-              paddingBottom: 80,
-              paddingLeft: 20,
-              paddingRight: 20
-            }}
-          >
-            {notificationData.map((obj, i) => {
-              return (
-                <Card_notification
-                  key={i}
-                  id={obj.id}
-                  name={obj.name}
-                  groupNum={obj.groupNum}
-                  comment={obj.comment}
-                  bmtCentrePostTime={obj.bmtCentrePostTime}
-                  verIndicatorColor={obj.verIndicatorColor}
-                />
-              );
-            })}
-          </View>
-        </ScrollView>
+
+        {/* === info title  === */}
+        <View style={styles.infoTile}>
+            <Text style={styles.infoTitle}>Email</Text>
+            <Text style={styles.info}>tobywong@gmail.com</Text>
+        </View>
+        <View style={styles.infoTile}>
+            <TouchableOpacity style={styles.profileIcons} onPress={() => {Actions.Login();}}>
+                  <Image style={{ width: 23, height: 20, marginRight:20}} source={require("../assets/img_icon_logout.png")}/>
+                  <Text style={{color:"#C2C1C1"}}>Sign Out</Text>
+            </TouchableOpacity>
+        </View>
       </View>
+      
       <Sticky_footer_regular
         homeIcon={require("../assets/icon_home_grey.png")}
         myGroupIcon={require("../assets/icon_mygroup_grey.png")}
@@ -363,7 +308,41 @@ const styles = StyleSheet.create({
     position:'absolute',
     left:-30,
     top:10
-  }
+  },
+  // info tile for email, skill type etc..
+  infoTile:{
+    width:"100%",
+    padding:20,
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"center",
+    textAlign:"center",
+    color:"#3c3c3c",
+    shadowOffset: { x: 0, y: 3 },
+    shadowColor: "#000000"
+    // marginTop:-380,
+  },
+  infoTitle: {
+    fontFamily: 'Open Sans',
+    fontWeight:'bold',
+    fontSize: 15,
+    lineHeight: 20,
+    padding:10,
+},
+  info:{
+    fontFamily: 'Open Sans',
+    fontSize: 15,
+    lineHeight: 20 ,
+    color: '#C2C1C1',
+  },
+  profileIcons:{
+    width:'100%',
+    justifyContent:"center",
+    alignItems:"center",
+    display:"flex",
+    flexDirection:"row"
+}
+
 });
 
 export default Profile;
