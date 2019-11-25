@@ -17,14 +17,13 @@ function Welcome(props) {
   const [firstName, setFirstName] = useState("");
   //retrive first name from sign uo
   const getUserName = async () => {
-
-    const firstName = await AsyncStorage.getItem('firstName')
+    const firstName = await AsyncStorage.getItem('first_name')
     console.log(firstName);
     setFirstName(firstName);
-      // const value = await AsyncStorage.getItem('user_firstName')
-      // console.log(value);
-      // setFirstName(value);
 
+//     const value = await AsyncStorage.getItem('user_firstName')
+//     console.log(value);
+//     setFirstName(value);
   }
 
   getUserName();
