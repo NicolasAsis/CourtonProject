@@ -5,22 +5,21 @@ import SwitchSelector from "react-native-switch-selector";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import Button_Ok from "../comps/Button_Ok";
 import moment from "moment";
-
 import { Actions } from "react-native-router-flux";
-
 import Modal from "react-native-modal";
 import HamMenu from "../comps/HamMenu";
+import AsyncStorage from "@react-native-community/async-storage";
 
 // import Moment from 'react-moment';
 // import {Moment} from 'react-moment';
 
-function SelectTime({navigation}) {
+function SelectTime(props, { navigation }) {
   const [isDateTimePickerVisible, setIsDateTimePickerVisible] = useState(false);
   // const [showDateTimePicker, setShowDateTimePicker] = useState(true);
   // const [hideDateTimePicker, setHideDateTimePicker] = useState(true);
   // const [handleDatePicked, setHandleDatePicked] = useState(true);
-  console.log("params",navigation.state.params.group_info);
-  
+  // console.log("params",navigation.state.params);
+
   //For the time picker
   const [time, setTime] = useState();
 
@@ -42,9 +41,9 @@ function SelectTime({navigation}) {
   }
 
   function handleDatePicked(date) {
-    console.log("A date has been picked: ", date);
+    // console.log("A date has been picked: ", date);
     // startDate = moment(date).format('lll');
-    
+
     if (time == "START") {
       setChosenDate(date);
     } else if (time == "END") {
@@ -53,12 +52,29 @@ function SelectTime({navigation}) {
     hideDateTimePicker();
   }
 
-  // var hrsPlay = {chosenDate} - {chosenDate2};
-  // console.log((Date.parse(chosenDate2)-Date.parse(chosenDate))/1000/60/60);
+  //store chosenDate to async
+  const storeChosenDate = async () => {
+    await AsyncStorage.setItem("chosenDate", chosenDate)
+  }
+  storeChosenDate();
+
+  // console.log("chosenDate111111" + chosenDate)
+
+  // const storeChosenDate
 
   //Carrying the group info object
-  const giObj = navigation.state.params.group_info;
-  
+  const giObj = props.navigation.state.params.group_info;
+  // console.log(giObj)
+
+  // console.log("giobj"+navigation.state.params.group_info);
+  //   const storeHrsPlay = async () => {
+  //     await AsyncStorage.setItem("hrsPlay", hrsPlay);
+  //     console.log(hrsPlay)
+  // };
+
+  // storeHrsPlay();
+
+
   return (
     <View style={{ backgroundColor: "#FFFFFF", height: "100%" }}>
       <Modal
@@ -78,7 +94,7 @@ function SelectTime({navigation}) {
         <HamMenu showHamMenu={setHamMenuVisible} />
       </Modal>
 
-      <Header_blue_red headerTitle={"Choose a time"} courtName={"Stage 18"} showHamMenu = {setHamMenuVisible} />
+      <Header_blue_red headerTitle={"Choose a time"} courtName={"Stage 18"} showHamMenu={setHamMenuVisible} />
       {/* <TouchableOpacity
         onPress={()=>{
           showDateTimePicker()
@@ -159,55 +175,55 @@ function SelectTime({navigation}) {
             style={{
               flexDirection: "column",
               alignItems: "center",
-              marginBottom:50
+              marginBottom: 50
             }}
           >
-            <Text 
+            <Text
               style={styles.txtLeft}
-              onPress={()=>{
+              onPress={() => {
                 showDateTimePicker();
                 setTime("START");
               }}
             >FROM </Text>
             <Text style={styles.txtRight}
-            onPress={()=>{
-              showDateTimePicker();
-              setTime("START");
-            }}
+              onPress={() => {
+                showDateTimePicker();
+                setTime("START");
+              }}
             >{moment(chosenDate).format("lll") || ""}</Text>
-             </View>
-             <View
+          </View>
+          <View
             style={{
               flexDirection: "column",
               alignItems: "center",
             }}
           >
-            <Text 
+            <Text
               style={styles.txtLeft}
-              onPress={()=>{
+              onPress={() => {
                 showDateTimePicker();
                 setTime("END");
               }}
             >TO</Text>
-             <Text style={styles.txtRight}
-             onPress={()=>{
-              showDateTimePicker();
-              setTime("END");
-            }}
-             >{moment(chosenDate2).format("lll") || ""}</Text>
-             </View>
-         
+            <Text style={styles.txtRight}
+              onPress={() => {
+                showDateTimePicker();
+                setTime("END");
+              }}
+            >{moment(chosenDate2).format("lll") || ""}</Text>
+          </View>
+
           <View style={{ flexDirection: "column", alignItems: "flex-end" }}>
-            
-           
+
+
           </View>
         </View>
 
         {/* OK btn */}
-        <Button_Ok 
-          hrsPlay={Math.round((Date.parse(chosenDate2)-Date.parse(chosenDate))/1000/60/60)} 
-          startTime={Math.round((Date.parse(chosenDate))/1000/60/60)} 
-          endTime={Math.round((Date.parse(chosenDate2))/1000/60/60)}
+        <Button_Ok
+          hrsPlay={Math.round((Date.parse(chosenDate2) - Date.parse(chosenDate)) / 1000 / 60 / 60)}
+          startTime={Math.round((Date.parse(chosenDate)) / 1000 / 60 / 60)}
+          endTime={Math.round((Date.parse(chosenDate2)) / 1000 / 60 / 60)}
           navigation={giObj}
         />
         <View></View>

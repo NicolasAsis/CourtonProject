@@ -11,7 +11,7 @@ import {
 } from "react-native";
 
 import { Actions } from "react-native-router-flux";
-
+import Birdie from '../comps/Birdie'
 
 import axios from "axios";
 
@@ -19,28 +19,33 @@ var email = "";
 var password = "";
 
 function Login(props) {
+
     // const [users, setUsers] = useState([]);
-    const [error, setError] = useState("");
+
 
     const ReadUsers = async()=>{
-        // var obj = {
-        //     key:"users_read",
-        //     data:{
-        //         email:email,
-        //         password:password
-        //     }
-        // }
-        // var r = await axios.post("http://localhost:3001/post", obj);
-        // var dbusers = JSON.parse(r.data.body);
-        // console.log(dbusers.data[0]);
-        // //setUsers(dbusers);
-        // if(dbusers.data[0] == null){
-        //     alert('Email or password is incorrect.')
-        // }else {
+        var obj = {
+            key:"users_read",
+            data:{
+                email:email,
+                password:password
+            }
+        }
+        var r = await axios.post("http://localhost:3001/post", obj);
+        var dbusers = JSON.parse(r.data.body);
+        console.log(dbusers.data[0]);
+        //setUsers(dbusers);
+        if(dbusers.data[0] == null){
+            alert('Email or password is incorrect.')
+        }else {
+            // const lastname1 = dbusers.data[0]
         //     //change ui
             Actions.Home()
-        // }
+        }
+
+        console.log(obj)
     }
+    
 
     const styles=StyleSheet.create({
         loginpageStructure:{

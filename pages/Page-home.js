@@ -264,13 +264,6 @@ function Home() {
              */}
 
               <Text style={styles.title}>Upcoming Available Groups</Text>
-              <TouchableOpacity
-                onPress={() => {
-                  Actions.SkillLevel();
-                }}
-              >
-                <Text>To skill SkillLevel</Text>
-              </TouchableOpacity>
               <Image />
 
               {filteredGroup.map((obj, i) => {
