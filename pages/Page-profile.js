@@ -71,8 +71,9 @@ useEffect(() => {
       //   });
       console.log("response", response)
       setAvatarSource({
-        avatarSource:response.uri
+        avatarSource: response.uri
       })
+      console.log(avatarSource);
       // setChannelImageHandler(source.uri)
       }
     });
@@ -125,7 +126,7 @@ useEffect(() => {
               alignItems: "center"
             }}
           >
-           {setAvatarSource && <Image style={styles.profilePic} source={{uri:avatarSource}}
+           {setAvatarSource && <Image style={styles.profilePic} source={avatarSource}
             // source={require("../assets/img_profile_banner.png")}
             />
               

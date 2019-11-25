@@ -14,15 +14,15 @@ import Select_court_popup from "../comps/Select_court_popup";
 
 import Modal from "react-native-modal";
 import HamMenu from "../comps/HamMenu";
+import AsyncStorage from "@react-native-community/async-storage";
+
 // import console = require("console");
 
 const courts = [10, 1, 11, 2, 12, 3, 13, 4, 14, 5, 15, 6, 16, 7, 17, 8, 18, 9];
 
 function SelectCourts(props) {
-
-  console.log("params2",props.navigation.state.params);
-  // console.log("params3",props.navigation.state.params.group_info.hrsplay);
-  
+  const hrsPlay = props.navigation.state.params.group_info.hrsPlay;
+  console.log("hrsplay", props.navigation.state.params.group_info.hrsPlay);
   const [crts, setCrts] = useState([]);
 
   var cComp = courts.map(o => {
@@ -43,12 +43,33 @@ function SelectCourts(props) {
       </View>
     );
   }
+  console.log(
+    "page-select-time page group_info",
+    props.navigation.state.params.group_info
+  );
 
   const [modalVisible, setModalVisible] = useState(false);
   const [hamMenuVisible, setHamMenuVisible] = useState(false);
-
+  props.navigation.state.params.group_info.hrsPlay = hrsPlay;
   //Gets the amount of hours they have chosen to play
   const giObjCost = props.navigation.state.params.group_info.centreCost;
+  const giObj = props.navigation.state.params.group_info;
+  // console.log("cost "+giObjCost);
+  console.log(giObj.centreCost);
+
+  //display courts number(bugs: can only select and deselect in a same order)
+  var selectedCourts = [];
+  for (let i = 0; i < cComp[0].props.crts.length; i++) {
+    selectedCourts.push(cComp[0].props.crts[i]);
+  }
+
+  //store selected courts number in the async
+  const storeSelectedCourts = async () => {
+    await AsyncStorage.setItem("selectedCourts", selectedCourts.join(","));
+  };
+  storeSelectedCourts();
+
+  console.log(selectedCourts.join(","));
 
   return (
     <View>
@@ -83,7 +104,8 @@ function SelectCourts(props) {
         <Header_blue_red
           headerTitle="Choose courts"
           subTitle="Your selected court(s) "
-          courtNum={crts.length}
+          //courtNum={crts.length}
+          courtNum={selectedCourts.join(",")}
           // -------------------------
           showHamMenu={setHamMenuVisible}
         />
@@ -125,7 +147,12 @@ function SelectCourts(props) {
                     // alert('Select a court')
                   }
                 } else {
-                  Actions.GroupSummary();
+                  Actions.GroupSummary({
+                    group_info: {
+                      giObj: giObj,
+                      selectedCourts: selectedCourts.join(",")
+                    }
+                  });
                 }
                 // alert('select a court')
               }}

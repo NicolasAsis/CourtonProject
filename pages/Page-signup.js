@@ -33,34 +33,53 @@ var password = "";
 var first_name = "";
 var last_name = "";
 
-function Signup() {
+function Signup(props) {
   const [users, setUsers] = useState([]);
+  // const [userName,setUserName] = useState("");
 
-  const CreateUser = async () => {
-    //fetch db to create users
-    console.log(
-      "first name, last name, email, password",
-      first_name,
-      last_name,
-      email,
-      password
-    );
-    var obj = {
-      key: "users_create",
-      data: {
-        first_name: first_name,
-        last_name: last_name,
-        email: email,
-        password: password
-      }
-    };
-    var r = await axios.post("http://localhost:3001/post", obj);
-    console.log("create", r.data);
-  };
+  // const CreateUser = async () => {
+  //   //fetch db to create users
+  //   console.log(
+  //     "first name, last name, email, password",
+  //     first_name,
+  //     last_name,
+  //     email,
+  //     password
+  //   );
+  //   var obj = {
+  //     key: "users_create",
+  //     data: {
+  //       first_name:first_name,
+  //       last_name:last_name,
+  //       email: email,
+  //       password: password
+  //     }
+  //   };
+  //   var r = await axios.post("http://localhost:3001/post", obj);
+  //   console.log("create", r.data);
+  // };
 
-  const storeUserName = async () => {
-      await AsyncStorage.setItem("user_firstName", first_name);
-  };
+  const storeUserInfo = async () => {
+      await AsyncStorage.setItem("first_name", first_name);
+      await AsyncStorage.setItem("last_name", last_name);
+      await AsyncStorage.setItem("email", email);
+      await AsyncStorage.setItem("password", password);
+      console.log(first_name,last_name, email, password)
+    
+//   const storeUserName = async () => {
+//       await AsyncStorage.setItem("user_firstName", first_name);
+//   };
+
+
+//   const getUserName = async () => {
+//     const fnValue = await AsyncStorage.getItem('@user_firstName')
+//     const lnValue = await AsyncStorage.getItem('@user_lastName')
+//     console.log(fnValue);
+//     setUsers(lnValue, fnValue);
+//   }
+
+// getUserName();
+// console.log('getUserName', getUserName())
 
   const ReadUsers = async () => {
     var obj = {
@@ -73,6 +92,22 @@ function Signup() {
     console.log("read", dbusers);
     setUsers(dbusers.data);
   };
+
+
+//   const getUserName = async () => {
+//     const fnValue = await AsyncStorage.getItem('@user_firstName')
+//     const lnValue = await AsyncStorage.getItem('@user_lastName')
+//     console.log(fnValue);
+//     // setU(lnValue, fnValue);
+// }
+
+// useEffect(()=>{
+//   getUserName();  
+// }, []);
+
+
+
+
   useEffect(() => {
     ReadUsers();
   }, []);
@@ -184,10 +219,19 @@ function Signup() {
               } else if (verifyEmail == 0 || verifyEmail2 == 1) {
                 Alert.alert("Please fill in a correct email.");
               } else {
-                CreateUser();
-                Actions.Welcome();
-                storeUserName();
+                // CreateUser();
+                Actions.SkillLevel({
+                  user_info: {
+                    first_name: first_name,
+                    last_name: last_name,
+                    email:email,
+                    password:password
+                  }
+                  
+              });
+                storeUserInfo();
                 // if()
+                // console.log("first_name from signup", first_name)
               }
             }}
           >

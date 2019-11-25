@@ -11,7 +11,7 @@ import {
 } from "react-native";
 
 import { Actions } from "react-native-router-flux";
-
+import Birdie from '../comps/Birdie'
 
 import axios from "axios";
 
@@ -47,7 +47,7 @@ var password = "";
 function Login(props) {
 
     // const [users, setUsers] = useState([]);
-    const [error, setError] = useState("");
+
 
     const ReadUsers = async()=>{
         var obj = {
@@ -59,6 +59,7 @@ function Login(props) {
         }
         var r = await axios.post("http://localhost:3001/post", obj);
         var dbusers = JSON.parse(r.data.body);
+
         var userData = dbusers.data[0];
 
         console.log(dbusers.data[0]);
@@ -72,6 +73,7 @@ function Login(props) {
             await AsyncStorage.setItem("userId", JSON.stringify(userData.id));
         }
     }
+    
 
     const styles=StyleSheet.create({
         loginpageStructure:{

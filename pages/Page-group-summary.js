@@ -14,7 +14,8 @@ import Header_blue_red from "../comps/Header_blue_red";
 import SwitchSelector from "react-native-switch-selector";
 
 import LoadingAnimation from "../comps/LoadingAnimation";
-import TextInput_popup from '../comps/TextInput_popup'
+import TextInput_popup from "../comps/TextInput_popup";
+import AsyncStorage from "@react-native-community/async-storage";
 
 function GroupSummary(props) {
   const [grouplimit, setGroupLimit] = useState(0);
@@ -25,6 +26,40 @@ function GroupSummary(props) {
 
   const [modalVisible, setModalVisible] = useState(false);
   const [textInputVisible, setTextInputVisible] = useState(false);
+  const [selectedCourts, setSelectedCourts] = useState("");
+  const gsObj = props.navigation.state.params.group_info;
+  const [chosenDate, setChosenDate] = useState("");
+  const totalPrice =
+    gsObj.giObj.hrsPlay * gsObj.giObj.centreCost * selectedCourts.length;
+  // const [hrsPlay, setHrsPlay] = useState("");
+  const hrsPlay = gsObj.giObj.hrsPlay;
+  //retriev the data from page-select-court
+  const getCourtInfo = async () => {
+    const selectedCourts = await AsyncStorage.getItem("selectedCourts");
+    setSelectedCourts(selectedCourts);
+  };
+  getCourtInfo();
+  // console.log("selected courts",props.navigation.state.params.group_info.selectedCourts)
+  console.log(gsObj);
+  // console.log(gsObj)
+  // console.log("group_info",props.navigation.state.params.group_info)
+  //retrive the startTime data from Page-select-time
+  const getChosenDate = async () => {
+    const chosenDate = await AsyncStorage.getItem("chosenDate");
+    setChosenDate(chosenDate);
+  };
+  getChosenDate();
+
+  // retrive the hrsplay from async
+  // const getHrsPlay = async () => {
+  //   const hrsPlay = await AsyncStorage.getItem("hrsPlay");
+  //   setHrsPlay(hrsPlay);
+  // };
+  // getHrsPlay();
+
+  // console.log(chosenDate)
+  // console.log("start_time",props.navigation.state.params.group_info.start_time);
+
   return (
     <View style={styles.gsStructure}>
       <Modal animationType="fade" transparent={true} visible={modalVisible}>
@@ -32,9 +67,9 @@ function GroupSummary(props) {
       </Modal>
 
       <Modal animationType="fade" transparent={true} visible={textInputVisible}>
-        <TextInput_popup 
-        setShowPopup={setTextInputVisible} 
-        // desc={desc}
+        <TextInput_popup
+          setShowPopup={setTextInputVisible}
+          // desc={desc}
         />
       </Modal>
       {/* Group Summary Header */}
@@ -42,7 +77,12 @@ function GroupSummary(props) {
         headerTitle={"Group Summary"}
         courtName={"Your Group Details"}
       />
-      <View style={[styles.gsTextSec, { width: "100%", height:660, marginTop:30}]}>
+      <View
+        style={[
+          styles.gsTextSec,
+          { width: "100%", height: 660, marginTop: 30 }
+        ]}
+      >
         <ScrollView>
           {/* All group information text */}
           <View
@@ -68,24 +108,27 @@ function GroupSummary(props) {
                 keyboardType={"number-pad"}
                 placeholder={"8.00"}
               >
-                {props.pricePerPerson}
+                {/* {prop.pricePerPerson} */}
               </TextInput>
             </View>
             <View style={styles.rowStyle}>
-              
               <Text style={styles.gsTitleText}>Description</Text>
-              <TouchableOpacity 
-               onPress={() => {
-                setTextInputVisible(!textInputVisible);
-              }}
-              style={{flex:1}}
-              > 
-              <Text style={styles.gsText}>Add Description</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  setTextInputVisible(!textInputVisible);
+                }}
+                style={{ flex: 1 }}
+              >
+                <Text style={styles.gsText}>Add Description</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.rowStyle}>
               <Text style={styles.gsTitleText}>Date Time</Text>
-              <Text style={styles.gsText}>{props.dateTime}Sat 30 December</Text>
+              <Text style={styles.gsText}>{chosenDate}</Text>
+            </View>
+            <View style={styles.rowStyle}>
+              <Text style={styles.gsTitleText}>Duration</Text>
+              <Text style={styles.gsText}>{hrsPlay} hour(s)</Text>
             </View>
             <View style={styles.rowStyle}>
               <Text style={styles.gsTitleText}>Centre</Text>
@@ -113,7 +156,9 @@ function GroupSummary(props) {
                   />
                 </TouchableOpacity>
                 {/* Group limit text */}
-                <View><Text>{grouplimit}</Text></View>
+                <View>
+                  <Text>{grouplimit}</Text>
+                </View>
                 <TouchableOpacity
                   onPress={() => {
                     setGroupLimit(grouplimit + 1);
@@ -128,7 +173,7 @@ function GroupSummary(props) {
             </View>
             <View style={styles.rowStyle}>
               <Text style={styles.gsTitleText}>Courts</Text>
-              <Text style={styles.gsText}>{props.courtNum}7, 8</Text>
+              <Text style={styles.gsText}>{selectedCourts}</Text>
             </View>
             <View style={styles.rowStyle}>
               <Text style={styles.gsTitleText}>Type of Birdie</Text>
@@ -180,14 +225,8 @@ function GroupSummary(props) {
             </View>
             <View style={styles.rowStyle}>
               <Text style={styles.gsTitleText}>Price in Total</Text>
-              <Text style={styles.gsPriceText}>{props.totalPrice}$176</Text>
+              <Text style={styles.gsPriceText}>${totalPrice}</Text>
             </View>
-        
-           
-
-           
-
-
 
             {/* Post Button */}
             <TouchableOpacity
@@ -224,7 +263,7 @@ const styles = StyleSheet.create({
     height: "100%",
     // backgroundColor: "#DAD",
     marginTop: 10,
-    alignItems:'center'
+    alignItems: "center"
   },
   //Left side title text
   gsTitleText: {
@@ -298,7 +337,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F7F7F7",
     marginTop: 7,
     marginLeft: 8,
-    marginBottom: 39,
+    marginBottom: 39
   },
   //Post button
   postBut: {
@@ -346,8 +385,7 @@ const styles = StyleSheet.create({
   rowStyle: {
     flexDirection: "row",
     alignItems: "center",
-    paddingBottom: 30,
-    
+    paddingBottom: 30
   }
 });
 
