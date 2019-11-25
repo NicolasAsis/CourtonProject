@@ -54,7 +54,7 @@ function OnBoarding_1() {
         <Text style={styles.step}>Intro</Text>
         <Text style={styles.descp}>
           CourtOn is a platform for badminton players to host a game with a self
-          created group or to join other organizer’s groups at any of the
+          created group or to join other organizer’s groups at
           badminton centres in Vancouver, BC.
         </Text>
         <View style={styles.indicator}>
@@ -121,30 +121,31 @@ const styles = StyleSheet.create({
     display: "flex"
   },
   step: {
-    width: 286,
+    width: 266,
     height: 41,
     fontFamily: "Open Sans",
     fontWeight: "bold",
-    fontSize: 24,
+    fontSize: 28,
     lineHeight: 33,
     textAlign: "center",
-    color: "#094E76"
+    color: "#094E76",
   },
   descp: {
     fontFamily: "Open Sans",
     fontStyle: "normal",
     fontWeight: "normal",
-    fontSize: 12,
+    fontSize: 14,
     textAlign: "center",
     color: "#7C7B7B",
-    width: 308,
-    height: 72,
+    width: "100%",
+    padding:20,
     justifyContent: "center",
     alignItems: "center",
-    display: "flex"
+    display: "flex",
+    top:-10
   },
   indicator: {
-    marginTop: 30,
+    marginTop: 10,
     width: 192,
     height: 24,
     display: "flex",
@@ -172,14 +173,13 @@ const styles = StyleSheet.create({
   skipBtn: {
     width: 179,
     height: 32,
-    marginTop: 35,
+    marginTop: 25,
     textAlign: "center",
     fontFamily: "Open Sans",
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 18,
     lineHeight: 25,
-    textAlign: "center",
     color: "#094E76"
   }
 });

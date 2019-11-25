@@ -25,6 +25,7 @@ function Card_badminton_centre(props) {
         onPress={() => {
           Actions.SelectTime({
             group_info: {
+              centreId: props.id,
               centreName: props.badmintonCentreName,
               centreLocation: props.badmintonCentreLocation,
               centreImage: props.badmintonCentreImg,

@@ -15,6 +15,32 @@ import Birdie from '../comps/Birdie'
 
 import axios from "axios";
 
+import AsyncStorage from "@react-native-community/async-storage";
+
+// Animation 
+import * as Animatable from "react-native-animatable";
+// custome animation for logo
+Animatable.initializeRegistryWithDefinitions({
+    logoAnimate: {
+        from: {
+                top:190,
+                scale:1},
+        to: {
+            top:0,
+            scale:0.8
+        },
+      },
+    backGroundAnimate: {
+        from: {
+            backgroundColor:"#094E76"
+        },
+        to: {
+            backgroundColor:"#ffffff"
+        }
+    }
+  });
+
+
 var email = "";
 var password = "";
 
@@ -33,17 +59,19 @@ function Login(props) {
         }
         var r = await axios.post("http://localhost:3001/post", obj);
         var dbusers = JSON.parse(r.data.body);
+
+        var userData = dbusers.data[0];
+
         console.log(dbusers.data[0]);
         //setUsers(dbusers);
         if(dbusers.data[0] == null){
             alert('Email or password is incorrect.')
         }else {
-            // const lastname1 = dbusers.data[0]
-        //     //change ui
+            //change ui
+            // console.log("test",userData.id)
             Actions.Home()
+            await AsyncStorage.setItem("userId", JSON.stringify(userData.id));
         }
-
-        console.log(obj)
     }
     
 
@@ -59,9 +87,13 @@ function Login(props) {
         loginLogo:{
             width:175,
             height:175,
-            marginTop:130
+            marginTop:130,
         },
         emailContainer:{
+            borderRadius: 20,
+            backgroundColor: "white",
+            display:'flex',
+            flexDirection:'row',
             height: 39,
             width:230,
             marginTop:50,
@@ -84,6 +116,10 @@ function Login(props) {
             color:'#3C3C3C'
         },
         passwordContainer: {
+            borderRadius: 20,
+            backgroundColor: "white",
+            display:'flex',
+            flexDirection:'row',
             height: 39,
             width:230,
             marginTop:20,
@@ -98,12 +134,19 @@ function Login(props) {
             elevation:8
         },
         passwordInput:{
+            flex:3,
             height: 39,
             width:230,
             borderRadius:20,
             paddingLeft:10,
             backgroundColor:'white',
             color:'#3C3C3C'
+        },
+        icon: {
+            width:24, 
+            height:24,
+            marginLeft:20,
+            marginTop:6
         },
         loginBut:{
             marginTop:48,
@@ -139,19 +182,33 @@ function Login(props) {
             lineHeight:16,
             color:'#5DB9F0',
             marginTop:26,
-            textDecorationLine: 'underline'
+            textDecorationLine: 'underline',
+            fontWeight:"bold"
         }
     })
 
+    
+
     return(
+        // backGroundAnimate
+          
         <View style={styles.loginpageStructure}>
-            <Image
-                style={styles.loginLogo}
-                source={
-                    require('../assets/logo-02.png')
-                }
+            <Animatable.View
+          style={styles.card}
+          animation="logoAnimate"
+          iterationCount={1}
+          direction="alternate"
+          delay={2500}
+        >
+        <Image style={styles.loginLogo} source={require('../assets/logo-02.png')}
             />
+        </Animatable.View>
+
+
+        <Animatable.View style={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={3000}>
+           
             <View style={styles.emailContainer}>
+            <Image style={styles.icon} source={require("../assets/icon_email.png")}/>
                 <TextInput
                     style={styles.emailInput}
                     placeholder="Email"
@@ -162,8 +219,11 @@ function Login(props) {
                     autoCapitalize='none'
                 />
             </View>
+        </Animatable.View>
 
+        <Animatable.View style={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={3500}>
             <View style={styles.passwordContainer}>
+            <Image style={styles.icon} source={require("../assets/icon_password.png")}/>
                 <TextInput
                     style={styles.passwordInput}
                     placeholder="Password"
@@ -174,24 +234,19 @@ function Login(props) {
                     }}
                 />
             </View>
-
-
-            {/* <Text style={styles.errorText}>{error}</Text> */}
-
-        {/* <Button
-                title="LOGIN"
-                style={styles.loginBut}
-            /> */}
-
-            <TouchableOpacity 
+        </Animatable.View>
+        <Animatable.View style={styles.card} animation="fadeIn" iterationCount={1} direction="alternate" delay={4000}>
+        <TouchableOpacity 
                 style={styles.loginBut}
                 onPress={()=>{
                     ReadUsers();
                 }}
             >
+            
                 <Text style={styles.loginButText}>LOGIN</Text>
             </TouchableOpacity>
-
+        </Animatable.View>
+        <Animatable.View style={styles.card} animation="fadeIn" iterationCount={1} direction="alternate" delay={4500}>
         <View style={{ display: "flex", flexDirection: "row" }}>
           <Text style={styles.loginText}>Don't have an account?</Text>
           <TouchableOpacity
@@ -202,6 +257,7 @@ function Login(props) {
             <Text style={styles.signupText}> Sign Up</Text>
           </TouchableOpacity>
         </View>
+        </Animatable.View>
       </View>
  
   );

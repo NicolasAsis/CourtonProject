@@ -23,59 +23,46 @@ function OnBoarding_4() {
   return (
     <View style={styles.pg}>
       <View style={styles.top}>
-      
-
       <Animatable.View stlye={styles.card} animation="fadeIn" iterationCount={1} direction="alternate" delay={1000}>
         <Image
           style={styles.infograph1}
           source={require("../assets/img_infographic_blue.png")}
         />
       </Animatable.View>
+      
       <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={1500}>
         <Image
           style={styles.infograph2}
-          source={require("../assets/img_infographic4.png")}
+          source={require("../assets/img_infograph_phone.png")}
         />
       </Animatable.View>
-      
       <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={1800}>
         <Image
-          style={styles.infograph3}
-          source={require("../assets/img_infograph_profile.png")}
+          style={styles.infograph4}
+          source={require("../assets/img_infograph_tile_red.png")}
         />
       </Animatable.View>
       <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2000}>
         <Image
-          style={styles.infograph4}
-          source={require("../assets/img_infograph_buttons.png")}
-        /> 
-      </Animatable.View> 
+          style={styles.infograph5}
+          source={require("../assets/img_infograph_tile_blue.png")}
+        />
+      </Animatable.View>
       <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2200}>
         <Image
-          style={styles.infograph5}
-          source={require("../assets/img_infograph_data.png")}
-        /> 
-      </Animatable.View>
-      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2400}>
-        <Image
           style={styles.infograph6}
-          source={require("../assets/img_infograph_data1.png")}
-        />  
+          source={require("../assets/img_infograph_tile_blue.png")}
+        />
       </Animatable.View>
-      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2600}>
-        <Image
-          style={styles.infograph7}
-          source={require("../assets/img_infograph_data1.png")}
-        /> 
-      </Animatable.View>
+     
         
       </View>
       <View style={styles.bottom}>
         <Text style={styles.step}>Organized for You</Text>
         <Text style={styles.descp}>
         Once you join or create a group, 
-        all your notifications will be 
-        conveniently organized in your own profile for you. 
+        all your groups will be 
+        conveniently organized for you. 
         </Text>
         <View style={styles.indicator}>
         <TouchableOpacity style={styles.sCircle} onPress={()=>{
@@ -92,7 +79,7 @@ function OnBoarding_4() {
               }}></TouchableOpacity>
         </View>
         <TouchableOpacity onPress={()=>{Actions.Home()}}>
-        <Text style={styles.skipBtn} >FINISH</Text>
+        <Text style={styles.skipBtn} >START</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -133,37 +120,32 @@ const styles = StyleSheet.create({
     top:-160,
     left:-58
   },
-  // indicator - infograph
+  // indicator - group tile red
   infograph4: {
     position: "absolute",
-    width: 93,
-    height: 33,
-    left:-50,
-    top:-100
+    width: 120,
+    height: 40,
+    left:-65,
+    top:-110
   },
-  // red upcoming - infograph
+
+  // indicator - group tile red
   infograph5: {
     position: "absolute",
-    width: 132,
-    height: 37,
-    top:-55,
-    left:-65
+    width: 120,
+    height: 40,
+    left:-65,
+    top:-65
   },
-   // blue upcoming - infograph
+
    infograph6: {
     position: "absolute",
-    width: 132,
-    height:27,
+    width: 120,
+    height: 40,
     left:-65,
-    top:-23
+    top:-20
   },
-  infograph7: {
-    position: "absolute",
-    width: 132,
-    height: 37,
-    top:0,
-    left:-65
-  },
+  
   bottom: {
     display: "flex",
     justifyContent: "center",
@@ -172,30 +154,32 @@ const styles = StyleSheet.create({
     display: "flex"
   },
   step: {
-    width: 286,
+    width: 266,
     height: 41,
     fontFamily: "Open Sans",
     fontWeight: "bold",
-    fontSize: 24,
+    fontSize: 28,
     lineHeight: 33,
     textAlign: "center",
-    color: "#094E76"
+    color: "#094E76",
+    top:-20
   },
   descp: {
     fontFamily: "Open Sans",
     fontStyle: "normal",
     fontWeight: "normal",
-    fontSize: 12,
+    fontSize: 14,
     textAlign: "center",
     color: "#7C7B7B",
-    width: 308,
-    height: 72,
+    width: "100%",
+    padding:20,
     justifyContent: "center",
     alignItems: "center",
-    display: "flex"
+    display: "flex",
+    top:-10
   },
   indicator: {
-    marginTop: 30,
+    marginTop: 55,
     width: 192,
     height: 24,
     display: "flex",
