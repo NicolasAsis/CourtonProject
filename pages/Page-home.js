@@ -24,6 +24,8 @@ import LoadingAnimation from "../comps/LoadingAnimation";
 
 import Reminder_bmt_popup from '../comps/Reminder_bmt_popup';
 
+var noResult = null;
+
 function Home() {
   // const [moveY] =useState(new Animated. Value(0));
   // const [op] = useState(new Animated. Value(1));
@@ -141,7 +143,7 @@ function Home() {
     );
   });
 
-  const [showNoresult, setShowNoresult] = useState (false);
+  const [showNoresult, setShowNoresult] = useState();
 
 
 
@@ -150,9 +152,19 @@ function Home() {
 
 
   if (filteredGroup.length == 0) {
-    setShowNoresult(true)
-   //  Alert.alert('Oops, No result', 'Try another name')
-    
+    noResult = <Image
+      style={{
+        left:'25%',
+        top:70,
+        width: 200,
+        height: 200
+      }}
+      source={require("../assets/img_no_results.png")}
+    />
+    // Alert.alert('Oops, No result', 'Try another name')
+   }
+   else{
+     noResult = null;
    }
   return (
 
@@ -283,22 +295,20 @@ function Home() {
                 );
               })}
 
-                
-              {
-                (showNoresult)? 
-                <Image
-                  style={{
-                    left:'25%',
-                    top:70,
-                    width: 200,
-                    height: 200,
-                    position: "absolute"
-                  }}
-                  source={require("../assets/img_no_results.png")}
-                />
-               : null
-              }
+              {/* //   (showNoresult)? 
+              //   <Image
+              //     style={{
+              //       left:'25%',
+              //       top:70,
+              //       width: 200,
+              //       height: 200,
+              //       position: "absolute"
+              //     }}
+              //     source={require("../assets/img_no_results.png")}
+              //   />
+              //  : null */}
               
+              {noResult}
             </View>
           </ScrollView>
         </View>

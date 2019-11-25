@@ -15,6 +15,8 @@ import Birdie from '../comps/Birdie'
 
 import axios from "axios";
 
+import AsyncStorage from "@react-native-community/async-storage";
+
 var email = "";
 var password = "";
 
@@ -33,17 +35,18 @@ function Login(props) {
         }
         var r = await axios.post("http://localhost:3001/post", obj);
         var dbusers = JSON.parse(r.data.body);
+
+        var userData = dbusers.data[0];
         console.log(dbusers.data[0]);
         //setUsers(dbusers);
         if(dbusers.data[0] == null){
             alert('Email or password is incorrect.')
         }else {
-            // const lastname1 = dbusers.data[0]
-        //     //change ui
+            //change ui
+            // console.log("test",userData.id)
             Actions.Home()
+            await AsyncStorage.setItem("userId", JSON.stringify(userData.id));
         }
-
-        console.log(obj)
     }
     
 
@@ -174,14 +177,6 @@ function Login(props) {
                     }}
                 />
             </View>
-
-
-            {/* <Text style={styles.errorText}>{error}</Text> */}
-
-        {/* <Button
-                title="LOGIN"
-                style={styles.loginBut}
-            /> */}
 
             <TouchableOpacity 
                 style={styles.loginBut}
