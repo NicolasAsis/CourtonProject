@@ -318,7 +318,7 @@ const styles = StyleSheet.create({
     textAlign:"center",
     color:"#3c3c3c",
     shadowOffset: { x: 0, y: 3 },
-    shadowColor: "#000000",
+    shadowColor: "#000000"
     // marginTop:-380,
   },
   infoTitle: {

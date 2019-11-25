@@ -18,9 +18,12 @@ import { Actions } from "react-native-router-flux";
 
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
+import * as Animatable from "react-native-animatable";
+
 import axios from "axios";
 
 import AsyncStorage from "@react-native-community/async-storage";
+import { Row } from "native-base";
 
 var verifyEmail;
 var verifyEmail2;
@@ -92,8 +95,9 @@ function Signup() {
           />
           <Text style={styles.createaccText}>CREATE ACCOUNT</Text>
 
-          <Text style={styles.nameText}>FIRST NAME</Text>
+          {/* <Text style={styles.nameText}>FIRST NAME</Text> */}
           <View style={styles.nameContainer}>
+          <Image style={styles.icon} source={require("../assets/icon_name.png")}/>
             <TextInput
               style={styles.nameInput}
               placeholder="First Name"
@@ -103,8 +107,9 @@ function Signup() {
             />
           </View>
 
-          <Text style={styles.nameText}>LAST NAME</Text>
+          {/* <Text style={styles.nameText}>LAST NAME</Text> */}
           <View style={styles.nameContainer}>
+          <Image style={styles.icon} source={require("../assets/icon_name.png")}/>
             <TextInput
               style={styles.nameInput}
               placeholder="Last Name"
@@ -114,8 +119,9 @@ function Signup() {
             />
           </View>
 
-          <Text style={styles.emailText}>EMAIL</Text>
+          {/* <Text style={styles.emailText}>EMAIL</Text> */}
           <View style={styles.emailContainer}>
+          <Image style={styles.icon} source={require("../assets/icon_email.png")}/>
             <TextInput
               style={styles.emailInput}
               placeholder="Email"
@@ -126,13 +132,14 @@ function Signup() {
             />
           </View>
 
-          <Text style={styles.passwordText}>PASSWORD</Text>
+          {/* <Text style={styles.passwordText}>PASSWORD</Text> */}
           <View style={styles.passwordContainer}>
+            <Image style={styles.icon} source={require("../assets/icon_password.png")}/>
             <TextInput
               style={styles.passwordInput}
               placeholder="Password"
               onChangeText={t => {
-                password = t;
+              password = t;
               }}
               secureTextEntry={true}
             />
@@ -229,6 +236,10 @@ const styles = StyleSheet.create({
     top: -40
   },
   nameContainer: {
+    borderRadius: 20,
+    backgroundColor: "white",
+    display:'flex',
+    flexDirection:'row',
     height: 39,
     width: 230,
     marginTop: 25,
@@ -248,17 +259,20 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingLeft: 10,
     backgroundColor: "white",
-    fontStyle: "italic"
   },
   emailContainer: {
+    borderRadius: 20,
+    backgroundColor: "white",
+    display:'flex',
+    flexDirection:'row',
     height: 39,
     width: 230,
     marginTop: 25,
     borderRadius: 20,
     shadowColor: "#D8D8D8",
     shadowOffset: {
-      width: 0,
-      height: 3
+    width: 0,
+    height: 3
     },
     shadowOpacity: 0.5,
     shadowRadius: 10,
@@ -273,26 +287,37 @@ const styles = StyleSheet.create({
     fontStyle: "italic"
   },
   passwordContainer: {
+    borderRadius: 20,
+    backgroundColor: "white",
+    display:'flex',
+    flexDirection:'row',
     height: 39,
     width: 230,
     marginTop: 25,
     borderRadius: 20,
-    shadowColor: "#D8D8D8",
+    shadowColor:"#D8D8D8",
     shadowOffset: {
-      width: 0,
-      height: 3
+    width:0,
+    height:3
     },
     shadowOpacity: 0.5,
     shadowRadius: 10,
     elevation: 8
   },
   passwordInput: {
+    flex:3,
     height: 39,
     width: 230,
     borderRadius: 20,
     paddingLeft: 10,
     backgroundColor: "white",
     fontStyle: "italic"
+  },
+  icon: {
+    width:24, 
+    height:24,
+    marginLeft:20,
+    marginTop:6
   },
   loginBut: {
     marginTop: 15,

@@ -30,25 +30,25 @@ function OnBoarding_4() {
         />
       </Animatable.View>
       
-      <Animatable.View stlye={styles.card} animation="fadeIn" iterationCount={1} direction="alternate" delay={1500}>
+      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={1500}>
         <Image
           style={styles.infograph2}
           source={require("../assets/img_infograph_phone.png")}
         />
       </Animatable.View>
-      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={1500}>
+      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={1800}>
         <Image
           style={styles.infograph4}
           source={require("../assets/img_infograph_tile_red.png")}
         />
       </Animatable.View>
-      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={1800}>
+      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2000}>
         <Image
           style={styles.infograph5}
           source={require("../assets/img_infograph_tile_blue.png")}
         />
       </Animatable.View>
-      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2000}>
+      <Animatable.View stlye={styles.card} animation="fadeInUp" iterationCount={1} direction="alternate" delay={2200}>
         <Image
           style={styles.infograph6}
           source={require("../assets/img_infograph_tile_blue.png")}
@@ -61,8 +61,8 @@ function OnBoarding_4() {
         <Text style={styles.step}>Organized for You</Text>
         <Text style={styles.descp}>
         Once you join or create a group, 
-        all your notifications will be 
-        conveniently organized in your own profile for you. 
+        all your groups will be 
+        conveniently organized for you. 
         </Text>
         <View style={styles.indicator}>
         <TouchableOpacity style={styles.sCircle} onPress={()=>{
@@ -79,7 +79,7 @@ function OnBoarding_4() {
               }}></TouchableOpacity>
         </View>
         <TouchableOpacity onPress={()=>{Actions.Home()}}>
-        <Text style={styles.skipBtn} >FINISH</Text>
+        <Text style={styles.skipBtn} >START</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -154,30 +154,32 @@ const styles = StyleSheet.create({
     display: "flex"
   },
   step: {
-    width: 286,
+    width: 266,
     height: 41,
     fontFamily: "Open Sans",
     fontWeight: "bold",
-    fontSize: 24,
+    fontSize: 28,
     lineHeight: 33,
     textAlign: "center",
-    color: "#094E76"
+    color: "#094E76",
+    top:-20
   },
   descp: {
     fontFamily: "Open Sans",
     fontStyle: "normal",
     fontWeight: "normal",
-    fontSize: 12,
+    fontSize: 14,
     textAlign: "center",
     color: "#7C7B7B",
-    width: 308,
-    height: 72,
+    width: "100%",
+    padding:20,
     justifyContent: "center",
     alignItems: "center",
-    display: "flex"
+    display: "flex",
+    top:-10
   },
   indicator: {
-    marginTop: 30,
+    marginTop: 55,
     width: 192,
     height: 24,
     display: "flex",
