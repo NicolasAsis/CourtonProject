@@ -65,7 +65,7 @@ function Signup(props) {
       await AsyncStorage.setItem("email", email);
       await AsyncStorage.setItem("password", password);
       console.log(first_name,last_name, email, password)
-    
+  }
 //   const storeUserName = async () => {
 //       await AsyncStorage.setItem("user_firstName", first_name);
 //   };
@@ -222,13 +222,12 @@ function Signup(props) {
                 // CreateUser();
                 Actions.SkillLevel({
                   user_info: {
-                    first_name: first_name,
-                    last_name: last_name,
+                    first_name:first_name,
+                    last_name:last_name,
                     email:email,
                     password:password
                   }
-                  
-              });
+                });
                 storeUserInfo();
                 // if()
                 // console.log("first_name from signup", first_name)

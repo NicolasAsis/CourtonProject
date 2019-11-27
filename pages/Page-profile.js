@@ -20,6 +20,7 @@ function Profile(props) {
 
   const [userFN,setUserFN] = useState("");
   const [userLN,setUserLN] = useState("");
+  const [userEmail,setUserEmail] = useState("");
 
   const ReadUsers = async()=>{
     const userId = await AsyncStorage.getItem('userId')
@@ -38,6 +39,7 @@ function Profile(props) {
     // console.log("test",userData.id)
     setUserFN(userData.first_name);
     setUserLN(userData.last_name);
+    setUserEmail(userData.email);
 
 }
 
@@ -51,6 +53,7 @@ useEffect(() => {
 
   const SelectImg = async () =>{
 
+
     ImagePicker.showImagePicker({noData:true, mediaType:'photo'} ,(response) => {
       console.log('Response = ', response);
     
@@ -61,14 +64,6 @@ useEffect(() => {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
-        // const source = { uri: response.uri };
-    
-        // You can also display the image using data:
-        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-        // this.setState
-      //  cost SelectImg({
-      //     avatarSource: response.url,
-      //   });
       console.log("response", response)
       setAvatarSource({
         avatarSource: response.uri
@@ -92,6 +87,10 @@ useEffect(() => {
     // console.log("read", dbusers);
     // setUsers(dbusers.data);
   };
+
+  const LogOut = async () => {
+      await AsyncStorage.clear();
+  }
 
   useEffect(() => {
     LoadComments();
@@ -201,10 +200,14 @@ useEffect(() => {
         {/* === info title  === */}
         <View style={styles.infoTile}>
             <Text style={styles.infoTitle}>Email</Text>
-            <Text style={styles.info}>tobywong@gmail.com</Text>
+            <Text style={styles.info}>{userEmail}</Text>
         </View>
         <View style={styles.infoTile}>
-            <TouchableOpacity style={styles.profileIcons} onPress={() => {Actions.Login();}}>
+            <TouchableOpacity style={styles.profileIcons} 
+              onPress={() => {
+                LogOut();
+                Actions.Login();
+            }}>
                   <Image style={{ width: 23, height: 20, marginRight:20}} source={require("../assets/img_icon_logout.png")}/>
                   <Text style={{color:"#C2C1C1"}}>Sign Out</Text>
             </TouchableOpacity>

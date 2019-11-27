@@ -36,7 +36,7 @@ function SkillLevel({ navigation }) {
   const [last_name, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const skill_level = (brd.length);
+  const skill_level = brd.length;
   // const [skill_level,setSkillLevel] = useState("")
 
   //retrive all the userInfo from async storage, and link it with database(column name)
@@ -86,7 +86,7 @@ function SkillLevel({ navigation }) {
     await AsyncStorage.setItem("lastName", last_name);
     await AsyncStorage.setItem("email", email);
     await AsyncStorage.setItem("password", password);
-    await AsyncStorage.setItem("skillLevel", skill_level);
+    await AsyncStorage.setItem("skillLevel", JSON.stringify(skill_level));
   };
 
   // const obj = navigation.state.params.user_info.skillLevel;

@@ -5,21 +5,30 @@ import * as Progress from 'react-native-progress';
 import {Actions} from 'react-native-router-flux';
 
 function Card_for_organizer(props) {
+  // console.log(props)
+  console.log("test",props.groupId);
+
+  var date = props.date.replace(/"/g, '');
+  var chosenDate = new Date(date);
+  //console.log("date", date, chosenDate);
+  chosenDate = chosenDate.toLocaleDateString("en-US", {timeZone:"UTC", year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit", second:"2-digit"})
+  console.log("date2", chosenDate);
+  // console.log(time)
   return (
     <View style={{ alignItems: "center", marginTop: 18 }}>
       <TouchableOpacity
         onPress={()=>{
-          Actions.Organizer_groupInfo()
+          Actions.Organizer_groupInfo({groupId:props.groupId})
         }}
       >
       <View style={styles.card}>
         <View>
-          <Image style={styles.img} source={require("../assets/stage18.jpg")} />
+          <Image style={styles.img} source={{uri:props.groupImg}} />
 
           <Text style={styles.txtorganizer}>{props.bmtCentre}</Text>
 
-          <Text style={styles.txtGroupNum}>Group #{props.groupNum}</Text>
-          <Text style={styles.txtGroupDate}>{props.date} {props.time}</Text>
+          {/* <Text style={styles.txtGroupNum}>Group #{props.groupNum}</Text> */}
+          <Text style={styles.txtGroupDate}>{chosenDate}</Text>
           {/* <Text style={styles.txtGroupJoinDate}>Join Before: Dec 20 11:30pm</Text> */}
           <Text style={styles.txtGroupPlayerCount}>Players {props.joinedMember}/{props.totalMember}</Text>
           <Text style={styles.txtGroupPrice}>${props.price}</Text>

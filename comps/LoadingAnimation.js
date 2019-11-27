@@ -21,8 +21,8 @@ function LoadingAnimation(props) {
   
   useEffect(()=>{
     setInterval(()=>{
-      console.log(num);
-      for(var i=0;i<101;i++){
+      // console.log(newnum);
+      for(var i=0;i<=100;i++){
         var newnum = num+i;
       }
       

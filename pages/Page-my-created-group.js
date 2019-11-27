@@ -10,23 +10,48 @@ import { useEffect } from "react";
 import Modal from "react-native-modal";
 import HamMenu from "../comps/HamMenu";
 
+import axios from 'axios';
+import AsyncStorage from "@react-native-community/async-storage";
+
 function MyCreatedGroup() {
   const [hamMenuVisible, setHamMenuVisible] = useState(false);
 
-  const LoadGroup = async () => {
+  // const LoadGroup = async () => {
+  //   var obj = {
+  //     key: "groups_read",
+  //     data: {
+  //       organizerName: organizerName,
+  //       date: date
+  //     }
+  //   };
+  //   var r = await axios.post("http://142.232.162.71:3001/post", obj);
+  //   console.log("read", r.data);
+  //   var dbusers = JSON.parse(r.data.body);
+  //   console.log("read", dbusers);
+  //   setUsers(dbusers.data);
+  // };
+  const [groupsCreated, setGroupsCreated] = useState([]);
+  const ReadCreated = async () => {
+
+    // Get user id
+    const userId = await AsyncStorage.getItem('userId');
+    console.log(userId);
     var obj = {
-      key: "groups_read",
-      data: {
-        organizerName: organizerName,
-        date: date
-      }
+      key: "groups_users_read",
+      data: {}
     };
-    // var r = await axios.post("http://142.232.162.71:3001/post", obj);
+    var r = await axios.post("http://localhost:3001/post", obj);
     // console.log("read", r.data);
-    // var dbusers = JSON.parse(r.data.body);
-    // console.log("read", dbusers);
-    // setUsers(dbusers.data);
+    var dbCreated = JSON.parse(r.data.body);
+    console.log("read", dbCreated);
+    var d = dbCreated.data;
+    setGroupsCreated(d);
   };
+
+  useEffect(() => {
+    ReadCreated();
+  }, []);
+
   const data = [
     {
       bmtCentre: "Stage 18",
@@ -50,9 +75,9 @@ function MyCreatedGroup() {
     }
   ];
 
-  useEffect(() => {
-    LoadGroup();
-  }, []);
+  // useEffect(() => {
+  //   LoadGroup();
+  // }, []);
 
   const [searchKey, setSearchKey] = useState(" ");
 
@@ -110,19 +135,21 @@ function MyCreatedGroup() {
                 paddingBottom: 20
               }}
             >
-              {filteredCreatedGroup.map((obj, i) => {
+              {
+                groupsCreated.map((d, i) => {
                 return (
                   <Card_for_organizer
                     key={i}
-                    id={obj.id}
-                    bmtCentre={obj.bmtCentre}
-                    groupNum={obj.groupNum}
-                    date={obj.date}
-                    time={obj.time}
-                    joinedMember={obj.joinedMember}
-                    totalMember={obj.totalMember}
-                    price={obj.price}
-                    progressBarLoad={obj.progressBarLoad}
+                    groupId={d.group_id}
+                    bmtCentre={d.name}
+                    // groupNum={obj.groupNum}
+                    date={d.booking_date}
+                    time={d.start_time}
+                    // joinedMember={obj.joinedMember}
+                    totalMember={d.member_limit}
+                    price={d.price}
+                    groupImg={d.image}
+                    // progressBarLoad={obj.progressBarLoad}
                   />
                 );
               })}
