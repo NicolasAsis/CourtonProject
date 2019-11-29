@@ -4,34 +4,37 @@ import * as Progress from 'react-native-progress';
 
 import {Actions} from 'react-native-router-flux';
 
-function Card_for_player({organizerName, groupNum, date,time, joinedMember,totalMember,price,progressBarLoad}) {
+function Card_for_player(props) {
  
-
+  var date = props.date.replace(/"/g, '');
+  var chosenDate = new Date(date);
+  //console.log("date", date, chosenDate);
+  chosenDate = chosenDate.toLocaleDateString("en-US", {timeZone:"UTC", year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit"})
   return (
     <View style={{ alignItems: "center", marginTop: 18, width:'100%' }}>
       <TouchableOpacity
        style={styles.card}
         onPress={()=>{
-          Actions.GroupInfo()
+          Actions.GroupInfo({groupId:props.groupNum})
       }}
       >
       <View>
         <View>
-          <Image style={styles.img} source={require("../assets/stage18.jpg")} />
+          <Image style={styles.img} source={{uri:props.groupImg}} />
 
-          <Text style={styles.txtorganizer}>{organizerName}</Text>
+          <Text style={styles.txtorganizer}>{props.organizerFN} {props.organizerLN}</Text>
 
-          <Text style={styles.txtGroupNum}>Group #{groupNum}</Text>
-          <Text style={styles.txtGroupDate}>{date} {time}</Text>
+          <Text style={styles.txtGroupNum}>Group #{props.groupNum}</Text>
+          <Text style={styles.txtGroupDate}>{chosenDate}</Text>
           {/* <Text style={styles.txtGroupJoinDate}>Join Before: Dec 20 11:30pm</Text> */}
-          <Text style={styles.txtGroupPlayerCount}>Players {joinedMember}/{totalMember}</Text>
-          <Text style={styles.txtGroupPrice}>${price}</Text>
+          <Text style={styles.txtGroupPlayerCount}>Players /{props.totalMember}</Text>
+          <Text style={styles.txtGroupPrice}>${props.price}</Text>
           
           <Progress.Bar
             unfilledColor="#CDC5C5"
             borderColor="#FFFFFF"
             color="#81EC8D"
-            progress= {progressBarLoad}
+            progress= {0}
             width={180}
             style={styles.ProgressBar}
           />
@@ -106,7 +109,7 @@ const styles = StyleSheet.create({
   txtGroupPlayerCount: {
     position: "absolute",
     color: "#9FA5B4",
-    fontSize: 9,
+    fontSize: 12,
     bottom: 25,
     left: "46%",
     fontFamily: "Open sans"

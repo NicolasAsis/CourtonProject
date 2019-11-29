@@ -30,6 +30,7 @@ import Welcome from './pages/Page-Welcome';
 import SkillLevel from './pages/Page-skill-level';
 import HamMenu from './comps/HamMenu';
 import LoadingAnimation from './comps/LoadingAnimation';
+import OnboardSwipe from './pages/Page-OnboardSwipe';
 
 
 
@@ -38,13 +39,14 @@ function Route() {
         <Router>
             <Stack hideNavBar={true}>
 
-                <Scene key="Login" component={Login} />
+                <Scene key="Login" component={Login} initial={true}/>
                 <Scene key="Signup" component={Signup} />
 
                 <Scene key="Welcome" component={Welcome} />
                 <Scene key="OnBoarding_1" component={OnBoarding_1} />
+                <Scene key="OboardSwipe" component={OnboardSwipe} />
 
-                <Scene key="Home" component={Home} initial={true}/>
+                <Scene key="Home" component={Home} />
                 <Scene key="GroupInfo" component={GroupInfo} />
                 <Scene key="MoreMembers" component={MoreMembers} />
                 <Scene key="Join_group_popup" component={Join_group_popup} />

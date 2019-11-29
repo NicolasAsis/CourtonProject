@@ -24,6 +24,10 @@ import LoadingAnimation from "../comps/LoadingAnimation";
 
 import Reminder_bmt_popup from '../comps/Reminder_bmt_popup';
 
+import axios from "axios";
+import AsyncStorage from "@react-native-community/async-storage";
+import jssPluginPropsSort from "jss-plugin-props-sort";
+
 var noResult = null;
 
 function Home() {
@@ -129,9 +133,56 @@ function Home() {
     }
   ];
 
+  // useEffect(() => {
+  //   LoadGroup();
+  // }, []);
+
+  const [allGroups,setAllGroups] = useState([]);
+
+  const ReadAllGroups = async () => {
+    // Get user id
+    // const userId = await AsyncStorage.getItem("userId");
+    var obj = {
+      key: "groups_read",
+      data: {}
+    };
+    var r = await axios.post("http://localhost:3001/post", obj);
+    // console.log("read", r.data);
+    var dbGroups = JSON.parse(r.data.body);
+    //console.log("read", dbGroupInfo);
+
+    var d = dbGroups.data;
+    console.log("read", d);
+    // console.log(d.first_name)
+    setAllGroups(d.reverse());
+  };
+
   useEffect(() => {
-    LoadGroup();
+    ReadAllGroups();
   }, []);
+
+  const [orgInfo,setOrgInfo] = useState([]);
+
+  // const ReadUsers = async (props) => {
+
+  //   // Get user id
+  //   const userId = await AsyncStorage.getItem('userId')
+  //   console.log(userId);
+  //   var obj = {
+  //     key: "users_read",
+  //     data: {
+  //       id:props.organizerId
+  //     }
+  //   };
+  //   var r = await axios.post("http://localhost:3001/post", obj);
+  //   // console.log("read", r.data);
+  //   var dbCreated = JSON.parse(r.data.body);
+  //   console.log("read", dbCreated);
+  //   var f = dbCreated.data[0];
+  //   // console.log(dbCreated.data[0].organizer_id);
+
+  //   setOrgInfo(f);
+  // };
 
   const [popUp, setPopUp] = useState("sat");
   const [searchKey, setSearchKey] = useState(" ");
@@ -278,19 +329,22 @@ function Home() {
               <Text style={styles.title}>Upcoming Available Groups</Text>
               <Image />
 
-              {filteredGroup.map((obj, i) => {
+              {allGroups.map((d,i) => {
+                // ReadUsers({organizerId:d.organizer_id})
                 return (
                   <Card_for_player
                     key={i}
-                    id={obj.id}
-                    organizerName={obj.organizerName}
-                    groupNum={obj.groupNum}
-                    date={obj.date}
-                    time={obj.time}
-                    joinedMember={obj.joinedMember}
-                    totalMember={obj.totalMember}
-                    price={obj.price}
-                    progressBarLoad={obj.progressBarLoad}
+                    // id={obj.id}
+                    organizerFN={d.first_name}
+                    organizerLN={d.last_name}
+                    groupNum={d.id}
+                    date={d.booking_date}
+                    time={d.start_time}
+                    // joinedMember={obj.joinedMember}
+                    totalMember={d.member_limit}
+                    price={d.cost_per_person}
+                    // progressBarLoad={obj.progressBarLoad}
+                    groupImg={d.image}
                   />
                 );
               })}

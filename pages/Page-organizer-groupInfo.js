@@ -164,7 +164,7 @@ function Organizer_groupInfo(props) {
             />
           </TouchableOpacity>
           {/* <View style={styles.giOrganizerImg}></View> */}
-          {/* <Text style={styles.giOrganizedByText}>#s11111</Text> */}
+          <Text style={styles.giOrganizedByText}> #{props.groupId}</Text>
           <Text style={styles.giOrganizerText}>{groupInfo.name}</Text>
         </View>
         <Text style={styles.txtMembersIndicator}>
@@ -216,7 +216,7 @@ function Organizer_groupInfo(props) {
                   }}
                 >
                   <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
-                    {/* <Text style={styles.giTitleText}>Group</Text> */}
+                    <Text style={styles.giTitleText}>Price Per Person</Text>
                     <Text style={styles.giTitleText}>Date</Text>
                     <Text style={styles.giTitleText}>Centre</Text>
                     <Text style={styles.giTitleText}>Location</Text>
@@ -225,8 +225,8 @@ function Organizer_groupInfo(props) {
                     <Text style={styles.giTitleText}>Courts Selected</Text>
                   </View>
                   <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
-                    {/* <Text style={styles.giText}>#C1314</Text> */}
-                    <Text style={styles.giText}>{groupInfo.booking_date}</Text>
+                    <Text style={styles.giText}>${groupInfo.cost_per_person}</Text>
+                    <Text style={styles.giText}>{props.chosenDate2}</Text>
                     <Text style={styles.giText}>{groupInfo.name}</Text>
                     <Text style={styles.giLocationText}>
                       {groupInfo.location}

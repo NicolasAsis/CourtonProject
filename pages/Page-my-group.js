@@ -16,9 +16,11 @@ import { Actions } from "react-native-router-flux";
 // Animation
 import * as Animatable from "react-native-animatable";
 
+import axios from 'axios';
+import AsyncStorage from "@react-native-community/async-storage";
+
 function MyGroup() {
   const [group, setGroup] = useState([]);
-
 
   // const [linePostionXRight, setPositionXRight] = useState(
   //   new Animated.Value(setPositionXRight ? 200 : 0)
@@ -66,6 +68,31 @@ function MyGroup() {
     // setUsers(dbusers.data);
   };
 
+  const [groupsCreated, setGroupsCreated] = useState([]);
+
+  const ReadCreated = async () => {
+    // Get user id
+    const userId = await AsyncStorage.getItem("userId");
+    console.log(userId);
+    var obj = {
+      key: "groups_read",
+      data: {
+        organizer_id: userId
+      }
+    };
+    var r = await axios.post("http://localhost:3001/post", obj);
+    // console.log("read", r.data);
+    var dbCreated = JSON.parse(r.data.body);
+    console.log("read", dbCreated);
+    var d = dbCreated.data;
+    // console.log(d.organizer_id);
+    setGroupsCreated(d.reverse());
+  };
+
+  useEffect(() => {
+    ReadCreated();
+  }, []);
+
   const joinedData = [
     {
       organizerName: "Tony Wong",
@@ -75,7 +102,7 @@ function MyGroup() {
       joinedMember: 10,
       totalMember: 10,
       price: 7,
-      progressBarLoad:1
+      progressBarLoad: 1
     },
     {
       organizerName: "Dan Dhanika",
@@ -116,7 +143,6 @@ function MyGroup() {
       totalMember: 10,
       price: 7,
       progressBarLoad: 0.9
-      
     }
   ];
 
@@ -129,7 +155,7 @@ function MyGroup() {
       joinedMember: 2,
       totalMember: 10,
       price: 150,
-      progressBarLoad: "0.2",
+      progressBarLoad: "0.2"
     },
     {
       bmtCentre: "Stage 18",
@@ -149,7 +175,7 @@ function MyGroup() {
       joinedMember: 2,
       totalMember: 10,
       price: 150,
-      progressBarLoad: ''
+      progressBarLoad: ""
     },
     {
       bmtCentre: "Clear One",
@@ -170,50 +196,49 @@ function MyGroup() {
       totalMember: 10,
       price: 150,
       progressBarLoad: "0.5",
-      progressBarColor:'#fab'
+      progressBarColor: "#fab"
     }
   ];
 
   if (joinedData.progressBarLoad == 1 || createdData.progressBarLoad == 1) {
-    joinedData.color = "#DAD"
+    joinedData.color = "#DAD";
   }
 
   // if(joinedData==0){
-    
+
   //     <View>
   //       <Image
   //       style={{width:50, height:50, position:'absolute'}}
   //       source={require('../assets/but_create.png')}
   //       />
   //     </View>
-    
+
   // }
   const [groupType, setGroupType] = useState(
     <View>
-                {joinedData.map(obj => {
-                  return (
-                    <Card_for_member
-                      // key = {i}
-                      id={obj.id}
-                      organizerName={obj.organizerName}
-                      groupNum={obj.groupNum}
-                      date={obj.date}
-                      time={obj.time}
-                      joinedMember={obj.joinedMember}
-                      totalMember={obj.totalMember}
-                      price={obj.price}
-                      progressBarLoad={obj.progressBarLoad}
-                    />
-                  );
-                  
-                })}
-              </View>
+      {joinedData.map(obj => {
+        return (
+          <Card_for_member
+            // key = {i}
+            id={obj.id}
+            organizerName={obj.organizerName}
+            groupNum={obj.groupNum}
+            date={obj.date}
+            time={obj.time}
+            joinedMember={obj.joinedMember}
+            totalMember={obj.totalMember}
+            price={obj.price}
+            progressBarLoad={obj.progressBarLoad}
+          />
+        );
+      })}
+    </View>
   );
 
-  useEffect(() => {
-    LoadJoinedGroup();
-    LoadCreatedGroup();
-  }, []);
+  // useEffect(() => {
+  //   LoadJoinedGroup();
+  //   LoadCreatedGroup();
+  // }, []);
 
   return (
     <View>
@@ -246,7 +271,7 @@ function MyGroup() {
             value: "Created"
           }
         ]}
-        onPress={(val) => {
+        onPress={val => {
           if (val == "Joined") {
             setGroupType(
               <View>
@@ -271,19 +296,21 @@ function MyGroup() {
           } else if (val == "Created") {
             setGroupType(
               <View>
-                {createdData.map(obj => {
+                {groupsCreated.map((d, i) => {
                   return (
                     <Card_for_organizer
                       // key = {i}
-                      id={obj.id}
-                      bmtCentre={obj.bmtCentre}
-                      groupNum={obj.groupNum}
-                      date={obj.date}
-                      time={obj.time}
-                      joinedMember={obj.joinedMember}
-                      totalMember={obj.totalMember}
-                      price={obj.price}
-                      progressBarLoad={obj.progressBarLoad}
+                      key={i}
+                      groupId={d.id}
+                      bmtCentre={d.name}
+                      // groupNum={obj.groupNum}
+                      date={d.booking_date}
+                      time={d.start_time}
+                      // joinedMember={obj.joinedMember}
+                      totalMember={d.member_limit}
+                      price={d.price}
+                      groupImg={d.image}
+                      // progressBarLoad={obj.progressBarLoad}
                     />
                   );
                 })}

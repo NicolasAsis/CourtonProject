@@ -6,19 +6,21 @@ import {Actions} from 'react-native-router-flux';
 
 function Card_for_organizer(props) {
   // console.log(props)
-  console.log("test",props.groupId);
+  // console.log("test",props.groupId);
 
   var date = props.date.replace(/"/g, '');
   var chosenDate = new Date(date);
+  var chosenDate2 = new Date(date);
   //console.log("date", date, chosenDate);
-  chosenDate = chosenDate.toLocaleDateString("en-US", {timeZone:"UTC", year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit", second:"2-digit"})
-  console.log("date2", chosenDate);
+  chosenDate = chosenDate.toLocaleDateString("en-US", {timeZone:"UTC", year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit"})
+  chosenDate2 = chosenDate2.toLocaleDateString("en-US", {timeZone:"UTC", year:"numeric", month:"2-digit", day:"2-digit"})
+  // console.log("date2", chosenDate);
   // console.log(time)
   return (
     <View style={{ alignItems: "center", marginTop: 18 }}>
       <TouchableOpacity
         onPress={()=>{
-          Actions.Organizer_groupInfo({groupId:props.groupId})
+          Actions.Organizer_groupInfo({groupId:props.groupId,chosenDate2:chosenDate2})
         }}
       >
       <View style={styles.card}>
@@ -27,7 +29,7 @@ function Card_for_organizer(props) {
 
           <Text style={styles.txtorganizer}>{props.bmtCentre}</Text>
 
-          {/* <Text style={styles.txtGroupNum}>Group #{props.groupNum}</Text> */}
+          <Text style={styles.txtGroupNum}>Group  #{props.groupId}</Text>
           <Text style={styles.txtGroupDate}>{chosenDate}</Text>
           {/* <Text style={styles.txtGroupJoinDate}>Join Before: Dec 20 11:30pm</Text> */}
           <Text style={styles.txtGroupPlayerCount}>Players {props.joinedMember}/{props.totalMember}</Text>

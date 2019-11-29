@@ -45,7 +45,8 @@ function GroupSummary(props) {
   const [grouplimit, setGroupLimit] = useState(0);
   // const [costPerPerson,setCostPerPerson] = useState(0);
   var pricePerPerson;
-  var birdieType;
+  const [costPerPerson,setCostPerPerson] = useState();
+  var birdieType="Feather";
 
   var user_type = 2;
 
@@ -98,6 +99,7 @@ function GroupSummary(props) {
     // console.log("price",pricePerPerson);
 
     // Getting user id
+    console.log("price",costPerPerson);
     const userId = await AsyncStorage.getItem('userId');
     
     var obj = {
@@ -112,7 +114,7 @@ function GroupSummary(props) {
         birdie_type: birdieType,
         start_time: start_time,
         end_time: end_time,
-        cost_per_person: pricePerPerson,
+        cost_per_person: costPerPerson,
         member_limit: grouplimit,
         courts_selected: selectedCourts
       }
@@ -210,7 +212,7 @@ function GroupSummary(props) {
                 placeholder={"8.00"}
                 maxLength={4}
                 onChangeText={(t) => {
-                  pricePerPerson=parseInt(t);
+                  setCostPerPerson(t);
                   // setCostPerPerson(t);
                 }}
               >
