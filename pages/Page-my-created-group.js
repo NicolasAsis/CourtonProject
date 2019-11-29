@@ -10,23 +10,70 @@ import { useEffect } from "react";
 import Modal from "react-native-modal";
 import HamMenu from "../comps/HamMenu";
 
+import axios from 'axios';
+import AsyncStorage from "@react-native-community/async-storage";
+
+var noResult = null;
 function MyCreatedGroup() {
   const [hamMenuVisible, setHamMenuVisible] = useState(false);
 
-  const LoadGroup = async () => {
+  // const LoadGroup = async () => {
+  //   var obj = {
+  //     key: "groups_read",
+  //     data: {
+  //       organizerName: organizerName,
+  //       date: date
+  //     }
+  //   };
+  //   var r = await axios.post("http://142.232.162.71:3001/post", obj);
+  //   console.log("read", r.data);
+  //   var dbusers = JSON.parse(r.data.body);
+  //   console.log("read", dbusers);
+  //   setUsers(dbusers.data);
+  // };
+  const [groupsCreated, setGroupsCreated] = useState([]);
+  // const ReadCreated = async () => {
+
+  //   // Get user id
+  //   const userId = await AsyncStorage.getItem('userId')
+  //   console.log(userId);
+  //   var obj = {
+  //     key: "groups_users_read",
+  //     data: {}
+  //   };
+  //   var r = await axios.post("http://localhost:3001/post", obj);
+  //   // console.log("read", r.data);
+  //   var dbCreated = JSON.parse(r.data.body);
+  //   console.log("read", dbCreated);
+  //   var d = dbCreated.data;
+  //   console.log(d.organizer_id);
+  //   setGroupsCreated(d);
+  // };
+
+  const ReadCreated = async () => {
+
+    // Get user id
+    const userId = await AsyncStorage.getItem('userId')
+    console.log(userId);
     var obj = {
       key: "groups_read",
       data: {
-        organizerName: organizerName,
-        date: date
+        organizer_id:userId
       }
     };
-    // var r = await axios.post("http://142.232.162.71:3001/post", obj);
+    var r = await axios.post("http://localhost:3001/post", obj);
     // console.log("read", r.data);
-    // var dbusers = JSON.parse(r.data.body);
-    // console.log("read", dbusers);
-    // setUsers(dbusers.data);
+    var dbCreated = JSON.parse(r.data.body);
+    console.log("read", dbCreated);
+    var d = dbCreated.data;
+    // console.log(dbCreated.data[0].organizer_id);
+    setGroupsCreated(d.reverse());
   };
+
+  useEffect(() => {
+    ReadCreated();
+  }, []);
+
   const data = [
     {
       bmtCentre: "Stage 18",
@@ -50,22 +97,34 @@ function MyCreatedGroup() {
     }
   ];
 
-  useEffect(() => {
-    LoadGroup();
-  }, []);
+  // useEffect(() => {
+  //   LoadGroup();
+  // }, []);
 
-  const [searchKey, setSearchKey] = useState(" ");
+  const [searchKey, setSearchKey] = useState("");
 
-  const filteredCreatedGroup = data.filter(obj => {
+  const filteredCreatedGroup = groupsCreated.filter(d => {
     return (
-      obj.bmtCentre.indexOf(searchKey) >= 0 ||
-      obj.groupNum.indexOf(searchKey) >= 0
+      d.name.indexOf(searchKey) >= 0 
+      // || d.booking_date.indexOf(searchKey) >= 0
     );
   });
 
   if (filteredCreatedGroup.length == 0) {
-    Alert.alert("Oops! No result", "Try another name");
-  }
+    noResult = <Image
+      style={{
+        // left:'25%',
+        top:70,
+        width: 200,
+        height: 200
+      }}
+      source={require("../assets/img_no_results.png")}
+    />
+    // Alert.alert('Oops, No result', 'Try another name')
+   }
+   else{
+     noResult = null;
+   }
 
   return (
     <View style={{ backgroundColor: "#FFFFFF" }}>
@@ -110,22 +169,25 @@ function MyCreatedGroup() {
                 paddingBottom: 20
               }}
             >
-              {filteredCreatedGroup.map((obj, i) => {
+              {
+                filteredCreatedGroup.map((d, i) => {
                 return (
                   <Card_for_organizer
                     key={i}
-                    id={obj.id}
-                    bmtCentre={obj.bmtCentre}
-                    groupNum={obj.groupNum}
-                    date={obj.date}
-                    time={obj.time}
-                    joinedMember={obj.joinedMember}
-                    totalMember={obj.totalMember}
-                    price={obj.price}
-                    progressBarLoad={obj.progressBarLoad}
+                    groupId={d.id}
+                    bmtCentre={d.name}
+                    // groupNum={obj.groupNum}
+                    date={d.booking_date}
+                    time={d.start_time}
+                    // joinedMember={obj.joinedMember}
+                    totalMember={d.member_limit}
+                    price={d.price}
+                    groupImg={d.image}
+                    // progressBarLoad={obj.progressBarLoad}
                   />
                 );
               })}
+              {noResult}
             </View>
           </ScrollView>
         </View>
@@ -140,7 +202,8 @@ const styles = StyleSheet.create({
   mainContent: {
     alignItems: "center",
     justifyContent: "center",
-    top: 60
+    top: 60,
+    backgroundColor:'white'
   },
   searchBar: {
     height: 36,

@@ -394,7 +394,7 @@ function Member_groupInfo(props) {
                   }}
                 >
                   <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-                    <Text style={styles.giTitleText}>Group</Text>
+                    <Text style={styles.giTitleText}>Price Per Person</Text>
                     <Text style={styles.giTitleText}>Date</Text>
                     <Text style={styles.giTitleText}>Centre</Text>
                     <Text style={styles.giTitleText}>Location</Text>

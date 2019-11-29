@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 
 import {Actions} from 'react-native-router-flux';
@@ -6,13 +6,47 @@ import {Actions} from 'react-native-router-flux';
 // Animation 
 import * as Animatable from "react-native-animatable";
 
+import axios from "axios";
+import AsyncStorage from "@react-native-community/async-storage";
+
 function Join_group_popup(props) {
+  console.log(props.groupId);
+  const CreateGroupUsers = async () => {
+
+    // console.log("user_type",
+    // "booking_date","price",
+    // "description","badminton_centre_id",
+    // "image","birdie_type","start_time",
+    // "end_time","cost_per_person","member_limit","courts_selected",
+    // user_type,
+    // chosenDate,totalPrice,
+    // desc,centreId,
+    // centreImage,birdieType,start_time,
+    // end_time,pricePerPerson,grouplimit,selectedCourts);
+
+    // console.log("price",pricePerPerson);
+
+
+    // Getting user id
+    const userId = await AsyncStorage.getItem('userId');
+    
+    var obj = {
+      key: "groups_users_create",
+      data: {
+        user_id:userId,
+        group_id:props.groupId
+      }
+    };
+    var r = await axios.post("http://localhost:3001/post", obj);
+    console.log("create", r.data);
+  };
+
   return (
     <View style={styles.container}>
       <Animatable.View animation="bounceIn" iterationCount={1} direction="alternate">
           <View style={styles.popup}>
             <Text style={styles.boldGroupText}>Join Group</Text>
-            <Text style={styles.boldGroupNumText}>#C1314 ?</Text>
+            <Text style={styles.boldGroupNumText}>#{props.groupId} ?</Text>
             <Text style={styles.paymentText}>
               Your payment must be given to your organizer
             </Text>
@@ -30,7 +64,8 @@ function Join_group_popup(props) {
             <TouchableOpacity
               onPress={()=>{
                 props.setShowPopup(false)
-                Actions.JoinedGroup()
+                CreateGroupUsers();
+                Actions.JoinedGroup({groupId:props.groupId})
               }}
               style={styles.yesButTouchableOp}
             >

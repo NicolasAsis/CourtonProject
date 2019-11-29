@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -17,39 +17,61 @@ import LoadingAnimation from "../comps/LoadingAnimation";
 import TextInput_popup from "../comps/TextInput_popup";
 import AsyncStorage from "@react-native-community/async-storage";
 
+import axios from 'axios';
+
 function GroupSummary(props) {
+
+  // Popups
+  const [modalVisible, setModalVisible] = useState(false);
+  const [textInputVisible, setTextInputVisible] = useState(false);
+
+  // Group Info Variables
+  const gsObj = props.navigation.state.params.group_info;
+
+  const [selectedCourts, setSelectedCourts] = useState("");
+  const [chosenDate, setChosenDate] = useState("");
+  const totalPrice = gsObj.giObj.hrsPlay * gsObj.giObj.centreCost * selectedCourts.length;
+  const hrsPlay = gsObj.giObj.hrsPlay;
+
+  const centreLocation = gsObj.giObj.centreLocation;
+  const centreId = gsObj.giObj.centreId;
+  const centreImage = gsObj.giObj.centreImage;
+  const centreName = gsObj.giObj.centreName;
+  const start_time = gsObj.giObj.start_time;
+  const end_time = gsObj.giObj.end_time;
+
+  const [desc,setDesc] = useState("Add Description");
+
   const [grouplimit, setGroupLimit] = useState(0);
+  // const [costPerPerson,setCostPerPerson] = useState(0);
+  var pricePerPerson;
+  const [costPerPerson,setCostPerPerson] = useState();
+  var birdieType="Feather";
+
+  var user_type = 2;
 
   if (grouplimit < 0) {
     setGroupLimit(0);
   }
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [textInputVisible, setTextInputVisible] = useState(false);
-  const [selectedCourts, setSelectedCourts] = useState("");
-  const gsObj = props.navigation.state.params.group_info;
-  const [chosenDate, setChosenDate] = useState("");
-  const totalPrice =
-    gsObj.giObj.hrsPlay * gsObj.giObj.centreCost * selectedCourts.length;
-  // const [hrsPlay, setHrsPlay] = useState("");
-  const hrsPlay = gsObj.giObj.hrsPlay;
-  //retriev the data from page-select-court
   const getCourtInfo = async () => {
     const selectedCourts = await AsyncStorage.getItem("selectedCourts");
     setSelectedCourts(selectedCourts);
   };
-  getCourtInfo();
-  // console.log("selected courts",props.navigation.state.params.group_info.selectedCourts)
-  console.log(gsObj);
-  // console.log(gsObj)
-  // console.log("group_info",props.navigation.state.params.group_info)
+  
+
+  // console.log("final params",gsObj);
   //retrive the startTime data from Page-select-time
   const getChosenDate = async () => {
     const chosenDate = await AsyncStorage.getItem("chosenDate");
     setChosenDate(chosenDate);
   };
-  getChosenDate();
+  
 
+  useEffect(()=>{
+    getCourtInfo();
+    getChosenDate();
+  }, [])
   // retrive the hrsplay from async
   // const getHrsPlay = async () => {
   //   const hrsPlay = await AsyncStorage.getItem("hrsPlay");
@@ -60,6 +82,86 @@ function GroupSummary(props) {
   // console.log(chosenDate)
   // console.log("start_time",props.navigation.state.params.group_info.start_time);
 
+  // Creating a group
+  const CreateGroup = async () => {
+
+    // console.log("user_type",
+    // "booking_date","price",
+    // "description","badminton_centre_id",
+    // "image","birdie_type","start_time",
+    // "end_time","cost_per_person","member_limit","courts_selected",
+    // user_type,
+    // chosenDate,totalPrice,
+    // desc,centreId,
+    // centreImage,birdieType,start_time,
+    // end_time,pricePerPerson,grouplimit,selectedCourts);
+
+    // console.log("price",pricePerPerson);
+
+    // Getting user id
+    console.log("price",costPerPerson);
+    const userId = await AsyncStorage.getItem('userId');
+    
+    var obj = {
+      key: "groups_create",
+      data: {
+        organizer_id: userId,
+        booking_date: chosenDate,
+        price: totalPrice,
+        description: desc,
+        badminton_centre_id: centreId,
+        image: centreImage,
+        birdie_type: birdieType,
+        start_time: start_time,
+        end_time: end_time,
+        cost_per_person: costPerPerson,
+        member_limit: grouplimit,
+        courts_selected: selectedCourts
+      }
+    };
+    var r = await axios.post("http://localhost:3001/post", obj);
+    console.log("create", r.data);
+
+    var dbgroup = JSON.parse(r.data.body);
+    var groupData = dbgroup.data[0];
+
+    console.log(groupData);
+    console.log(groupData.id);
+
+    CreateGroupUsers(groupData.id);
+  };
+
+  const CreateGroupUsers = async (props) => {
+
+    // console.log("user_type",
+    // "booking_date","price",
+    // "description","badminton_centre_id",
+    // "image","birdie_type","start_time",
+    // "end_time","cost_per_person","member_limit","courts_selected",
+    // user_type,
+    // chosenDate,totalPrice,
+    // desc,centreId,
+    // centreImage,birdieType,start_time,
+    // end_time,pricePerPerson,grouplimit,selectedCourts);
+
+    // console.log("price",pricePerPerson);
+
+
+    // Getting user id
+    const userId = await AsyncStorage.getItem('userId');
+    
+    var obj = {
+      key: "groups_users_create",
+      data: {
+        user_id:userId,
+        group_id:props
+      }
+    };
+    var r = await axios.post("http://localhost:3001/post", obj);
+    console.log("create", r.data);
+  };
+
+
   return (
     <View style={styles.gsStructure}>
       <Modal animationType="fade" transparent={true} visible={modalVisible}>
@@ -69,6 +171,7 @@ function GroupSummary(props) {
       <Modal animationType="fade" transparent={true} visible={textInputVisible}>
         <TextInput_popup
           setShowPopup={setTextInputVisible}
+          setText={setDesc}
           // desc={desc}
         />
       </Modal>
@@ -107,6 +210,11 @@ function GroupSummary(props) {
                 style={styles.gsText}
                 keyboardType={"number-pad"}
                 placeholder={"8.00"}
+                maxLength={4}
+                onChangeText={(t) => {
+                  setCostPerPerson(t);
+                  // setCostPerPerson(t);
+                }}
               >
                 {/* {prop.pricePerPerson} */}
               </TextInput>
@@ -119,7 +227,7 @@ function GroupSummary(props) {
                 }}
                 style={{ flex: 1 }}
               >
-                <Text style={styles.gsText}>Add Description</Text>
+                <Text style={styles.gsText} numberOfLines={1}>{desc}</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.rowStyle}>
@@ -132,12 +240,12 @@ function GroupSummary(props) {
             </View>
             <View style={styles.rowStyle}>
               <Text style={styles.gsTitleText}>Centre</Text>
-              <Text style={styles.gsText}>Stage 18</Text>
+              <Text style={styles.gsText}>{centreName}</Text>
             </View>
             <View style={styles.rowStyle}>
               <Text style={styles.gsTitleText}>Location</Text>
               <Text style={styles.gsText}>
-                {props.location} 2351 No 6 Rd #170, Richmond, BC V6V 1P3
+                {centreLocation}
               </Text>
             </View>
             <View style={styles.rowStyle}>
@@ -182,6 +290,12 @@ function GroupSummary(props) {
                 style={[styles.gsSwitch, { flex: 1 }]}
                 initial={0}
                 // onPress={value => this.setState({ gender: value })}
+                onPress={(value)=>{
+                  // setBirdieType(value);
+                  // console.log(birdieType);
+                  birdieType = value;
+                  console.log(birdieType);
+                }}
                 textColor="#094E76" //'#7a44cf'
                 selectedColor="white"
                 buttonColor="#5DB9F0"
@@ -199,7 +313,7 @@ function GroupSummary(props) {
                 ]}
               />
             </View>
-            <View style={styles.rowStyle}>
+            {/* <View style={styles.rowStyle}>
               <Text style={styles.gsTitleText}>Group Frequency</Text>
               <SwitchSelector
                 borderColor="#ffffff"
@@ -222,7 +336,7 @@ function GroupSummary(props) {
                   }
                 ]}
               />
-            </View>
+            </View> */}
             <View style={styles.rowStyle}>
               <Text style={styles.gsTitleText}>Price in Total</Text>
               <Text style={styles.gsPriceText}>${totalPrice}</Text>
@@ -235,6 +349,7 @@ function GroupSummary(props) {
                 // if(priceInputValue == " "){
                 //   alert('tY')
                 // }
+                CreateGroup();
                 setModalVisible(!modalVisible);
               }}
             >

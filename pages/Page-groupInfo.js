@@ -19,6 +19,9 @@ import { Actions } from "react-native-router-flux";
 import Modal from "react-native-modal";
 import HamMenu from "../comps/HamMenu";
 
+import axios from "axios";
+import AsyncStorage from "@react-native-community/async-storage";
+
 function GroupInfo(props) {
   const LoadMemberCard = async () => {
     var obj = {
@@ -37,6 +40,32 @@ function GroupInfo(props) {
     //   alert('No result is found')
     // }
   };
+  // const [groupNum,setGroupNum] = useState();
+  const [groupInfo, setGroupsInfo] = useState([]);
+  const ReadGroupInfo = async () => {
+    // Get user id
+    // const userId = await AsyncStorage.getItem("userId");
+    // console.log(props.groupId);
+    // setGroupNum(props.groupId);
+    var obj = {
+      key: "groups_read",
+      data: {
+        id: props.groupId
+      }
+    };
+    var r = await axios.post("http://localhost:3001/post", obj);
+    // console.log("read", r.data);
+    var dbGroupInfo = JSON.parse(r.data.body);
+    //console.log("read", dbGroupInfo);
+
+    var groupData = dbGroupInfo.data[0];
+    //console.log("read", groupData);
+    setGroupsInfo(groupData);
+  };
+
+  useEffect(() => {
+    ReadGroupInfo();
+  }, []);
 
   const data = [
     {
@@ -213,6 +242,7 @@ function GroupInfo(props) {
 
   const [hamMenuVisible, setHamMenuVisible] = useState(false);
 
+  // console.log("groupId",groupNum);
   return (
     <View>
       <View style={styles.gipageStructure}>
@@ -241,7 +271,7 @@ function GroupInfo(props) {
           isVisible={modalVisible}
           style={{ margin: 0 }}
         >
-          <Join_group_popup setShowPopup={setModalVisible} />
+          <Join_group_popup setShowPopup={setModalVisible} groupId={groupInfo.id}/>
         </Modal>
 
         {/* Main Header */}
@@ -274,11 +304,11 @@ function GroupInfo(props) {
           </TouchableOpacity>
           <View style={styles.giOrganizerImg}></View>
           <Text style={styles.giOrganizedByText}>Organized by</Text>
-          <Text style={styles.giOrganizerText}>Toby Wong</Text>
+          <Text style={styles.giOrganizerText}>{groupInfo.first_name} {groupInfo.last_name}</Text>
         </View>
         <View style={{ justifyContent: "center", alignItems: "center" }}>
           <Text style={styles.txtMembersIndicator}>
-            {props.joinedMember}Players 20/23{props.totalMember}
+            {props.joinedMember}Players 0/{groupInfo.member_limit}
           </Text>
           <Progress.Bar
             unfilledColor="#CDC5C5"
@@ -318,14 +348,13 @@ function GroupInfo(props) {
                   Group Description
                 </Text>
                 <Text style={styles.groupDescText}>
-                  This is a group description for players who are looking at
-                  other created groups cards. So you can only view no editing.
+                  {groupInfo.description}
                 </Text>
 
                 {/* All group information text */}
                 <View style={{ display: "flex", flexDirection: "row" }}>
                   <View style={{ flex: 1 }}>
-                    <Text style={styles.giTitleText}>Group</Text>
+                    <Text style={styles.giTitleText}>Price Per Person</Text>
                     <Text style={styles.giTitleText}>Date</Text>
                     <Text style={styles.giTitleText}>Centre</Text>
                     <Text style={styles.giTitleText}>Location</Text>
@@ -333,14 +362,14 @@ function GroupInfo(props) {
                     <Text style={styles.giTitleText}>Bird Type</Text>
                   </View>
                   <View style={{ flex: 1 }}>
-                    <Text style={styles.giText}>#C1314</Text>
+                    <Text style={styles.giText}>${groupInfo.cost_per_person}</Text>
                     <Text style={styles.giText}>30 December 2019</Text>
-                    <Text style={styles.giText}>ClearOne</Text>
+                    <Text style={styles.giText}>{groupInfo.name}</Text>
                     <Text style={styles.giLocationText}>
                       4351 No 3 Rd #100,{"\n"}Richmond, BC V6X 3A7
                     </Text>
-                    <Text style={styles.giText}>1pm - 4pm</Text>
-                    <Text style={styles.giText}>Feather</Text>
+                    <Text style={styles.giText}>{groupInfo.start_time}-{groupInfo.end_time}</Text>
+                    <Text style={styles.giText}>{groupInfo.birdie_type}</Text>
                   </View>
                 </View>
                 {/* Member Cards */}
@@ -383,7 +412,7 @@ function GroupInfo(props) {
       </View>
 
       {/* Join Button */}
-      <Button_Join price={7} setShowPopup={setModalVisible} />
+      <Button_Join price={groupInfo.cost_per_person} setShowPopup={setModalVisible}/>
     </View>
   );
 }
