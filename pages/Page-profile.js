@@ -43,8 +43,31 @@ function Profile(props) {
 
 }
 
+const [numOfCreated, setNumCreated] = useState(0);
+const ReadCreatedGroups = async () => {
+
+  // Get user id
+  const userId = await AsyncStorage.getItem('userId')
+  console.log(userId);
+  var obj = {
+    key: "groups_read",
+    data: {
+      organizer_id:userId
+    }
+  };
+  var r = await axios.post("http://localhost:3001/post", obj);
+  // console.log("read", r.data);
+  var dbCreated = JSON.parse(r.data.body);
+  console.log("read", dbCreated);
+  var d = dbCreated.data;
+  var numCreated = d.length;
+
+  setNumCreated(numCreated);
+};
+
 useEffect(() => {
   ReadUsers();
+  ReadCreatedGroups();
 }, []);
 
   const [avatarSource, setAvatarSource] = useState('https://initia.org/wp-content/uploads/2017/07/default-profile.png');
@@ -161,7 +184,7 @@ useEffect(() => {
                   }}
                 >
                   <Text style={styles.txtCreatedNum}>
-                    {props.txtCreatedNum}2
+                    {numOfCreated}
                   </Text>
                   <Text style={styles.txtCreatedJoined}>
                     {props.txtCreatedGroup}Created{" "}

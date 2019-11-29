@@ -1,9 +1,39 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
 import {Actions} from 'react-native-router-flux';
 
-function JoinedGroup() {
+import axios from "axios";
+import AsyncStorage from "@react-native-community/async-storage";
+
+function JoinedGroup(props) {
+
+  const [groupInfo, setGroupsInfo] = useState([]);
+  const ReadGroupInfo = async () => {
+    // Get user id
+    // const userId = await AsyncStorage.getItem("userId");
+    console.log(props.groupId);
+    // setGroupNum(props.groupId);
+    var obj = {
+      key: "groups_read",
+      data: {
+        id: props.groupId
+      }
+    };
+    var r = await axios.post("http://localhost:3001/post", obj);
+    // console.log("read", r.data);
+    var dbGroupInfo = JSON.parse(r.data.body);
+    //console.log("read", dbGroupInfo);
+
+    var groupData = dbGroupInfo.data[0];
+    //console.log("read", groupData);
+    setGroupsInfo(groupData);
+  };
+
+  useEffect(() => {
+    ReadGroupInfo();
+  }, []);
+
   return (
     <View style={styles.bg}>
       <View>
@@ -17,15 +47,15 @@ function JoinedGroup() {
         />
         <View>
           <Text style={styles.player}>Jacky Lee</Text>
-          <Text style={styles.price}>$7</Text>
+          <Text style={styles.price}>${groupInfo.cost_per_person}</Text>
         </View>
         <View style={styles.info1}>
           <Text style={styles.label}>Group</Text>
-          <Text style={styles.data}>#C134</Text>
+          <Text style={styles.data}>#{groupInfo.id}</Text>
         </View>
         <View style={styles.info2}>
           <Text style={styles.label}>Organizer</Text>
-          <Text style={styles.data}>Toby Wong</Text>
+          <Text style={styles.data}>{groupInfo.first_name} {groupInfo.last_name}</Text>
         </View>
         <View style={styles.info3}>
           <Text style={styles.label}>Date</Text>
@@ -36,13 +66,13 @@ function JoinedGroup() {
           <Text style={styles.data}>1pm - 4pm</Text>
         </View>
         <View style={styles.info5}>
-          <Text style={styles.label}>Center</Text>
-          <Text style={styles.data}>ClearOne</Text>
+          <Text style={styles.label}>Centre</Text>
+          <Text style={styles.data}>{groupInfo.name}</Text>
         </View>
         <View style={styles.info6}>
           <Text style={styles.label}>Location</Text>
           <Text style={styles.data6}>
-            4351 No 3 Rd #100, Richmond, BC V6X 3A7
+            {groupInfo.location}
           </Text>
         </View>
         <View>
