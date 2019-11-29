@@ -6,6 +6,7 @@ import Card_organizer from "../comps/Card_for_organizer";
 import Footer_home from "../comps/Sticky_footer_home";
 import Sticky_footer_regular from "../comps/Sticky_footer_regular";
 import Card_for_player from "../comps/Card_for_player";
+import Card_for_member from "../comps/Card_for_member";
 import { ScrollView } from "react-native-gesture-handler";
 
 import Modal from "react-native-modal";
@@ -104,7 +105,7 @@ function MyJoinedGroup() {
   if (filteredJoinedGroup.length == 0) {
     noResult = <Image
       style={{
-        left:'25%',
+        // left:'25%',
         top:70,
         width: 200,
         height: 200
@@ -161,7 +162,7 @@ function MyJoinedGroup() {
             >
               {filteredJoinedGroup.map((obj, i) => {
                 return (
-                  <Card_for_player
+                  <Card_for_member
                     key={i}
                     id={obj.id}
                     organizerName={obj.organizerName}
@@ -175,6 +176,7 @@ function MyJoinedGroup() {
                   />
                 );
               })}
+              {noResult}
             </View>
           </ScrollView>
         </View>

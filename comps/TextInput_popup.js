@@ -23,13 +23,14 @@ function TextInput_popup(props) {
                     borderRadius: 6,
                     backgroundColor: "#F7F7F7",
                     marginTop: 10,
-                    value:{desc}
+                    // value:{desc}
                     // marginBottom: 35,
                     // textAlignVertical: "5%"
                   }}
                   placeholder="Type a group description..."
                   onChangeText={(t) => {
                     setDesc(t);
+                    props.setText(t);
                   }}
                   multiline
                 />

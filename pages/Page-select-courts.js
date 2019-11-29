@@ -147,11 +147,11 @@ function SelectCourts(props) {
                     // alert('Select a court')
                   }
                 } else {
+                  // var g = props.g;
                   Actions.GroupSummary({
                     group_info: {
-                      giObj: giObj,
-                      selectedCourts: selectedCourts.join(",")
-                    }
+                      giObj:giObj,
+                      selectedCourts: selectedCourts.join(",")}
                   });
                 }
                 // alert('select a court')

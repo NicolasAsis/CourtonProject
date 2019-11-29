@@ -43,8 +43,9 @@ function SelectTime(props, { navigation }) {
   function handleDatePicked(date) {
     // console.log("A date has been picked: ", date);
     // startDate = moment(date).format('lll');
-
+    //console.log("date", date, date.toLocaleDateString("en-US", {timeZone:"Canada/Pacific", year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit", second:"2-digit"}));
     if (time == "START") {
+      storeChosenDate(date)
       setChosenDate(date);
     } else if (time == "END") {
       setChosenDate2(date);
@@ -53,11 +54,11 @@ function SelectTime(props, { navigation }) {
   }
 
   //store chosenDate to async
-  const storeChosenDate = async () => {
-    await AsyncStorage.setItem("chosenDate", chosenDate)
+  const storeChosenDate = async (d) => {
+    await AsyncStorage.setItem("chosenDate", JSON.stringify(d));
   }
-  storeChosenDate();
-
+  //storeChosenDate();
+  
   // console.log("chosenDate111111" + chosenDate)
 
   // const storeChosenDate
@@ -73,7 +74,6 @@ function SelectTime(props, { navigation }) {
   // };
 
   // storeHrsPlay();
-
 
   return (
     <View style={{ backgroundColor: "#FFFFFF", height: "100%" }}>
@@ -157,6 +157,7 @@ function SelectTime(props, { navigation }) {
               onCancel={hideDateTimePicker}
               mode="datetime"
               titleIOS="Pick date and time"
+              format="HH:mm"
             />
           </View>
         </View>

@@ -21,230 +21,30 @@ import * as Progress from "react-native-progress";
 import Modal from "react-native-modal";
 import HamMenu from "../comps/HamMenu";
 
+import axios from "axios";
+import AsyncStorage from "@react-native-community/async-storage";
+
 function Organizer_groupInfo(props) {
-  const styles = StyleSheet.create({
-    // Page Structure
-    gipageStructure: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      backgroundColor: "#ffffff",
-      width: "100%",
-      justifyContent: "center"
-    },
+  // console.log(props)
 
-    //Page Header
-    giHeader: {
-      width: "100%",
-      height: 240,
-      backgroundColor: "#Fab"
-    },
-    giImg: {
-      width: "100%",
-      height: "100%"
-    },
-    giBackBut: {
-      width: 20,
-      height: 30,
-      left: 35,
-      top: 40,
-      position: "absolute"
-    },
-    giOrganizerImg: {
-      width: 52,
-      height: 52,
-      backgroundColor: "lightblue",
-      position: "absolute",
-      left: 19,
-      top: 170,
-      borderRadius: 50
-    },
-    giOrganizedByText: {
-      fontFamily: "Open sans",
-      fontSize: 20,
-      color: "#FFFFFF",
-      position: "absolute",
-      left: 45,
-      top: 163
-    },
-    giOrganizerText: {
-      fontFamily: "Open sans",
-      fontWeight: "bold",
-      fontSize: 24,
-      color: "#FFFFFF",
-      position: "absolute",
-      left: 45,
-      top: 190
-    },
+  // const LoadMemberCard = async () => {
+  //   var obj = {
+  //     key: "memberCard_read",
+  //     data: {
+  //       organizerName:organizerName,
+  //       date:date
+  //     }
+  //   };
+  //   var r = await axios.post("http://142.232.162.71:3001/post", obj);
+  //   console.log("read", r.data);
+  //   var dbusers = JSON.parse(r.data.body);
+  //   console.log("read", dbusers);
+  //   setUsers(dbusers.data);
 
-    //Group Information Section
-    giTextSec: {
-      width: "100%",
-      height: 250,
-      // backgroundColor:'#DAD',
-      marginTop: 20,
-      // left: 23,
-      backgroundColor: "#ffffff"
-    },
-    //Group Description Text
-    groupDescHeaderText: {
-      fontFamily: "Open sans",
-      fontWeight: "bold",
-      fontSize: 15,
-      color: "#3C3C3C"
-    },
-    groupDescText: {
-      fontFamily: "Open sans",
-      fontSize: 15,
-      color: "#7C7B7B",
-      lineHeight: 20,
-      marginBottom: 43,
-      width: 330,
-      justifyContent: "center",
-      alignItems: "center"
-    },
-
-    //Group Information Text
-    giTitleText: {
-      fontFamily: "Open sans",
-      fontWeight: "bold",
-      fontSize: 15,
-      color: "#3C3C3C",
-      marginBottom: 32
-    },
-    giText: {
-      fontFamily: "Open sans",
-      fontSize: 15,
-      color: "#7C7B7B",
-      lineHeight: 20,
-      marginBottom: 32
-    },
-    //Style location text, since mostly two lines
-    giLocationText: {
-      fontFamily: "Open sans",
-      fontSize: 15,
-      color: "#7C7B7B",
-      lineHeight: 20,
-      marginBottom: 16
-    },
-    //Style for player amount text
-    giPlayersText: {
-      fontFamily: "Open sans",
-      fontSize: 29,
-      color: "#094E76",
-      marginBottom: 32,
-      marginTop: -16
-    },
-    descInput: {
-      width: 312,
-      height: 126,
-      borderRadius: 6,
-      backgroundColor: "#F2F2F2",
-      marginBottom: 39,
-      textAlignVertical: "top"
-      //   display:'flex'
-    },
-    btnReset: {
-      backgroundColor: "#BDBDBD",
-      alignItems: "center",
-      justifyContent: "center",
-      width: 150,
-      height: 35,
-      borderRadius: 30,
-      shadowColor: "#000000",
-      shadowOpacity: 0.1,
-      shadowRadius: 7,
-      shadowOffset: { x: 2, y: 3 },
-      marginRight: 4
-    },
-    txtRest: {
-      color: "#FFFFFF",
-      fontFamily: "Open sans",
-      fontWeight: "bold"
-    },
-    btnSubmit: {
-      backgroundColor: "#56CCF2",
-      alignItems: "center",
-      justifyContent: "center",
-      width: 150,
-      height: 35,
-      borderRadius: 30,
-      shadowColor: "#000000",
-      shadowOpacity: 0.1,
-      shadowRadius: 7,
-      shadowOffset: { x: 2, y: 3 },
-      marginLeft: 15
-    },
-    txtSubmit: {
-      color: "#FFFFFF",
-      fontFamily: "Open sans",
-      fontWeight: "bold"
-    },
-    txtDelete: {
-      color: "#FFFFFF",
-      fontFamily: "Open sans",
-      fontWeight: "bold"
-    },
-    btnDelete: {
-      backgroundColor: "#FE647B",
-      alignItems: "center",
-      justifyContent: "center",
-      width: 320,
-      height: 40,
-      borderRadius: 50,
-      shadowColor: "#000000",
-      shadowOpacity: 0.1,
-      shadowRadius: 7,
-      shadowOffset: { x: 2, y: 3 },
-      marginTop: 20,
-      marginBottom: 50
-    },
-    giHamTouchableOp: {
-      // backgroundColor:'red'
-      // // width: 35,
-      // height: 23,
-      left: "80%",
-      top: 45,
-      position: "absolute"
-    },
-    giHamBtn: {
-      top: 2,
-      width: 35,
-      height: 23
-      // marginLeft:263,
-      //   left: 35,
-      //   top: 40,
-      // position: "absolute"
-    },
-    ProgressBar: {
-      marginTop: "1%"
-    },
-    txtMembersIndicator: {
-      marginTop: "3%",
-      fontSize: 16,
-      fontFamily: "Open sans",
-      color: "#094E76"
-    }
-  });
-
-  const LoadMemberCard = async () => {
-    var obj = {
-      key: "memberCard_read",
-      data: {
-        // organizerName:organizerName,
-        // date:date
-      }
-    };
-    // var r = await axios.post("http://142.232.162.71:3001/post", obj);
-    // console.log("read", r.data);
-    // var dbusers = JSON.parse(r.data.body);
-    // console.log("read", dbusers);
-    // setUsers(dbusers.data);
-
-    // if(data.organizerName == obj.organizerName ){
-    //   alert('No result is found')
-    // }
-  };
+  //   if(data.organizerName == obj.organizerName ){
+  //     alert('No result is found')
+  //   }
+  // };
 
   const data = [
     {
@@ -262,8 +62,32 @@ function Organizer_groupInfo(props) {
     }
   ];
 
+  // useEffect(() => {
+  //   LoadMemberCard();
+  // }, []);
+
+  const [groupInfo, setGroupsInfo] = useState([]);
+  const ReadOGroupInfo = async () => {
+    // Get user id
+    const userId = await AsyncStorage.getItem("userId");
+    var obj = {
+      key: "groups_read",
+      data: {
+        id: props.groupId
+      }
+    };
+    var r = await axios.post("http://localhost:3001/post", obj);
+    // console.log("read", r.data);
+    var dbGroupInfo = JSON.parse(r.data.body);
+    //console.log("read", dbGroupInfo);
+
+    var groupData = dbGroupInfo.data[0];
+    //console.log("read", groupData);
+    setGroupsInfo(groupData);
+  };
+
   useEffect(() => {
-    LoadMemberCard();
+    ReadOGroupInfo();
   }, []);
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -271,6 +95,15 @@ function Organizer_groupInfo(props) {
 
   var joinedMember = 50;
   var totalMember = 80;
+  var prog = groupInfo.member_limit ? (1 / groupInfo.member_limit).toFixed(2) :0;
+  console.log("progress", prog);
+  console.log(props.groupId);
+
+  // var date = props.date.replace(/"/g, '');
+  // var chosenDate = new Date(date);
+  // console.log("date", date, chosenDate);
+  // chosenDate = chosenDate.toLocaleDateString("en-US", {timeZone:"UTC", year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit", second:"2-digit"})
+  // console.log("date2", chosenDate);
   return (
     <View style={{ backgroundColor: "#ffffff" }}>
       {/* Ham Menu */}
@@ -300,13 +133,13 @@ function Organizer_groupInfo(props) {
       >
         <Delete_group_popup setShowPopup={setModalVisible} />
       </Modal>
-      
+
       <View style={styles.gipageStructure}>
         {/* Main Header */}
         <View style={styles.giHeader}>
           <Image
             style={styles.giImg}
-            source={require("../assets/img_stage18.png")}
+            source={{uri:groupInfo.image}}
           />
           <TouchableOpacity
             style={{ position: "absolute" }}
@@ -331,17 +164,17 @@ function Organizer_groupInfo(props) {
             />
           </TouchableOpacity>
           {/* <View style={styles.giOrganizerImg}></View> */}
-          <Text style={styles.giOrganizedByText}>#s11111</Text>
-          <Text style={styles.giOrganizerText}>Stage 18</Text>
+          <Text style={styles.giOrganizedByText}> #{props.groupId}</Text>
+          <Text style={styles.giOrganizerText}>{groupInfo.name}</Text>
         </View>
         <Text style={styles.txtMembersIndicator}>
-          {props.joinedMember}30/40{props.totalMember}
+          {props.joinedMember}0/{groupInfo.member_limit}
         </Text>
         <Progress.Bar
           unfilledColor="#CDC5C5"
           borderColor="#FFFFFF"
           color="#81EC8D"
-          progress={joinedMember / totalMember}
+          progress={prog}
           width={350}
           height={13}
           borderRadius={13}
@@ -369,8 +202,7 @@ function Organizer_groupInfo(props) {
                   Group Description
                 </Text>
                 <Text style={styles.groupDescText}>
-                  This is a group description for players who are looking at
-                  other created groups cards. So you can only view no editing.
+                  {groupInfo.description}
                 </Text>
 
                 {/* All group information text */}
@@ -384,22 +216,28 @@ function Organizer_groupInfo(props) {
                   }}
                 >
                   <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
-                    <Text style={styles.giTitleText}>Group</Text>
+                    <Text style={styles.giTitleText}>Price Per Person</Text>
                     <Text style={styles.giTitleText}>Date</Text>
                     <Text style={styles.giTitleText}>Centre</Text>
                     <Text style={styles.giTitleText}>Location</Text>
                     <Text style={styles.giTitleText}>Time</Text>
                     <Text style={styles.giTitleText}>Bird Type</Text>
+                    <Text style={styles.giTitleText}>Courts Selected</Text>
                   </View>
                   <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
-                    <Text style={styles.giText}>#C1314</Text>
-                    <Text style={styles.giText}>30 December 2019</Text>
-                    <Text style={styles.giText}>ClearOne</Text>
+                    <Text style={styles.giText}>${groupInfo.cost_per_person}</Text>
+                    <Text style={styles.giText}>{props.chosenDate2}</Text>
+                    <Text style={styles.giText}>{groupInfo.name}</Text>
                     <Text style={styles.giLocationText}>
-                      4351 No 3 Rd #100,{"\n"}Richmond, BC V6X 3A7
+                      {groupInfo.location}
                     </Text>
-                    <Text style={styles.giText}>1pm - 4pm</Text>
-                    <Text style={styles.giText}>Feather</Text>
+                    <Text style={styles.giText}>
+                      {groupInfo.start_time}-{groupInfo.end_time}
+                    </Text>
+                    <Text style={styles.giText}>{groupInfo.birdie_type}</Text>
+                    <Text style={styles.giText}>
+                      {groupInfo.courts_selected}
+                    </Text>
                   </View>
                 </View>
                 {/* Member Cards */}
@@ -505,3 +343,208 @@ function Organizer_groupInfo(props) {
 }
 
 export default Organizer_groupInfo;
+
+const styles = StyleSheet.create({
+  // Page Structure
+  gipageStructure: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "#ffffff",
+    width: "100%",
+    justifyContent: "center"
+  },
+
+  //Page Header
+  giHeader: {
+    width: "100%",
+    height: 240,
+    backgroundColor: "#Fab"
+  },
+  giImg: {
+    width: "100%",
+    height: "100%"
+  },
+  giBackBut: {
+    width: 20,
+    height: 30,
+    left: 35,
+    top: 40,
+    position: "absolute"
+  },
+  giOrganizerImg: {
+    width: 52,
+    height: 52,
+    backgroundColor: "lightblue",
+    position: "absolute",
+    left: 19,
+    top: 170,
+    borderRadius: 50
+  },
+  giOrganizedByText: {
+    fontFamily: "Open sans",
+    fontSize: 20,
+    color: "#FFFFFF",
+    position: "absolute",
+    left: 45,
+    top: 163
+  },
+  giOrganizerText: {
+    fontFamily: "Open sans",
+    fontWeight: "bold",
+    fontSize: 24,
+    color: "#FFFFFF",
+    position: "absolute",
+    left: 45,
+    top: 190
+  },
+
+  //Group Information Section
+  giTextSec: {
+    width: "100%",
+    height: 250,
+    // backgroundColor:'#DAD',
+    marginTop: 20,
+    // left: 23,
+    backgroundColor: "#ffffff"
+  },
+  //Group Description Text
+  groupDescHeaderText: {
+    fontFamily: "Open sans",
+    fontWeight: "bold",
+    fontSize: 15,
+    color: "#3C3C3C"
+  },
+  groupDescText: {
+    fontFamily: "Open sans",
+    fontSize: 15,
+    color: "#7C7B7B",
+    lineHeight: 20,
+    marginBottom: 43,
+    width: 330,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+
+  //Group Information Text
+  giTitleText: {
+    fontFamily: "Open sans",
+    fontWeight: "bold",
+    fontSize: 15,
+    color: "#3C3C3C",
+    marginBottom: 32
+  },
+  giText: {
+    fontFamily: "Open sans",
+    fontSize: 15,
+    color: "#7C7B7B",
+    lineHeight: 20,
+    marginBottom: 32
+  },
+  //Style location text, since mostly two lines
+  giLocationText: {
+    fontFamily: "Open sans",
+    fontSize: 15,
+    color: "#7C7B7B",
+    lineHeight: 20,
+    marginBottom: 16
+  },
+  //Style for player amount text
+  giPlayersText: {
+    fontFamily: "Open sans",
+    fontSize: 29,
+    color: "#094E76",
+    marginBottom: 32,
+    marginTop: -16
+  },
+  descInput: {
+    width: 312,
+    height: 126,
+    borderRadius: 6,
+    backgroundColor: "#F2F2F2",
+    marginBottom: 39,
+    textAlignVertical: "top"
+    //   display:'flex'
+  },
+  btnReset: {
+    backgroundColor: "#BDBDBD",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 150,
+    height: 35,
+    borderRadius: 30,
+    shadowColor: "#000000",
+    shadowOpacity: 0.1,
+    shadowRadius: 7,
+    shadowOffset: { x: 2, y: 3 },
+    marginRight: 4
+  },
+  txtRest: {
+    color: "#FFFFFF",
+    fontFamily: "Open sans",
+    fontWeight: "bold"
+  },
+  btnSubmit: {
+    backgroundColor: "#56CCF2",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 150,
+    height: 35,
+    borderRadius: 30,
+    shadowColor: "#000000",
+    shadowOpacity: 0.1,
+    shadowRadius: 7,
+    shadowOffset: { x: 2, y: 3 },
+    marginLeft: 15
+  },
+  txtSubmit: {
+    color: "#FFFFFF",
+    fontFamily: "Open sans",
+    fontWeight: "bold"
+  },
+  txtDelete: {
+    color: "#FFFFFF",
+    fontFamily: "Open sans",
+    fontWeight: "bold"
+  },
+  btnDelete: {
+    backgroundColor: "#FE647B",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 320,
+    height: 40,
+    borderRadius: 50,
+    shadowColor: "#000000",
+    shadowOpacity: 0.1,
+    shadowRadius: 7,
+    shadowOffset: { x: 2, y: 3 },
+    marginTop: 20,
+    marginBottom: 50
+  },
+  giHamTouchableOp: {
+    // backgroundColor:'red'
+    // // width: 35,
+    // height: 23,
+    left: "80%",
+    top: 45,
+    position: "absolute"
+  },
+  giHamBtn: {
+    top: 2,
+    width: 35,
+    height: 23
+    // marginLeft:263,
+    //   left: 35,
+    //   top: 40,
+    // position: "absolute"
+  },
+  ProgressBar: {
+    marginTop: "1%"
+  },
+  txtMembersIndicator: {
+    marginTop: "3%",
+    fontSize: 16,
+    fontFamily: "Open sans",
+    color: "#094E76"
+  }
+});

@@ -34,7 +34,7 @@ function Welcome(props) {
         source={require("../assets/img_abstract_up.png")}
       />
       <View style={styles.welcomText}>
-        <Text style={styles.welcome}>Welcome {firstName}</Text>
+        <Text style={styles.welcome}>Welcome {firstName}!</Text>
         <Text style={styles.sucessfully}>Your account was created sucessfully!</Text>
         <TouchableOpacity
           style={styles.loginBut}
