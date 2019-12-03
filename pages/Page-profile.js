@@ -56,7 +56,6 @@ function Profile(props) {
 }
 
 const [numOfCreated, setNumCreated] = useState(0);
-
 const ReadCreatedGroups = async () => {
 
   // Get user id
