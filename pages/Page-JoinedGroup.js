@@ -27,12 +27,25 @@ function JoinedGroup(props) {
 
     var groupData = dbGroupInfo.data[0];
     //console.log("read", groupData);
+    ReadUserInfo();
     setGroupsInfo(groupData);
   };
 
   useEffect(() => {
     ReadGroupInfo();
   }, []);
+
+  // const userId = await AsyncStorage.getItem("userId");
+  const ReadUserInfo = async () => {
+    const userFN = await AsyncStorage.getItem("userFN");
+    const userLN = await AsyncStorage.getItem("userLN");
+    setUserFN(userFN)
+    setUserLN(userLN)
+  };
+
+  const [userFName,setUserFN] = useState();
+  const [userLName,setUserLN] = useState();
+
 
   return (
     <View style={styles.bg}>
@@ -46,7 +59,7 @@ function JoinedGroup(props) {
           source={require("../assets/icon_group_created.png")}
         />
         <View>
-          <Text style={styles.player}>Jacky Lee</Text>
+          <Text style={styles.player}>{userFName} {userLName}</Text>
           <Text style={styles.price}>${groupInfo.cost_per_person}</Text>
         </View>
         <View style={styles.info1}>

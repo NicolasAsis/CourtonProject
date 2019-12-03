@@ -152,7 +152,7 @@ function Home() {
     //console.log("read", dbGroupInfo);
 
     var d = dbGroups.data;
-    console.log("read", d);
+    // console.log("read", d);
     // console.log(d.first_name)
     setAllGroups(d.reverse());
   };
@@ -185,12 +185,13 @@ function Home() {
   // };
 
   const [popUp, setPopUp] = useState("sat");
-  const [searchKey, setSearchKey] = useState(" ");
+  const [searchKey, setSearchKey] = useState("");
 
-  const filteredGroup = data.filter(obj => {
+  const filteredGroups = allGroups.filter(d => {
     return (
-      obj.organizerName.indexOf(searchKey) >= 0 ||
-      obj.groupNum.indexOf(searchKey) >= 0
+      d.first_name.indexOf(searchKey) >= 0 ||
+      d.last_name.indexOf(searchKey) >= 0 
+      // d.cost_per_person.indexOf(searchKey) >= 0
     );
   });
 
@@ -202,7 +203,7 @@ function Home() {
   const [modalVisible,setModalVisible] = useState(false);
 
 
-  if (filteredGroup.length == 0) {
+  if (filteredGroups.length == 0) {
     noResult = <Image
       style={{
         left:'25%',
@@ -329,7 +330,7 @@ function Home() {
               <Text style={styles.title}>Upcoming Available Groups</Text>
               <Image />
 
-              {allGroups.map((d,i) => {
+              {filteredGroups.map((d,i) => {
                 // ReadUsers({organizerId:d.organizer_id})
                 return (
                   <Card_for_player

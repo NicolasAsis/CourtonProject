@@ -16,56 +16,30 @@ import { Actions } from "react-native-router-flux";
 // Animation
 import * as Animatable from "react-native-animatable";
 
-import axios from 'axios';
+import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
 
+
 function MyGroup() {
-  const [group, setGroup] = useState([]);
+  const [groupsJoined, setGroupsJoined] = useState([]);
 
-  // const [linePostionXRight, setPositionXRight] = useState(
-  //   new Animated.Value(setPositionXRight ? 200 : 0)
-  // );
-  // const [linePostionXLeft] = useState(new Animated.Value(0));
-
-  // var animatedLineRight = linePostionXRight.interpolate({
-  //   inputRange: [0, 200],
-  //   outputRange: [0, 200]
-  // });
-  // var animatedLineLeft = linePostionXLeft.interpolate({
-  //   inputRange: [0, 200],
-  //   outputRange: [0, 200]
-  // });
-
-  const LoadJoinedGroup = async () => {
+  const ReadJoined = async () => {
+    // Get user id
+    const userId = await AsyncStorage.getItem("userId");
+    console.log(userId);
     var obj = {
-      key: "users_read",
+      key: "groups_users_read2",
       data: {
-        // id: id,
-        // bmtCentre: bmtCentre,
-        // date: date
+        user_id: userId
       }
     };
-    // var r = await axios.post("http://142.232.162.71:3001/post", obj);
+    var r = await axios.post("http://localhost:3001/post", obj);
     // console.log("read", r.data);
-    // var dbusers = JSON.parse(r.data.body);
-    // console.log("read", dbusers);
-    // setUsers(dbusers.data);
-  };
-
-  const LoadCreatedGroup = async () => {
-    var obj = {
-      key: "users_read",
-      data: {
-        // id: id,
-        // organizerName: organizerName,
-        // date: date
-      }
-    };
-    // var r = await axios.post("http://142.232.162.71:3001/post", obj);
-    // console.log("read", r.data);
-    // var dbusers = JSON.parse(r.data.body);
-    // console.log("read", dbusers);
-    // setUsers(dbusers.data);
+    var dbJoined = JSON.parse(r.data.body);
+    console.log("read", dbJoined);
+    var d = dbJoined.data;
+    // console.log(dbCreated.data[0].organizer_id);
+    setGroupsJoined(d.reverse());
   };
 
   const [groupsCreated, setGroupsCreated] = useState([]);
@@ -90,6 +64,7 @@ function MyGroup() {
   };
 
   useEffect(() => {
+    ReadJoined();
     ReadCreated();
   }, []);
 
@@ -216,19 +191,21 @@ function MyGroup() {
   // }
   const [groupType, setGroupType] = useState(
     <View>
-      {joinedData.map(obj => {
+      {groupsJoined.map((d, i) => {
         return (
           <Card_for_member
-            // key = {i}
-            id={obj.id}
-            organizerName={obj.organizerName}
-            groupNum={obj.groupNum}
-            date={obj.date}
-            time={obj.time}
-            joinedMember={obj.joinedMember}
-            totalMember={obj.totalMember}
-            price={obj.price}
-            progressBarLoad={obj.progressBarLoad}
+            key={i}
+            // id={d.id}
+            organizerFN={d.first_name}
+            organizerLN={d.last_name}
+            groupNum={d.group_id}
+            date={d.booking_date}
+            time={d.start_time}
+            // joinedMember={obj.joinedMember}
+            totalMember={d.member_limit}
+            price={d.price}
+            // progressBarLoad={obj.progressBarLoad}
+            groupImg={d.image}
           />
         );
       })}
@@ -275,19 +252,21 @@ function MyGroup() {
           if (val == "Joined") {
             setGroupType(
               <View>
-                {joinedData.map(obj => {
+                {groupsJoined.map((d, i) => {
                   return (
                     <Card_for_member
-                      // key = {i}
-                      id={obj.id}
-                      organizerName={obj.organizerName}
-                      groupNum={obj.groupNum}
-                      date={obj.date}
-                      time={obj.time}
-                      joinedMember={obj.joinedMember}
-                      totalMember={obj.totalMember}
-                      price={obj.price}
-                      progressBarLoad={obj.progressBarLoad}
+                      key={i}
+                      // id={d.id}
+                      organizerFN={d.first_name}
+                      organizerLN={d.last_name}
+                      groupNum={d.group_id}
+                      date={d.booking_date}
+                      time={d.start_time}
+                      // joinedMember={obj.joinedMember}
+                      totalMember={d.member_limit}
+                      price={d.price}
+                      // progressBarLoad={obj.progressBarLoad}
+                      groupImg={d.image}
                     />
                   );
                 })}

@@ -278,7 +278,7 @@ function GroupInfo(props) {
         <View style={styles.giHeader}>
           <Image
             style={styles.giImg}
-            source={require("../assets/img_stage18.png")}
+            source={{uri: groupInfo.image}}
           />
           <TouchableOpacity
             style={styles.giBackTouchableOp}
@@ -308,13 +308,13 @@ function GroupInfo(props) {
         </View>
         <View style={{ justifyContent: "center", alignItems: "center" }}>
           <Text style={styles.txtMembersIndicator}>
-            {props.joinedMember}Players 0/{groupInfo.member_limit}
+            Players {props.numJoined}/{groupInfo.member_limit}
           </Text>
           <Progress.Bar
             unfilledColor="#CDC5C5"
             borderColor="#FFFFFF"
             color="#81EC8D"
-            progress={joinedMember / totalMember}
+            progress={props.progJoined}
             width={350}
             height={13}
             borderRadius={13}
@@ -366,7 +366,7 @@ function GroupInfo(props) {
                     <Text style={styles.giText}>30 December 2019</Text>
                     <Text style={styles.giText}>{groupInfo.name}</Text>
                     <Text style={styles.giLocationText}>
-                      4351 No 3 Rd #100,{"\n"}Richmond, BC V6X 3A7
+                        {groupInfo.location}
                     </Text>
                     <Text style={styles.giText}>{groupInfo.start_time}-{groupInfo.end_time}</Text>
                     <Text style={styles.giText}>{groupInfo.birdie_type}</Text>

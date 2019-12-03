@@ -1,11 +1,47 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import * as Progress from 'react-native-progress';
 
 import {Actions} from 'react-native-router-flux';
 
+import axios from "axios";
+import AsyncStorage from "@react-native-community/async-storage";
+
 function Card_for_player(props) {
+
+  const [numJoined, setNumJoined] = useState();
+  const [progJoined,setProgJoined]= useState();
+  
+  const ReadMemberAmt = async () => {
+
+  // Get user id
+  // const userId = await AsyncStorage.getItem('userId')
+  // console.log(userId);
+  var obj = {
+    key: "groups_users_read",
+    data: {
+      group_id:props.groupNum
+    }
+  };
+  var r = await axios.post("http://localhost:3001/post", obj);
+  // console.log("read", r.data);
+  var dbJoined = JSON.parse(r.data.body);
+  // console.log("read", dbJoined);
+  var d = dbJoined.data;
+  var numJoined = d.length;
+
+  var prog = props.totalMember ? (numJoined/ props.totalMember).toFixed(2) :0;
+  setProgJoined(prog);
+
+  setNumJoined(numJoined);
+};
+
+  useEffect(() => {
+    ReadMemberAmt();
+  }, []);
  
+  // var prog = props.totalMember ? (0 / props.totalMember).toFixed(2) :0;
+
   var date = props.date.replace(/"/g, '');
   var chosenDate = new Date(date);
   //console.log("date", date, chosenDate);
@@ -15,7 +51,7 @@ function Card_for_player(props) {
       <TouchableOpacity
        style={styles.card}
         onPress={()=>{
-          Actions.GroupInfo({groupId:props.groupNum})
+          Actions.GroupInfo({groupId:props.groupNum,progJoined:progJoined,numJoined:numJoined})
       }}
       >
       <View>
@@ -27,14 +63,14 @@ function Card_for_player(props) {
           <Text style={styles.txtGroupNum}>Group #{props.groupNum}</Text>
           <Text style={styles.txtGroupDate}>{chosenDate}</Text>
           {/* <Text style={styles.txtGroupJoinDate}>Join Before: Dec 20 11:30pm</Text> */}
-          <Text style={styles.txtGroupPlayerCount}>Players /{props.totalMember}</Text>
+          <Text style={styles.txtGroupPlayerCount}>Players {numJoined}/{props.totalMember}</Text>
           <Text style={styles.txtGroupPrice}>${props.price}</Text>
           
           <Progress.Bar
             unfilledColor="#CDC5C5"
             borderColor="#FFFFFF"
             color="#81EC8D"
-            progress= {0}
+            progress= {progJoined}
             width={180}
             style={styles.ProgressBar}
           />
