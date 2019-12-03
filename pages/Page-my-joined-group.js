@@ -12,29 +12,40 @@ import { ScrollView } from "react-native-gesture-handler";
 import Modal from "react-native-modal";
 import HamMenu from "../comps/HamMenu";
 
+import axios from 'axios';
+import AsyncStorage from "@react-native-community/async-storage";
+
 var noResult = null;
 
 function MyJoinedGroup() {
-  const [hamMenuVisible, setHamMenuVisible] = useState(false);
 
-  const LoadGroup = async () => {
+  const [groupsJoined, setGroupsJoined] = useState([]);
+
+  const ReadJoined = async () => {
+
+    // Get user id
+    const userId = await AsyncStorage.getItem('userId')
+    // console.log(userId);
     var obj = {
-      key: "groups_read",
+      key: "groups_users_read2",
       data: {
-        // organizerName:organizerName,
-        // date:date
+        user_id:userId
       }
     };
-    // var r = await axios.post("http://142.232.162.71:3001/post", obj);
+    var r = await axios.post("http://localhost:3001/post", obj);
     // console.log("read", r.data);
-    // var dbusers = JSON.parse(r.data.body);
-    // console.log("read", dbusers);
-    // setUsers(dbusers.data);
-
-    // if(data.organizerName == obj.organizerName ){
-    //   alert('No result is found')
-    // }
+    var dbJoined = JSON.parse(r.data.body);
+    // console.log("read", dbJoined);
+    var d = dbJoined.data;
+    // console.log(dbCreated.data[0].organizer_id);
+    setGroupsJoined(d.reverse());
   };
+
+  useEffect(() => {
+    ReadJoined();
+  }, []);
+
+  const [hamMenuVisible, setHamMenuVisible] = useState(false);
 
   const data = [
     {
@@ -89,9 +100,9 @@ function MyJoinedGroup() {
     }
   ];
 
-  useEffect(() => {
-    LoadGroup();
-  }, []);
+  // useEffect(() => {
+  //   LoadGroup();
+  // }, []);
 
   const [searchKey, setSearchKey] = useState(" ");
 
@@ -160,19 +171,21 @@ function MyJoinedGroup() {
                 paddingRight: 10
               }}
             >
-              {filteredJoinedGroup.map((obj, i) => {
+              {groupsJoined.map((d, i) => {
                 return (
                   <Card_for_member
                     key={i}
-                    id={obj.id}
-                    organizerName={obj.organizerName}
-                    groupNum={obj.groupNum}
-                    date={obj.date}
-                    time={obj.time}
-                    joinedMember={obj.joinedMember}
-                    totalMember={obj.totalMember}
-                    price={obj.price}
-                    progressBarLoad={obj.progressBarLoad}
+                    // id={d.id}
+                    organizerFN={d.first_name}
+                    organizerLN={d.last_name}
+                    groupNum={d.group_id}
+                    date={d.booking_date}
+                    time={d.start_time}
+                    // joinedMember={obj.joinedMember}
+                    totalMember={d.member_limit}
+                    price={d.price}
+                    // progressBarLoad={obj.progressBarLoad}
+                    groupImg={d.image}
                   />
                 );
               })}
