@@ -298,8 +298,9 @@ function Member_groupInfo(props) {
 
   const [modalVisible, setModalVisible] = useState(false);
   const [hamMenuVisible, setHamMenuVisible] = useState(false);
-  var joinedMember = 30;
-  var totalMember = 40;
+  // var joinedMember = 30;
+  // var totalMember = 40;
+  const moreMembersNum = props.numJoined - 1;
 
   return (
     <View
@@ -448,7 +449,7 @@ function Member_groupInfo(props) {
                     backgroundColor: "#FFFFFF"
                   }}
                 >
-                  {data.map((obj, i) => {
+                  {/* {data.map((obj, i) => {
                     return (
                       <Card_members
                         // key = {i}
@@ -458,12 +459,22 @@ function Member_groupInfo(props) {
                         url={obj.url}
                       />
                     );
-                  })}
+                  })} */}
+
+                      <Card_members
+                        // key = {i}
+                        // id={obj.id}
+                        memberFN={groupInfo.first_name}
+                       memberLN={groupInfo.last_name}
+                        organizer="Organizer"
+                        // url={obj.url}
+                      />
+            
                 </View>
                 <TouchableOpacity
                   style={{ flexDirection: "row", backgroundColor: "#FFFFFF" }}
                   onPress={() => {
-                    Actions.MoreMembers();
+                    Actions.MoreMembers({groupId:props.groupId});
                   }}
                 >
                   <View>
@@ -473,7 +484,7 @@ function Member_groupInfo(props) {
                     <Circle_extra_member />
                   </View>
                   <Text style={[styles.giText, { left: 26, top: 5 }]}>
-                    +2 more
+                    +{moreMembersNum} more
                   </Text>
                 </TouchableOpacity>
                 <Image

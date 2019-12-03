@@ -183,7 +183,7 @@ function MyJoinedGroup() {
                     time={d.start_time}
                     // joinedMember={obj.joinedMember}
                     totalMember={d.member_limit}
-                    price={d.price}
+                    price={d.cost_per_person}
                     // progressBarLoad={obj.progressBarLoad}
                     groupImg={d.image}
                   />

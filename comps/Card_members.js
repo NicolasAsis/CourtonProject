@@ -90,7 +90,8 @@ function Card_members(props) {
 
           {/* Organizer Name Section */}
           <View style={styles.organizerNameSec}>
-            <Text style={styles.organizerNameText}>{props.memberName}</Text>
+          <Text style={styles.organizerText}>{props.organizer}</Text>
+            <Text style={styles.organizerNameText}>{props.memberFN} {props.memberLN}</Text>
           </View>
         </View>
       </View>
