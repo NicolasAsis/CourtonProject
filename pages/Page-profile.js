@@ -17,7 +17,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 
 
 function Profile(props) {
-
+  const [skillLevelImg, setSkillLevelImg] = useState("");
   const [userFN,setUserFN] = useState("");
   const [userLN,setUserLN] = useState("");
   const [userEmail,setUserEmail] = useState("");
@@ -40,8 +40,22 @@ function Profile(props) {
     setUserFN(userData.first_name);
     setUserLN(userData.last_name);
     setUserEmail(userData.email);
+    console.log(userData.skill_level);
+
+
+
+    if(userData.skill_level==1){
+      setSkillLevelImg(require("../assets/img_level1.png"))
+    } else if (userData.skill_level==2) {
+      setSkillLevelImg(require("../assets/img_level2.png"))
+    }else if (userData.skill_level==3) {
+      setSkillLevelImg(require("../assets/img_level3.png"))
+    }
+    console.log(skillLevelImg)
 
 }
+
+console.log(skillLevelImg)
 
 const [numOfCreated, setNumCreated] = useState(0);
 const ReadCreatedGroups = async () => {
@@ -61,7 +75,6 @@ const ReadCreatedGroups = async () => {
   console.log("read", dbCreated);
   var d = dbCreated.data;
   var numCreated = d.length;
-
   setNumCreated(numCreated);
 };
 
@@ -119,7 +132,6 @@ useEffect(() => {
     LoadComments();
   }, []);
 
-
   return (
     <View>
       {/* <TouchableOpacity
@@ -130,7 +142,7 @@ useEffect(() => {
           source={require("../assets/icon_setting.png")}
         />
       </TouchableOpacity> */}
-      <View>
+      <View >
         <Image
           style={{ width: "100%", height: 262 }}
           source={require("../assets/img_profile_banner.png")}
@@ -214,10 +226,14 @@ useEffect(() => {
           justifyContent: "center",
           alignItems: "center",
           height: 550,
-          backgroundColor:"#F3F1F1"
+          backgroundColor:"#ffffff"
         }}
       >
-        <View style={{ width: "100%", height: 100, zIndex: 10 }}>
+        <View style={styles.skillLevelBg}>
+          <Image
+          style={{width:200, height:51}}
+          source={skillLevelImg}
+          />
         </View>
 
         {/* === info title  === */}
@@ -367,6 +383,21 @@ const styles = StyleSheet.create({
     alignItems:"center",
     display:"flex",
     flexDirection:"row"
+},
+skillLevelBg:{
+  width: "100%", 
+  height: 130, 
+  zIndex: 10, 
+  justifyContent:'center', 
+  alignItems:'center',
+  backgroundColor:'#ffffff',
+  shadowColor:'black',
+  shadowOffset:{
+    x:0, y:3
+  } ,
+  shadowRadius:10,
+  shadowOpacity:0.1
+
 }
 
 });
