@@ -21,25 +21,55 @@ import { Actions } from "react-native-router-flux";
 import Modal from "react-native-modal";
 import HamMenu from "../comps/HamMenu";
 
+import axios from "axios";
+import AsyncStorage from "@react-native-community/async-storage";
+
 function Member_groupInfo(props) {
-  const LoadMemberCard = async () => {
+
+  const [groupInfo, setGroupsInfo] = useState([]);
+  const ReadGroupInfo = async () => {
+    // Get user id
+    // const userId = await AsyncStorage.getItem("userId");
+    // console.log(props.groupId);
+    // setGroupNum(props.groupId);
     var obj = {
-      key: "memberCard_read",
+      key: "groups_read",
       data: {
-        // organizerName:organizerName,
-        // date:date
+        id: props.groupId
       }
     };
-    // var r = await axios.post("http://142.232.162.71:3001/post", obj);
+    var r = await axios.post("http://localhost:3001/post", obj);
     // console.log("read", r.data);
-    // var dbusers = JSON.parse(r.data.body);
-    // console.log("read", dbusers);
-    // setUsers(dbusers.data);
+    var dbGroupInfo = JSON.parse(r.data.body);
+    //console.log("read", dbGroupInfo);
 
-    // if(data.organizerName == obj.organizerName ){
-    //   alert('No result is found')
-    // }
+    var groupData = dbGroupInfo.data[0];
+    //console.log("read", groupData);
+    setGroupsInfo(groupData);
   };
+
+  useEffect(() => {
+    ReadGroupInfo();
+  }, []);
+  
+  // const LoadMemberCard = async () => {
+  //   var obj = {
+  //     key: "memberCard_read",
+  //     data: {
+  //       // organizerName:organizerName,
+  //       // date:date
+  //     }
+  //   };
+  //   var r = await axios.post("http://142.232.162.71:3001/post", obj);
+  //   console.log("read", r.data);
+  //   var dbusers = JSON.parse(r.data.body);
+  //   console.log("read", dbusers);
+  //   setUsers(dbusers.data);
+
+  //   if(data.organizerName == obj.organizerName ){
+  //     alert('No result is found')
+  //   }
+  // };
 
   const data = [
     {
@@ -57,9 +87,9 @@ function Member_groupInfo(props) {
     }
   ];
 
-  useEffect(() => {
-    LoadMemberCard();
-  }, []);
+  // useEffect(() => {
+  //   LoadMemberCard();
+  // }, []);
 
   const styles = StyleSheet.create({
     // Page Structure
@@ -311,7 +341,7 @@ function Member_groupInfo(props) {
         <View style={styles.giHeader}>
           <Image
             style={styles.giImg}
-            source={require("../assets/img_stage18.png")}
+            source={{uri: groupInfo.image}}
           />
           <TouchableOpacity
             style={{ position: "absolute" }}
@@ -337,16 +367,16 @@ function Member_groupInfo(props) {
           </TouchableOpacity>
           {/* <View style={styles.giOrganizerImg}></View> */}
           <Text style={styles.giOrganizedByText}>Organized by</Text>
-          <Text style={styles.giOrganizerText}>Toby Wong</Text>
+          <Text style={styles.giOrganizerText}>{groupInfo.first_name} {groupInfo.last_name}</Text>
         </View>
         <Text style={styles.txtMembersIndicator}>
-          {props.joinedMember}30/40{props.totalMember}
+          Players {props.numJoined}/{groupInfo.member_limit}
         </Text>
         <Progress.Bar
           unfilledColor="#CDC5C5"
           borderColor="#FFFFFF"
           color="#81EC8D"
-          progress={joinedMember / totalMember}
+          progress={props.progJoined}
           width={350}
           height={13}
           borderRadius={13}
@@ -379,8 +409,7 @@ function Member_groupInfo(props) {
                   Group Description
                 </Text>
                 <Text style={styles.groupDescText}>
-                  This is a group description for players who are looking at
-                  other created groups cards. So you can only view no editing.
+                  {groupInfo.description}
                 </Text>
 
                 {/* All group information text */}
@@ -402,14 +431,14 @@ function Member_groupInfo(props) {
                     <Text style={styles.giTitleText}>Bird Type</Text>
                   </View>
                   <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-                    <Text style={styles.giText}>#C1314</Text>
+                    <Text style={styles.giText}>${groupInfo.cost_per_person}</Text>
                     <Text style={styles.giText}>30 December 2019</Text>
-                    <Text style={styles.giText}>ClearOne</Text>
+                    <Text style={styles.giText}>{groupInfo.name}</Text>
                     <Text style={styles.giLocationText}>
-                      4351 No 3 Rd #100,{"\n"}Richmond, BC V6X 3A7
+                      {groupInfo.location}
                     </Text>
-                    <Text style={styles.giText}>1pm - 4pm</Text>
-                    <Text style={styles.giText}>Feather</Text>
+                    <Text style={styles.giText}>{groupInfo.start_time}-{groupInfo.end_time}</Text>
+                    <Text style={styles.giText}>{groupInfo.birdie_type}</Text>
                   </View>
                 </View>
                 {/* Member Cards */}

@@ -168,13 +168,13 @@ function Organizer_groupInfo(props) {
           <Text style={styles.giOrganizerText}>{groupInfo.name}</Text>
         </View>
         <Text style={styles.txtMembersIndicator}>
-          {props.joinedMember}0/{groupInfo.member_limit}
+          Players {props.numJoined}/{groupInfo.member_limit}
         </Text>
         <Progress.Bar
           unfilledColor="#CDC5C5"
           borderColor="#FFFFFF"
           color="#81EC8D"
-          progress={prog}
+          progress={props.progJoined}
           width={350}
           height={13}
           borderRadius={13}

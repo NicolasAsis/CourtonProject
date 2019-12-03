@@ -71,6 +71,8 @@ function Login(props) {
             // console.log("test",userData.id)
             Actions.Home()
             await AsyncStorage.setItem("userId", JSON.stringify(userData.id));
+            await AsyncStorage.setItem("userFN", userData.first_name);
+            await AsyncStorage.setItem("userLN", userData.last_name);
         }
     }
     

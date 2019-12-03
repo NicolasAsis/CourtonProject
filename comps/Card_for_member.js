@@ -1,33 +1,75 @@
-import React, { useState } from "react";
+import React, { useState,useEffect} from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import * as Progress from 'react-native-progress';
 
 import {Actions} from 'react-native-router-flux';
 
+import axios from 'axios';
+import AsyncStorage from "@react-native-community/async-storage";
+
 function Card_for_member(props) {
+
+  const [numJoined, setNumJoined] = useState();
+  const [progJoined,setProgJoined]= useState();
+  
+  const ReadMemberAmt = async () => {
+
+  // Get user id
+  // const userId = await AsyncStorage.getItem('userId')
+  // console.log(userId);
+  var obj = {
+    key: "groups_users_read",
+    data: {
+      group_id:props.groupNum
+    }
+  };
+  var r = await axios.post("http://localhost:3001/post", obj);
+  // console.log("read", r.data);
+  var dbJoined = JSON.parse(r.data.body);
+  // console.log("read", dbJoined);
+  var d = dbJoined.data;
+  var numJoined = d.length;
+
+  var prog = props.totalMember ? (numJoined/ props.totalMember).toFixed(2) :0;
+  setProgJoined(prog);
+
+  setNumJoined(numJoined);
+};
+
+  useEffect(() => {
+    ReadMemberAmt();
+  }, []);
+
+  var date = props.date.replace(/"/g, '');
+  var chosenDate = new Date(date);
+  var chosenDate2 = new Date(date);
+  //console.log("date", date, chosenDate);
+  chosenDate = chosenDate.toLocaleDateString("en-US", {timeZone:"UTC", year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit"})
+  chosenDate2 = chosenDate2.toLocaleDateString("en-US", {timeZone:"UTC", year:"numeric", month:"2-digit", day:"2-digit"})
+  
   return (
     <View style={{ alignItems: "center", marginTop: 18 }}>
       <TouchableOpacity
         onPress={()=>{
-          Actions.Member_groupInfo()
+          Actions.Member_groupInfo({groupId:props.groupNum,progJoined:progJoined,numJoined:numJoined,chosenDate2:chosenDate2})
         }}
       >
       <View style={styles.card}>
         <View>
-          <Image style={styles.img} source={require("../assets/stage18.jpg")} />
+          <Image style={styles.img} source={{uri:props.groupImg}} />
 
-          <Text style={styles.txtBmtCentre}>{props.organizerName}</Text>
+          <Text style={styles.txtBmtCentre}>{props.organizerFN} {props.organizerLN}</Text>
 
           <Text style={styles.txtGroupNum}>Group #{props.groupNum}</Text>
-          <Text style={styles.txtGroupDate}>{props.date} {props.time}</Text>
+          <Text style={styles.txtGroupDate}>{chosenDate}</Text>
           {/* <Text style={styles.txtGroupJoinDate}>Join Before: Dec 20 11:30pm</Text> */}
-          <Text style={styles.txtGroupPlayerCount}>Players {props.joinedMember}/{props.totalMember}</Text>
+          <Text style={styles.txtGroupPlayerCount}>Players {numJoined}/{props.totalMember}</Text>
           <Text style={styles.txtGroupPrice}>${props.price}</Text>
           <Progress.Bar
             unfilledColor={"#CDC5C5"}
             borderColor="#FFFFFF"
             color={"#81EC8D"}
-            progress= {props.progressBarLoad}
+            progress= {progJoined}
             width={180}
             style={styles.ProgressBar}
           />
@@ -102,7 +144,7 @@ const styles = StyleSheet.create({
   txtGroupPlayerCount: {
     position: "absolute",
     color: "#9FA5B4",
-    fontSize: 9,
+    fontSize: 12,
     bottom: 25,
     left: "46%",
     fontFamily: "Open sans"
