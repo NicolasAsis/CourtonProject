@@ -35,7 +35,7 @@ function Profile(props) {
     var dbusers = JSON.parse(r.data.body);
     var userData = dbusers.data[0];
 
-    console.log(dbusers.data[0]);
+    // console.log(dbusers.data[0]);
     // console.log("test",userData.id)
     setUserFN(userData.first_name);
     setUserLN(userData.last_name);
@@ -55,14 +55,13 @@ function Profile(props) {
 
 }
 
-console.log(skillLevelImg)
-
 const [numOfCreated, setNumCreated] = useState(0);
+
 const ReadCreatedGroups = async () => {
 
   // Get user id
   const userId = await AsyncStorage.getItem('userId')
-  console.log(userId);
+  // console.log(userId);
   var obj = {
     key: "groups_read",
     data: {
@@ -72,18 +71,43 @@ const ReadCreatedGroups = async () => {
   var r = await axios.post("http://localhost:3001/post", obj);
   // console.log("read", r.data);
   var dbCreated = JSON.parse(r.data.body);
-  console.log("read", dbCreated);
+  // console.log("read", dbCreated);
   var d = dbCreated.data;
   var numCreated = d.length;
   setNumCreated(numCreated);
 };
 
+const [numOfJoined, setNumJoined] = useState();
+
+  const ReadJoined = async () => {
+
+    // Get user id
+    const userId = await AsyncStorage.getItem('userId')
+    // console.log(userId);
+    var obj = {
+      key: "groups_users_read",
+      data: {
+        user_id:userId
+      }
+    };
+    var r = await axios.post("http://localhost:3001/post", obj);
+    // console.log("read", r.data);
+    var dbJoined = JSON.parse(r.data.body);
+    // console.log("read", dbJoined);
+    var d = dbJoined.data;
+    var numJoined = d.length;
+
+    setNumJoined(numJoined);
+  };
+
+
 useEffect(() => {
   ReadUsers();
   ReadCreatedGroups();
+  ReadJoined();
 }, []);
 
-  const [avatarSource, setAvatarSource] = useState('https://initia.org/wp-content/uploads/2017/07/default-profile.png');
+  const [avatarSource, setAvatarSource] = useState({uri: 'https://initia.org/wp-content/uploads/2017/07/default-profile.png'});
   // const [SelectImg, setSelectImg] = useState('');
   //select image
 
@@ -101,36 +125,35 @@ useEffect(() => {
         console.log('User tapped custom button: ', response.customButton);
       } else {
       console.log("response", response)
-      setAvatarSource({
-        avatarSource: response.uri
-      })
+      const source = { uri: response.uri };
+      setAvatarSource({source})
       console.log(avatarSource);
       // setChannelImageHandler(source.uri)
       }
     });
 }
-  const LoadComments = async () => {
-    var obj = {
-      key: "users_read",
-      data: {
-        name: name,
-        id: id
-      }
-    };
-    // var r = await axios.post("http://142.232.162.71:3001/post", obj);
-    // console.log("read", r.data);
-    // var dbusers = JSON.parse(r.data.body);
-    // console.log("read", dbusers);
-    // setUsers(dbusers.data);
-  };
+  // const LoadComments = async () => {
+  //   var obj = {
+  //     key: "users_read",
+  //     data: {
+  //       name: name,
+  //       id: id
+  //     }
+  //   };
+  //   var r = await axios.post("http://142.232.162.71:3001/post", obj);
+  //   console.log("read", r.data);
+  //   var dbusers = JSON.parse(r.data.body);
+  //   console.log("read", dbusers);
+  //   setUsers(dbusers.data);
+  // };
 
   const LogOut = async () => {
       await AsyncStorage.clear();
   }
 
-  useEffect(() => {
-    LoadComments();
-  }, []);
+  // useEffect(() => {
+  //   LoadComments();
+  // }, []);
 
   return (
     <View>
@@ -160,11 +183,8 @@ useEffect(() => {
               alignItems: "center"
             }}
           >
-           {setAvatarSource && <Image style={styles.profilePic} source={avatarSource}
-            // source={require("../assets/img_profile_banner.png")}
-            />
-              
-            }
+           <Image style={styles.profilePic} source={avatarSource}/>
+            
             <TouchableOpacity
              onPress={()=>{
               SelectImg();
@@ -199,7 +219,7 @@ useEffect(() => {
                     {numOfCreated}
                   </Text>
                   <Text style={styles.txtCreatedJoined}>
-                    {props.txtCreatedGroup}Created{" "}
+                      Created{" "}
                   </Text>
                 </TouchableOpacity>
 
@@ -209,9 +229,9 @@ useEffect(() => {
                     Actions.reset("MyJoinedGroup");
                   }}
                 >
-                  <Text style={styles.txtJoinedNum}>{props.txtJoinedNum}5</Text>
+                  <Text style={styles.txtJoinedNum}>{numOfJoined}</Text>
                   <Text style={styles.txtCreatedJoined}>
-                    {props.txtJoinedGroup}Joined
+                    Joined
                   </Text>
                 </TouchableOpacity>
               </View>
