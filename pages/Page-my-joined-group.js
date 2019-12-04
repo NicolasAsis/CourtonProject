@@ -14,6 +14,7 @@ import HamMenu from "../comps/HamMenu";
 
 import axios from 'axios';
 import AsyncStorage from "@react-native-community/async-storage";
+import {url} from '../vars';
 
 var noResult = null;
 
@@ -32,7 +33,7 @@ function MyJoinedGroup() {
         user_id:userId
       }
     };
-    var r = await axios.post("http://localhost:3001/post", obj);
+    var r = await axios.post(url, obj);
     // console.log("read", r.data);
     var dbJoined = JSON.parse(r.data.body);
     // console.log("read", dbJoined);
@@ -183,7 +184,7 @@ function MyJoinedGroup() {
                     time={d.start_time}
                     // joinedMember={obj.joinedMember}
                     totalMember={d.member_limit}
-                    price={d.price}
+                    price={d.cost_per_person}
                     // progressBarLoad={obj.progressBarLoad}
                     groupImg={d.image}
                   />

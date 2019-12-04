@@ -23,6 +23,7 @@ import HamMenu from "../comps/HamMenu";
 
 import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
+import {url} from '../vars';
 
 function Member_groupInfo(props) {
 
@@ -38,7 +39,7 @@ function Member_groupInfo(props) {
         id: props.groupId
       }
     };
-    var r = await axios.post("http://localhost:3001/post", obj);
+    var r = await axios.post(url, obj);
     // console.log("read", r.data);
     var dbGroupInfo = JSON.parse(r.data.body);
     //console.log("read", dbGroupInfo);
@@ -298,8 +299,9 @@ function Member_groupInfo(props) {
 
   const [modalVisible, setModalVisible] = useState(false);
   const [hamMenuVisible, setHamMenuVisible] = useState(false);
-  var joinedMember = 30;
-  var totalMember = 40;
+  // var joinedMember = 30;
+  // var totalMember = 40;
+  const moreMembersNum = props.numJoined - 1;
 
   return (
     <View
@@ -432,7 +434,7 @@ function Member_groupInfo(props) {
                   </View>
                   <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
                     <Text style={styles.giText}>${groupInfo.cost_per_person}</Text>
-                    <Text style={styles.giText}>30 December 2019</Text>
+                    <Text style={styles.giText}>{props.chosenDate2}</Text>
                     <Text style={styles.giText}>{groupInfo.name}</Text>
                     <Text style={styles.giLocationText}>
                       {groupInfo.location}
@@ -448,7 +450,7 @@ function Member_groupInfo(props) {
                     backgroundColor: "#FFFFFF"
                   }}
                 >
-                  {data.map((obj, i) => {
+                  {/* {data.map((obj, i) => {
                     return (
                       <Card_members
                         // key = {i}
@@ -458,12 +460,23 @@ function Member_groupInfo(props) {
                         url={obj.url}
                       />
                     );
-                  })}
+                  })} */}
+
+                      <Card_members
+                        // key = {i}
+                        // id={obj.id}
+                        memberFN={groupInfo.first_name}
+                        memberLN={groupInfo.last_name}
+                        organizer="Organizer"
+                        // url={obj.url}
+                        skillLevel={groupInfo.skill_level}
+                      />
+            
                 </View>
                 <TouchableOpacity
                   style={{ flexDirection: "row", backgroundColor: "#FFFFFF" }}
                   onPress={() => {
-                    Actions.MoreMembers();
+                    Actions.MoreMembers({groupId:props.groupId});
                   }}
                 >
                   <View>
@@ -473,7 +486,7 @@ function Member_groupInfo(props) {
                     <Circle_extra_member />
                   </View>
                   <Text style={[styles.giText, { left: 26, top: 5 }]}>
-                    +2 more
+                    +{moreMembersNum} more
                   </Text>
                 </TouchableOpacity>
                 <Image

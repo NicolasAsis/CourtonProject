@@ -18,6 +18,7 @@ import TextInput_popup from "../comps/TextInput_popup";
 import AsyncStorage from "@react-native-community/async-storage";
 
 import axios from 'axios';
+import {url} from '../vars';
 
 function GroupSummary(props) {
 
@@ -119,7 +120,7 @@ function GroupSummary(props) {
         courts_selected: selectedCourts
       }
     };
-    var r = await axios.post("http://localhost:3001/post", obj);
+    var r = await axios.post(url, obj);
     console.log("create", r.data);
 
     var dbgroup = JSON.parse(r.data.body);
@@ -157,7 +158,7 @@ function GroupSummary(props) {
         group_id:props
       }
     };
-    var r = await axios.post("http://localhost:3001/post", obj);
+    var r = await axios.post(url, obj);
     console.log("create", r.data);
   };
 
