@@ -14,10 +14,13 @@ import ImagePicker from 'react-native-image-picker';
 
 import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
+import {url} from '../vars';
 
 
 function Profile(props) {
 
+  const [skillLevelImg, setSkillLevelImg] = useState("");
+  const [skillLevel, setSkillLevel] = useState("");
   const [userFN,setUserFN] = useState("");
   const [userLN,setUserLN] = useState("");
   const [userEmail,setUserEmail] = useState("");
@@ -31,7 +34,7 @@ function Profile(props) {
             id:userId
         }
     }
-    var r = await axios.post("http://localhost:3001/post", obj);
+    var r = await axios.post(url, obj);
     var dbusers = JSON.parse(r.data.body);
     var userData = dbusers.data[0];
 
@@ -41,6 +44,19 @@ function Profile(props) {
     setUserLN(userData.last_name);
     setUserEmail(userData.email);
 
+    console.log(userData.skill_level);
+
+    if(userData.skill_level==1){
+      setSkillLevelImg(require("../assets/img_level1.png"))
+      setSkillLevel("Beginner")
+    } else if (userData.skill_level==2) {
+      setSkillLevelImg(require("../assets/img_level2.png"))
+      setSkillLevel("Intermediate")
+    }else if (userData.skill_level==3) {
+      setSkillLevelImg(require("../assets/img_level3.png"))
+      setSkillLevel("Advanced")
+    }
+    console.log(skillLevelImg)
 }
 
 const [numOfCreated, setNumCreated] = useState();
@@ -55,7 +71,7 @@ const ReadCreatedGroups = async () => {
       organizer_id:userId
     }
   };
-  var r = await axios.post("http://localhost:3001/post", obj);
+  var r = await axios.post(url, obj);
   // console.log("read", r.data);
   var dbCreated = JSON.parse(r.data.body);
   // console.log("read", dbCreated);
@@ -78,7 +94,7 @@ const [numOfJoined, setNumJoined] = useState();
         user_id:userId
       }
     };
-    var r = await axios.post("http://localhost:3001/post", obj);
+    var r = await axios.post(url, obj);
     // console.log("read", r.data);
     var dbJoined = JSON.parse(r.data.body);
     // console.log("read", dbJoined);
@@ -114,7 +130,7 @@ useEffect(() => {
       } else {
       console.log("response", response)
       const source = { uri: response.uri };
-      setAvatarSource({source})
+      setAvatarSource(source)
       console.log(avatarSource);
       // setChannelImageHandler(source.uri)
       }
@@ -235,10 +251,16 @@ useEffect(() => {
           justifyContent: "center",
           alignItems: "center",
           height: 550,
-          backgroundColor:"#F3F1F1"
+          backgroundColor:"#FFFFFF"
         }}
       >
-        <View style={{ width: "100%", height: 100, zIndex: 10 }}>
+        <View style={styles.skillLevelBg}>
+        <Text style={styles.infoTitle}>Your Skill Level</Text>
+          <Image
+          style={{width:200, height:51}}
+          source={skillLevelImg}
+          />
+          <Text style={styles.skillLevelText}>{skillLevel}</Text>
         </View>
 
         {/* === info title  === */}
@@ -388,6 +410,28 @@ const styles = StyleSheet.create({
     alignItems:"center",
     display:"flex",
     flexDirection:"row"
+},
+skillLevelBg:{
+  width: "100%", 
+  height: 130, 
+  zIndex: 10, 
+  justifyContent:'center', 
+  alignItems:'center',
+  backgroundColor:'#ffffff',
+  shadowColor:'black',
+  shadowOffset:{
+    x:0, y:3
+  } ,
+  shadowRadius:10,
+  shadowOpacity:0.1
+
+},
+skillLevelText:{
+  fontFamily: 'Open Sans',
+    fontSize: 15,
+    lineHeight: 20,
+    marginTop:10,
+    color: '#094E76'
 }
 
 });

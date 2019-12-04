@@ -13,6 +13,8 @@ import HamMenu from "../comps/HamMenu";
 import axios from 'axios';
 import AsyncStorage from "@react-native-community/async-storage";
 
+import {url} from '../vars';
+
 var noResult = null;
 function MyCreatedGroup() {
   const [hamMenuVisible, setHamMenuVisible] = useState(false);
@@ -41,7 +43,7 @@ function MyCreatedGroup() {
   //     key: "groups_users_read",
   //     data: {}
   //   };
-  //   var r = await axios.post("http://localhost:3001/post", obj);
+  //   var r = await axios.post(url, obj);
   //   // console.log("read", r.data);
   //   var dbCreated = JSON.parse(r.data.body);
   //   console.log("read", dbCreated);
@@ -61,7 +63,7 @@ function MyCreatedGroup() {
         organizer_id:userId
       }
     };
-    var r = await axios.post("http://localhost:3001/post", obj);
+    var r = await axios.post(url, obj);
     // console.log("read", r.data);
     var dbCreated = JSON.parse(r.data.body);
     console.log("read", dbCreated);

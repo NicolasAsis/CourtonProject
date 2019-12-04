@@ -25,6 +25,8 @@ import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
 import { Row } from "native-base";
 
+import {url} from '../vars';
+
 var verifyEmail;
 var verifyEmail2;
 
@@ -55,7 +57,7 @@ function Signup(props) {
   //       password: password
   //     }
   //   };
-  //   var r = await axios.post("http://localhost:3001/post", obj);
+  //   var r = await axios.post(url, obj);
   //   console.log("create", r.data);
   // };
 
@@ -86,7 +88,7 @@ function Signup(props) {
       key: "users_read",
       data: {}
     };
-    var r = await axios.post("http://localhost:3001/post", obj);
+    var r = await axios.post(url, obj);
     // console.log("read", r.data);
     var dbusers = JSON.parse(r.data.body);
     console.log("read", dbusers);

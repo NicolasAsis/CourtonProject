@@ -44,7 +44,7 @@ function Route() {
 
                 <Scene key="Welcome" component={Welcome} />
                 <Scene key="OnBoarding_1" component={OnBoarding_1} />
-                <Scene key="OboardSwipe" component={OnboardSwipe} />
+                <Scene key="OnboardSwipe" component={OnboardSwipe} />
 
                 <Scene key="Home" component={Home} />
                 <Scene key="GroupInfo" component={GroupInfo} />

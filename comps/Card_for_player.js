@@ -6,6 +6,7 @@ import {Actions} from 'react-native-router-flux';
 
 import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
+import {url} from '../vars';
 
 function Card_for_player(props) {
 
@@ -23,7 +24,7 @@ function Card_for_player(props) {
       group_id:props.groupNum
     }
   };
-  var r = await axios.post("http://localhost:3001/post", obj);
+  var r = await axios.post(url, obj);
   // console.log("read", r.data);
   var dbJoined = JSON.parse(r.data.body);
   // console.log("read", dbJoined);
@@ -44,14 +45,16 @@ function Card_for_player(props) {
 
   var date = props.date.replace(/"/g, '');
   var chosenDate = new Date(date);
+  var chosenDate2 = new Date(date);
   //console.log("date", date, chosenDate);
   chosenDate = chosenDate.toLocaleDateString("en-US", {timeZone:"UTC", year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit"})
+  chosenDate2 = chosenDate2.toLocaleDateString("en-US", {timeZone:"UTC", year:"numeric", month:"2-digit", day:"2-digit"})
   return (
     <View style={{ alignItems: "center", marginTop: 18, width:'100%' }}>
       <TouchableOpacity
        style={styles.card}
         onPress={()=>{
-          Actions.GroupInfo({groupId:props.groupNum,progJoined:progJoined,numJoined:numJoined})
+          Actions.GroupInfo({groupId:props.groupNum,progJoined:progJoined,numJoined:numJoined,chosenDate2:chosenDate2})
       }}
       >
       <View>

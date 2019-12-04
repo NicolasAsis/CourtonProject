@@ -22,6 +22,8 @@ import HamMenu from "../comps/HamMenu";
 import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
 
+import {url} from '../vars';
+
 function GroupInfo(props) {
   const LoadMemberCard = async () => {
     var obj = {
@@ -53,7 +55,7 @@ function GroupInfo(props) {
         id: props.groupId
       }
     };
-    var r = await axios.post("http://localhost:3001/post", obj);
+    var r = await axios.post(url, obj);
     // console.log("read", r.data);
     var dbGroupInfo = JSON.parse(r.data.body);
     //console.log("read", dbGroupInfo);
@@ -243,6 +245,8 @@ function GroupInfo(props) {
   const [hamMenuVisible, setHamMenuVisible] = useState(false);
 
   // console.log("groupId",groupNum);
+  const moreMembersNum = props.numJoined - 1;
+
   return (
     <View>
       <View style={styles.gipageStructure}>
@@ -271,7 +275,7 @@ function GroupInfo(props) {
           isVisible={modalVisible}
           style={{ margin: 0 }}
         >
-          <Join_group_popup setShowPopup={setModalVisible} groupId={groupInfo.id}/>
+          <Join_group_popup setShowPopup={setModalVisible} groupId={groupInfo.id} chosenDate={props.chosenDate2}/>
         </Modal>
 
         {/* Main Header */}
@@ -363,7 +367,7 @@ function GroupInfo(props) {
                   </View>
                   <View style={{ flex: 1 }}>
                     <Text style={styles.giText}>${groupInfo.cost_per_person}</Text>
-                    <Text style={styles.giText}>30 December 2019</Text>
+                    <Text style={styles.giText}>{props.chosenDate2}</Text>
                     <Text style={styles.giText}>{groupInfo.name}</Text>
                     <Text style={styles.giLocationText}>
                         {groupInfo.location}
@@ -374,7 +378,7 @@ function GroupInfo(props) {
                 </View>
                 {/* Member Cards */}
                 <View style={{ alignItems: "flex-start" }}>
-                  {data.map((obj, i) => {
+                  {/* {data.map((obj, i) => {
                     return (
                       <Card_members
                         // key = {i}
@@ -384,13 +388,23 @@ function GroupInfo(props) {
                         url={obj.url}
                       />
                     );
-                  })}
+                  })} */}
+                   <Card_members
+                        // key = {i}
+                        // id={obj.id}
+                        memberFN={groupInfo.first_name}
+                        memberLN={groupInfo.last_name}
+                        organizer="Organizer"
+                        // url={obj.url}
+                        skillLevel={groupInfo.skill_level}
+                      />
+            
                 </View>
                 {/* this TO go to expanded member page */}
                 <TouchableOpacity
                   style={{ flexDirection: "row", backgroundColor: "#ffffff" }}
                   onPress={() => {
-                    Actions.MoreMembers();
+                    Actions.MoreMembers({groupId:props.groupId});
                   }}
                 >
                   <View style={{ flexDirection: "row" }}>
@@ -401,7 +415,7 @@ function GroupInfo(props) {
                       <Circle_extra_member />
                     </View>
                     <Text style={[styles.giText, { left: 26, top: 5 }]}>
-                      +2 more
+                      +{moreMembersNum} more
                     </Text>
                   </View>
                 </TouchableOpacity>

@@ -6,6 +6,7 @@ import {Actions} from 'react-native-router-flux';
 
 import axios from 'axios';
 import AsyncStorage from "@react-native-community/async-storage";
+import {url} from '../vars';
 
 function Card_for_member(props) {
 
@@ -23,7 +24,7 @@ function Card_for_member(props) {
       group_id:props.groupNum
     }
   };
-  var r = await axios.post("http://localhost:3001/post", obj);
+  var r = await axios.post(url, obj);
   // console.log("read", r.data);
   var dbJoined = JSON.parse(r.data.body);
   // console.log("read", dbJoined);
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
   },
   txtGroupPrice: {
     position: "absolute",
-    fontSize: 16,
+    fontSize: 24,
     color: "#094E76",
     fontWeight: "bold",
     bottom: 25,
