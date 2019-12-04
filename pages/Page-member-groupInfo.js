@@ -23,6 +23,7 @@ import HamMenu from "../comps/HamMenu";
 
 import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
+import {url} from '../vars';
 
 function Member_groupInfo(props) {
 
@@ -38,7 +39,7 @@ function Member_groupInfo(props) {
         id: props.groupId
       }
     };
-    var r = await axios.post("http://localhost:3001/post", obj);
+    var r = await axios.post(url, obj);
     // console.log("read", r.data);
     var dbGroupInfo = JSON.parse(r.data.body);
     //console.log("read", dbGroupInfo);
@@ -433,7 +434,7 @@ function Member_groupInfo(props) {
                   </View>
                   <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
                     <Text style={styles.giText}>${groupInfo.cost_per_person}</Text>
-                    <Text style={styles.giText}>30 December 2019</Text>
+                    <Text style={styles.giText}>{props.chosenDate2}</Text>
                     <Text style={styles.giText}>{groupInfo.name}</Text>
                     <Text style={styles.giLocationText}>
                       {groupInfo.location}
@@ -465,9 +466,10 @@ function Member_groupInfo(props) {
                         // key = {i}
                         // id={obj.id}
                         memberFN={groupInfo.first_name}
-                       memberLN={groupInfo.last_name}
+                        memberLN={groupInfo.last_name}
                         organizer="Organizer"
                         // url={obj.url}
+                        skillLevel={groupInfo.skill_level}
                       />
             
                 </View>

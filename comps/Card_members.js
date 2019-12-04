@@ -1,12 +1,14 @@
-import React from "react";
+import React,{useState}from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+
+var skillLevelImg = null;
 
 function Card_members(props) {
   const styles = StyleSheet.create({
     //Card container
     cardContainer: {
       width: 330,
-      height: 68,
+      height: 90,
       borderRadius: 10,
       backgroundColor: "#FFFFFF",
       flexDirection: "row",
@@ -51,7 +53,8 @@ function Card_members(props) {
       // flex: 3,
       borderRadius: 10,
       justifyContent: "center",
-      left:'15%'
+      left:'15%',
+      // marginTop:10
       // flex:6
     },
     //"Organizer" text
@@ -66,9 +69,19 @@ function Card_members(props) {
       fontFamily: "Open sans",
       fontSize: 18,
       lineHeight: 25,
-      color: "#333333"
+      color: "#333333",
+      marginBottom:10
     }
   });
+
+  if(props.skillLevel==1){
+    skillLevelImg = (require("../assets/img_level1.png"));
+  } else if (props.skillLevel==2) {
+    skillLevelImg = (require("../assets/img_level2.png"));
+  }else if (props.skillLevel==3) {
+    skillLevelImg = (require("../assets/img_level3.png"));
+  }
+
   return (
     //Overall container
     <View style={{ alignItems: "center", marginBottom: 20 }}>
@@ -90,8 +103,12 @@ function Card_members(props) {
 
           {/* Organizer Name Section */}
           <View style={styles.organizerNameSec}>
-          <Text style={styles.organizerText}>{props.organizer}</Text>
+          {/* <Text style={styles.organizerText}>{props.organizer}</Text> */}
             <Text style={styles.organizerNameText}>{props.memberFN} {props.memberLN}</Text>
+            <Image
+                style={{width:125, height:32,marginBottom:10}}
+                source={skillLevelImg}
+            />
           </View>
         </View>
       </View>

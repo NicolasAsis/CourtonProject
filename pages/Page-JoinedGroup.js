@@ -6,6 +6,8 @@ import {Actions} from 'react-native-router-flux';
 import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
 
+import {url} from '../vars';
+
 function JoinedGroup(props) {
 
   const [groupInfo, setGroupsInfo] = useState([]);
@@ -20,7 +22,7 @@ function JoinedGroup(props) {
         id: props.groupId
       }
     };
-    var r = await axios.post("http://localhost:3001/post", obj);
+    var r = await axios.post(url, obj);
     // console.log("read", r.data);
     var dbGroupInfo = JSON.parse(r.data.body);
     //console.log("read", dbGroupInfo);
@@ -46,6 +48,10 @@ function JoinedGroup(props) {
   const [userFName,setUserFN] = useState();
   const [userLName,setUserLN] = useState();
 
+  // var date = groupInfo.booking_date.replace(/"/g, '');
+  // var chosenDate = new Date(date);
+  //console.log("date", date, chosenDate);
+  // chosenDate = chosenDate.toLocaleDateString("en-US", {timeZone:"UTC", year:"numeric", month:"2-digit", day:"2-digit"})
 
   return (
     <View style={styles.bg}>
@@ -72,11 +78,11 @@ function JoinedGroup(props) {
         </View>
         <View style={styles.info3}>
           <Text style={styles.label}>Date</Text>
-          <Text style={styles.data}>30 December 2019</Text>
+          <Text style={styles.data}>{props.chosenDate}</Text>
         </View>
         <View style={styles.info4}>
           <Text style={styles.label}>Time</Text>
-          <Text style={styles.data}>1pm - 4pm</Text>
+          <Text style={styles.data}>8pm - 10pm</Text>
         </View>
         <View style={styles.info5}>
           <Text style={styles.label}>Centre</Text>

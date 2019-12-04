@@ -24,6 +24,8 @@ import HamMenu from "../comps/HamMenu";
 import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
 
+import {url} from '../vars';
+
 function Organizer_groupInfo(props) {
   // console.log(props)
 
@@ -76,7 +78,7 @@ function Organizer_groupInfo(props) {
         id: props.groupId
       }
     };
-    var r = await axios.post("http://localhost:3001/post", obj);
+    var r = await axios.post(url, obj);
     // console.log("read", r.data);
     var dbGroupInfo = JSON.parse(r.data.body);
     //console.log("read", dbGroupInfo);
@@ -104,6 +106,9 @@ function Organizer_groupInfo(props) {
   // console.log("date", date, chosenDate);
   // chosenDate = chosenDate.toLocaleDateString("en-US", {timeZone:"UTC", year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit", second:"2-digit"})
   // console.log("date2", chosenDate);
+
+  const moreMembersNum = props.numJoined - 1;
+
   return (
     <View style={{ backgroundColor: "#ffffff" }}>
       {/* Ham Menu */}
@@ -247,7 +252,7 @@ function Organizer_groupInfo(props) {
                     backgroundColor: "#ffffff"
                   }}
                 >
-                  {data.map((obj, i) => {
+                  {/* {data.map((obj, i) => {
                     return (
                       <Card_members
                         // key = {i}
@@ -257,13 +262,22 @@ function Organizer_groupInfo(props) {
                         url={obj.url}
                       />
                     );
-                  })}
+                  })} */}
+                  <Card_members
+                        // key = {i}
+                        // id={obj.id}
+                        memberFN={groupInfo.first_name}
+                        memberLN={groupInfo.last_name}
+                        organizer="Organizer"
+                        // url={obj.url}
+                        skillLevel={groupInfo.skill_level}
+                      />
                 </View>
                 <View>
                   <TouchableOpacity
                     style={{ flexDirection: "row", backgroundColor: "#ffffff" }}
                     onPress={() => {
-                      Actions.MoreMembers();
+                      Actions.MoreMembers({groupId:props.groupId});
                     }}
                   >
                     <View>
@@ -273,7 +287,7 @@ function Organizer_groupInfo(props) {
                       <Circle_extra_member />
                     </View>
                     <Text style={[styles.giText, { left: 26, top: 5 }]}>
-                      +2 more
+                      +{moreMembersNum} more
                     </Text>
                   </TouchableOpacity>
                 </View>

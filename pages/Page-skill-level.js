@@ -12,6 +12,7 @@ import { Actions } from "react-native-router-flux";
 import Birdie from "../comps/Birdie";
 import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
+import {url} from '../vars';
 
 const birdies = [1, 2, 3];
 
@@ -76,7 +77,7 @@ function SkillLevel({ navigation }) {
         skill_level: skill_level
       }
     };
-    var r = await axios.post("http://localhost:3001/post", obj);
+    var r = await axios.post(url, obj);
     console.log("create", r.data);
   };
 
@@ -93,13 +94,13 @@ function SkillLevel({ navigation }) {
   return (
     <View style={styles.bg}>
       <Text style={styles.title}>What is your skill level?</Text>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         onPress={() => {
           Actions.Signup();
         }}
       >
         <Text>Back</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <View
         style={{
           flexDirection: "row"
