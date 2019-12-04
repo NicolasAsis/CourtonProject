@@ -39,7 +39,7 @@ function Welcome(props) {
         <TouchableOpacity
           style={styles.loginBut}
           onPress={() => {
-            Actions.OnBoarding_1()
+            Actions.OnboardSwipe()
           }}
         >
           <Text style={styles.loginButText}>GET STARTED</Text>

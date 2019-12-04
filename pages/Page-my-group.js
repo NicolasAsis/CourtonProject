@@ -18,6 +18,7 @@ import * as Animatable from "react-native-animatable";
 
 import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
+import {url} from '../vars';
 
 
 function MyGroup() {
@@ -33,7 +34,7 @@ function MyGroup() {
         user_id: userId
       }
     };
-    var r = await axios.post("http://localhost:3001/post", obj);
+    var r = await axios.post(url, obj);
     // console.log("read", r.data);
     var dbJoined = JSON.parse(r.data.body);
     console.log("read", dbJoined);
@@ -54,7 +55,7 @@ function MyGroup() {
         organizer_id: userId
       }
     };
-    var r = await axios.post("http://localhost:3001/post", obj);
+    var r = await axios.post(url, obj);
     // console.log("read", r.data);
     var dbCreated = JSON.parse(r.data.body);
     console.log("read", dbCreated);
@@ -189,28 +190,7 @@ function MyGroup() {
   //     </View>
 
   // }
-  const [groupType, setGroupType] = useState(
-    <View>
-      {groupsJoined.map((d, i) => {
-        return (
-          <Card_for_member
-            key={i}
-            // id={d.id}
-            organizerFN={d.first_name}
-            organizerLN={d.last_name}
-            groupNum={d.group_id}
-            date={d.booking_date}
-            time={d.start_time}
-            // joinedMember={obj.joinedMember}
-            totalMember={d.member_limit}
-            price={d.price}
-            // progressBarLoad={obj.progressBarLoad}
-            groupImg={d.image}
-          />
-        );
-      })}
-    </View>
-  );
+  const [groupType, setGroupType] = useState(1);
 
   // useEffect(() => {
   //   LoadJoinedGroup();
@@ -241,61 +221,15 @@ function MyGroup() {
         options={[
           {
             label: "Joined",
-            value: "Joined"
+            value: 1
           },
           {
             label: "Created",
-            value: "Created"
+            value: 2
           }
         ]}
         onPress={val => {
-          if (val == "Joined") {
-            setGroupType(
-              <View>
-                {groupsJoined.map((d, i) => {
-                  return (
-                    <Card_for_member
-                      key={i}
-                      // id={d.id}
-                      organizerFN={d.first_name}
-                      organizerLN={d.last_name}
-                      groupNum={d.group_id}
-                      date={d.booking_date}
-                      time={d.start_time}
-                      // joinedMember={obj.joinedMember}
-                      totalMember={d.member_limit}
-                      price={d.price}
-                      // progressBarLoad={obj.progressBarLoad}
-                      groupImg={d.image}
-                    />
-                  );
-                })}
-              </View>
-            );
-          } else if (val == "Created") {
-            setGroupType(
-              <View>
-                {groupsCreated.map((d, i) => {
-                  return (
-                    <Card_for_organizer
-                      // key = {i}
-                      key={i}
-                      groupId={d.id}
-                      bmtCentre={d.name}
-                      // groupNum={obj.groupNum}
-                      date={d.booking_date}
-                      time={d.start_time}
-                      // joinedMember={obj.joinedMember}
-                      totalMember={d.member_limit}
-                      price={d.price}
-                      groupImg={d.image}
-                      // progressBarLoad={obj.progressBarLoad}
-                    />
-                  );
-                })}
-              </View>
-            );
-          }
+          setGroupType(val);
         }}
       />
 
@@ -368,7 +302,42 @@ function MyGroup() {
                 })
             } */}
 
-            {groupType}
+            {groupType === 1 ? groupsJoined.map((d, i) => {
+                  return (
+                    <Card_for_member
+                      key={i}
+                      // id={d.id}
+                      organizerFN={d.first_name}
+                      organizerLN={d.last_name}
+                      groupNum={d.group_id}
+                      date={d.booking_date}
+                      time={d.start_time}
+                      // joinedMember={obj.joinedMember}
+                      totalMember={d.member_limit}
+                      price={d.cost_per_person}
+                      // progressBarLoad={obj.progressBarLoad}
+                      groupImg={d.image}
+                    />
+                  );
+                }) : groupsCreated.map((d, i) => {
+                  return (
+                    <Card_for_organizer
+                      // key = {i}
+                      key={i}
+                      groupId={d.id}
+                      bmtCentre={d.name}
+                      // groupNum={obj.groupNum}
+                      date={d.booking_date}
+                      time={d.start_time}
+                      // joinedMember={obj.joinedMember}
+                      totalMember={d.member_limit}
+                      price={d.price}
+                      groupImg={d.image}
+                      // progressBarLoad={obj.progressBarLoad}
+                    />
+                  );
+                })}
+            
           </View>
         </ScrollView>
       </View>

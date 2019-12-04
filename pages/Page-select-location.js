@@ -15,6 +15,7 @@ import Modal from "react-native-modal";
 import HamMenu from "../comps/HamMenu";
 import axios from "axios";
 
+import {url} from '../vars';
 
 
 function SelectLocation() {
@@ -24,7 +25,7 @@ function SelectLocation() {
       key: "badminton_centres_read",
       data: {}
     };
-    var r = await axios.post("http://localhost:3001/post", obj);
+    var r = await axios.post(url, obj);
     // console.log("read", r.data);
     var dbCentres = JSON.parse(r.data.body);
     console.log("read", dbCentres);

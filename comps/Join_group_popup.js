@@ -8,6 +8,7 @@ import * as Animatable from "react-native-animatable";
 
 import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
+import {url} from '../vars';
 
 function Join_group_popup(props) {
   console.log(props.groupId);
@@ -37,7 +38,7 @@ function Join_group_popup(props) {
         group_id:props.groupId
       }
     };
-    var r = await axios.post("http://localhost:3001/post", obj);
+    var r = await axios.post(url, obj);
     console.log("create", r.data);
   };
 
@@ -65,7 +66,7 @@ function Join_group_popup(props) {
               onPress={()=>{
                 props.setShowPopup(false)
                 CreateGroupUsers();
-                Actions.JoinedGroup({groupId:props.groupId})
+                Actions.JoinedGroup({groupId:props.groupId,chosenDate:props.chosenDate})
               }}
               style={styles.yesButTouchableOp}
             >

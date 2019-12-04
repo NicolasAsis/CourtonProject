@@ -12,7 +12,7 @@ function Card_comments({ name, comment, time }) {
 
       <View style={{ marginLeft: 50 }}>
         <Text style={styles.txtName}>Name{name}</Text>
-        <Text style={styles.txtComment}>CommentCommentCommentCommentCommentCommentCommentCommentComment{comment}</Text>
+        <Text style={styles.txtComment}>Amazing Group{comment}</Text>
         <Text style={styles.txtTime}>30mins ago {time}</Text>
       </View>
       

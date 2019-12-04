@@ -26,7 +26,8 @@ import Reminder_bmt_popup from '../comps/Reminder_bmt_popup';
 
 import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
-import jssPluginPropsSort from "jss-plugin-props-sort";
+
+import {url} from '../vars';
 
 var noResult = null;
 
@@ -146,7 +147,7 @@ function Home() {
       key: "groups_read",
       data: {}
     };
-    var r = await axios.post("http://localhost:3001/post", obj);
+    var r = await axios.post(url, obj);
     // console.log("read", r.data);
     var dbGroups = JSON.parse(r.data.body);
     //console.log("read", dbGroupInfo);
@@ -174,7 +175,7 @@ function Home() {
   //       id:props.organizerId
   //     }
   //   };
-  //   var r = await axios.post("http://localhost:3001/post", obj);
+  //   var r = await axios.post(url, obj);
   //   // console.log("read", r.data);
   //   var dbCreated = JSON.parse(r.data.body);
   //   console.log("read", dbCreated);
