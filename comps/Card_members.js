@@ -82,6 +82,7 @@ function Card_members(props) {
     skillLevelImg = (require("../assets/img_level3.png"));
   }
 
+  console.log(props.userId);
   return (
     //Overall container
     <View style={{ alignItems: "center", marginBottom: 20 }}>
@@ -95,11 +96,11 @@ function Card_members(props) {
             alignItems: "center"
           }}
         >
-          <View style={styles.organizerImg}>
+          {/* <View style={styles.organizerImg}> */}
             {/* Organizer Image */}
-            <Image source={{ uri: props.url }} />
+            <Image  style={styles.organizerImg} source={{uri:"https://sstsappca.s3.ca-central-1.amazonaws.com/bcit/d3/user"+props.userId+"profilePic.jpg"}} />
             {/* Section */}
-          </View>
+          {/* </View> */}
 
           {/* Organizer Name Section */}
           <View style={styles.organizerNameSec}>

@@ -84,7 +84,7 @@ function MoreMembers(props) {
               return (
                 <Card_members
                   key = {i}
-                  id={d.id}
+                  userId={d.user_id}
                   memberFN={d.first_name}
                   memberLN={d.last_name}
                   skillLevel={d.skill_level}

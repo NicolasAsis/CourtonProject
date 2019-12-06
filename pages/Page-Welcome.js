@@ -11,8 +11,32 @@ import {
 import { Actions } from 'react-native-router-flux';
 
 import AsyncStorage from '@react-native-community/async-storage';
+import axios from "axios";
+import {url} from '../vars';
 
 function Welcome(props) {
+
+  const ReadUser = async()=>{
+    const first_name = await AsyncStorage.getItem("first_name");
+    const email = await AsyncStorage.getItem("email");
+    var obj = {
+        key:"users_read",
+        data:{
+            first_name:first_name,
+            email:email
+        }
+    }
+    var r = await axios.post(url, obj);
+    var dbusers = JSON.parse(r.data.body);
+
+    var userData = dbusers.data[0];
+
+    console.log(dbusers.data[0]);
+    //setUsers(dbusers);
+    await AsyncStorage.setItem("userId", JSON.stringify(userData.id));
+  }
+
+
   //changing Ui value
   const [firstName, setFirstName] = useState("");
   //retrive first name from sign uo
@@ -41,6 +65,7 @@ function Welcome(props) {
         <TouchableOpacity
           style={styles.loginBut}
           onPress={() => {
+            ReadUser();
             Actions.OnboardSwipe()
           }}
         >
