@@ -15,6 +15,7 @@ import ImagePicker from 'react-native-image-picker';
 import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
 import {url} from '../vars';
+import RNFetchBlob from 'rn-fetch-blob';
 
 
 function Profile(props) {
@@ -24,6 +25,7 @@ function Profile(props) {
   const [userFN,setUserFN] = useState("");
   const [userLN,setUserLN] = useState("");
   const [userEmail,setUserEmail] = useState("");
+  const [uid, setUId] = useState(null);
 
   const ReadUsers = async()=>{
     const userId = await AsyncStorage.getItem('userId')
@@ -43,6 +45,7 @@ function Profile(props) {
     setUserFN(userData.first_name);
     setUserLN(userData.last_name);
     setUserEmail(userData.email);
+    setUId(userData.id);
 
     console.log(userData.skill_level);
 
@@ -111,14 +114,14 @@ useEffect(() => {
   ReadJoined();
 }, []);
 
-  const [avatarSource, setAvatarSource] = useState({uri: 'https://initia.org/wp-content/uploads/2017/07/default-profile.png'});
+  const [avatarSource, setAvatarSource] = useState(null);
   // const [SelectImg, setSelectImg] = useState('');
   //select image
 
   const SelectImg = async () =>{
 
-
-    ImagePicker.showImagePicker({noData:true, mediaType:'photo'} ,(response) => {
+    const userId = await AsyncStorage.getItem('userId');
+    ImagePicker.showImagePicker({noData:true, mediaType:'photo'} ,async (response) => {
       console.log('Response = ', response);
     
       if (response.didCancel) {
@@ -130,6 +133,28 @@ useEffect(() => {
       } else {
       console.log("response", response)
       const source = { uri: response.uri };
+
+      var obj = {
+        key:"upload_image",
+        data:{
+          name:"user"+userId+"profilePic.jpg"
+        }
+      }
+
+      var r = await axios.post(url, obj);
+      var json = JSON.parse(r.data.body).data.url;
+      var newUri = source.uri.replace("file://","")
+      console.log("json",json);
+      console.log("json2", source.uri);
+
+      var r2 = await RNFetchBlob.fetch('PUT', json, {
+        "Accept":"image/*",
+        "Content-Type":"image/*"
+      }, RNFetchBlob.wrap(newUri));
+
+      //https://sstsappca.s3.ca-central-1.amazonaws.com/bcit/d3/name_of_img
+      console.log("r2",r2);
+
       setAvatarSource(source)
       console.log(avatarSource);
       // setChannelImageHandler(source.uri)
@@ -160,6 +185,8 @@ useEffect(() => {
   // }, []);
 
 
+  var source = (uid) ? {uri:"https://sstsappca.s3.ca-central-1.amazonaws.com/bcit/d3/user"+uid+"profilePic.jpg"}:{uri: 'https://initia.org/wp-content/uploads/2017/07/default-profile.png'};
+
   return (
     <View>
       {/* <TouchableOpacity
@@ -188,7 +215,7 @@ useEffect(() => {
               alignItems: "center"
             }}
           >
-           <Image style={styles.profilePic} source={avatarSource}/>
+           <Image style={styles.profilePic} source={avatarSource || source}/>
             
             <TouchableOpacity
              onPress={()=>{
