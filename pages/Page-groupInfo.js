@@ -44,11 +44,15 @@ function GroupInfo(props) {
   };
   // const [groupNum,setGroupNum] = useState();
   const [groupInfo, setGroupsInfo] = useState([]);
+
+  const [uid, setUId] = useState(null);
+
   const ReadGroupInfo = async () => {
     // Get user id
     // const userId = await AsyncStorage.getItem("userId");
     // console.log(props.groupId);
     // setGroupNum(props.groupId);
+
     var obj = {
       key: "groups_read",
       data: {
@@ -63,6 +67,7 @@ function GroupInfo(props) {
     var groupData = dbGroupInfo.data[0];
     //console.log("read", groupData);
     setGroupsInfo(groupData);
+    setUId(groupData.organizer_id);
   };
 
   useEffect(() => {
@@ -306,7 +311,11 @@ function GroupInfo(props) {
               source={require("../assets/but_ham.png")}
             />
           </TouchableOpacity>
-          <View style={styles.giOrganizerImg}></View>
+          <Image
+            style={styles.giOrganizerImg}
+            source={{uri:"https://sstsappca.s3.ca-central-1.amazonaws.com/bcit/d3/user"+uid+"profilePic.jpg"}}
+          />
+          {/* <View style={styles.giOrganizerImg}></View> */}
           <Text style={styles.giOrganizedByText}>Organized by</Text>
           <Text style={styles.giOrganizerText}>{groupInfo.first_name} {groupInfo.last_name}</Text>
         </View>
@@ -394,6 +403,7 @@ function GroupInfo(props) {
                         // id={obj.id}
                         memberFN={groupInfo.first_name}
                         memberLN={groupInfo.last_name}
+                        userId={uid}
                         organizer="Organizer"
                         // url={obj.url}
                         skillLevel={groupInfo.skill_level}
