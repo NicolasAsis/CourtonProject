@@ -158,6 +158,8 @@ function SelectTime(props, { navigation }) {
               mode="datetime"
               titleIOS="Pick date and time"
               format="HH:mm"
+              style={{color:"#000000", backgroundColor:"#5DB9F0"}}
+              // locale={}
             />
           </View>
         </View>

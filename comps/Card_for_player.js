@@ -46,15 +46,17 @@ function Card_for_player(props) {
   var date = props.date.replace(/"/g, '');
   var chosenDate = new Date(date);
   var chosenDate2 = new Date(date);
+  var chosenDate3 = new Date(date);
   //console.log("date", date, chosenDate);
-  chosenDate = chosenDate.toLocaleDateString("en-US", {timeZone:"UTC", year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit"})
-  chosenDate2 = chosenDate2.toLocaleDateString("en-US", {timeZone:"UTC", year:"numeric", month:"2-digit", day:"2-digit"})
+  chosenDate = chosenDate.toLocaleDateString("en-US", {timeZone:"America/Los_Angeles", year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit"})
+  chosenDate2 = chosenDate2.toLocaleDateString("en-US", {timeZone:"America/Los_Angeles", year:"numeric", month:"2-digit", day:"2-digit"})
+  chosenDate3 = chosenDate3.toLocaleDateString("en-US", {timeZone:"America/Los_Angeles", hour:"2-digit", minute:"2-digit"})
   return (
     <View style={{ alignItems: "center", marginTop: 18, width:'100%' }}>
       <TouchableOpacity
        style={styles.card}
         onPress={()=>{
-          Actions.GroupInfo({groupId:props.groupNum,progJoined:progJoined,numJoined:numJoined,chosenDate2:chosenDate2})
+          Actions.GroupInfo({groupId:props.groupNum,progJoined:progJoined,numJoined:numJoined,chosenDate2:chosenDate2,chosenDate3:chosenDate3})
       }}
       >
       <View>
@@ -117,21 +119,19 @@ const styles = StyleSheet.create({
     fontFamily: "Open sans"
   },
   txtGroupNum: {
-    fontSize: 11,
-    lineHeight: 15,
-    color: "#9FA5B4",
+    fontSize: 14,
+    color: "#6A6A6A",
     position: "absolute",
     width: 75,
-    height: 15,
     left: "46%",
     top: 44,
-    fontFamily: "Open sans"
+    fontFamily: "Open sans",
+    lineHeight:15
   },
   txtGroupDate: {
     position: "absolute",
-    fontSize: 11,
+    fontSize: 14,
     color: "#4A4A4A",
-    lineHeight: 15,
     left: "46%",
     top: 62,
     color: "#FE647B",
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   txtGroupPlayerCount: {
     position: "absolute",
     color: "#9FA5B4",
-    fontSize: 12,
+    fontSize: 14,
     bottom: 25,
     left: "46%",
     fontFamily: "Open sans"

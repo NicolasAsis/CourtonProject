@@ -338,7 +338,7 @@ const styles = StyleSheet.create({
     width: 85,
     height: 85,
     borderRadius: 100,
-    resizeMode:'contain',
+    resizeMode:'cover',
     // backgroundColor: "#fab"
   },
   txtName: {

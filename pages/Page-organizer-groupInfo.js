@@ -69,6 +69,8 @@ function Organizer_groupInfo(props) {
   // }, []);
 
   const [groupInfo, setGroupsInfo] = useState([]);
+
+  const [uid, setUId] = useState(null);
   const ReadOGroupInfo = async () => {
     // Get user id
     const userId = await AsyncStorage.getItem("userId");
@@ -86,6 +88,7 @@ function Organizer_groupInfo(props) {
     var groupData = dbGroupInfo.data[0];
     //console.log("read", groupData);
     setGroupsInfo(groupData);
+    setUId(groupData.organizer_id);
   };
 
   useEffect(() => {
@@ -168,6 +171,10 @@ function Organizer_groupInfo(props) {
               source={require("../assets/but_ham.png")}
             />
           </TouchableOpacity>
+          {/* <Image
+            style={styles.giOrganizerImg}
+            source={{uri:"https://sstsappca.s3.ca-central-1.amazonaws.com/bcit/d3/user"+uid+"profilePic.jpg"}}
+          /> */}
           {/* <View style={styles.giOrganizerImg}></View> */}
           <Text style={styles.giOrganizedByText}> #{props.groupId}</Text>
           <Text style={styles.giOrganizerText}>{groupInfo.name}</Text>
@@ -194,16 +201,21 @@ function Organizer_groupInfo(props) {
               height: 500,
               backgroundColor: "#ffffff",
               width: "100%",
-              justifyContent: "center",
-              alignItems: "center"
+              paddingBottom:20
+              // justifyContent: "center",
+              // alignItems: "center"
             }}
           >
             <ScrollView
-              style={{ flex: 1, width: "100%", backgroundColor: "#ffffff" }}
+              style={{flex: 1,backgroundColor: "#ffffff"}}
             >
               {/* Group Description */}
-              <View style={{ backgroundColor: "#ffffff", paddingLeft: "6%" }}>
-                <Text style={styles.groupDescHeaderText}>
+              <View style={{ 
+                backgroundColor: "#ffffff",
+                paddingLeft: 20,
+                paddingRight:10
+                }}>
+                <Text style={styles.gsTitleText}>
                   Group Description
                 </Text>
                 <Text style={styles.groupDescText}>
@@ -214,38 +226,64 @@ function Organizer_groupInfo(props) {
                 <View
                   style={{
                     display: "flex",
-                    flexDirection: "row",
+                    flexDirection: "column",
                     backgroundColor: "#ffffff",
                     justifyContent: "center",
                     alignItems: "center"
                   }}
                 >
-                  <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
-                    <Text style={styles.giTitleText}>Price Per Person</Text>
-                    <Text style={styles.giTitleText}>Date</Text>
-                    <Text style={styles.giTitleText}>Centre</Text>
-                    <Text style={styles.giTitleText}>Location</Text>
-                    <Text style={styles.giTitleText}>Time</Text>
-                    <Text style={styles.giTitleText}>Bird Type</Text>
-                    <Text style={styles.giTitleText}>Courts Selected</Text>
-                  </View>
-                  <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
-                    <Text style={styles.giText}>${groupInfo.cost_per_person}</Text>
-                    <Text style={styles.giText}>{props.chosenDate2}</Text>
-                    <Text style={styles.giText}>{groupInfo.name}</Text>
-                    <Text style={styles.giLocationText}>
+                   {/* <View style={{  backgroundColor: "#FFFFFF" }}> */}
+                    <View style={styles.rowStyle}>
+                    <Text style={styles.gsTitleText}>Price Per Person</Text>
+                    <Text style={styles.gsText}>${groupInfo.cost_per_person}</Text>
+                    </View>
+
+                    <View style={styles.rowStyle}>
+                    <Text style={styles.gsTitleText}>Centre</Text>
+                    <Text style={styles.gsText}>{groupInfo.name}</Text>
+                    </View>
+
+                    <View style={styles.rowStyle}>
+                    <Text style={styles.gsTitleText}>Location</Text>
+                    <Text style={styles.gsText}>
                       {groupInfo.location}
                     </Text>
-                    <Text style={styles.giText}>
-                      {groupInfo.start_time}-{groupInfo.end_time}
+                    </View>
+
+                    <View style={styles.rowStyle}>
+                    <Text style={styles.gsTitleText}>Time</Text>
+                    <Text style={styles.gsText}>
+                      {props.chosenDate3}
                     </Text>
-                    <Text style={styles.giText}>{groupInfo.birdie_type}</Text>
-                    <Text style={styles.giText}>
+                    </View>
+
+                    <View style={styles.rowStyle}>
+                    <Text style={styles.gsTitleText}>Bird Type</Text>
+                    <Text style={styles.gsText}>{groupInfo.birdie_type}</Text>
+                    </View>
+
+                    <View style={styles.rowStyle}>
+                    <Text style={styles.gsTitleText}>Courts Selected</Text>
+                    <Text style={styles.gsText}>
                       {groupInfo.courts_selected}
                     </Text>
-                  </View>
+                    </View>
+                    {/* </View> */}
+                 
                 </View>
                 {/* Member Cards */}
+                <Text
+                style={{
+                  fontFamily:'Open sans',
+                  fontSize:20,
+                  fontWeight:'bold',
+                  color: "#5DB9F0",
+                  paddingBottom:20,
+                  paddingTop:30
+                }}
+                >
+                  Members
+                </Text>
                 <View
                   style={{
                     alignItems: "flex-start",
@@ -268,6 +306,7 @@ function Organizer_groupInfo(props) {
                         // id={obj.id}
                         memberFN={groupInfo.first_name}
                         memberLN={groupInfo.last_name}
+                        userId={uid}
                         organizer="Organizer"
                         // url={obj.url}
                         skillLevel={groupInfo.skill_level}
@@ -280,18 +319,18 @@ function Organizer_groupInfo(props) {
                       Actions.MoreMembers({groupId:props.groupId});
                     }}
                   >
-                    <View>
+                    {/* <View>
                       <Circle_extra_member />
-                    </View>
-                    <View style={{ position: "absolute", left: "6%" }}>
+                    </View> */}
+                    {/* <View style={{ position: "absolute", left: "6%" }}>
                       <Circle_extra_member />
-                    </View>
+                    </View> */}
                     <Text style={[styles.giText, { left: 26, top: 5 }]}>
                       +{moreMembersNum} more
                     </Text>
                   </TouchableOpacity>
                 </View>
-                <Image
+                {/* <Image
                   style={{
                     width: 24,
                     height: 24,
@@ -299,8 +338,8 @@ function Organizer_groupInfo(props) {
                     marginLeft: 10
                   }}
                   source={require("../assets/icon_comment.png")}
-                />
-                <View
+                /> */}
+                {/* <View
                   style={{
                     alignItems: "center",
                     backgroundColor: "#ffffff",
@@ -308,20 +347,20 @@ function Organizer_groupInfo(props) {
                   }}
                 >
                   <Card_comment />
-                  <Card_comment />
-                  <View style={{ marginTop: 50 }}>
-                    <TextInput
+                  <Card_comment /> */}
+                  {/* <View style={{ marginTop: 50 }}> */}
+                    {/* <TextInput
                       style={styles.descInput}
                       placeholder="Type a group description..."
                       multiline
-                    />
-                    <View
+                    /> */}
+                    {/* <View
                       style={{
                         flexDirection: "column",
                         backgroundColor: "#ffffff"
                       }}
-                    >
-                      <View
+                    > */}
+                      {/* <View
                         style={{
                           flexDirection: "row",
                           backgroundColor: "#ffffff"
@@ -343,10 +382,10 @@ function Organizer_groupInfo(props) {
                         style={styles.btnDelete}
                       >
                         <Text style={styles.txtDelete}>Delete Group</Text>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </View>
+                      </TouchableOpacity> */}
+                    {/* </View> */}
+                  {/* </View> */}
+                {/* </View> */}
               </View>
             </ScrollView>
           </View>
@@ -377,7 +416,8 @@ const styles = StyleSheet.create({
   },
   giImg: {
     width: "100%",
-    height: "100%"
+    height: "100%",
+    resizeMode:'cover',
   },
   giBackBut: {
     width: 20,
@@ -441,19 +481,20 @@ const styles = StyleSheet.create({
   },
 
   //Group Information Text
-  giTitleText: {
-    fontFamily: "Open sans",
-    fontWeight: "bold",
-    fontSize: 15,
-    color: "#3C3C3C",
-    marginBottom: 32
-  },
+  // giTitleText: {
+  //   fontFamily: "Open sans",
+  //   fontWeight: "bold",
+  //   fontSize: 15,
+  //   color: "#3C3C3C",
+  //   marginBottom: 32
+  // },
   giText: {
     fontFamily: "Open sans",
-    fontSize: 15,
-    color: "#7C7B7B",
-    lineHeight: 20,
-    marginBottom: 32
+      fontSize: 18,
+      color: "#7C7B7B",
+      lineHeight: 20,
+      fontWeight:'bold',
+      marginBottom: 32
   },
   //Style location text, since mostly two lines
   giLocationText: {
@@ -560,5 +601,34 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "Open sans",
     color: "#094E76"
+  },
+  rowStyle: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingBottom: 30
+  },
+  gsTitleText: {
+    fontFamily: "Open sans",
+    fontWeight: "bold",
+    fontSize: 18,
+    color: "#3C3C3C",
+    flex: 1,
+    alignItems: "flex-end"
+  },
+  gsText: {
+    fontFamily: "Open sans",
+    fontSize: 18,
+    color: "#4B4B4B",
+    flex: 1
+    // flex:4
+  },
+  gsPriceText: {
+    fontFamily: "Open sans",
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#EB5757",
+    lineHeight: 33,
+    marginBottom: 11.1
+    // marginTop:
   }
 });

@@ -136,6 +136,7 @@ function Signup(props) {
           <View style={styles.nameContainer}>
           <Image style={styles.icon} source={require("../assets/icon_name.png")}/>
             <TextInput
+              placeholderTextColor={'#686868'} 
               style={styles.nameInput}
               placeholder="First Name"
               onChangeText={t => {
@@ -148,6 +149,7 @@ function Signup(props) {
           <View style={styles.nameContainer}>
           <Image style={styles.icon} source={require("../assets/icon_name.png")}/>
             <TextInput
+              placeholderTextColor={'#686868'} 
               style={styles.nameInput}
               placeholder="Last Name"
               onChangeText={t => {
@@ -160,6 +162,7 @@ function Signup(props) {
           <View style={styles.emailContainer}>
           <Image style={styles.icon} source={require("../assets/icon_email.png")}/>
             <TextInput
+              placeholderTextColor={'#686868'} 
               style={styles.emailInput}
               placeholder="Email"
               onChangeText={t => {
@@ -173,6 +176,7 @@ function Signup(props) {
           <View style={styles.passwordContainer}>
             <Image style={styles.icon} source={require("../assets/icon_password.png")}/>
             <TextInput
+              placeholderTextColor={'#686868'} 
               style={styles.passwordInput}
               placeholder="Password"
               onChangeText={t => {
@@ -183,7 +187,7 @@ function Signup(props) {
           </View>
 
           <View>
-            <Text style={styles.orText}> ──────── OR ────────</Text>
+            <Text style={styles.orText}> </Text>
           </View>
 
           {/* <GoogleSigninButton
@@ -304,6 +308,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingLeft: 10,
     backgroundColor: "white",
+    color:'#000000'
   },
   emailContainer: {
     borderRadius: 20,
@@ -329,7 +334,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingLeft: 10,
     backgroundColor: "white",
-    fontStyle: "italic"
+    fontStyle: "italic",
+    color:"#000000"
   },
   passwordContainer: {
     borderRadius: 20,
@@ -356,7 +362,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     paddingLeft: 10,
     backgroundColor: "white",
-    fontStyle: "italic"
+    fontStyle: "italic",
+    color:"#000000"
   },
   icon: {
     width:24, 

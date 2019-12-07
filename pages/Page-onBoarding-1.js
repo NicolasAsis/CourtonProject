@@ -79,7 +79,7 @@ function OnBoarding_1() {
         </View>
         <TouchableOpacity
           onPress={() => {
-            Actions.Home();
+            Actions.Login();
           }}
         >
           <Text style={styles.skipBtn}>SKIP</Text>

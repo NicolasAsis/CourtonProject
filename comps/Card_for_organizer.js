@@ -47,16 +47,18 @@ function Card_for_organizer(props) {
   var date = props.date.replace(/"/g, '');
   var chosenDate = new Date(date);
   var chosenDate2 = new Date(date);
+  var chosenDate3 = new Date(date);
   //console.log("date", date, chosenDate);
-  chosenDate = chosenDate.toLocaleDateString("en-US", {timeZone:"UTC", year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit"})
-  chosenDate2 = chosenDate2.toLocaleDateString("en-US", {timeZone:"UTC", year:"numeric", month:"2-digit", day:"2-digit"})
+  chosenDate = chosenDate.toLocaleDateString("en-US", {timeZone:"America/Los_Angeles", year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit"})
+  chosenDate2 = chosenDate2.toLocaleDateString("en-US", {timeZone:"America/Los_Angeles", year:"numeric", month:"2-digit", day:"2-digit"})
+  chosenDate3 = chosenDate3.toLocaleDateString("en-US", {timeZone:"America/Los_Angeles", hour:"2-digit", minute:"2-digit"})
   // console.log("date2", chosenDate);
   // console.log(time)
   return (
     <View style={{ alignItems: "center", marginTop: 18 }}>
       <TouchableOpacity
         onPress={()=>{
-          Actions.Organizer_groupInfo({groupId:props.groupId,chosenDate2:chosenDate2,progJoined:progJoined,numJoined:numJoined})
+          Actions.Organizer_groupInfo({groupId:props.groupId,chosenDate2:chosenDate2,progJoined:progJoined,numJoined:numJoined,chosenDate3:chosenDate3})
         }}
       >
       <View style={styles.card}>
@@ -110,7 +112,6 @@ const styles = StyleSheet.create({
   txtorganizer: {
     fontWeight: "bold",
     fontSize: 16,
-    lineHeight: 27,
     color: "#3C3C3C",
     position: "absolute",
     left: "46%",
@@ -118,28 +119,27 @@ const styles = StyleSheet.create({
     fontFamily: "Open sans"
   },
   txtGroupNum: {
-    fontSize: 11,
-    lineHeight: 15,
-    color: "#9FA5B4",
+    fontSize: 14,
+    color: "#6A6A6A",
     position: "absolute",
     width: 75,
     height: 15,
     left: "46%",
     top: 44,
-    fontFamily: "Open sans"
+    fontFamily: "Open sans",
+    lineHeight:15
   },
   txtGroupDate: {
     position: "absolute",
-    fontSize: 11,
+    fontSize: 14,
     color: "#4A4A4A",
-    lineHeight: 15,
     left: "46%",
     top: 62,
     color: "#FE647B",
     fontFamily: "Open sans"
   },
   txtGroupJoinDate: {
-    fontSize: 11,
+    fontSize: 14,
     color: "#FE647B",
     position: "absolute",
     left: "46%",
@@ -149,14 +149,14 @@ const styles = StyleSheet.create({
   txtGroupPlayerCount: {
     position: "absolute",
     color: "#9FA5B4",
-    fontSize: 12,
+    fontSize: 14,
     bottom: 25,
     left: "46%",
     fontFamily: "Open sans"
   },
   txtGroupPrice: {
     position: "absolute",
-    fontSize: 16,
+    fontSize: 24,
     color: "#094E76",
     fontWeight: "bold",
     bottom: 25,

@@ -32,20 +32,6 @@ import {url} from '../vars';
 var noResult = null;
 
 function Home() {
-  // const [moveY] =useState(new Animated. Value(0));
-  // const [op] = useState(new Animated. Value(1));
-
-  // var animatedOp = op.interpolate({
-  //     inputRange:[0, 1],
-  //     outputRange:[0, 1]
-  // })
-
-  // var animatedMoveY = moveY.interpolate({
-  //     inputRange:[0, 10],
-  //     outputRange:[0,10]
-  // })
-
-  // const [group, setGroup] = useState([]);
   const LoadGroup = async () => {
     var obj = {
       key: "groups_read",
@@ -252,20 +238,20 @@ function Home() {
 
       <ScrollView
         style={{ backgroundColor: "#FFFFFF" }}
-        onScroll={()=>{
-          Animated.timing(
-            moveY,
-            {
-                toValue:10,
-                duration:300
+        // onScroll={()=>{
+        //   Animated.timing(
+        //     moveY,
+        //     {
+        //         toValue:10,
+        //         duration:300
                 
-            },
-            op,
-            {
-                toValue:0,
-                duration:300
-            }
-        ).start();
+        //     },
+        //     op,
+        //     {
+        //         toValue:0,
+        //         duration:300
+        //     }
+        // ).start();
 
         // InteractionManager.runAfterInteractions(()=>{
         //   Animated.timing(
@@ -276,7 +262,7 @@ function Home() {
         //       }
         //   ).start();
         // })
-        }}
+        // }}
       >
         <View style={{ flex: 1, paddingBottom: 130, height:850 }}>
           <ScrollView 

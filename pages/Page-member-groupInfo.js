@@ -23,11 +23,12 @@ import HamMenu from "../comps/HamMenu";
 
 import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
-import {url} from '../vars';
+import { url } from "../vars";
 
 function Member_groupInfo(props) {
-
   const [groupInfo, setGroupsInfo] = useState([]);
+
+  const [uid, setUId] = useState(null);
   const ReadGroupInfo = async () => {
     // Get user id
     // const userId = await AsyncStorage.getItem("userId");
@@ -47,12 +48,13 @@ function Member_groupInfo(props) {
     var groupData = dbGroupInfo.data[0];
     //console.log("read", groupData);
     setGroupsInfo(groupData);
+    setUId(groupData.organizer_id);
   };
 
   useEffect(() => {
     ReadGroupInfo();
   }, []);
-  
+
   // const LoadMemberCard = async () => {
   //   var obj = {
   //     key: "memberCard_read",
@@ -127,14 +129,15 @@ function Member_groupInfo(props) {
       position: "absolute",
       left: 19,
       top: 170,
-      borderRadius: 50
+      borderRadius: 50,
+      resizeMode:'cover'
     },
     giOrganizedByText: {
       fontFamily: "Open sans",
       fontSize: 20,
       color: "#FFFFFF",
       position: "absolute",
-      left: 45,
+      left: 95,
       top: 163
     },
     giOrganizerText: {
@@ -143,7 +146,7 @@ function Member_groupInfo(props) {
       fontSize: 24,
       color: "#FFFFFF",
       position: "absolute",
-      left: 45,
+      left: 95,
       top: 190
     },
 
@@ -184,9 +187,10 @@ function Member_groupInfo(props) {
     },
     giText: {
       fontFamily: "Open sans",
-      fontSize: 15,
+      fontSize: 18,
       color: "#7C7B7B",
       lineHeight: 20,
+      fontWeight:'bold',
       marginBottom: 32
     },
     //Style location text, since mostly two lines
@@ -294,6 +298,35 @@ function Member_groupInfo(props) {
       fontSize: 16,
       fontFamily: "Open sans",
       color: "#094E76"
+    },
+    rowStyle: {
+      flexDirection: "row",
+      alignItems: "center",
+      paddingBottom: 30
+    },
+    gsTitleText: {
+      fontFamily: "Open sans",
+      fontWeight: "bold",
+      fontSize: 18,
+      color: "#3C3C3C",
+      flex: 1,
+      alignItems: "flex-end"
+    },
+    gsText: {
+      fontFamily: "Open sans",
+      fontSize: 18,
+      color: "#4B4B4B",
+      flex: 1
+      // flex:4
+    },
+    gsPriceText: {
+      fontFamily: "Open sans",
+      fontSize: 24,
+      fontWeight: "bold",
+      color: "#EB5757",
+      lineHeight: 33,
+      marginBottom: 11.1
+      // marginTop:
     }
   });
 
@@ -322,7 +355,7 @@ function Member_groupInfo(props) {
           setHamMenuVisible(false);
         }}
         hideModalContentWhileAnimating={true}
-        style={{margin:0}}
+        style={{ margin: 0 }}
       >
         <HamMenu showHamMenu={setHamMenuVisible} />
       </Modal>
@@ -341,10 +374,7 @@ function Member_groupInfo(props) {
         {/* Main Header */}
 
         <View style={styles.giHeader}>
-          <Image
-            style={styles.giImg}
-            source={{uri: groupInfo.image}}
-          />
+          <Image style={styles.giImg} source={{ uri: groupInfo.image }} />
           <TouchableOpacity
             style={{ position: "absolute" }}
             onPress={() => {
@@ -367,9 +397,20 @@ function Member_groupInfo(props) {
               source={require("../assets/but_ham.png")}
             />
           </TouchableOpacity>
+          <Image
+            style={styles.giOrganizerImg}
+            source={{
+              uri:
+                "https://sstsappca.s3.ca-central-1.amazonaws.com/bcit/d3/user" +
+                uid +
+                "profilePic.jpg"
+            }}
+          />
           {/* <View style={styles.giOrganizerImg}></View> */}
           <Text style={styles.giOrganizedByText}>Organized by</Text>
-          <Text style={styles.giOrganizerText}>{groupInfo.first_name} {groupInfo.last_name}</Text>
+          <Text style={styles.giOrganizerText}>
+            {groupInfo.first_name} {groupInfo.last_name}
+          </Text>
         </View>
         <Text style={styles.txtMembersIndicator}>
           Players {props.numJoined}/{groupInfo.member_limit}
@@ -392,24 +433,20 @@ function Member_groupInfo(props) {
               position: "absolute",
               height: 500,
               backgroundColor: "#ffffff",
-              width: "100%",
-              justifyContent: "center",
-              alignItems: "center"
+              width: "100%"
+              // justifyContent: "center",
+              // alignItems: "center"
             }}
           >
             <ScrollView
               style={{
                 flex: 1,
-                width: "100%",
-
                 backgroundColor: "#FFFFFF"
               }}
             >
               {/* Group Description */}
-              <View style={{ backgroundColor: "#ffffff", paddingLeft: "6%" }}>
-                <Text style={styles.groupDescHeaderText}>
-                  Group Description
-                </Text>
+              <View style={{ backgroundColor: "#ffffff", paddingLeft: 20, paddingRight:10 }}>
+                <Text style={styles.gsTitleText}>Group Description</Text>
                 <Text style={styles.groupDescText}>
                   {groupInfo.description}
                 </Text>
@@ -418,31 +455,64 @@ function Member_groupInfo(props) {
                 <View
                   style={{
                     display: "flex",
-                    flexDirection: "row",
+                    flexDirection: "column",
                     backgroundColor: "#FFFFFF",
                     justifyContent: "center",
                     alignItems: "center"
                   }}
                 >
-                  <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-                    <Text style={styles.giTitleText}>Price Per Person</Text>
-                    <Text style={styles.giTitleText}>Date</Text>
-                    <Text style={styles.giTitleText}>Centre</Text>
-                    <Text style={styles.giTitleText}>Location</Text>
-                    <Text style={styles.giTitleText}>Time</Text>
-                    <Text style={styles.giTitleText}>Bird Type</Text>
+                  
+                    <View style={styles.rowStyle}>
+                      <Text style={styles.gsTitleText}>Price Per Person</Text>
+                      <Text style={styles.gsText}>
+                        ${groupInfo.cost_per_person}
+                      </Text>
+                    </View>
+
+                    <View style={styles.rowStyle}>
+                      <Text style={styles.gsTitleText}>Centre</Text>
+                      <Text style={styles.gsText}>{groupInfo.name}</Text>
+                    </View>
+
+                    <View style={styles.rowStyle}>
+                      <Text style={styles.gsTitleText}>Location</Text>
+                      <Text style={styles.gsText}>{groupInfo.location}</Text>
+                      </View>
+
+                      <View style={styles.rowStyle}>
+                        <Text style={styles.gsTitleText}>Time</Text>
+                        <Text style={styles.gsText}>{props.chosenDate3}</Text>
+                      </View>
+
+                      <View style={styles.rowStyle}>
+                        <Text style={styles.gsTitleText}>Bird Type</Text>
+                        <Text style={styles.gsText}>
+                          {groupInfo.birdie_type}
+                        </Text>
+                      </View>
+                      <View style={styles.rowStyle}>
+                        <Text style={styles.gsTitleText}>Courts Selected</Text>
+                        <Text style={styles.gsText}>
+                          {groupInfo.courts_selected}
+                        </Text>
+                      </View>
+                    
+                    
+                    {/* <Text style={styles.giTitleText}>Date</Text> */}
                   </View>
-                  <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-                    <Text style={styles.giText}>${groupInfo.cost_per_person}</Text>
-                    <Text style={styles.giText}>{props.chosenDate2}</Text>
-                    <Text style={styles.giText}>{groupInfo.name}</Text>
-                    <Text style={styles.giLocationText}>
-                      {groupInfo.location}
-                    </Text>
-                    <Text style={styles.giText}>{groupInfo.start_time}-{groupInfo.end_time}</Text>
-                    <Text style={styles.giText}>{groupInfo.birdie_type}</Text>
-                  </View>
-                </View>
+                  <Text
+                style={{
+                  fontFamily:'Open sans',
+                  fontSize:20,
+                  fontWeight:'bold',
+                  color: "#5DB9F0",
+                  paddingBottom:20,
+                  paddingTop:30
+                }}
+                >
+                  Members
+                </Text>
+
                 {/* Member Cards */}
                 <View
                   style={{
@@ -462,34 +532,34 @@ function Member_groupInfo(props) {
                     );
                   })} */}
 
-                      <Card_members
-                        // key = {i}
-                        // id={obj.id}
-                        memberFN={groupInfo.first_name}
-                        memberLN={groupInfo.last_name}
-                        organizer="Organizer"
-                        // url={obj.url}
-                        skillLevel={groupInfo.skill_level}
-                      />
-            
+                  <Card_members
+                    // key = {i}
+                    // id={obj.id}
+                    memberFN={groupInfo.first_name}
+                    memberLN={groupInfo.last_name}
+                    userId={uid}
+                    organizer="Organizer"
+                    // url={obj.url}
+                    skillLevel={groupInfo.skill_level}
+                  />
                 </View>
                 <TouchableOpacity
                   style={{ flexDirection: "row", backgroundColor: "#FFFFFF" }}
                   onPress={() => {
-                    Actions.MoreMembers({groupId:props.groupId});
+                    Actions.MoreMembers({ groupId: props.groupId });
                   }}
                 >
-                  <View>
+                  {/* <View>
                     <Circle_extra_member />
-                  </View>
-                  <View style={{ position: "absolute", left: "6%" }}>
+                  </View> */}
+                  {/* <View style={{ position: "absolute", left: "6%" }}>
                     <Circle_extra_member />
-                  </View>
+                  </View> */}
                   <Text style={[styles.giText, { left: 26, top: 5 }]}>
                     +{moreMembersNum} more
                   </Text>
                 </TouchableOpacity>
-                <Image
+                {/* <Image
                   style={{
                     width: 24,
                     height: 24,
@@ -497,8 +567,8 @@ function Member_groupInfo(props) {
                     marginLeft: 10
                   }}
                   source={require("../assets/icon_comment.png")}
-                />
-                <View
+                /> */}
+                {/* <View
                   style={{
                     alignItems: "center",
                     backgroundColor: "#FFFFFF",
@@ -511,8 +581,8 @@ function Member_groupInfo(props) {
                       style={styles.descInput}
                       placeholder="Type a group description..."
                       multiline
-                    />
-                    <View
+                    /> */}
+                {/* <View
                       style={{
                         flexDirection: "column",
                         backgroundColor: "#FFFFFF"
@@ -540,10 +610,10 @@ function Member_groupInfo(props) {
                         }}
                       >
                         <Text style={styles.txtLeave}>Leave Group</Text>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </View>
+                      </TouchableOpacity> */}
+                {/* </View> */}
+                {/* </View>
+                </View> */}
               </View>
             </ScrollView>
           </View>

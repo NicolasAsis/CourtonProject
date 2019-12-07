@@ -78,8 +78,8 @@ function OnBoarding_4() {
                   Actions.reset('OnBoarding_4')
               }}></TouchableOpacity>
         </View>
-        <TouchableOpacity onPress={()=>{Actions.Home()}}>
-        <Text style={styles.skipBtn} >START</Text>
+        <TouchableOpacity onPress={()=>{Actions.Login();}}>
+        <Text style={styles.skipBtn}>START</Text>
         </TouchableOpacity>
       </View>
     </View>

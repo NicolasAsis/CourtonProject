@@ -22,7 +22,7 @@ import HamMenu from "../comps/HamMenu";
 import axios from "axios";
 import AsyncStorage from "@react-native-community/async-storage";
 
-import {url} from '../vars';
+import { url } from "../vars";
 
 function GroupInfo(props) {
   const LoadMemberCard = async () => {
@@ -187,7 +187,7 @@ function GroupInfo(props) {
       fontFamily: "Open sans",
       fontWeight: "bold",
       fontSize: 15,
-      marginBottom:25,
+      marginBottom: 25,
       color: "#3C3C3C"
     },
     groupDescText: {
@@ -196,8 +196,7 @@ function GroupInfo(props) {
       color: "#7C7B7B",
       lineHeight: 20,
       marginBottom: 43,
-      width: 330,
-
+      width: 330
     },
 
     //Group Information Text
@@ -210,10 +209,10 @@ function GroupInfo(props) {
     },
     giText: {
       fontFamily: "Open sans",
-      fontSize: 15,
+      fontSize: 18,
       color: "#7C7B7B",
       lineHeight: 20,
-
+      fontWeight:'bold',
       marginBottom: 32
     },
     //Style location text, since mostly two lines
@@ -240,6 +239,35 @@ function GroupInfo(props) {
       fontSize: 16,
       fontFamily: "Open sans",
       color: "#094E76"
+    },
+    rowStyle: {
+      flexDirection: "row",
+      alignItems: "center",
+      paddingBottom: 30
+    },
+    gsTitleText: {
+      fontFamily: "Open sans",
+      fontWeight: "bold",
+      fontSize: 18,
+      color: "#3C3C3C",
+      flex: 1,
+      alignItems: "flex-end"
+    },
+    gsText: {
+      fontFamily: "Open sans",
+      fontSize: 18,
+      color: "#4B4B4B",
+      flex: 1
+      // flex:4
+    },
+    gsPriceText: {
+      fontFamily: "Open sans",
+      fontSize: 24,
+      fontWeight: "bold",
+      color: "#EB5757",
+      lineHeight: 33,
+      marginBottom: 11.1
+      // marginTop:
     }
   });
 
@@ -280,15 +308,16 @@ function GroupInfo(props) {
           isVisible={modalVisible}
           style={{ margin: 0 }}
         >
-          <Join_group_popup setShowPopup={setModalVisible} groupId={groupInfo.id} chosenDate={props.chosenDate2}/>
+          <Join_group_popup
+            setShowPopup={setModalVisible}
+            groupId={groupInfo.id}
+            chosenDate={props.chosenDate2}
+          />
         </Modal>
 
         {/* Main Header */}
         <View style={styles.giHeader}>
-          <Image
-            style={styles.giImg}
-            source={{uri: groupInfo.image}}
-          />
+          <Image style={styles.giImg} source={{ uri: groupInfo.image }} />
           <TouchableOpacity
             style={styles.giBackTouchableOp}
             onPress={() => {
@@ -313,11 +342,18 @@ function GroupInfo(props) {
           </TouchableOpacity>
           <Image
             style={styles.giOrganizerImg}
-            source={{uri:"https://sstsappca.s3.ca-central-1.amazonaws.com/bcit/d3/user"+uid+"profilePic.jpg"}}
+            source={{
+              uri:
+                "https://sstsappca.s3.ca-central-1.amazonaws.com/bcit/d3/user" +
+                uid +
+                "profilePic.jpg"
+            }}
           />
           {/* <View style={styles.giOrganizerImg}></View> */}
           <Text style={styles.giOrganizedByText}>Organized by</Text>
-          <Text style={styles.giOrganizerText}>{groupInfo.first_name} {groupInfo.last_name}</Text>
+          <Text style={styles.giOrganizerText}>
+            {groupInfo.first_name} {groupInfo.last_name}
+          </Text>
         </View>
         <View style={{ justifyContent: "center", alignItems: "center" }}>
           <Text style={styles.txtMembersIndicator}>
@@ -353,11 +389,12 @@ function GroupInfo(props) {
               <View
                 style={{
                   paddingLeft: 20,
-                  paddingRight: 20
+                  paddingRight: 10
                 }}
               >
                 {/* Group Description */}
-                <Text style={styles.groupDescHeaderText}>
+                {/* this is what i changed */}
+                <Text style={styles.gsTitleText}>
                   Group Description
                 </Text>
                 <Text style={styles.groupDescText}>
@@ -365,26 +402,66 @@ function GroupInfo(props) {
                 </Text>
 
                 {/* All group information text */}
-                <View style={{ display: "flex", flexDirection: "row" }}>
-                  <View style={{ flex: 1 }}>
-                    <Text style={styles.giTitleText}>Price Per Person</Text>
-                    <Text style={styles.giTitleText}>Date</Text>
-                    <Text style={styles.giTitleText}>Centre</Text>
-                    <Text style={styles.giTitleText}>Location</Text>
-                    <Text style={styles.giTitleText}>Time</Text>
-                    <Text style={styles.giTitleText}>Bird Type</Text>
-                  </View>
-                  <View style={{ flex: 1 }}>
-                    <Text style={styles.giText}>${groupInfo.cost_per_person}</Text>
-                    <Text style={styles.giText}>{props.chosenDate2}</Text>
-                    <Text style={styles.giText}>{groupInfo.name}</Text>
-                    <Text style={styles.giLocationText}>
-                        {groupInfo.location}
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  {/* <View style={{ flex: 1 }}> */}
+                  <View style={styles.rowStyle}>
+                    <Text style={styles.gsTitleText}>Price Per Person</Text>
+                    <Text style={styles.gsText}>
+                      ${groupInfo.cost_per_person}
                     </Text>
-                    <Text style={styles.giText}>{groupInfo.start_time}-{groupInfo.end_time}</Text>
-                    <Text style={styles.giText}>{groupInfo.birdie_type}</Text>
                   </View>
+
+                  <View style={styles.rowStyle}>
+                    <Text style={styles.gsTitleText}>Centre</Text>
+                    <Text style={styles.gsText}>{groupInfo.name}</Text>
+                  </View>
+
+                  <View style={styles.rowStyle}>
+                    <Text style={styles.gsTitleText}>Location</Text>
+                    <Text style={styles.gsText}>
+                      {groupInfo.location}
+                    </Text>
+                  </View>
+
+                  <View style={styles.rowStyle}>
+                    <Text style={styles.gsTitleText}>Time</Text>
+                    <Text style={styles.gsText}>{props.chosenDate3}</Text>
+                  </View>
+
+                  <View style={styles.rowStyle}>
+                    <Text style={styles.gsTitleText}>Bird Type</Text>
+                    <Text style={styles.gsText}>{groupInfo.birdie_type}</Text>
+                  </View>
+
+                  <View style={styles.rowStyle}>
+                    <Text style={styles.gsTitleText}>Courts Selected</Text>
+                    <Text style={styles.gsText}>
+                      {groupInfo.courts_selected}
+                    </Text>
+                    </View>
+
+                  {/* <Text style={styles.giTitleText}>Date</Text> */}
+                  {/* </View> */}
                 </View>
+                <Text
+                style={{
+                  fontFamily:'Open sans',
+                  fontSize:20,
+                  fontWeight:'bold',
+                  color: "#5DB9F0",
+                  paddingBottom:20,
+                  paddingTop:30
+                }}
+                >
+                  Members
+                </Text>
                 {/* Member Cards */}
                 <View style={{ alignItems: "flex-start" }}>
                   {/* {data.map((obj, i) => {
@@ -398,32 +475,31 @@ function GroupInfo(props) {
                       />
                     );
                   })} */}
-                   <Card_members
-                        // key = {i}
-                        // id={obj.id}
-                        memberFN={groupInfo.first_name}
-                        memberLN={groupInfo.last_name}
-                        userId={uid}
-                        organizer="Organizer"
-                        // url={obj.url}
-                        skillLevel={groupInfo.skill_level}
-                      />
-            
+                  <Card_members
+                    // key = {i}
+                    // id={obj.id}
+                    memberFN={groupInfo.first_name}
+                    memberLN={groupInfo.last_name}
+                    userId={uid}
+                    organizer="Organizer"
+                    // url={obj.url}
+                    skillLevel={groupInfo.skill_level}
+                  />
                 </View>
                 {/* this TO go to expanded member page */}
                 <TouchableOpacity
                   style={{ flexDirection: "row", backgroundColor: "#ffffff" }}
                   onPress={() => {
-                    Actions.MoreMembers({groupId:props.groupId});
+                    Actions.MoreMembers({ groupId: props.groupId });
                   }}
                 >
                   <View style={{ flexDirection: "row" }}>
-                    <View>
+                    {/* <View>
                       <Circle_extra_member />
-                    </View>
-                    <View style={{ position: "absolute", left: 20 }}>
+                    </View> */}
+                    {/* <View style={{ position: "absolute", left: 20 }}>
                       <Circle_extra_member />
-                    </View>
+                    </View> */}
                     <Text style={[styles.giText, { left: 26, top: 5 }]}>
                       +{moreMembersNum} more
                     </Text>
@@ -436,7 +512,10 @@ function GroupInfo(props) {
       </View>
 
       {/* Join Button */}
-      <Button_Join price={groupInfo.cost_per_person} setShowPopup={setModalVisible}/>
+      <Button_Join
+        price={groupInfo.cost_per_person}
+        setShowPopup={setModalVisible}
+      />
     </View>
   );
 }

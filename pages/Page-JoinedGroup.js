@@ -138,7 +138,6 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 36,
-    lineHeight: 49,
     textAlign: "center",
     letterSpacing: 0.48,
     color: "#FFFFFF"
@@ -154,7 +153,6 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: 14,
-    lineHeight: 19,
     letterSpacing: 0.186667,
     color: "#FFFFFF"
   },
@@ -191,12 +189,11 @@ const styles = StyleSheet.create({
     width: 35,
     height: 80,
     top: 5,
-    left: 145,
+    left: 140,
     fontFamily: "Open Sans",
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 30,
-    lineHeight: 41,
     color: "#FE647B"
   },
 
@@ -225,7 +222,6 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     fontWeight: "bold",
     fontSize: 12,
-    lineHeight: 16,
     letterSpacing: 0.48,
     color: "#333333"
   },
