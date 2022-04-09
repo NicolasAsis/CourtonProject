@@ -16,7 +16,7 @@
     "@react-native-community/datetimepicker": "^2.1.0",
     "axios": "^0.19.0",
     "fonts": "0.0.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "native-base": "^2.13.8",
     "react": "16.8.1",
     "react-circular-progressbar": "^2.0.3",
